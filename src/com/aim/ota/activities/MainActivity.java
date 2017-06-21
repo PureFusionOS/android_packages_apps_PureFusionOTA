@@ -390,50 +390,49 @@ public class MainActivity extends Activity implements Constants{
 	}
 
 	private void updateRomInformation() {
-		String htmlColorOpen = "";
-		if (isLollipop) {
-			if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-				htmlColorOpen = "<font color='#4285f4'>";
-			} else {
-				htmlColorOpen = "<font color='#5e97f6'>";
-			}
-		} else {
-			htmlColorOpen = "<font color='#33b5e5'>";
-		}
-		String htmlColorClose = "</font>";
 
 		//ROM name
 		TextView romName = (TextView) findViewById(R.id.tv_main_rom_name);
-		String romNameTitle = getApplicationContext().getResources().getString(R.string.main_rom_name) + " ";
+		TextView romNameData = (TextView) findViewById(R.id.tv_main_rom_name_data);
+		String romNameTitle = getApplicationContext().getResources().getString(R.string.main_rom_name);
 		String romNameActual = Utils.getProp(OTA_ROMNAME);
-		romName.setText(Html.fromHtml(romNameTitle + htmlColorOpen + romNameActual + htmlColorClose));
+		romName.setText(romNameTitle);
+		romNameData.setText(romNameActual);
 
 		//ROM version
 		TextView romVersion = (TextView) findViewById(R.id.tv_main_rom_version);
-		String romVersionTitle = getApplicationContext().getResources().getString(R.string.main_rom_version) + " ";
+                TextView romVersionData = (TextView) findViewById(R.id.tv_main_rom_version_data);
+		String romVersionTitle = getApplicationContext().getResources().getString(R.string.main_rom_version);
 		String romVersionActual = Utils.getProp(OTA_VERSION);
-		romVersion.setText(Html.fromHtml(romVersionTitle + htmlColorOpen + romVersionActual + htmlColorClose));
+		romVersion.setText(romVersionTitle);
+                romVersionData.setText(romVersionActual);
 
 		//ROM date
 		TextView romDate = (TextView) findViewById(R.id.tv_main_rom_date);
-		String romDateTitle = getApplicationContext().getResources().getString(R.string.main_rom_build_date) + " ";
+                TextView romDateData = (TextView) findViewById(R.id.tv_main_rom_date_data);
+		String romDateTitle = getApplicationContext().getResources().getString(R.string.main_rom_build_date);
 		String romDateActual = Utils.getProp("ro.build.date");
-		romDate.setText(Html.fromHtml(romDateTitle + htmlColorOpen + romDateActual + htmlColorClose));
+		romDate.setText(romDateTitle);
+                romDateData.setText(romDateActual);
 
 		//ROM android version
 		TextView romAndroid = (TextView) findViewById(R.id.tv_main_android_version);
-		String romAndroidTitle = getApplicationContext().getResources().getString(R.string.main_android_verison) + " ";
+                TextView romAndroidData = (TextView) findViewById(R.id.tv_main_android_version_data);
+		String romAndroidTitle = getApplicationContext().getResources().getString(R.string.main_android_verison);
 		String romAndroidActual = Utils.getProp("ro.build.version.release");
-		romAndroid.setText(Html.fromHtml(romAndroidTitle + htmlColorOpen + romAndroidActual + htmlColorClose));
+		romAndroid.setText(romAndroidTitle);
+                romAndroidData.setText(romAndroidActual);
 
 		//ROM developer
 		TextView romDeveloper = (TextView) findViewById(R.id.tv_main_rom_developer);
+                TextView romDeveloperData = (TextView) findViewById(R.id.tv_main_rom_developer_data);
 		boolean showDevName = !RomUpdate.getDeveloper(this).equals("null");
 		romDeveloper.setVisibility(showDevName? View.VISIBLE : View.GONE);
 
-		String romDeveloperTitle = getApplicationContext().getResources().getString(R.string.main_rom_developer) + " ";
+		String romDeveloperTitle = getApplicationContext().getResources().getString(R.string.main_rom_developer);
 		String romDeveloperActual = RomUpdate.getDeveloper(this);
-		romDeveloper.setText(Html.fromHtml(romDeveloperTitle + htmlColorOpen + romDeveloperActual + htmlColorClose));
+		romDeveloper.setText(romDeveloperTitle);
+                romDeveloperData.setText(romDeveloperActual);
 
 	}
 
