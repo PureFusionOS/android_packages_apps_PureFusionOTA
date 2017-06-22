@@ -28,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -377,17 +378,6 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 			TextView domainTextView = (TextView) findViewById(R.id.tv_available_romhut);
 			String sponsoredBy = isRomHut ?  "Sponsored by " : "";
 			domainTextView.setText(sponsoredBy + domainText);
-			if (Utils.isLollipop()) {	
-				int color;
-				if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-					color = getResources().getColor(R.color.material_deep_teal_500);
-				} else {
-					color = getResources().getColor(R.color.material_deep_teal_200);
-				}
-				domainTextView.setTextColor(color);
-			} else {
-				domainTextView.setTextColor(getResources().getColor(R.color.holo_blue_light));
-			}
 		}
 	}
 
@@ -396,19 +386,6 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 		TextView updateNameInfoText = (TextView) findViewById(R.id.tv_available_update_name);
 		String downloading = getResources().getString(R.string.available_downloading);
 		String filename = RomUpdate.getVersionName(mContext);
-
-		if (Utils.isLollipop()) {
-			int color;
-			if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-				color = getResources().getColor(R.color.material_deep_teal_500);
-			} else {
-				color = getResources().getColor(R.color.material_deep_teal_200);
-			}
-			updateNameInfoText.setTextColor(color);
-		} else {
-			updateNameInfoText.setTextColor(getResources().getColor(R.color.holo_blue_light));
-		}
-
 		if (isDownloadOnGoing) {
 			updateNameInfoText.setText(downloading); 	
 		} else {			
@@ -478,15 +455,10 @@ public class AvailableActivity extends Activity implements Constants, android.vi
 			if (DEBUGGING)
 				Log.d(TAG, "Download finished. Setting up Progress Bars accordingly.");
 			String ready = context.getResources().getString(R.string.available_ready_to_install);
-
-			int color = res.getColor(R.color.holo_blue_light);
-			if (Utils.isLollipop()) {
-				if (Preferences.getCurrentTheme(context) == 0) { // Light
-					color = context.getResources().getColor(R.color.material_deep_teal_500);
-				} else {
-					color = context.getResources().getColor(R.color.material_deep_teal_200);
-				}		
-			} 
+			int[] attrs = {R.attr.materialAccent};
+			TypedArray ta = context.obtainStyledAttributes(attrs);
+			int color = ta.getColor(R.styleable.Theme_Ragnar_materialAccent, 0);
+			ta.recycle();
 			if(mProgressCounterText != null) {
 				mProgressCounterText.setTextColor(color);
 				mProgressCounterText.setText(ready);

@@ -1,3 +1,8 @@
+AIM ROM OTA SERVER APP FOR OFFICIAL DEVICES
+==============================
+![AIMOTA](https://github.com/Anandnv/shits/blob/3384c53822a861688a90764af3c71c2a6a600ba6/ezgif.com-video-to-gif%281%29.gif)
+
+
 ## Manually
 
 If you want to, you can host the ROM zip and ota.xml manifest yourself! You can use direct links to the ROM or input a HTTP link into the manifest, which will prompt the OTA app to open a web browser in order to download the ROM. Useful if you just want the app to be a notification of an update, and drive traffic somewhere in particular
@@ -124,7 +129,7 @@ At the bottom of your build.prop, add the following values editing them to suit 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ota.romname=AIM-ROM \
     ro.ota.version=$(shell date +"%Y%m%d") \
-    ro.ota.manifest=http://xyyx-dev.ru/nitrogen-os/nougat/geehrc/ota.xml
+    ro.ota.manifest=http://github.com/aimrom/official_devices/blob/N/Z010D.xml
 ```
   
 Please pay CLOSE attention to the ro.ota.version entry. This is not your particular ROM version (v6.5 or v1.2.5, for example) this is a value for the OTA app to determine if an update is available. Your NEXT version should be numerically higher than this. You may use value you like, so long as it is an integer and successive updates are larger.
@@ -164,3 +169,4 @@ Now all your users will get an OTA update notification at some point, whenever t
 Direct links must be exactly that. They cannot include any kind of gateway or web page that requires you to click a button. Generally, if you can just paste the link into an address bar and it starts to download, it's direct. Not everyone has access to to this kind of service, especially for ROMs as it can be bandwidth intensive, but for those that do, this is there for them.
 
 This is why, alternatively, you can use HTTP links. In this case, the user's web browser will be opened instead.
+

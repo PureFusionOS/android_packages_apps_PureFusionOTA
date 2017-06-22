@@ -263,7 +263,7 @@ public class MainActivity extends Activity implements Constants{
 		});
 	}
 
-	private void updateRomUpdateLayouts() {
+        private void updateRomUpdateLayouts() {
 		View updateAvailable;
 		View updateNotAvailable;
 		updateAvailable = (CardView) findViewById(R.id.layout_main_update_available);
@@ -282,63 +282,28 @@ public class MainActivity extends Activity implements Constants{
                 (!RomUpdate.getUpdateAvailability(mContext)) && Utils.isUpdateIgnored(mContext)) {
 			updateAvailable.setVisibility(View.VISIBLE);
 			TextView updateAvailableTitle = (TextView) findViewById(R.id.main_tv_update_available_title);
+                        TextView updateAvailableFileSummary = (TextView) findViewById(R.id.main_tv_update_available_file_summary);
 
 			if (Preferences.getDownloadFinished(mContext)) { //  Update already finished?
 				updateAvailableTitle.setText(getResources().getString(R.string.main_update_finished));
-				String htmlColorOpen = "";
-				if (isLollipop) {
-					if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-						htmlColorOpen = "<font color='#4285f4'>";
-					} else {
-						htmlColorOpen = "<font color='#5e97f6'>";
-					}
-				} else {
-					htmlColorOpen = "<font color='#33b5e5'>";
-				}
-				String htmlColorClose = "</font>";
-				String updateSummary = RomUpdate.getVersionName(mContext)
-						+ "<br />"
-						+ htmlColorOpen
-						+ getResources().getString(R.string.main_download_completed_details)
-						+ htmlColorClose;
-				updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                                String updateFileSummary = RomUpdate.getVersionName(mContext);
+				String updateSummary = getResources().getString(R.string.main_download_completed_details);
+                                updateAvailableFileSummary.setVisibility(View.VISIBLE);
+                                updateAvailableFileSummary.setText(updateFileSummary);
+				updateAvailableSummary.setText(updateSummary);
 			} else if (Preferences.getIsDownloadOnGoing(mContext)) {
 				updateAvailableTitle.setText(getResources().getString(R.string.main_update_progress));
 				mProgressBar.setVisibility(View.VISIBLE);
-				String htmlColorOpen = "";
-				if (isLollipop) {
-					if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-						htmlColorOpen = "<font color='#4285f4'>";
-					} else {
-						htmlColorOpen = "<font color='#5e97f6'>";
-					}
-				} else {
-					htmlColorOpen = "<font color='#33b5e5'>";
-				}
-				String htmlColorClose = "</font>";
-				String updateSummary = htmlColorOpen
-						+ getResources().getString(R.string.main_tap_to_view_progress)
-						+ htmlColorClose;
-				updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                                updateAvailableFileSummary.setVisibility(View.GONE);
+				String updateSummary = getResources().getString(R.string.main_tap_to_view_progress);
+				updateAvailableSummary.setText(updateSummary);
 			} else {
 				updateAvailableTitle.setText(getResources().getString(R.string.main_update_available));
-				String htmlColorOpen = "";
-				if (isLollipop) {
-					if (Preferences.getCurrentTheme(mContext) == 0) { // Light
-						htmlColorOpen = "<font color='#4285f4'>";
-					} else {
-						htmlColorOpen = "<font color='#5e97f6'>";
-					}
-				} else {
-					htmlColorOpen = "<font color='#33b5e5'>";
-				}
-				String htmlColorClose = "</font>";
-				String updateSummary = RomUpdate.getVersionName(mContext)
-						+ "<br />"
-						+ htmlColorOpen
-						+ getResources().getString(R.string.main_tap_to_download)
-						+ htmlColorClose;
-				updateAvailableSummary.setText(Html.fromHtml(updateSummary));
+                                String updateFileSummary = RomUpdate.getVersionName(mContext);
+				String updateSummary = getResources().getString(R.string.main_tap_to_download);
+                                updateAvailableFileSummary.setVisibility(View.VISIBLE);
+                                updateAvailableFileSummary.setText(updateFileSummary);
+				updateAvailableSummary.setText(updateSummary);
 
 			}
 		} else {
