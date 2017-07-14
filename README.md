@@ -1,6 +1,7 @@
-AIM ROM OTA SERVER APP FOR OFFICIAL DEVICES
+PureFusionOS ROM OTA SERVER APP FOR OFFICIAL DEVICES
 ==============================
-![AIMOTA](https://github.com/Anandnv/shits/blob/3384c53822a861688a90764af3c71c2a6a600ba6/ezgif.com-video-to-gif%281%29.gif)
+
+Updated for: PureFusionOS 07/15/2017
 
 
 ## Manually
@@ -12,7 +13,7 @@ If you want to, you can host the ROM zip and ota.xml manifest yourself! You can 
 - Build this app (include to device.mk)
 ``` MAKEFILE
 PRODUCT_PACKAGES += \
-    AIMOTA \
+    PureFusionOTA \
     libbypass
 ```
 #### Create an ota.xml
@@ -127,9 +128,9 @@ At the bottom of your build.prop, add the following values editing them to suit 
 
 ``` MAKEFILE
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ota.romname=AIM-ROM \
+    ro.ota.romname=PureFusion-ROM \
     ro.ota.version=$(shell date +"%Y%m%d") \
-    ro.ota.manifest=http://github.com/aimrom/official_devices/blob/N/Z010D.xml
+    ro.ota.manifest=https://github.com/PureFusionOS/PureFusionOTA_SERVER/blob/master/pme.xml
 ```
   
 Please pay CLOSE attention to the ro.ota.version entry. This is not your particular ROM version (v6.5 or v1.2.5, for example) this is a value for the OTA app to determine if an update is available. Your NEXT version should be numerically higher than this. You may use value you like, so long as it is an integer and successive updates are larger.
@@ -150,10 +151,10 @@ Ok, now the above is done, releasing an update is very easy!
 
 ```
   # Before
-  ro.ota.version=20150105
+  ro.ota.version=20170105
   
   # After
-  ro.ota.version=20150108 
+  ro.ota.version=20170108 
 ```
   
 - Zip your ROM

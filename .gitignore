@@ -11,3 +11,6 @@ lint.xml
 build.gradle
 proguard-project.txt
 project.properties
+
+.idea/instapk.xml
+instapk.log*

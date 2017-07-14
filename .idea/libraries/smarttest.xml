@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="smarttest">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jni/boost_1_57_0/libs/smart_ptr/smarttest.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
