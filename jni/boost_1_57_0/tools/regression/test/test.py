@@ -4,7 +4,6 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import difflib
 import os
 import re
 import shutil

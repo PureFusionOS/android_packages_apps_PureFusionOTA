@@ -4,8 +4,10 @@
 # http://www.boost.org/LICENSE_1_0.txt)
 
 from __future__ import generators
+
 import string
 import sys
+
 
 #==============================================================================
 # enumerate

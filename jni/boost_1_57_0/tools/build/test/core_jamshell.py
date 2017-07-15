@@ -4,8 +4,9 @@
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
 
-import BoostBuild
 import sys
+
+import BoostBuild
 
 t = BoostBuild.Tester(pass_toolset=False, pass_d0=False)
 

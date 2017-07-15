@@ -16,13 +16,6 @@
 
 package com.fusion.ota.utils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.text.DecimalFormat;
-import java.util.Calendar;
-
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -44,6 +37,13 @@ import com.fusion.ota.RomUpdate;
 import com.fusion.ota.activities.AvailableActivity;
 import com.fusion.ota.activities.MainActivity;
 import com.fusion.ota.receivers.AppReceiver;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 
 public class Utils implements Constants{
 

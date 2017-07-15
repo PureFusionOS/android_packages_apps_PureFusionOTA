@@ -11,11 +11,11 @@
 # Note that the regular 'echo' is an internal shell command on Windows and
 # therefore can not be called directly as a standalone Windows process.
 
-import BoostBuild
 import os
 import re
 import sys
 
+import BoostBuild
 
 executable = sys.executable.replace("\\", "/")
 if " " in executable:

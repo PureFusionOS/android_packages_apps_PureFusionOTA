@@ -18,11 +18,12 @@ import android.text.style.URLSpan;
 import android.util.DisplayMetrics;
 import android.util.Patterns;
 import android.util.TypedValue;
-import in.uncod.android.bypass.Element.Type;
-import in.uncod.android.bypass.style.HorizontalLineSpan;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import in.uncod.android.bypass.Element.Type;
+import in.uncod.android.bypass.style.HorizontalLineSpan;
 
 public class Bypass {
 	static {

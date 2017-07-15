@@ -9,10 +9,12 @@
     declared there store information about the order and use it properly.
 """
 
-import builtin
 from b2.build import generators, type
-from b2.util.utility import *
 from b2.util import set, sequence
+from b2.util.utility import *
+
+import builtin
+
 
 class UnixLinkingGenerator (builtin.LinkingGenerator):
     

@@ -3,10 +3,10 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-from settings import namespaces
 import settings
-from utils import remove_duplicated_lines, left_equals
 from SmartFile import SmartFile
+from settings import namespaces
+from utils import remove_duplicated_lines, left_equals
 
 
 #==============================================================================

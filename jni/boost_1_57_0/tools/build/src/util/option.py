@@ -4,9 +4,9 @@
 #  License Version 1.0. (See accompanying file LICENSE_1_0.txt or
 #  http://www.boost.org/LICENSE_1_0.txt)
 
-import sys
-import re
 import b2.util.regex
+import re
+import sys
 
 options = {}
 

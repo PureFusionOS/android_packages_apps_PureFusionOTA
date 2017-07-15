@@ -47,19 +47,22 @@
 #  the parameter is false, conversion of extra targets is not performed.
 
 
-import re
+import b2.build.type
+import b2.util.sequence as sequence
 import cStringIO
 import os.path
-
-from virtual_target import Subvariant
-import virtual_target, type, property_set, property
-from b2.util.logger import *
-from b2.util.utility import *
-from b2.util import set
-from b2.util.sequence import unique
-import b2.util.sequence as sequence
+import re
 from b2.manager import get_manager
-import b2.build.type
+from b2.util import set
+from b2.util.logger import *
+from b2.util.sequence import unique
+from b2.util.utility import *
+
+import property
+import property_set
+import type
+import virtual_target
+
 
 def reset ():
     """ Clear the module state. This is mainly for testing purposes.

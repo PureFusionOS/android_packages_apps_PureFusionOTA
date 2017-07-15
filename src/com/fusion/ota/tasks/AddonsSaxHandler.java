@@ -1,15 +1,15 @@
 package com.fusion.ota.tasks;
 
-import java.util.ArrayList;
+import android.util.Log;
+
+import com.fusion.ota.Addon;
+import com.fusion.ota.utils.Constants;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import android.util.Log;
-
-import com.fusion.ota.Addon;
-import com.fusion.ota.utils.Constants;
+import java.util.ArrayList;
 
 public class AddonsSaxHandler extends DefaultHandler implements Constants {
 	

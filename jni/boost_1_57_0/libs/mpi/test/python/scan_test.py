@@ -7,7 +7,9 @@
 # Test scan() collective.
 
 import boost.parallel.mpi as mpi
+
 from generators import *
+
 
 def scan_test(comm, generator, kind, op, op_kind):
     if comm.rank == 0:

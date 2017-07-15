@@ -29,11 +29,13 @@
 #  actual targets. However, actions can also create scanners in a special
 #  way, instead of relying on just target type.
 
-import property
 import bjam
 import os
 from b2.exceptions import *
 from b2.manager import get_manager
+
+import property
+
 
 def reset ():
     """ Clear the module state. This is mainly for testing purposes.

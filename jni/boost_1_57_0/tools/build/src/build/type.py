@@ -8,14 +8,13 @@
 
 
 
-import re
 import os
 import os.path
-from b2.util.utility import replace_grist, os_name
-from b2.exceptions import *
+import re
 from b2.build import feature, property, scanner
+from b2.exceptions import *
 from b2.util import bjam_signature
-
+from b2.util.utility import replace_grist, os_name
 
 __re_hyphen = re.compile ('-')
 

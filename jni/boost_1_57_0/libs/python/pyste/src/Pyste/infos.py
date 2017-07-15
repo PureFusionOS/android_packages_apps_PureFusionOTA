@@ -3,18 +3,19 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import os.path
 import copy
-import exporters 
+import warnings
+
+import exporters
 from ClassExporter import ClassExporter
-from FunctionExporter import FunctionExporter
+from CodeExporter import CodeExporter
 from EnumExporter import EnumExporter
+from FunctionExporter import FunctionExporter
 from HeaderExporter import HeaderExporter
 from VarExporter import VarExporter
-from CodeExporter import CodeExporter
 from exporterutils import FunctionWrapper
 from utils import makeid
-import warnings
+
 
 #==============================================================================
 # DeclarationInfo

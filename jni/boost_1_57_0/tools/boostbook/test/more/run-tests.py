@@ -9,10 +9,15 @@
 Usage: python build_docs.py [--generate-gold]
 """
 
-import difflib, getopt, os, re, sys
+import difflib
+import getopt
 import lxml.ElementInclude
-from lxml import etree
+import os
+import re
+import sys
 from collections import defaultdict
+from lxml import etree
+
 
 # Globals
 

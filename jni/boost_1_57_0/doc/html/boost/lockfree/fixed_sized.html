@@ -28,8 +28,8 @@
 <h2><span class="refentrytitle">Struct template fixed_sized</span></h2>
 <p>boost::lockfree::fixed_sized</p>
 </div>
-<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
-<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../lockfree/reference.html#header.boost.lockfree.policies_hpp" title="Header &lt;boost/lockfree/policies.hpp&gt;">boost/lockfree/policies.hpp</a>&gt;
+<h2 class="refsynopsisdiv-title">Synopsis</h2>
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../lockfree/reference.html#header.boost.lockfree.policies_hpp" title="Header &lt;boost/lockfree/policies.hpp&gt;">boost/lockfree/policies.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">bool</span> IsFixedSized<span class="special">&gt;</span> 
 <span class="keyword">struct</span> <a class="link" href="fixed_sized.html" title="Struct template fixed_sized">fixed_sized</a> <span class="special">:</span> <span class="keyword">public</span> boost::parameter::template_keyword&lt; tag::fixed_sized, boost::mpl::bool_&lt; IsFixedSized &gt; &gt;
@@ -41,7 +41,7 @@
 <p>The internal nodes are stored inside an array and they are addressed by array indexing. This limits the possible size of the queue to the number of elements that can be addressed by the index type (usually 2**16-2), but on platforms that lack double-width compare-and-exchange instructions, this is the best way to achieve lock-freedom. This implies that a data structure is bounded. </p>
 </div>
 </div>
-<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<table width="100%"><tr>
 <td align="left"></td>
 <td align="right"><div class="copyright-footer">Copyright &#169; 2008-2011 Tim
       Blechmann<p>

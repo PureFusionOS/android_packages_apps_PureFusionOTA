@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="100%"
-   height="100%"
-   version="1.1"
-   id="svg2"
-   inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="buffer_strategies.svg"
-   inkscape:export-filename="/home/barend/git/boost/modular-boost/libs/geometry/doc/html/img/algorithms/buffer_strategies.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100%" height="100%" version="1.1"
+    id="svg2" inkscape:version="0.48.3.1 r9886" sodipodi:docname="buffer_strategies.svg"
+    inkscape:export-filename="/home/barend/git/boost/modular-boost/libs/geometry/doc/html/img/algorithms/buffer_strategies.png"
+    inkscape:export-xdpi="90" inkscape:export-ydpi="90">
   <metadata
      id="metadata14">
     <rdf:RDF>

@@ -5,16 +5,15 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import shutil
-import os.path
 import os
+import os.path
+import runner
+import shutil
 import string
-import time
 import sys
+import time
 
 import utils
-import runner
-
 
 report_types = [ 'us', 'ds', 'ud', 'dd', 'l', 'p', 'x', 'i', 'n', 'ddr', 'dsr' ]
 

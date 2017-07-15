@@ -28,8 +28,8 @@
 <h2><span class="refentrytitle">Macro BOOST_SCOPE_EXIT_ALL</span></h2>
 <p>BOOST_SCOPE_EXIT_ALL &#8212; This macro declares a scope exit that captures all variables in scope (C++11 only). </p>
 </div>
-<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
-<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="reference.html#header.boost.scope_exit_hpp" title="Header &lt;boost/scope_exit.hpp&gt;">boost/scope_exit.hpp</a>&gt;
+<h2 class="refsynopsisdiv-title">Synopsis</h2>
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="reference.html#header.boost.scope_exit_hpp" title="Header &lt;boost/scope_exit.hpp&gt;">boost/scope_exit.hpp</a>&gt;
 
 </span>BOOST_SCOPE_EXIT_ALL(capture_list)</pre></div>
 <div class="refsect1">
@@ -53,7 +53,8 @@
 </colgroup>
 <tbody><tr>
 <td><span class="bold"><strong><code class="computeroutput">capture_list</code></strong></span></td>
-<td>On compilers that support variadic macros (see also Boost.Config <code class="computeroutput">BOOST_NO_VARIADIC_MACROS</code>), the capture list syntax is defined by the following grammar: <pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="identifier">capture_list</span><span class="special">:</span>
+<td>On compilers that support variadic macros (see also Boost.Config <code class="computeroutput">BOOST_NO_VARIADIC_MACROS</code>), the capture list syntax is defined by the following grammar: <pre
+        class="table-programlisting"><span class="identifier">capture_list</span><span class="special">:</span>
         <span class="identifier">capture_tuple</span> <span class="special">|</span> <span class="identifier">capture_sequence</span>
 <span class="identifier">capture_tuple</span><span class="special">:</span>
         <span class="special">{</span><span class="special">&amp;</span> <span class="special">|</span> <span class="special">=</span><span class="special">}</span> <span class="special">[</span><span class="special">,</span> <span class="identifier">capture</span><span class="special">,</span> <span class="identifier">capture</span><span class="special">,</span> <span class="special">...</span><span class="special">]</span>
@@ -61,9 +62,11 @@
         <span class="special">{</span><span class="special">(</span><span class="special">&amp;</span><span class="special">)</span> <span class="special">|</span> <span class="special">(</span><span class="special">=</span><span class="special">)</span><span class="special">}</span> <span class="special">[</span><span class="special">(</span><span class="identifier">capture</span><span class="special">)</span> <span class="special">(</span><span class="identifier">capture</span><span class="special">)</span> <span class="special">...</span><span class="special">]</span>
 <span class="identifier">capture</span><span class="special">:</span>
         <span class="special">[</span><span class="special">&amp;</span><span class="special">]</span><span class="identifier">variable</span> <span class="special">|</span> <span class="identifier">this_</span>
-</pre> On compilers that do not support variadic macros, <code class="computeroutput">capture_tuple</code> cannot be used: <pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">    <span class="identifier">capture_list</span><span class="special">:</span>
+</pre> On compilers that do not support variadic macros, <code class="computeroutput">capture_tuple</code> cannot be used: <pre
+        class="table-programlisting">    <span class="identifier">capture_list</span><span class="special">:</span>
             <span class="keyword">void</span> <span class="special">|</span> <span class="identifier">capture_sequence</span>
-</pre> Furthermore, on C++11 compilers that support the use of <code class="computeroutput">typename</code> outside templates, also <code class="computeroutput">this</code> can be used to capture the object at member function scope: <pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">    <span class="identifier">capture</span><span class="special">:</span>
+</pre> Furthermore, on C++11 compilers that support the use of <code class="computeroutput">typename</code> outside templates, also <code class="computeroutput">this</code> can be used to capture the object at member function scope: <pre
+        class="table-programlisting">    <span class="identifier">capture</span><span class="special">:</span>
             <span class="special">[</span><span class="special">&amp;</span><span class="special">]</span><span class="identifier">variable</span> <span class="special">|</span> <span class="identifier">this_</span> <span class="special">|</span> <span class="keyword">this</span>
 </pre>(Lexical conventions: <code class="computeroutput">token1 | token2</code> means either <code class="computeroutput">token1</code> or <code class="computeroutput">token2</code>; <code class="computeroutput">[token]</code> means either <code class="computeroutput">token</code> or nothing; <code class="computeroutput">{expression}</code> means the token resulting from the expression.)  </td>
 </tr></tbody>
@@ -79,7 +82,7 @@
 <p><span class="bold"><strong>See:</strong></span>  <a class="link" href="scope_exit/tutorial.html" title="Tutorial"> Tutorial</a> section,  <a class="link" href="scope_exit/no_variadic_macros.html" title="Annex: No Variadic Macros"> No Variadic Macros</a> section,  <code class="computeroutput"><a class="link" href="BOOST_SCOPE_EXIT.html" title="Macro BOOST_SCOPE_EXIT">BOOST_SCOPE_EXIT</a></code>,  <code class="computeroutput"><a class="link" href="BOOST_SCOPE_EXIT_ALL_ID.html" title="Macro BOOST_SCOPE_EXIT_ALL_ID">BOOST_SCOPE_EXIT_ALL_ID</a></code>. </p>
 </div>
 </div>
-<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<table width="100%"><tr>
 <td align="left"></td>
 <td align="right"><div class="copyright-footer">Copyright &#169; 2006-2012 Alexander Nasonov, Lorenzo Caminiti<p>
         Distributed under the Boost Software License, Version 1.0 (see accompanying

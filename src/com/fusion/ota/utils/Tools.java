@@ -16,13 +16,6 @@
 
 package com.fusion.ota.utils;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Looper;
@@ -31,6 +24,13 @@ import android.util.Log;
 
 import com.stericson.RootTools.BuildConfig;
 import com.stericson.RootTools.RootTools;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Tools implements Constants{
     

@@ -8,9 +8,10 @@
 # Test that we can change build directory using the 'build-dir' project
 # attribute.
 
-import BoostBuild
-import string
 import os
+import string
+
+import BoostBuild
 
 t = BoostBuild.Tester(use_test_config=False)
 

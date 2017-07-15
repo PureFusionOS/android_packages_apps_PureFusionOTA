@@ -39,24 +39,21 @@
 # rule. Standalone projects are not recorded and can only be references using
 # their project id.
 
+import b2
+import b2.build.targets
+import b2.util.option as option
 import b2.util.path
+import bjam
+import imp
+import os
+import pkgutil
+import re
+import string
+import sys
 from b2.build import property_set, property
 from b2.build.errors import ExceptionWithUserContext
-import b2.build.targets
-
-import bjam
-import b2
-
-import re
-import sys
-import pkgutil
-import os
-import string
-import imp
-import traceback
-import b2.util.option as option
-
 from b2.util import record_jam_to_value_mapping, qualify_jam_action
+
 
 class ProjectRegistry:
 

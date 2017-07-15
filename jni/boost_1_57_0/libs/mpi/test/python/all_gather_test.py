@@ -7,7 +7,9 @@
 # Test all_gather() collective.
 
 import boost.parallel.mpi as mpi
+
 from generators import *
+
 
 def all_gather_test(comm, generator, kind):
     if comm.rank == 0: print ("Gathering %s..." % (kind,)),

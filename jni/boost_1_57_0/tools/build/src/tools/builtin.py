@@ -9,14 +9,12 @@
 """
 
 import b2.build.targets as targets
-
+import b2.tools.types
 import sys
 from b2.build import feature, property, virtual_target, generators, type, property_set, scanner
-from b2.util.utility import *
-from b2.util import path, regex, bjam_signature
-import b2.tools.types
 from b2.manager import get_manager
-
+from b2.util import path, regex, bjam_signature
+from b2.util.utility import *
 
 # Records explicit properties for a variant.
 # The key is the variant name.
@@ -723,6 +721,3 @@ class DummyGenerator(generators.Generator):
 
 get_manager().projects().add_rule("variant", variant)
 
-import stage
-import symlink
-import message

@@ -26,7 +26,6 @@
 # > simpler than defining a main target rule.
 
 import b2.build.targets as targets
-import b2.build.virtual_target as virtual_target
 
 from b2.manager import get_manager
 from b2.util import bjam_signature

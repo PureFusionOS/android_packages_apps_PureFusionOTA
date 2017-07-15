@@ -7,12 +7,12 @@
 # Distributed under the Boost Software License, Version 1.0. 
 # (See accompanying file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt) 
 
-import re
-from b2.util.utility import *
-from b2.build import feature
-from b2.util import sequence, qualify_jam_action
 import b2.util.set
+import re
+from b2.build import feature
 from b2.manager import get_manager
+from b2.util import sequence, qualify_jam_action
+from b2.util.utility import *
 
 __re_two_ampersands = re.compile ('&&')
 __re_comma = re.compile (',')

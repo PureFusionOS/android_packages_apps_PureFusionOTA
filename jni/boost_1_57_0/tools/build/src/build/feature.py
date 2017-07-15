@@ -7,12 +7,11 @@
 # Distributed under the Boost Software License, Version 1.0. 
 # (See accompanying file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt) 
 
-import re
-
-from b2.util import utility, bjam_signature
 import b2.util.set
-from b2.util.utility import add_grist, get_grist, ungrist, replace_grist, to_seq
+import re
 from b2.exceptions import *
+from b2.util import bjam_signature
+from b2.util.utility import add_grist, get_grist, replace_grist, to_seq
 
 __re_split_subfeatures = re.compile ('<(.*):(.*)>')
 __re_no_hyphen = re.compile ('^([^:]+)$')

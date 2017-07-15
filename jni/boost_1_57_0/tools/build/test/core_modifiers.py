@@ -6,8 +6,9 @@
 
 # This tests the "existing" and "updated" modifiers on actions.
 
-import BoostBuild
 import string
+
+import BoostBuild
 
 t = BoostBuild.Tester(pass_toolset=0)
 

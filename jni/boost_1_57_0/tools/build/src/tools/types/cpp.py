@@ -1,15 +1,12 @@
 # Copyright David Abrahams 2004. Distributed under the Boost
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+import bjam
 import os
 import re
-
-import bjam
-
 from b2.build import type as type_, scanner
 from b2.manager import get_manager
 from b2.util.utility import replace_grist
-
 
 MANAGER = get_manager()
 ENGINE = MANAGER.engine()

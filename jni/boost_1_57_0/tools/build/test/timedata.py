@@ -23,8 +23,9 @@
 #    (assuming an appropriate property has been set for this target - see the
 #    msvc module for details).
 
-import BoostBuild
 import re
+
+import BoostBuild
 
 
 ###############################################################################

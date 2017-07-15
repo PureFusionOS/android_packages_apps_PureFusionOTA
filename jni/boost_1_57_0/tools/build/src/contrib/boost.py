@@ -50,15 +50,12 @@
 # tags to find the correct pre-built library.
 #
 
-import re
-
 import bjam
-
+import re
 from b2.build import alias, property, property_set, feature
 from b2.manager import get_manager
 from b2.tools import builtin, common
-from b2.util import bjam_signature, regex
-
+from b2.util import bjam_signature
 
 # TODO: This is currently necessary in Python Port, but was not in Jam.
 feature.feature('layout', ['system', 'versioned', 'tag'], ['optional'])

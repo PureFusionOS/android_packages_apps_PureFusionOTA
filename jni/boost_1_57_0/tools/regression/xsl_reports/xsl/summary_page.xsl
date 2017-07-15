@@ -9,16 +9,9 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 -->
 
-<xsl:stylesheet 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:str="http://exslt.org/strings"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:meta="http://www.meta-comm.com"
-    extension-element-prefixes="func exsl"
-    exclude-result-prefixes="set str meta"
-    version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" xmlns:set="http://exslt.org/sets"
+    xmlns:meta="http://www.meta-comm.com" extension-element-prefixes="func exsl"
+    exclude-result-prefixes="set str meta" version="1.0">
 
     <xsl:import href="common.xsl"/>
 

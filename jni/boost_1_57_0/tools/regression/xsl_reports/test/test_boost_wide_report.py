@@ -1,6 +1,6 @@
-import unittest
 import sys
 import time
+import unittest
 
 sys.path.append( ".." )
 

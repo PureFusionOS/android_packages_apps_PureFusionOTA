@@ -8,8 +8,7 @@
   -->
 <!DOCTYPE chapter PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN"
   "http://www.boost.org/tools/boostbook/dtd/boostbook.dtd">
-<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="boostbook.documenting"
-         last-revision="$Date$">
+<chapter id="boostbook.documenting" last-revision="$Date$">
   <title>Documenting libraries</title>
     
   <para>BoostBook is an extension to <ulink

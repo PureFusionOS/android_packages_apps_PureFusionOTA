@@ -7,8 +7,7 @@
      (See accompanying file LICENSE_1_0.txt or  http://www.boost.org/LICENSE_1_0.txt)
 -->
 
-<section id="date_time.io_objects" 
-  xmlns:xi="http://www.w3.org/2001/XInclude">
+<section id="date_time.io_objects">
   <title>Date Time Formatter/Parser Objects</title>
   <!-- <using-namespace name="boost"/> -->
   <using-namespace name="boost::date_time"/>

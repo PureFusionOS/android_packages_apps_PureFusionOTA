@@ -12,7 +12,6 @@
 
 import boost.mpi as mpi
 import random
-import sys
 
 MAX_GENERATIONS = 20
 TAG_DEBUG = 0
@@ -109,7 +108,6 @@ def comm_rank():
                 dest = random.randrange(1, mpi.size)
             mpi.world.send(dest, TAG_DATA, data)
         elif status.tag == TAG_TERMINATE:
-            from time import sleep
             mpi.world.send(0, TAG_TERMINATE, 0)
             break
         else:

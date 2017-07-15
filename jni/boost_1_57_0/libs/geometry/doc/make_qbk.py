@@ -10,7 +10,7 @@
 #  http://www.boost.org/LICENSE_1_0.txt)
 # ============================================================================
 
-import os, sys
+import os
 
 script_dir = os.path.dirname(__file__)
 os.chdir(os.path.abspath(script_dir))

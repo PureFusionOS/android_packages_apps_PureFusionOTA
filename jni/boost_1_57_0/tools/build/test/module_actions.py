@@ -9,9 +9,10 @@
 
 # Demonstration that module variables have the correct effect in actions.
 
-import BoostBuild
 import os
 import re
+
+import BoostBuild
 
 t = BoostBuild.Tester(["-d+1"], pass_toolset=0)
 

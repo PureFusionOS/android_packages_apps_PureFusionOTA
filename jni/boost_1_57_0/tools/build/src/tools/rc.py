@@ -21,17 +21,15 @@
 ##import scanner ;
 ##import toolset : flags ;
 
+import bjam
 import os.path
 import re
-
-import bjam
-
-from b2.build import type, toolset, generators, scanner, feature
+from b2.build import type, scanner, feature
+from b2.build.toolset import flags
 from b2.exceptions import AlreadyDefined
+from b2.manager import get_manager
 from b2.tools import builtin
 from b2.util import regex
-from b2.build.toolset import flags
-from b2.manager import get_manager
 from b2.util import utility
 
 __debug = None

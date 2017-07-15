@@ -25,8 +25,8 @@ class Manager:
         from build.scanner import ScannerRegistry
         from build.errors import Errors
         from b2.util.logger import NullLogger
-        from build import build_request, property_set, feature
-        
+        from build import property_set
+
         self.engine_ = engine
         self.virtual_targets_ = VirtualTargetRegistry (self)
         self.projects_ = ProjectRegistry (self, global_build_dir)

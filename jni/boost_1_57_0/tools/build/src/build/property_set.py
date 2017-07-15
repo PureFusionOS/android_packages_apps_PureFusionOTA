@@ -6,17 +6,17 @@
 #  all copies. This software is provided "as is" without express or implied
 #  warranty, and with no claim as to its suitability for any purpose.
 
-import hashlib
-
-from b2.util.utility import *
-import property, feature
 import b2.build.feature
+import hashlib
 from b2.exceptions import *
+from b2.manager import get_manager
+from b2.util import cached
 from b2.util.sequence import unique
 from b2.util.set import difference
-from b2.util import cached
+from b2.util.utility import *
 
-from b2.manager import get_manager
+import feature
+import property
 
 
 def reset ():

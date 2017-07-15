@@ -16,8 +16,6 @@
 
 package com.fusion.ota.download;
 
-import java.io.File;
-
 import android.app.DownloadManager;
 import android.content.Context;
 import android.net.Uri;
@@ -27,6 +25,8 @@ import com.fusion.ota.RomUpdate;
 import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Preferences;
 import com.fusion.ota.utils.Utils;
+
+import java.io.File;
 
 public class DownloadRom implements Constants {
 	

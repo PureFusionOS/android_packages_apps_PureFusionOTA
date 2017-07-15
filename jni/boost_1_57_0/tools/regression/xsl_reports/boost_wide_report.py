@@ -5,18 +5,17 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
+import ftplib
+import glob
+import os
+import os.path
+import re
 import shutil
-import codecs
+import string
+import sys
+import time
 import xml.sax.handler
 import xml.sax.saxutils
-import glob
-import re
-import os.path
-import os
-import string
-import time
-import sys
-import ftplib
 
 import utils
 

@@ -7,7 +7,9 @@
 # Test gather() collective.
 
 import boost.parallel.mpi as mpi
+
 from generators import *
+
 
 def gather_test(comm, generator, kind, root):
     if comm.rank == root:

@@ -7,8 +7,7 @@
      (See accompanying file LICENSE_1_0.txt or  http://www.boost.org/LICENSE_1_0.txt)
 -->
 
-<section id="date_time.io_tutorial" 
-  xmlns:xi="http://www.w3.org/2001/XInclude">
+<section id="date_time.io_tutorial">
   <title>Date Time IO Tutorial</title>
   <bridgehead renderas="sect2">Date Time IO Tutorial</bridgehead>
 

@@ -16,9 +16,6 @@
 
 package com.fusion.ota.receivers;
 
-import java.util.Iterator;
-import java.util.Set;
-
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -41,6 +38,9 @@ import com.fusion.ota.tasks.LoadUpdateManifest;
 import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Preferences;
 import com.fusion.ota.utils.Utils;
+
+import java.util.Iterator;
+import java.util.Set;
 
 public class AppReceiver extends BroadcastReceiver implements Constants{
 

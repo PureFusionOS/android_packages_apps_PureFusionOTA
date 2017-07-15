@@ -16,7 +16,6 @@
 
 package com.fusion.ota.tasks;
 
-import java.io.File;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -27,6 +26,8 @@ import com.fusion.ota.RomUpdate;
 import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Preferences;
 import com.fusion.ota.utils.Tools;
+
+import java.io.File;
 
 public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> implements Constants {
 

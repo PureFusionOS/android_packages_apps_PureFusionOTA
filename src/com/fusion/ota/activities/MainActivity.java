@@ -16,11 +16,6 @@
 
 package com.fusion.ota.activities;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
@@ -37,7 +32,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Gravity;
@@ -57,6 +51,11 @@ import com.fusion.ota.tasks.LoadUpdateManifest;
 import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Preferences;
 import com.fusion.ota.utils.Utils;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends Activity implements Constants{
 

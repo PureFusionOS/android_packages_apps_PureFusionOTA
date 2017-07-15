@@ -9,8 +9,8 @@
 import os
 import sys
 
-from syscmd import syscmd
 from sources import sources
+from syscmd import syscmd
 
 if 0:
     for s in sources:

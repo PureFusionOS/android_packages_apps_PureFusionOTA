@@ -8,10 +8,10 @@
 """
 
 
-from os import popen
-from os import system
-from os.path import isfile
 from numpy import *
+from os import popen
+from os.path import isfile
+
 #from pylab import *
 
 #toolset = "gcc-4.5"

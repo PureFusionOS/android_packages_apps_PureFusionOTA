@@ -4,8 +4,9 @@
 
 # This script accepts a list of .rst files to be processed and
 # generates Makefile dependencies for .html and .rst files to stdout.
-import os,sys
+import os
 import re
+import sys
 
 include = re.compile(r' *\.\. +(include|image):: +(.*)', re.MULTILINE)
 

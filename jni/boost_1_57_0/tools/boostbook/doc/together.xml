@@ -8,8 +8,7 @@
   -->
 <!DOCTYPE chapter PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN"
   "http://www.boost.org/tools/boostbook/dtd/boostbook.dtd">
-<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="boostbook.together"
-         last-revision="$Date$">
+<chapter id="boostbook.together" last-revision="$Date$">
   <title>Bringing Together a BoostBook Document</title>
 
   <section id="boostbook.linking">

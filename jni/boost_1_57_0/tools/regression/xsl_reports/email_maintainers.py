@@ -6,13 +6,12 @@
 # accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt)
 #
+import datetime
+import os
 import re
 import smtplib
-import os
-import time
-import string
-import datetime
 import sys
+import time
 
 report_author = "Douglas Gregor <dgregor@osl.iu.edu>"
 boost_dev_list = "Boost Developer List <boost@lists.boost.org>"

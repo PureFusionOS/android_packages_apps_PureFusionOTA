@@ -5,7 +5,10 @@
 false = 0;
 true = 1;
 
-import doctest, numeric_tests
+import doctest
+import numeric_tests
+
+
 def _count_failures(test_modules = (numeric_tests,)):
     failures = 0
     for m in test_modules:

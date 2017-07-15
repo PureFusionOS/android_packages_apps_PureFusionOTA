@@ -35,18 +35,13 @@
 
 import b2.build.feature as feature
 import b2.build.property as property
-import b2.util.option as option
 import b2.tools.stage as stage
-
+import b2.util.option as option
+import os
 from b2.build.alias import alias
-
 from b2.manager import get_manager
-
 from b2.util import bjam_signature
 from b2.util.utility import ungrist
-
-
-import os
 
 feature.feature("install-default-prefix", [], ["free", "incidental"])
 

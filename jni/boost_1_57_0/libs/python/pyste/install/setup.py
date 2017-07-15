@@ -3,7 +3,6 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 from distutils.core import setup
-import sys
 
 setup (name              = "Pyste",
        version           = "0.9.10",

@@ -5,11 +5,13 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 import os
-import tempfile
-import litre
 import re
 import sys
+import tempfile
 import traceback
+
+import litre
+
 
 # Thanks to Jean Brouwers for this snippet
 def _caller(up=0):

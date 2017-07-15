@@ -7,7 +7,9 @@
 # Test all_reduce() collective.
 
 import boost.parallel.mpi as mpi
+
 from generators import *
+
 
 def all_reduce_test(comm, generator, kind, op, op_kind):
     if comm.rank == 0:

@@ -7,7 +7,9 @@
 # Test all_to_all() collective.
 
 import boost.parallel.mpi as mpi
+
 from generators import *
+
 
 def all_to_all_test(comm, generator, kind):
     if comm.rank == 0:

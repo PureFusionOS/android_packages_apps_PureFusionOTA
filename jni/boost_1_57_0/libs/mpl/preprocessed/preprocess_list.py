@@ -11,8 +11,9 @@
 # $Date$
 # $Revision$
 
-import preprocess
 import os.path
+
+import preprocess
 
 preprocess.main(
       [ "plain" ]

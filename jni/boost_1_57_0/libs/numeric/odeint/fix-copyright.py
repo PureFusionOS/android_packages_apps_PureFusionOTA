@@ -1,10 +1,11 @@
 #!/usr/bin/env python
-from subprocess import check_output as run
+import magic
+import re
 from datetime import datetime
 from itertools import groupby
 from operator import itemgetter
-import re
-import magic
+from subprocess import check_output as run
+
 
 def authors(filename):
     log = run(['git', 'log', '--follow',

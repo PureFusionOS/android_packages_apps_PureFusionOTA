@@ -38,19 +38,19 @@ f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  37) #  The list of all loaded
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  38) #  to obtain module name for a location using 'module-name' rule. The standalone projects
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  39) #  are not recorded, the only way to use them is by project id.
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  40) 
-f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  41) import b2.util.path
-092119e3 (vladimir_prus 2007-10-16 05:45:31 +0000  42) from b2.build import property_set, property
-0317671e (vladimir_prus 2007-10-28 14:02:06 +0000  43) from b2.build.errors import ExceptionWithUserContext
+f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  41)
+092119e3 (vladimir_prus 2007-10-16 05:45:31 +0000  42)
+0317671e (vladimir_prus 2007-10-28 14:02:06 +0000  43)
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  44) import b2.build.targets
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  45) 
-f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  46) import bjam
+f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  46)
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  47) 
-f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  48) import re
-f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  49) import sys
+f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  48)
+f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  49)
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  50) import os
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  51) import string
-f2aef897 (vladimir_prus 2007-10-14 09:19:52 +0000  52) import imp
-0317671e (vladimir_prus 2007-10-28 14:02:06 +0000  53) import traceback
+f2aef897 (vladimir_prus 2007-10-14 09:19:52 +0000  52)
+0317671e (vladimir_prus 2007-10-28 14:02:06 +0000  53)
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  54) 
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  55) class ProjectRegistry:
 f049766b (vladimir_prus 2007-10-10 09:31:06 +0000  56) 

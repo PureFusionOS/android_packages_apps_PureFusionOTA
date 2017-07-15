@@ -34,25 +34,21 @@
 #  - std::locale-support is not implemented (it is used in one test).
 
 import b2.build.feature as feature
-import b2.build.type as type
-import b2.build.targets as targets
 import b2.build.generators as generators
+import b2.build.targets as targets
 import b2.build.toolset as toolset
+import b2.build.type as type
+import b2.build_system as build_system
 import b2.tools.common as common
 import b2.util.option as option
-import b2.build_system as build_system
-
-
-
+import bjam
+import os.path
+import re
+import sys
 from b2.manager import get_manager
 from b2.util import stem, bjam_signature
 from b2.util.sequence import unique
 
-import bjam
-
-import re
-import os.path
-import sys
 
 def init():
     pass

@@ -13,9 +13,6 @@
 #    with any toolset. In msvc.jam, there's more specific
 #    message compiling action.
 
-import bjam
-
-from b2.tools import common, rc
 from b2.build import generators, type
 from b2.build.toolset import flags
 from b2.build.feature import feature

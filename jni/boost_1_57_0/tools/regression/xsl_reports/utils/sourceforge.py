@@ -1,7 +1,7 @@
 
-import utils.checked_system
 import os
 import sys
+import utils.checked_system
 
 site_dir = '/home/groups/b/bo/boost/htdocs/'
 

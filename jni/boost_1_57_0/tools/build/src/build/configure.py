@@ -15,15 +15,11 @@
 
 import b2.build.property as property
 import b2.build.property_set as property_set
-
 import b2.build.targets
-
-from b2.manager import get_manager
-from b2.util.sequence import unique
-from b2.util import bjam_signature, value_to_jam
-
 import bjam
 import os
+from b2.manager import get_manager
+from b2.util import bjam_signature, value_to_jam
 
 __width = 30
 

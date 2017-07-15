@@ -16,22 +16,18 @@
 #    (See accompanying file LICENSE_1_0.txt or copy at
 #          http://www.boost.org/LICENSE_1_0.txt)
 
-import os
-import subprocess
-import re
-
 import bjam
-
-from b2.tools import unix, common, rc, pch, builtin
+import os
+import re
+import subprocess
 from b2.build import feature, type, toolset, generators, property_set
-from b2.build.property import Property
-from b2.util.utility import os_name, on_windows
-from b2.manager import get_manager
 from b2.build.generators import Generator
+from b2.build.property import Property
 from b2.build.toolset import flags
+from b2.manager import get_manager
+from b2.tools import unix, common, rc, pch, builtin
+from b2.util.utility import os_name, on_windows
 from b2.util.utility import to_seq
-
-
 
 __debug = None
 

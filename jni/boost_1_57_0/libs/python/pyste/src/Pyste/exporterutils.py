@@ -7,9 +7,10 @@
 Various helpers for interface files.
 '''
 
-from settings import *
-from policies import *
 from declarations import *
+from policies import *
+from settings import *
+
 
 #==============================================================================
 # FunctionWrapper

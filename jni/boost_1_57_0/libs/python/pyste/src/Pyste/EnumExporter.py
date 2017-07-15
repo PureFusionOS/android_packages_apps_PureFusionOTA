@@ -5,7 +5,7 @@
 
 from Exporter import Exporter
 from settings import *
-import utils
+
 
 #==============================================================================
 # EnumExporter 

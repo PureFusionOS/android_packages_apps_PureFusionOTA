@@ -8,12 +8,11 @@
 #  http://www.boost.org/LICENSE_1_0.txt)
 
 
-import b2.build.type as type
 import b2.build.generators as generators
-import b2.build.virtual_target as virtual_target
-import b2.build.toolset as toolset
 import b2.build.targets as targets
-
+import b2.build.toolset as toolset
+import b2.build.type as type
+import b2.build.virtual_target as virtual_target
 from b2.manager import get_manager
 from b2.util import bjam_signature
 

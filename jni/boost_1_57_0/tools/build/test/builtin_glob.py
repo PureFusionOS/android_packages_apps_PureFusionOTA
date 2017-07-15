@@ -7,7 +7,9 @@
 # This tests the GLOB rule.
 
 import os
+
 import BoostBuild
+
 
 def test_glob(files, glob, expected, setup=""):
     t = BoostBuild.Tester(["-ffile.jam"], pass_toolset=0)

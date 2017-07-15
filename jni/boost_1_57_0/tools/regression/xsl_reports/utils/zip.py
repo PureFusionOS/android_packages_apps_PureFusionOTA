@@ -1,6 +1,7 @@
 
-import zipfile
 import os.path
+import zipfile
+
 
 def unzip( archive_path, result_dir ):
     z = zipfile.ZipFile( archive_path, 'r', zipfile.ZIP_DEFLATED ) 

@@ -1,11 +1,5 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
-                xmlns:sverb="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Verbatim"
-                xmlns:xverb="com.nwalsh.xalan.Verbatim"
-                xmlns:lxslt="http://xml.apache.org/xslt"
-                xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="sverb xverb lxslt exsl"
-                version='1.0'>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:exsl="http://exslt.org/common"
+    exclude-result-prefixes="sverb xverb lxslt exsl" version='1.0'>
 
 <!-- Copyright (c) 2005 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 

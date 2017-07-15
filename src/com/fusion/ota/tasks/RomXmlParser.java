@@ -16,6 +16,17 @@
 
 package com.fusion.ota.tasks;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.fusion.ota.RomUpdate;
+import com.fusion.ota.utils.Constants;
+import com.fusion.ota.utils.Utils;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -24,17 +35,6 @@ import java.net.URISyntaxException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-
-import android.content.Context;
-import android.util.Log;
-
-import com.fusion.ota.RomUpdate;
-import com.fusion.ota.utils.Constants;
-import com.fusion.ota.utils.Utils;
 
 public class RomXmlParser extends DefaultHandler implements Constants {
 

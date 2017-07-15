@@ -8,11 +8,11 @@
 
 # ---------------------------------------------------------------------------- #
 
+import ftplib
 import os
 import sys
-import platform
 import time
-import ftplib
+
 
 #  invoke the system command line processor
 def cmd(command):

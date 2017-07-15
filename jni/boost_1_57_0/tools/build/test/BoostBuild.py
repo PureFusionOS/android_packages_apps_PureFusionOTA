@@ -5,26 +5,24 @@
 # (See accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import TestCmd
-
+import StringIO
 import copy
 import fnmatch
 import glob
-import math
 import os
 import os.path
 import re
 import shutil
-import StringIO
 import subprocess
 import sys
 import tempfile
 import time
 import traceback
-import tree
 import types
-
 from xml.sax.saxutils import escape
+
+import TestCmd
+import tree
 
 
 class TestEnvironmentError(Exception):

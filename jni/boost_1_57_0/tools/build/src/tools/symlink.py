@@ -11,17 +11,13 @@
 # to the sources.
 
 import b2.build.feature as feature
-import b2.build.targets as targets
 import b2.build.property_set as property_set
-import b2.build.virtual_target as virtual_target
 import b2.build.targets
-
-from b2.manager import get_manager
-
+import b2.build.targets as targets
+import b2.build.virtual_target as virtual_target
 import bjam
-
 import os
-
+from b2.manager import get_manager
 
 feature.feature("symlink-location", ["project-relative", "build-relative"], ["incidental"])
 

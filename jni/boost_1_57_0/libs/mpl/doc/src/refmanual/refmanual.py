@@ -6,9 +6,8 @@
 
 import fnmatch
 import os
-import sys
 import re
-import string
+import sys
 
 underlines = ['+', '/']
 special_cases = [ 'inserter', '_1,_2,..._n' ]

@@ -7,9 +7,10 @@
 
 # Test the 'gettext' example.
 
-import BoostBuild
 import os
 import string
+
+import BoostBuild
 
 t = BoostBuild.Tester()
 

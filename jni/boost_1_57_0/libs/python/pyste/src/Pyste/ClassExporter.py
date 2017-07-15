@@ -3,17 +3,18 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import exporters
-from Exporter import Exporter
-from declarations import *
-from settings import *
-from policies import *
-from SingleCodeUnit import SingleCodeUnit
-from EnumExporter import EnumExporter
-from utils import makeid, enumerate
 import copy
-import exporterutils
 import re
+
+import exporterutils
+from EnumExporter import EnumExporter
+from Exporter import Exporter
+from SingleCodeUnit import SingleCodeUnit
+from declarations import *
+from policies import *
+from settings import *
+from utils import makeid
+
 
 #==============================================================================
 # ClassExporter

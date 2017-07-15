@@ -5,20 +5,18 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import xml.sax.saxutils
-import zipfile
 import ftplib
-import time
-import stat
-import xml.dom.minidom
-import xmlrpclib
 import httplib
-
 import os.path
+import re
 import string
 import sys
-import re
+import time
 import urlparse
+import xml.dom.minidom
+import xml.sax.saxutils
+import xmlrpclib
+import zipfile
 
 
 def process_xml_file( input_file, output_file ):

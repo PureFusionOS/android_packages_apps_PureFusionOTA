@@ -19,6 +19,7 @@ package com.fusion.ota.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+
 import com.fusion.ota.R;
 
 public class Preferences implements Constants{

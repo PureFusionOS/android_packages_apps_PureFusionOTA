@@ -10,18 +10,16 @@
     removing files.
 """
 
-import re
+# for some reason this fails on Python 2.7(r27:82525)
+# from b2.build import virtual_target
+import b2.build.virtual_target
 import bjam
 import os
 import os.path
-import sys
-
-# for some reason this fails on Python 2.7(r27:82525)
-# from b2.build import virtual_target 
-import b2.build.virtual_target
+import re
 from b2.build import feature, type
-from b2.util.utility import *
 from b2.util import path
+from b2.util.utility import *
 
 __re__before_first_dash = re.compile ('([^-]*)-')
 
@@ -828,9 +826,6 @@ def init(manager):
 
     engine.register_action("common.MkDir1-quick-fix-for-unix", 'mkdir -p "$(<)"')
     engine.register_action("common.MkDir1-quick-fix-for-windows", 'if not exist "$(<)\\" mkdir "$(<)"')
-
-    import b2.tools.make
-    import b2.build.alias
 
     global __RM, __CP, __IGNORE, __LN
     # ported from trunk@47281

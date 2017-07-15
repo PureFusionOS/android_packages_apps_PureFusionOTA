@@ -5,8 +5,8 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-from docutils.parsers.rst import Directive
 from docutils import nodes
+from docutils.parsers.rst import Directive
 
 
 class license_and_copyright( nodes.General, nodes.Element ): pass

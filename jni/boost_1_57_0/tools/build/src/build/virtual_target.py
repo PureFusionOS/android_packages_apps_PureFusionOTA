@@ -60,25 +60,20 @@
 # but in builtin.jam modules. They are shown in the diagram to give
 # the big picture.
 
-import bjam
-
-import re
-import os.path
-import string
-import types
-
-from b2.util import path, utility, set
-from b2.util.utility import add_grist, get_grist, ungrist, replace_grist, get_value
-from b2.util.sequence import unique
-from b2.tools import common
-from b2.exceptions import *
-import b2.build.type
-import b2.build.property_set as property_set
-
 import b2.build.property as property
-
+import b2.build.property_set as property_set
+import b2.build.type
+import bjam
+import os.path
+import re
+import types
+from b2.exceptions import *
 from b2.manager import get_manager
+from b2.tools import common
 from b2.util import bjam_signature
+from b2.util import set
+from b2.util.sequence import unique
+from b2.util.utility import get_grist, ungrist, replace_grist, get_value
 
 __re_starts_with_at = re.compile ('^@(.*)')
 

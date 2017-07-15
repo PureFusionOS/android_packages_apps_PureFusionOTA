@@ -7,8 +7,9 @@
 
 # Test the 'make' rule.
 
-import BoostBuild
 import string
+
+import BoostBuild
 
 t = BoostBuild.Tester(pass_toolset=1)
 

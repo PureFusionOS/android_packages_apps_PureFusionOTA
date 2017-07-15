@@ -1,19 +1,5 @@
 package com.fusion.ota.activities;
 
-import in.uncod.android.bypass.Bypass;
-
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Locale;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
@@ -44,6 +30,20 @@ import com.fusion.ota.tasks.AddonXmlParser;
 import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Preferences;
 import com.fusion.ota.utils.Utils;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+
+import in.uncod.android.bypass.Bypass;
 
 public class AddonActivity extends Activity implements Constants {
 

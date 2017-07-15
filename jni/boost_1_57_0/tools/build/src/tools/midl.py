@@ -7,11 +7,12 @@
 
 # Microsoft Interface Definition Language (MIDL) related routines
 from b2.build import scanner, type
-from b2.build.toolset import flags
 from b2.build.feature import feature
+from b2.build.toolset import flags
 from b2.manager import get_manager
 from b2.tools import builtin, common
 from b2.util import regex, utility
+
 
 def init():
     pass

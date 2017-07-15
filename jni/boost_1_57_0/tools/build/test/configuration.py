@@ -7,11 +7,11 @@
 
 # Test Boost Build configuration file handling.
 
-import BoostBuild
-
 import os
 import os.path
 import re
+
+import BoostBuild
 
 
 ###############################################################################

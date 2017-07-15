@@ -8,13 +8,8 @@ accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
 
 -->
-<xsl:stylesheet 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:func="http://exslt.org/functions"
-    xmlns:meta="http://www.meta-comm.com"
-    extension-element-prefixes="func"
-    exclude-result-prefixes="func meta"
-    version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" extension-element-prefixes="func"
+    exclude-result-prefixes="func meta" version="1.0">
 
 <xsl:output method="html" encoding="UTF-8"/>
 <xsl:template match="/">

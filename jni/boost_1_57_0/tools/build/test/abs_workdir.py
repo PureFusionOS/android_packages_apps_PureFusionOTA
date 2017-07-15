@@ -7,9 +7,10 @@
 # TODO: Make sure implemented path handling is correct under Windows, Cygwin &
 #       Unix/Linux.
 
-import BoostBuild
 import os
 import tempfile
+
+import BoostBuild
 
 t = BoostBuild.Tester(["-ffile.jam"], workdir=os.getcwd(), pass_d0=False,
     pass_toolset=False)

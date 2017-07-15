@@ -22,7 +22,6 @@
 
 import os
 import os.path
-import stat
 import sys
 
 

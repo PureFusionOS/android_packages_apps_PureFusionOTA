@@ -9,10 +9,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 -->
 
-<xsl:stylesheet 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:meta="http://www.meta-comm.com"
-    exclude-result-prefixes="meta"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="meta"
     version="1.0">
 
     <xsl:import href="common.xsl"/>

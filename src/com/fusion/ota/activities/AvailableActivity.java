@@ -16,7 +16,6 @@
 
 package com.fusion.ota.activities;
 
-import in.uncod.android.bypass.Bypass;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -52,6 +51,8 @@ import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Preferences;
 import com.fusion.ota.utils.Tools;
 import com.fusion.ota.utils.Utils;
+
+import in.uncod.android.bypass.Bypass;
 
 public class AvailableActivity extends Activity implements Constants, android.view.View.OnClickListener {
 

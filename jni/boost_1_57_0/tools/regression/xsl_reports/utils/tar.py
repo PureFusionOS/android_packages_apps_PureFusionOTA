@@ -1,6 +1,7 @@
 
-import utils.checked_system
 import os.path
+import utils.checked_system
+
 
 def tar( source_dir, archive_name ):
     utils.checked_system( [

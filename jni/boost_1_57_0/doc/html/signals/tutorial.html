@@ -125,7 +125,7 @@ World!".</p>
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 struct HelloWorld 
 {
   void operator()() const 
@@ -148,7 +148,7 @@ sig();
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 struct HelloWorld 
 {
   void operator()() const 
@@ -224,7 +224,7 @@ signal, and when we call the signal both slots will be called.</p>
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signal.html" title="Class template signal">boost::signal</a></code>&lt;void ()&gt; sig;
 
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(Hello());
@@ -234,7 +234,7 @@ sig();
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signalN.html" title="Class template signalN">boost::signal0</a></code>&lt;void&gt; sig;
 
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(Hello());
@@ -275,7 +275,7 @@ are, by default, <code class="computeroutput">int</code>s, and are ordered by th
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signal.html" title="Class template signal">boost::signal</a></code>&lt;void ()&gt; sig;
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(1, World());
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(0, Hello());
@@ -283,7 +283,7 @@ sig();
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signalN.html" title="Class template signalN">boost::signal0</a></code>&lt;void&gt; sig;
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(1, World());
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(0, Hello());
@@ -374,7 +374,7 @@ void print_quotient(float x, float y)
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signal.html" title="Class template signal">boost::signal</a></code>&lt;void (float, float)&gt; sig;
 
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(&amp;print_sum);
@@ -386,7 +386,7 @@ sig(5, 3);
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signalN.html" title="Class template signalN">boost::signal2</a></code>&lt;void, float, float&gt; sig;
 
 sig.<code class="computeroutput"><a class="link" href="../boost/signalN.html#idp146240304-bb">connect</a></code>(&amp;print_sum);
@@ -443,7 +443,7 @@ return a value based on these results to be printed:</p>
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 float product(float x, float y) { return x*y; }
 float quotient(float x, float y) { return x/y; }
 float sum(float x, float y) { return x+y; }
@@ -460,7 +460,7 @@ std::cout &lt;&lt; sig(5, 3) &lt;&lt; std::endl;
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 float product(float x, float y) { return x*y; }
 float quotient(float x, float y) { return x/y; }
 float sum(float x, float y) { return x+y; }
@@ -537,13 +537,13 @@ follows the signal's calling signature:</p>
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signal.html" title="Class template signal">boost::signal</a></code>&lt;float (float x, float y), 
               maximum&lt;float&gt; &gt; sig;
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signalN.html" title="Class template signalN">boost::signal2</a></code>&lt;float, float, float, 
                maximum&lt;float&gt; &gt; sig;
 </pre>
@@ -594,7 +594,7 @@ Again, we can create a signal with this new combiner:
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signal.html" title="Class template signal">boost::signal</a></code>&lt;float (float, float), 
     aggregate_values&lt;std::vector&lt;float&gt; &gt; &gt; sig;
 
@@ -609,7 +609,7 @@ std::copy(results.begin(), results.end(),
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 <code class="computeroutput"><a class="link" href="../boost/signalN.html" title="Class template signalN">boost::signal2</a></code>&lt;float, float, float,
     aggregate_values&lt;std::vector&lt;float&gt; &gt; &gt; sig;
 
@@ -765,7 +765,7 @@ operator. For instance:
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 void foo();
 void bar();
 
@@ -779,7 +779,7 @@ sig.disconnect(&amp;foo);
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 void foo();
 void bar();
 
@@ -816,14 +816,14 @@ service may be constructed like this: </p>
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 class NewsItem { /* ... */ };
 
 boost::signal&lt;void (const NewsItem&amp;)&gt; deliverNews;
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 class NewsItem { /* ... */ };
 
 boost::signal1&lt;void, const NewsItem&amp;&gt; deliverNews;
@@ -931,7 +931,7 @@ passed to a <code class="computeroutput">slot_type</code> parameter. For instanc
 </tr></thead>
 <tbody><tr>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 class Button 
 {
   typedef boost::signal&lt;void (int x, int y)&gt; OnClick;
@@ -962,7 +962,7 @@ void f(Button&amp; button)
 </pre>
 </td>
 <td align="left">
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting">
+<pre class="table-programlisting">
 class Button 
 {
   typedef <code class="computeroutput"><a class="link" href="../boost/signalN.html" title="Class template signalN">boost::signal2</a></code>&lt;void,int,int&gt; OnClick;
@@ -1136,7 +1136,7 @@ public:
   library.</p>
 </div>
 </div>
-<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<table width="100%"><tr>
 <td align="left"></td>
 <td align="right"><div class="copyright-footer">Copyright &#169; 2001-2004 Douglas Gregor<p>Use, modification and distribution is subject to the Boost
     Software License, Version 1.0. (See accompanying file

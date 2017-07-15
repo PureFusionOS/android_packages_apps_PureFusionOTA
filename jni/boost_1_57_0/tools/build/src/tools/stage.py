@@ -11,21 +11,17 @@
 # single location.
 
 import b2.build.feature as feature
-import b2.build.targets as targets
+import b2.build.generators as generators
 import b2.build.property as property
 import b2.build.property_set as property_set
-import b2.build.generators as generators
-import b2.build.virtual_target as virtual_target
-
-from b2.manager import get_manager
-from b2.util.sequence import unique
-from b2.util import bjam_signature
-
+import b2.build.targets as targets
 import b2.build.type
-
+import b2.build.virtual_target as virtual_target
 import os.path
 import re
-import types
+from b2.manager import get_manager
+from b2.util import bjam_signature
+from b2.util.sequence import unique
 
 feature.feature('install-dependencies', ['off', 'on'], ['incidental'])
 feature.feature('install-type', [], ['free', 'incidental'])

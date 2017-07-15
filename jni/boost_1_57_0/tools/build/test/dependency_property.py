@@ -9,9 +9,9 @@
 # determined the actual target paths ignored dependency properties so both
 # targets ended up being in the same location.
 
-import BoostBuild
 import string
 
+import BoostBuild
 
 t = BoostBuild.Tester()
 

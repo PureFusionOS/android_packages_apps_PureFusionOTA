@@ -8,10 +8,10 @@
 # Defines main target type 'message', that prints a message when built for the
 # first time.
 
-import b2.build.targets as targets
 import b2.build.property_set as property_set
-
+import b2.build.targets as targets
 from b2.manager import get_manager
+
 
 class MessageTargetClass(targets.BasicTarget):
 

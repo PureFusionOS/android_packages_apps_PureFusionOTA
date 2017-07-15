@@ -11,8 +11,9 @@
 # $Date$
 # $Revision$
 
-import preprocess
 import os.path
+
+import preprocess
 
 preprocess.main(
       [ "no_ctps", "plain", "typeof_based" ]

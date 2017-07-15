@@ -1,17 +1,17 @@
 package com.fusion.ota.tasks;
 
+import android.util.Log;
+
+import com.fusion.ota.Addon;
+import com.fusion.ota.utils.Constants;
+
+import org.xml.sax.helpers.DefaultHandler;
+
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.helpers.DefaultHandler;
-
-import android.util.Log;
-
-import com.fusion.ota.Addon;
-import com.fusion.ota.utils.Constants;
 
 public class AddonXmlParser extends DefaultHandler implements Constants {
 

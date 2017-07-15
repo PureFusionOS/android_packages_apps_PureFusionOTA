@@ -7,8 +7,9 @@
 
 # Test the 'make' example.
 
-import BoostBuild
 import sys
+
+import BoostBuild
 
 t = BoostBuild.Tester(['example.python.interpreter=%s' % sys.executable])
 t.set_tree("../example/make")

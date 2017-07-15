@@ -1,16 +1,15 @@
 import ftplib
 import optparse
 import os
-import time
-import urlparse
-import utils
 import shutil
 import sys
-import zipfile
+import time
 import xml.sax.saxutils
+import zipfile
 
-
+import utils
 import utils.libxslt
+
 
 def get_date( words ):
     date = words[ 5: -1 ]

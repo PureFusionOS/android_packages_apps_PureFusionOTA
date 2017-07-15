@@ -38,21 +38,21 @@ where options are:
     -v, --version           Print version information                         
 """
 
-import sys
-import os
-import getopt
-import exporters
-import SingleCodeUnit
-import MultipleCodeUnit
-import infos
-import exporterutils
-import settings
 import gc
+import getopt
+import os
 import sys
-from policies import *
-from CppParser import CppParser, CppParserError
 import time
+
+import MultipleCodeUnit
+import SingleCodeUnit
 import declarations
+import exporters
+import exporterutils
+import infos
+import settings
+from CppParser import CppParser
+from policies import *
 
 __version__ = '0.9.30'
 

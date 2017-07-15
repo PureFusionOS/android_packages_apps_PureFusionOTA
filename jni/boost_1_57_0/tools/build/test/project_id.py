@@ -7,8 +7,9 @@
 
 # Tests Boost Build's project-id handling.
 
-import BoostBuild
 import sys
+
+import BoostBuild
 
 
 def test_assigning_project_ids():

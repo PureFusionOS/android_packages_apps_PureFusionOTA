@@ -22,22 +22,18 @@
 #
 ################################################################################
 
-from os import environ
+import _winreg
+import bjam
 import os.path
 import re
-import _winreg
-
-import bjam
-
-from b2.tools import common, rc, pch, builtin, mc, midl
 from b2.build import feature, type, toolset, generators, property_set
-from b2.build.property import Property
-from b2.util import path
-from b2.manager import get_manager
 from b2.build.generators import Generator
-from b2.build.toolset import flags
-from b2.util.utility import to_seq, on_windows
+from b2.build.property import Property
+from b2.manager import get_manager
+from b2.tools import common, pch, builtin
 from b2.tools.common import Configurations
+from b2.util.utility import to_seq, on_windows
+from os import environ
 
 __debug = None
 

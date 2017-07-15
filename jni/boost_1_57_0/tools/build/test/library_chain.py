@@ -7,9 +7,10 @@
 # Test that a chain of libraries works ok, no matter if we use static or shared
 # linking.
 
-import BoostBuild
 import os
 import string
+
+import BoostBuild
 
 t = BoostBuild.Tester(use_test_config=False)
 

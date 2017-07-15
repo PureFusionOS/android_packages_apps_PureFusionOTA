@@ -5,10 +5,9 @@ Traverses a directory and output the code that would create the same directory
 structure during testing. Assumes that the instance of Tester is called 't'.
 """
 
-import sys
 import os
-import stat
-import string
+import sys
+
 
 def usage():
     print "usage: load_dir.py directory"

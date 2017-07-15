@@ -3,16 +3,13 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-from Exporter import Exporter
-from ClassExporter import ClassExporter
-from FunctionExporter import FunctionExporter
-from EnumExporter import EnumExporter
-from VarExporter import VarExporter
-from infos import *
-from declarations import *
 import os.path
-import exporters
+
 import MultipleCodeUnit
+from Exporter import Exporter
+from declarations import *
+from infos import *
+
 
 #==============================================================================
 # HeaderExporter

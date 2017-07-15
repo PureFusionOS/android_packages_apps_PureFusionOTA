@@ -7,11 +7,11 @@
 #   Temporarily enabled dummy test that always fails and is used to collect
 # extra debugging information from Boost Build test runner sites.
 
-import BoostBuild
-
 import os
 import re
 import sys
+
+import BoostBuild
 
 
 ###############################################################################

@@ -1,6 +1,16 @@
 package com.fusion.ota.tasks;
 
-import in.uncod.android.bypass.Bypass;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
+import com.fusion.ota.R;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -12,17 +22,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.app.AlertDialog.Builder;
-import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-
-import com.fusion.ota.R;
+import in.uncod.android.bypass.Bypass;
 
 public class Changelog extends AsyncTask<Void, Void, String> {
 

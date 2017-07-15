@@ -21,11 +21,11 @@ SOURCEFORGE_DOWNLOAD = "http://sourceforge.net/projects/docbook/files"
 
 # No user configuration below this point-------------------------------------
 
+import optparse
 import os
 import re
-import sys
-import optparse
 import shutil
+import sys
 
 sys.path.append( os.path.join( os.path.dirname( sys.modules[ __name__ ].__file__ )
                                , "../regression/xsl_reports/utils" ) )

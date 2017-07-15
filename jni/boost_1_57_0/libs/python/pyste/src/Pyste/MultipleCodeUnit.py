@@ -3,9 +3,10 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-from SingleCodeUnit import SingleCodeUnit
 import os
+
 import utils
+from SingleCodeUnit import SingleCodeUnit
 from SmartFile import SmartFile
 
 

@@ -5,13 +5,11 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import tarfile
-import shutil
-import time
 import os.path
-import string
+import shutil
 import sys
-import traceback
+import tarfile
+import time
 
 
 def retry( f, args, max_attempts=5, sleep_secs=10 ):

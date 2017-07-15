@@ -79,12 +79,12 @@
 <tbody>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">typeinfo</span><span class="special">&gt;</span>
+<pre class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">typeinfo</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">typeindex</span><span class="special">&gt;</span>
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">type_index</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<pre class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">type_index</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
               </td>
 <td>
@@ -95,11 +95,11 @@
 </tr>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">type_index</span>
+<pre class="table-programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">type_index</span>
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_index</span>
+<pre class="table-programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_index</span>
 </pre>
               </td>
 <td>
@@ -110,13 +110,13 @@
 </tr>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="keyword">typeid</span><span class="special">(</span><span class="identifier">T</span><span class="special">)</span>
+<pre class="table-programlisting"><span class="keyword">typeid</span><span class="special">(</span><span class="identifier">T</span><span class="special">)</span>
 <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">T</span><span class="special">).</span><span class="identifier">name</span><span class="special">()</span> <span class="comment">// not human readable</span>
 <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">variable</span><span class="special">)</span>
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_id</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;()</span>
+<pre class="table-programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_id</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;()</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_id</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;().</span><span class="identifier">pretty_name</span><span class="special">()</span> <span class="comment">// human readable</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_id_runtime</span><span class="special">(</span><span class="identifier">variable</span><span class="special">)</span>
 </pre>
@@ -136,12 +136,12 @@
 </tr>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="comment">// attempt to save const, volatile, reference</span>
+<pre class="table-programlisting"><span class="comment">// attempt to save const, volatile, reference</span>
 <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">please_save_modifiers</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;)</span>
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="comment">// cvr = const, volatile, reference</span>
+<pre class="table-programlisting"><span class="comment">// cvr = const, volatile, reference</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_id_with_cvr</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;()</span>
 </pre>
               </td>
@@ -154,7 +154,7 @@
 </tr>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="comment">// when reference to `std::type_info` is required</span>
+<pre class="table-programlisting"><span class="comment">// when reference to `std::type_info` is required</span>
 <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;</span> <span class="identifier">v1</span> <span class="special">=</span> <span class="keyword">typeid</span><span class="special">(</span><span class="keyword">int</span><span class="special">);</span>
 
 <span class="comment">// other cases</span>
@@ -162,7 +162,7 @@
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;</span> <span class="identifier">v1</span>
+<pre class="table-programlisting"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;</span> <span class="identifier">v1</span>
     <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_id</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;().</span><span class="identifier">type_info</span><span class="special">();</span>
 
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_index</span> <span class="identifier">v2</span>
@@ -218,15 +218,15 @@
 <tbody>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">typeinfo</span><span class="special">&gt;</span></pre>
+<pre class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">typeinfo</span><span class="special">&gt;</span></pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">type_index</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></pre>
+<pre class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">type_index</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></pre>
               </td>
 </tr>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="keyword">virtual</span> <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <span class="identifier">type</span><span class="special">()</span> <span class="keyword">const</span> <span class="identifier">BOOST_NOEXCEPT</span>
+<pre class="table-programlisting"><span class="keyword">virtual</span> <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <span class="identifier">type</span><span class="special">()</span> <span class="keyword">const</span> <span class="identifier">BOOST_NOEXCEPT</span>
 <span class="special">{</span>
     <span class="comment">// requires RTTI</span>
     <span class="keyword">return</span> <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">ValueType</span><span class="special">);</span>
@@ -234,7 +234,7 @@
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="keyword">virtual</span> <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <span class="identifier">type</span><span class="special">()</span> <span class="keyword">const</span> <span class="identifier">BOOST_NOEXCEPT</span>
+<pre class="table-programlisting"><span class="keyword">virtual</span> <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <span class="identifier">type</span><span class="special">()</span> <span class="keyword">const</span> <span class="identifier">BOOST_NOEXCEPT</span>
 <span class="special">{</span>
     <span class="comment">// now works even with RTTI disabled</span>
     <span class="keyword">return</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_id</span><span class="special">&lt;</span><span class="identifier">ValueType</span><span class="special">&gt;().</span><span class="identifier">type_info</span><span class="special">();</span>
@@ -275,19 +275,19 @@
 <tbody>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_TYPEID</span><span class="special">)</span>
+<pre class="table-programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_TYPEID</span><span class="special">)</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">typeinfo</span><span class="special">&gt;</span> <span class="comment">// for typeid, std::type_info</span>
 <span class="preprocessor">#endif</span> <span class="comment">// BOOST_NO_TYPEID</span>
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">type_index</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<pre class="table-programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">type_index</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
               </td>
 </tr>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_TYPEID</span><span class="special">)</span>
+<pre class="table-programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_TYPEID</span><span class="special">)</span>
 
 <span class="keyword">class</span> <span class="identifier">reflect</span>
     <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">static_visitor</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;&gt;</span>
@@ -306,7 +306,7 @@
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="keyword">class</span> <span class="identifier">reflect</span>
+<pre class="table-programlisting"><span class="keyword">class</span> <span class="identifier">reflect</span>
     <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">static_visitor</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;&gt;</span>
 <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span> <span class="comment">// visitor interfaces</span>
@@ -323,7 +323,7 @@
 </tr>
 <tr>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_TYPEID</span><span class="special">)</span>
+<pre class="table-programlisting"><span class="preprocessor">#if</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_NO_TYPEID</span><span class="special">)</span>
     <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;</span> <span class="identifier">type</span><span class="special">()</span> <span class="keyword">const</span>
     <span class="special">{</span>
         <span class="identifier">detail</span><span class="special">::</span><span class="identifier">variant</span><span class="special">::</span><span class="identifier">reflect</span> <span class="identifier">visitor</span><span class="special">;</span>
@@ -333,7 +333,7 @@
 </pre>
               </td>
 <td>
-<pre xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="table-programlisting"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;</span> <span class="identifier">type</span><span class="special">()</span> <span class="keyword">const</span>
+<pre class="table-programlisting"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span><span class="special">&amp;</span> <span class="identifier">type</span><span class="special">()</span> <span class="keyword">const</span>
 <span class="special">{</span>
     <span class="identifier">detail</span><span class="special">::</span><span class="identifier">variant</span><span class="special">::</span><span class="identifier">reflect</span> <span class="identifier">visitor</span><span class="special">;</span>
     <span class="keyword">return</span> <span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">apply_visitor</span><span class="special">(</span><span class="identifier">visitor</span><span class="special">);</span>
@@ -346,7 +346,7 @@
 </div>
 </div>
 </div>
-<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<table width="100%"><tr>
 <td align="left"></td>
 <td align="right"><div class="copyright-footer">Copyright &#169; 2012-2014 Antony Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

@@ -3,12 +3,10 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
+import exporterutils
 from Exporter import Exporter
 from policies import *
-from declarations import *
 from settings import *
-import utils
-import exporterutils
 
 
 #==============================================================================

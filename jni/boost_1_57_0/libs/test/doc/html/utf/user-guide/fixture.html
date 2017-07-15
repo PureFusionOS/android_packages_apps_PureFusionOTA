@@ -31,7 +31,7 @@
   In general terms a test fixture or test context is the collection of one or more of the following items, required
   to perform the test:
  </p>
-<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="itemizedlist"><ul type="disc">
+<div class="itemizedlist"><ul type="disc">
 <li>preconditions</li>
 <li>particular states of tested unites</li>
 <li>necessary cleanup procedures</li>
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_CASE( test_case2 )
   This is a generic solution that can be used to implement any kind of shared setup or cleanup procedure. Still
   there are several more or less minor practical issues with this pure C++ based fixtures solution:
  </p>
-<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="itemizedlist"><ul type="disc">
+<div class="itemizedlist"><ul type="disc">
 <li>
     We need to add a fixture declaration statement into each test case manually.
    </li>
@@ -102,13 +102,13 @@ BOOST_AUTO_TEST_CASE( test_case2 )
   teardown fixture functions should comply to. Based on the generic fixture model, the <acronym class="acronym">UTF</acronym> presents solution for
   the following tasks:
  </p>
-<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="itemizedlist"><ul type="disc">
+<div class="itemizedlist"><ul type="disc">
 <li><a class="link" href="fixture/per-test-case.html" title="Per test case fixture">per test case fixture automation</a></li>
 <li><a class="link" href="fixture/test-suite-shared.html" title="Test suite level fixture">shared test suite level fixture</a></li>
 <li><a class="link" href="fixture/global.html" title="Global fixture">"global" fixture support</a></li>
 </ul></div>
 </div>
-<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<table width="100%"><tr>
 <td align="left"></td>
 <td align="right"><div class="copyright-footer">Copyright © 2001-2007 Gennadiy Rozental</div></td>
 </tr></table>

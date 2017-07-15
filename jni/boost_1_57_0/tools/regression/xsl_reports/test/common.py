@@ -1,5 +1,6 @@
-import xml.sax.saxutils
 import time
+import xml.sax.saxutils
+
 
 def make_test_name( library_idx, test_idx ):
     return "test_%02d_%02d" % ( library_idx, test_idx )

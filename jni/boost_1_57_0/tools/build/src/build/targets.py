@@ -70,23 +70,26 @@
 #                            .   | construct    |   | construct   |    | construct    |
 #                                +--------------+   +-------------+    +--------------+
 
-import re
-import os.path
-import sys
-
-from b2.manager import get_manager
-
-from b2.util.utility import *
-import property, project, virtual_target, property_set, feature, generators, toolset
-from virtual_target import Subvariant
-from b2.exceptions import *
-from b2.util.sequence import unique
-from b2.util import path, bjam_signature
-from b2.build.errors import user_error_checkpoint
-
 import b2.build.build_request as build_request
-
 import b2.util.set
+import os.path
+import re
+import sys
+from b2.build.errors import user_error_checkpoint
+from b2.exceptions import *
+from b2.manager import get_manager
+from b2.util import bjam_signature
+from b2.util.sequence import unique
+from b2.util.utility import *
+
+import feature
+import generators
+import property
+import property_set
+import toolset
+import virtual_target
+from virtual_target import Subvariant
+
 _re_separate_target_from_properties = re.compile (r'^([^<]*)(/(<.*))?$')
 
 class TargetRegistry:
@@ -1275,8 +1278,6 @@ class BasicTarget (AbstractTarget):
 
 
 class TypedTarget (BasicTarget):
-    import generators
-    
     def __init__ (self, name, project, type, sources, requirements, default_build, usage_requirements):
         BasicTarget.__init__ (self, name, project, sources, requirements, default_build, usage_requirements)
         self.type_ = type

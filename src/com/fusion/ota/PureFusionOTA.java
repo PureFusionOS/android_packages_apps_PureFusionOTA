@@ -1,10 +1,10 @@
 package com.fusion.ota;
 
-import java.util.Set;
-
 import android.app.Application;
 import android.support.v4.util.ArrayMap;
 import android.util.Log;
+
+import java.util.Set;
 
 public class PureFusionOTA extends Application {
 	private static ArrayMap<Integer, Long> mAddonsDownloads = new ArrayMap<Integer, Long>();

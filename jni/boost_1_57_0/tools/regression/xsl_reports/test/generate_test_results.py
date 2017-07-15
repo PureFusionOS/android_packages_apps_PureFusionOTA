@@ -1,11 +1,11 @@
 #
 # Generates test test results for testing of boost_wide_report.py
 #
-import common
-import xml.sax.saxutils
-
 import os
 import time
+import xml.sax.saxutils
+
+import common
 
 num_of_libs = 5
 num_of_runners = 5

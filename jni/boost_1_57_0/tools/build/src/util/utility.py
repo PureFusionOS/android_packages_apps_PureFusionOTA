@@ -7,9 +7,9 @@
     Grists are string enclosed in angle brackets (<>) that are used as prefixes. See Jam for more information.
 """
 
-import re
-import os
 import bjam
+import os
+import re
 from b2.exceptions import *
 
 __re_grist_and_value = re.compile (r'(<[^>]*>)(.*)')

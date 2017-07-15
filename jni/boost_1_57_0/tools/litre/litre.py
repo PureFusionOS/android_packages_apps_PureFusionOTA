@@ -1,5 +1,6 @@
-from docutils import writers
 from docutils import nodes
+from docutils import writers
+
 
 class LitreTranslator(nodes.GenericNodeVisitor):
 

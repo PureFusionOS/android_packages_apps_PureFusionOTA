@@ -16,13 +16,6 @@
 
 package com.fusion.ota.tasks;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +25,13 @@ import android.util.Log;
 import com.fusion.ota.R;
 import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Utils;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 public  class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements Constants {
     

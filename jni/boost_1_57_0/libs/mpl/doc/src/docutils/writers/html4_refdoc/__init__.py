@@ -5,12 +5,9 @@
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
 
-from docutils.writers import html4_frames
-from docutils.writers import html4css1
-from docutils import nodes
-
 import re
-import string
+from docutils import nodes
+from docutils.writers import html4_frames
 
 
 class Writer(html4_frames.Writer):

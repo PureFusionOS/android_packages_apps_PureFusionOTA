@@ -25,11 +25,12 @@
 #    alias big_lib : : @/external_project/big_lib/<link>static ;
 #
 
-import targets
-import property_set
 from b2.manager import get_manager
-
 from b2.util import metatarget
+
+import property_set
+import targets
+
 
 class AliasTarget(targets.BasicTarget):
 

@@ -19,10 +19,11 @@
 #   of slash only.
 
 import os.path
-from utility import to_seq
+from b2.util import bjam_signature
 from glob import glob as builtin_glob
 
-from b2.util import bjam_signature
+from utility import to_seq
+
 
 @bjam_signature((["path", "root"],))
 def root (path, root):

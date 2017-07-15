@@ -7,9 +7,11 @@
 #  Please see http://article.gmane.org/gmane.comp.lib.boost.build/3389/
 #  for explanation why it's a separate toolset.
 
-import common, gcc, builtin
-from b2.build import feature, toolset, type, action, generators
+from b2.build import feature, toolset, type, action
 from b2.util.utility import *
+
+import common
+import gcc
 
 toolset.register ('darwin')
 

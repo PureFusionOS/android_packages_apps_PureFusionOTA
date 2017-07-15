@@ -15,7 +15,6 @@
 import os
 import os.path
 import re
-import string
 import sys
 
 srcdir = os.path.abspath(os.path.dirname(__file__))

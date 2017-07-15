@@ -10,34 +10,25 @@
 # http://www.boost.org/LICENSE_1_0.txt)
 
 
-from b2.build.engine import Engine
-from b2.manager import Manager
-from b2.util.path import glob
-from b2.build import feature, property_set
-import b2.build.virtual_target
-from b2.build.targets import ProjectTarget
-from b2.util.sequence import unique
 import b2.build.build_request
-from b2.build.errors import ExceptionWithUserContext
-import b2.tools.common
-from b2.build.toolset import using
-
-import b2.build.project as project
-import b2.build.virtual_target as virtual_target
 import b2.build.build_request as build_request
-
+import b2.build.virtual_target
+import b2.build.virtual_target as virtual_target
+import b2.tools.common
 import b2.util.regex
-
+import bjam
+import os
+import re
+import sys
+from b2.build import feature, property_set
+from b2.build.engine import Engine
+from b2.build.errors import ExceptionWithUserContext
+from b2.build.targets import ProjectTarget
+from b2.build.toolset import using
+from b2.manager import Manager
 from b2.manager import get_manager
 from b2.util import cached
 from b2.util import option
-
-
-import bjam
-
-import os
-import sys
-import re
 
 ################################################################################
 #

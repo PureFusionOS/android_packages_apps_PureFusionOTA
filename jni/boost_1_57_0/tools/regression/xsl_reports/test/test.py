@@ -6,7 +6,6 @@ import os
 
 import boost_wide_report
 import common
-import utils
 import shutil
 import time
 

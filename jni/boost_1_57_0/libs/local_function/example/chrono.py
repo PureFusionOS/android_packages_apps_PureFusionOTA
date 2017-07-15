@@ -5,9 +5,9 @@
 # http://www.boost.org/LICENSE_1_0.txt)
 # Home at http://www.boost.org/libs/local_function
 
+import os
 import sys
 import time
-import os
 
 if len(sys.argv) < 2:
     print "Usage: python " + sys.argv[0] + " COMMAND [COMMAND_OPTIONS]"

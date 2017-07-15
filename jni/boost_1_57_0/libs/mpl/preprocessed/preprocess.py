@@ -11,12 +11,12 @@
 # $Date$
 # $Revision$
 
-import pp
-import shutil
-import os.path
 import os
-import string
+import os.path
+import shutil
 import sys
+
+import pp
 
 preprocess_cmd = open( "preprocess.cmd" ).readlines()[0]
 

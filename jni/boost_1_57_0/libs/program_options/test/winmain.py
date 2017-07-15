@@ -1,6 +1,6 @@
 
-from StringIO import StringIO
 import string
+from StringIO import StringIO
 
 testcases = r"""1 -> 1
 1"2" -> 12
