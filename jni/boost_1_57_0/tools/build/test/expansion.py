@@ -57,7 +57,6 @@ t.expect_addition(["bin/$toolset/debug/a.exe",
 
 t.rm("bin")
 
-
 # Test for issue BB60.
 
 t.write("test.cpp", """

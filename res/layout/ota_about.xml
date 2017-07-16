@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -15,21 +14,18 @@
 	limitations under the License.
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="vertical" >
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:scrollbars="vertical">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-        
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <include layout="@layout/card_version" />
-        
+
         <include layout="@layout/card_changelog" />
 
         <include layout="@layout/card_credits" />
 
-        <include layout="@layout/card_app_donate" />  
-	</LinearLayout>
+        <include layout="@layout/card_app_donate" />
+    </LinearLayout>
 </ScrollView>

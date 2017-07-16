@@ -74,7 +74,6 @@ import foo ;
 lib x : x.foo : <link>static ;
 """)
 
-
 # Get everything built once.
 t.run_build_system()
 

@@ -60,24 +60,24 @@ r"""Unable to load Boost\.Build: could not find "boost-build\.jam"
 .*Attempted search from .* up to the root""")
 
 t.run_build_system(status=1, subdir="no-bootstrap1",
-    stdout=r"Unable to load Boost\.Build: could not find build system\."
-    r".*attempted to load the build system by invoking"
-    r".*'boost-build ;'"
-    r'.*but we were unable to find "bootstrap\.jam"')
+                   stdout=r"Unable to load Boost\.Build: could not find build system\."
+                          r".*attempted to load the build system by invoking"
+                          r".*'boost-build ;'"
+                          r'.*but we were unable to find "bootstrap\.jam"')
 
 # Descend to a subdirectory which /does not/ contain a boost-build.jam file,
 # and try again to test the crawl-up behavior.
 t.run_build_system(status=1, subdir=os.path.join("no-bootstrap1", "subdir"),
-    stdout=r"Unable to load Boost\.Build: could not find build system\."
-    r".*attempted to load the build system by invoking"
-    r".*'boost-build ;'"
-    r'.*but we were unable to find "bootstrap\.jam"')
+                   stdout=r"Unable to load Boost\.Build: could not find build system\."
+                          r".*attempted to load the build system by invoking"
+                          r".*'boost-build ;'"
+                          r'.*but we were unable to find "bootstrap\.jam"')
 
 t.run_build_system(status=1, subdir="no-bootstrap2",
-    stdout=r"Unable to load Boost\.Build: could not find build system\."
-    r".*attempted to load the build system by invoking"
-    r".*'boost-build \. ;'"
-    r'.*but we were unable to find "bootstrap\.jam"')
+                   stdout=r"Unable to load Boost\.Build: could not find build system\."
+                          r".*attempted to load the build system by invoking"
+                          r".*'boost-build \. ;'"
+                          r'.*but we were unable to find "bootstrap\.jam"')
 
 t.run_build_system(status=1, subdir='no-bootstrap3', stdout=
 r"""Unable to load Boost.Build
@@ -86,10 +86,10 @@ However, it failed to call the "boost-build" rule""")
 
 # Test bootstrapping based on BOOST_BUILD_PATH.
 t.run_build_system(["-sBOOST_BUILD_PATH=../boost-root/build"],
-    subdir="bootstrap-env", stdout="build system bootstrapped")
+                   subdir="bootstrap-env", stdout="build system bootstrapped")
 
 # Test bootstrapping based on an explicit path in boost-build.jam.
 t.run_build_system(subdir="bootstrap-explicit",
-    stdout="build system bootstrapped")
+                   stdout="build system bootstrapped")
 
 t.cleanup()

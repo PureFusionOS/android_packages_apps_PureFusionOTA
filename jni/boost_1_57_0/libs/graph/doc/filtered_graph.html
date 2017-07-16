@@ -7,51 +7,50 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Boost Graph Library: Filtered Graph</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Boost Graph Library: Filtered Graph</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
 
-
 <H1><A NAME="sec:filtered-graph-class"></A>
-<pre>
+    <pre>
 filtered_graph&lt;Graph, EdgePredicate, VertexPredicate&gt;
 </pre>
 </H1>
 
 
 <P>
-The <tt>filtered_graph</tt> class template is an adaptor that creates
-a filtered view of a graph. The predicate function objects determine
-which edges and vertices of the original graph will show up in the
-filtered graph.  If the edge predicate returns <tt>true</tt> for an
-edge then it shows up in the filtered graph, and if the predicate
-returns <tt>false</tt> then the edge does not appear in the filtered
-graph.  Likewise for vertices. The <tt>filtered_graph</tt> class does
-not create a copy of the original graph, but uses a reference to the
-original graph. The lifetime of the original graph must extend past
-any use of the filtered graph. The filtered graph does not change the
-structure of the original graph, though vertex and edge properties of
-the original graph can be changed through property maps of the
-filtered graph. Vertex and edge descriptors of the filtered graph are
-the same as, and interchangeable with, the vertex and edge descriptors
-of the original graph.
+    The <tt>filtered_graph</tt> class template is an adaptor that creates
+    a filtered view of a graph. The predicate function objects determine
+    which edges and vertices of the original graph will show up in the
+    filtered graph. If the edge predicate returns <tt>true</tt> for an
+    edge then it shows up in the filtered graph, and if the predicate
+    returns <tt>false</tt> then the edge does not appear in the filtered
+    graph. Likewise for vertices. The <tt>filtered_graph</tt> class does
+    not create a copy of the original graph, but uses a reference to the
+    original graph. The lifetime of the original graph must extend past
+    any use of the filtered graph. The filtered graph does not change the
+    structure of the original graph, though vertex and edge properties of
+    the original graph can be changed through property maps of the
+    filtered graph. Vertex and edge descriptors of the filtered graph are
+    the same as, and interchangeable with, the vertex and edge descriptors
+    of the original graph.
 
 <P>The <a href="#num_vertices"><tt>num_vertices</tt></a> and <a
-href="#num_edges"><tt>num_edges</tt></a> functions do not filter
-before returning results, so they return the number of vertices or
-edges in the underlying graph, unfiltered <a href="#2">[2]</a>.
+        href="#num_edges"><tt>num_edges</tt></a> functions do not filter
+    before returning results, so they return the number of vertices or
+    edges in the underlying graph, unfiltered <a href="#2">[2]</a>.
 
 <H3>Example</H3>
 
 <P>
-In this example we will filter a graph's edges based on edge
-weight. We will keep all edges with positive edge weight.
-First, we create a predicate function object.
+    In this example we will filter a graph's edges based on edge
+    weight. We will keep all edges with positive edge weight.
+    First, we create a predicate function object.
 
 <PRE>
 template &lt;typename EdgeWeightMap&gt;
@@ -116,37 +115,45 @@ E -->
 
 <P>
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
-<TR><TD><TT>Graph</TT></TD>
-<TD>The underlying graph type.</TD>
-<TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>Graph</TT></TD>
+        <TD>The underlying graph type.</TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
-<TR>
-<TD><TT>EdgePredicate</TT></TD> <TD>A function object that selects
-which edges from the original graph will appear in the filtered
-graph. The function object must model <a
-href="http://www.sgi.com/tech/stl/Predicate.html">Predicate</a>. The
-argument type for the function object must be the edge descriptor type
-of the graph. Also, the predicate must be <a
-href="http://www.sgi.com/tech/stl/DefaultConstructible.html">Default Constructible</a> <a href="#1">[1]</a>.</TD>
-<TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>EdgePredicate</TT></TD>
+        <TD>A function object that selects
+            which edges from the original graph will appear in the filtered
+            graph. The function object must model <a
+                    href="http://www.sgi.com/tech/stl/Predicate.html">Predicate</a>. The
+            argument type for the function object must be the edge descriptor type
+            of the graph. Also, the predicate must be <a
+                    href="http://www.sgi.com/tech/stl/DefaultConstructible.html">Default
+                Constructible</a> <a href="#1">[1]</a>.
+        </TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
-<TR>
-<TD><TT>VertexPredicate</TT></TD>
-<TD>A function object that selects
-which vertices from the original graph will appear in the filtered
-graph. The function object must model <a
-href="http://www.sgi.com/tech/stl/Predicate.html">Predicate</a>. The
-argument type for the function object must be the vertex descriptor type
-of the graph. Also, the predicate must be <a
-href="http://www.sgi.com/tech/stl/DefaultConstructible.html">Default Constructible</a> <a href="#1">[1]</a>.</TD>
-<TD><TT>keep_all</TT></TD>
-</TR>
+    <TR>
+        <TD><TT>VertexPredicate</TT></TD>
+        <TD>A function object that selects
+            which vertices from the original graph will appear in the filtered
+            graph. The function object must model <a
+                    href="http://www.sgi.com/tech/stl/Predicate.html">Predicate</a>. The
+            argument type for the function object must be the vertex descriptor type
+            of the graph. Also, the predicate must be <a
+                    href="http://www.sgi.com/tech/stl/DefaultConstructible.html">Default
+                Constructible</a> <a href="#1">[1]</a>.
+        </TD>
+        <TD><TT>keep_all</TT></TD>
+    </TR>
 
 </TABLE>
 <P>
@@ -154,19 +161,19 @@ href="http://www.sgi.com/tech/stl/DefaultConstructible.html">Default Constructib
 <H3>Model of</H3>
 
 <P>
-This depends on the underlying graph type. If the underlying
-<tt>Graph</tt> type models <a
-href="./VertexAndEdgeListGraph.html">VertexAndEdgeListGraph</a> and <a
-href="./PropertyGraph.html">PropertyGraph</a> then so does the
-filtered graph. If the underlying <tt>Graph</tt> type models fewer or
-smaller concepts than these, then so does the filtered graph.
+    This depends on the underlying graph type. If the underlying
+    <tt>Graph</tt> type models <a
+        href="./VertexAndEdgeListGraph.html">VertexAndEdgeListGraph</a> and <a
+        href="./PropertyGraph.html">PropertyGraph</a> then so does the
+    filtered graph. If the underlying <tt>Graph</tt> type models fewer or
+    smaller concepts than these, then so does the filtered graph.
 
 <P>
 
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/graph/filtered_graph.hpp"><TT>boost/graph/filtered_graph.hpp</TT></a>
+    <a href="../../../boost/graph/filtered_graph.hpp"><TT>boost/graph/filtered_graph.hpp</TT></a>
 
 <P>
 
@@ -274,7 +281,7 @@ in the graph.
 and<br>
 <tt>property_map&lt;filtered_graph, Property&gt;::const_type</tt>
 <br><br>
-The property map type for vertex or edge properties in the graph. 
+The property map type for vertex or edge properties in the graph.
 The same property maps from the adapted graph are available
 in the filtered graph.
 
@@ -370,7 +377,7 @@ std::pair&lt;in_edge_iterator,&nbsp;in_edge_iterator&gt;
 in_edges(vertex_descriptor&nbsp;v, const&nbsp;filtered_graph&amp;&nbsp;g)
 </pre>
 Returns an iterator-range providing access to the in-edges of vertex
-<tt>v</tt> in graph <tt>g</tt>.  For an in-edge <tt>e</tt>,
+<tt>v</tt> in graph <tt>g</tt>. For an in-edge <tt>e</tt>,
 <tt>target(e, g) == v</tt> and <tt>source(e, g) == u</tt> for some
 vertex <tt>u</tt> that is adjacent to <tt>v</tt>, whether the graph is
 directed or undirected.
@@ -405,7 +412,7 @@ Returns the number of edges leaving vertex <tt>u</tt>.
 degree_size_type
 in_degree(vertex_descriptor&nbsp;u, const&nbsp;filtered_graph&amp;&nbsp;g)
 </pre>
-Returns the number of edges entering vertex <tt>u</tt>. 
+Returns the number of edges entering vertex <tt>u</tt>.
 
 <hr>
 
@@ -413,7 +420,7 @@ Returns the number of edges entering vertex <tt>u</tt>.
 vertices_size_type
 num_vertices(const filtered_graph&amp; g)
 </pre>
-Returns the number of vertices in the underlying graph <a href="#2">[2]</a>. 
+Returns the number of vertices in the underlying graph <a href="#2">[2]</a>.
 
 <hr>
 
@@ -488,7 +495,8 @@ put(PropertyTag, const filtered_graph&amp; g, X x, const Value& value)
 This sets the property value for <tt>x</tt> to
 <tt>value</tt>. <tt>x</tt> is either a vertex or edge descriptor.
 <tt>Value</tt> must be convertible to
-<tt>typename property_traits&lt;property_map&lt;filtered_graph, PropertyTag&gt;::type&gt::value_type</tt>
+<tt>typename property_traits&lt;property_map&lt;filtered_graph,
+    PropertyTag&gt;::type&gt::value_type</tt>
 
 <hr>
 
@@ -500,36 +508,40 @@ This sets the property value for <tt>x</tt> to
 <h3>Notes</h3>
 
 <p>
-<a name="1">[1]</a> The reason for requiring <a
-href="http://www.sgi.com/tech/stl/DefaultConstructible.html">Default
-Constructible</a> in the <tt>EdgePredicate</tt> and
-<tt>VertexPredicate</tt> types is that these predicates are stored
-by-value (for performance reasons) in the filter iterator adaptor, and
-iterators are required to be Default Constructible by the C++
-Standard.
+    <a name="1">[1]</a> The reason for requiring <a
+        href="http://www.sgi.com/tech/stl/DefaultConstructible.html">Default
+    Constructible</a> in the <tt>EdgePredicate</tt> and
+    <tt>VertexPredicate</tt> types is that these predicates are stored
+    by-value (for performance reasons) in the filter iterator adaptor, and
+    iterators are required to be Default Constructible by the C++
+    Standard.
 
-<p> <a name="2">[2]</a> It would be nicer to return the number of
-vertices (or edges) remaining after the filter has been applied, but
-this has two problems. The first is that it would take longer to
-calculate, and the second is that it would interact badly with the
-underlying vertex/edge index mappings. The index mapping would no
-longer fall in the range <tt>[0,num_vertices(g))</tt> (resp. <tt>[0,
-num_edges(g))</tt>) which is assumed in many of the algorithms. 
+<p><a name="2">[2]</a> It would be nicer to return the number of
+    vertices (or edges) remaining after the filter has been applied, but
+    this has two problems. The first is that it would take longer to
+    calculate, and the second is that it would interact badly with the
+    underlying vertex/edge index mappings. The index mapping would no
+    longer fall in the range <tt>[0,num_vertices(g))</tt> (resp. <tt>[0,
+        num_edges(g))</tt>) which is assumed in many of the algorithms.
 
 
-<br>
+    <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2000-2001</TD><TD>
-<A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
-Indiana University (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-<A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana University (<A HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
-<A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Indiana University (<A
-HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2000-2001</TD>
+        <TD>
+            <A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
+            Indiana University (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+            <A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana
+            University (<A HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Indiana University (<A
+                HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

@@ -13,6 +13,7 @@ import bjam
 
 __OS = bjam.call("peek", [], "OS")[0]
 
+
 # Return Jam's name of OS to prevent existing code from burning
 # when faced with Python naming
 def name():

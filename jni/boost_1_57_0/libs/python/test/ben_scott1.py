@@ -6,9 +6,11 @@
 # result object (and thus is found as an lvalue) works.
 from ben_scott1_ext import *
 
+
 class CreatorImpl(Creator):
-   def create(self):
-      return Product()
+    def create(self):
+        return Product()
+
 
 factory = Factory()
 c = CreatorImpl()

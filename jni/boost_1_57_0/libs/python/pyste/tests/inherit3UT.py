@@ -5,8 +5,8 @@
 import unittest
 from _inherit3 import *
 
-class testInherit3(unittest.TestCase):
 
+class testInherit3(unittest.TestCase):
     def testIt(self):
         def testInst(c):
             self.assertEqual(c.x, 0)
@@ -15,6 +15,7 @@ class testInherit3(unittest.TestCase):
             self.assertEqual(x.y, 0)
             self.assertEqual(c.E.i, 0)
             self.assertEqual(c.E.j, 1)
+
         b = B()
         c = C()
         testInst(b)

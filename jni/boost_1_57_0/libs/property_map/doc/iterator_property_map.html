@@ -7,11 +7,11 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Iterator Property Map Adaptor</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-	ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Iterator Property Map Adaptor</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
@@ -23,12 +23,12 @@ iterator_property_map&lt;<a href="http://www.sgi.com/tech/stl/RandomAccessIterat
 </PRE>
 
 <P>
-This property map is an adaptor that converts any random access
-iterator into a <a
-href="./LvaluePropertyMap.html">Lvalue Property Map</a>.
-The <tt>OffsetMap</tt> type is responsible for converting
-key objects to integers that can be used as offsets with the
-random access iterator.
+    This property map is an adaptor that converts any random access
+    iterator into a <a
+        href="./LvaluePropertyMap.html">Lvalue Property Map</a>.
+    The <tt>OffsetMap</tt> type is responsible for converting
+    key objects to integers that can be used as offsets with the
+    random access iterator.
 
 <P>
 
@@ -95,7 +95,7 @@ int main(int, char*[])
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/property_map/property_map.hpp"><TT>boost/property_map/property_map.hpp</TT></a>
+    <a href="../../../boost/property_map/property_map.hpp"><TT>boost/property_map/property_map.hpp</TT></a>
 
 <p>
 <H3>Model Of</H3>
@@ -109,36 +109,43 @@ int main(int, char*[])
 <P>
 
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
 
-<TR>
-<TD><TT>Iterator</TT></TD> 
-<TD>Must be a model of <a href="http://www.sgi.com/tech/stl/RandomAccessIterator.html">Random Access Iterator</a>.</TD>
-<TD>&nbsp;</td>
-</tr>
+    <TR>
+        <TD><TT>Iterator</TT></TD>
+        <TD>Must be a model of <a href="http://www.sgi.com/tech/stl/RandomAccessIterator.html">Random
+            Access Iterator</a>.
+        </TD>
+        <TD>&nbsp;</td>
+    </tr>
 
-<TR>
-<TD><TT>OffsetMap</TT></TD> <TD>Must be a model of <a
-href="./ReadablePropertyMap.html">Readable Property Map</a>
-and the value type must be convertible to the difference type of the
-iterator.</TD> <TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>OffsetMap</TT></TD>
+        <TD>Must be a model of <a
+                href="./ReadablePropertyMap.html">Readable Property Map</a>
+            and the value type must be convertible to the difference type of the
+            iterator.
+        </TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
-<TR>
-<TD><TT>T</TT></TD>
-<TD>The value type of the iterator.</TD>
-<TD><TT>std::iterator_traits&lt;RandomAccessIterator&gt;::value_type</TT></TD>
-</TR>
+    <TR>
+        <TD><TT>T</TT></TD>
+        <TD>The value type of the iterator.</TD>
+        <TD><TT>std::iterator_traits&lt;RandomAccessIterator&gt;::value_type</TT></TD>
+    </TR>
 
 
-<TR>
-<TD><TT>R</TT></TD>
-<TD>The reference type of the iterator.</TD>
-<TD><TT>std::iterator_traits&lt;RandomAccessIterator&gt;::reference</TT></TD>
-</TR>
+    <TR>
+        <TD><TT>R</TT></TD>
+        <TD>The reference type of the iterator.</TD>
+        <TD><TT>std::iterator_traits&lt;RandomAccessIterator&gt;::reference</TT></TD>
+    </TR>
 
 </TABLE>
 <P>
@@ -146,9 +153,9 @@ iterator.</TD> <TD>&nbsp;</TD>
 <H3>Members</H3>
 
 <P>
-In addition to the methods and functions required by <a
-href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
-class has the following members.
+    In addition to the methods and functions required by <a
+        href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
+    class has the following members.
 
 <hr>
 
@@ -177,7 +184,7 @@ Constructor.
 <pre>
 reference operator[](const key_type&amp; v) const
 </pre>
-The operator bracket for property access. The <TT>reference</TT> is from  
+The operator bracket for property access. The <TT>reference</TT> is from
 <TT>std::iterator_traits&lt;Iterator&gt;</TT> and the <tt>key_type</tt> is from <tt>boost::property_traits&lt;OffsetMap&gt;</tt>.
 <hr>
 
@@ -217,16 +224,20 @@ your compiler does not support partial specialization
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy 2000-2002</TD><TD>
-<a HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</a>,
-Univ.of Notre Dame (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-<A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Univ.of Notre Dame (<A HREF="mailto:llee1@osl.iu.edu">llee1@osl.iu.edu</A>)<br>
-<A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Univ.of Notre Dame (<A
-HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy 2000-2002</TD>
+        <TD>
+            <a HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</a>,
+            Univ.of Notre Dame (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+            <A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Univ.of Notre
+            Dame (<A HREF="mailto:llee1@osl.iu.edu">llee1@osl.iu.edu</A>)<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Univ.of Notre Dame (<A
+                HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

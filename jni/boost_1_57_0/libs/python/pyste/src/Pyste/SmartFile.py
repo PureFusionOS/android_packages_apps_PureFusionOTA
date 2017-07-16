@@ -7,9 +7,9 @@ import md5
 import os
 
 
-#==============================================================================
+# ==============================================================================
 # SmartFile
-#==============================================================================
+# ==============================================================================
 class SmartFile(object):
     '''
     A file-like object used for writing files. The given file will only be
@@ -23,26 +23,21 @@ class SmartFile(object):
         self._contents = []
         self._closed = False
 
-
     def __del__(self):
         if not self._closed:
             self.close()
 
-
     def write(self, string):
         self._contents.append(string)
-
 
     def _dowrite(self, contents):
         f = file(self.filename, self.mode)
         f.write(contents)
         f.close()
-        
-        
+
     def _GetMD5(self, string):
         return md5.new(string).digest()
-        
-    
+
     def close(self):
         # if the filename doesn't exist, write the file right away
         this_contents = ''.join(self._contents)

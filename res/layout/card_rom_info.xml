@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -15,121 +14,78 @@
 	limitations under the License.
 -->
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    style="?attr/cardStyle"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto" style="?attr/cardStyle"
     card_view:cardCornerRadius="@dimen/card_view_radius"
-    card_view:cardElevation="@dimen/shadow_height"
-    card_view:cardUseCompatPadding="true" >
+    card_view:cardElevation="@dimen/shadow_height" card_view:cardUseCompatPadding="true">
 
-    <RelativeLayout
-        style="@style/MainListElement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:clickable="false"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+    <RelativeLayout style="@style/MainListElement" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" android:clickable="false"
+        android:orientation="vertical" android:paddingLeft="16dp" android:paddingRight="16dp">
 
-        <TextView
-            android:id="@+id/tv_main_rom_information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_rom_information"
+        <TextView android:id="@+id/tv_main_rom_information" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="@string/main_rom_information"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="?attr/textColorPrimary" />
 
-        <TextView
-            android:id="@+id/tv_main_rom_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView android:id="@+id/tv_main_rom_name" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_information"
             android:text="@string/main_rom_name"
-            android:layout_below="@+id/tv_main_rom_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?attr/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/tv_main_rom_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView android:id="@+id/tv_main_rom_version" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_name"
             android:text="@string/main_rom_version"
-            android:layout_below="@+id/tv_main_rom_name"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?attr/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/tv_main_rom_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView android:id="@+id/tv_main_rom_date" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_version"
             android:text="@string/main_rom_build_date"
-            android:layout_below="@+id/tv_main_rom_version"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?attr/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/tv_main_android_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView android:id="@+id/tv_main_android_version" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_date"
             android:text="@string/main_android_verison"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/textColorSecondary"
-            android:layout_below="@+id/tv_main_rom_date" />
+            android:textColor="?attr/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/tv_main_rom_developer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView android:id="@+id/tv_main_rom_developer" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_android_version"
             android:text="@string/main_rom_developer"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/textColorSecondary"
-            android:layout_below="@+id/tv_main_android_version" />
+            android:textColor="?attr/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/tv_main_rom_name_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView android:id="@+id/tv_main_rom_name_data" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_information"
             android:layout_marginStart="4dp"
+            android:layout_toEndOf="@+id/tv_main_rom_name"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/materialAccent"
-            android:layout_below="@+id/tv_main_rom_information"
-            android:layout_toEndOf="@+id/tv_main_rom_name" />
-        <TextView
-            android:id="@+id/tv_main_rom_version_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textColor="?attr/materialAccent" />
+        <TextView android:id="@+id/tv_main_rom_version_data" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_name_data"
             android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/tv_main_rom_version"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/materialAccent"
-            android:layout_below="@+id/tv_main_rom_name_data"
-            android:layout_toEndOf="@+id/tv_main_rom_version" />
-        <TextView
-            android:id="@+id/tv_main_rom_date_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textColor="?attr/materialAccent" />
+        <TextView android:id="@+id/tv_main_rom_date_data" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_version"
             android:layout_marginStart="5dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/materialAccent"
-            android:layout_below="@+id/tv_main_rom_version"
-            android:layout_toEndOf="@+id/tv_main_rom_date" />
-        <TextView
-            android:id="@+id/tv_main_android_version_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tv_main_rom_date" android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/materialAccent" />
+        <TextView android:id="@+id/tv_main_android_version_data" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_rom_date"
             android:layout_marginStart="5dp"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/materialAccent"
-            android:layout_below="@+id/tv_main_rom_date"
-            android:layout_toEndOf="@+id/tv_main_android_version" />
-        <TextView
-            android:id="@+id/tv_main_rom_developer_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tv_main_android_version" android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/materialAccent" />
+        <TextView android:id="@+id/tv_main_rom_developer_data" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_main_android_version"
             android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/tv_main_rom_developer"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?attr/materialAccent"
-            android:layout_below="@+id/tv_main_android_version"
-            android:layout_toEndOf="@+id/tv_main_rom_developer" />
+            android:textColor="?attr/materialAccent" />
 
     </RelativeLayout>
 

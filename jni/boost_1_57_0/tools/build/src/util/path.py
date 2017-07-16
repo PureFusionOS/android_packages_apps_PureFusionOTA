@@ -26,50 +26,54 @@ from utility import to_seq
 
 
 @bjam_signature((["path", "root"],))
-def root (path, root):
+def root(path, root):
     """ If 'path' is relative, it is rooted at 'root'. Otherwise, it's unchanged.
     """
-    if os.path.isabs (path):
+    if os.path.isabs(path):
         return path
     else:
-        return os.path.join (root, path)
+        return os.path.join(root, path)
+
 
 @bjam_signature((["native"],))
-def make (native):
+def make(native):
     """ Converts the native path into normalized form.
     """
     # TODO: make os selection here.
-    return make_UNIX (native)
+    return make_UNIX(native)
 
-def make_UNIX (native):
 
+def make_UNIX(native):
     # VP: I have no idea now 'native' can be empty here! But it can!
     assert (native)
 
-    return os.path.normpath (native)
+    return os.path.normpath(native)
+
 
 @bjam_signature((["path"],))
-def native (path):
+def native(path):
     """ Builds a native representation of the path.
     """
     # TODO: make os selection here.
-    return native_UNIX (path)
+    return native_UNIX(path)
 
-def native_UNIX (path):
+
+def native_UNIX(path):
     return path
 
 
-def pwd ():
+def pwd():
     """ Returns the current working directory.
         # TODO: is it a good idea to use the current dir? Some use-cases 
                 may not allow us to depend on the current dir.
     """
-    return make (os.getcwd ())
+    return make(os.getcwd())
 
-def is_rooted (path):
+
+def is_rooted(path):
     """ Tests if a path is rooted.
     """
-    return path and path [0] == '/'
+    return path and path[0] == '/'
 
 
 ###################################################################
@@ -223,6 +227,8 @@ def reverse(path):
     # os.sep.join() is being used over os.path.join() due
     # to an extra '..' that is created by os.path.join()
     return os.sep.join('..' for t in path.split(os.sep))
+
+
 #   #
 #   # Auxillary rule: does all the semantic of 'join', except for error cheching.
 #   # The error checking is separated because this rule is recursive, and I don't
@@ -257,7 +263,7 @@ def reverse(path):
 #   }
 
 
-def glob (dirs, patterns):
+def glob(dirs, patterns):
     """ Returns the list of files matching the given pattern in the
     specified directory.  Both directories and patterns are 
     supplied as portable paths. Each pattern should be non-absolute
@@ -272,78 +278,78 @@ def glob (dirs, patterns):
         [ glob . : *.cpp ] 
         [ glob . : */build/Jamfile ] 
     """
-#   {
-#       local result ;
-#       if $(patterns:D)
-#       {
-#           # When a pattern has a directory element, we first glob for
-#           # directory, and then glob for file name is the found directories.
-#           for local p in $(patterns)
-#           {
-#               # First glob for directory part.
-#               local globbed-dirs = [ glob $(dirs) : $(p:D) ] ;
-#               result += [ glob $(globbed-dirs) : $(p:D="") ] ;
-#           }        
-#       }
-#       else
-#       {        
-#           # When a pattern has not directory, we glob directly.
-#           # Take care of special ".." value. The "GLOB" rule simply ignores
-#           # the ".." element (and ".") element in directory listings. This is
-#           # needed so that 
-#           #
-#           #    [ glob libs/*/Jamfile ]
-#           #
-#           # don't return 
-#           #
-#           #    libs/../Jamfile (which is the same as ./Jamfile)
-#           #
-#           # On the other hand, when ".." is explicitly present in the pattern
-#           # we need to return it.
-#           # 
-#           for local dir in $(dirs)
-#           {
-#               for local p in $(patterns)
-#               {                
-#                   if $(p) != ".."
-#                   {                
-#                       result += [ sequence.transform make 
-#                           : [ GLOB [ native $(dir) ] : $(p) ] ] ;
-#                   }            
-#                   else
-#                   {
-#                       result += [ path.join $(dir) .. ] ;
-#                   }            
-#               }            
-#           }
-#       }    
-#       return $(result) ;
-#   }
-#   
+    #   {
+    #       local result ;
+    #       if $(patterns:D)
+    #       {
+    #           # When a pattern has a directory element, we first glob for
+    #           # directory, and then glob for file name is the found directories.
+    #           for local p in $(patterns)
+    #           {
+    #               # First glob for directory part.
+    #               local globbed-dirs = [ glob $(dirs) : $(p:D) ] ;
+    #               result += [ glob $(globbed-dirs) : $(p:D="") ] ;
+    #           }
+    #       }
+    #       else
+    #       {
+    #           # When a pattern has not directory, we glob directly.
+    #           # Take care of special ".." value. The "GLOB" rule simply ignores
+    #           # the ".." element (and ".") element in directory listings. This is
+    #           # needed so that
+    #           #
+    #           #    [ glob libs/*/Jamfile ]
+    #           #
+    #           # don't return
+    #           #
+    #           #    libs/../Jamfile (which is the same as ./Jamfile)
+    #           #
+    #           # On the other hand, when ".." is explicitly present in the pattern
+    #           # we need to return it.
+    #           #
+    #           for local dir in $(dirs)
+    #           {
+    #               for local p in $(patterns)
+    #               {
+    #                   if $(p) != ".."
+    #                   {
+    #                       result += [ sequence.transform make
+    #                           : [ GLOB [ native $(dir) ] : $(p) ] ] ;
+    #                   }
+    #                   else
+    #                   {
+    #                       result += [ path.join $(dir) .. ] ;
+    #                   }
+    #               }
+    #           }
+    #       }
+    #       return $(result) ;
+    #   }
+    #
 
-# TODO: (PF) I replaced the code above by this. I think it should work but needs to be tested.
+    # TODO: (PF) I replaced the code above by this. I think it should work but needs to be tested.
     result = []
-    dirs = to_seq (dirs)
-    patterns = to_seq (patterns)
+    dirs = to_seq(dirs)
+    patterns = to_seq(patterns)
 
     splitdirs = []
     for dir in dirs:
-        splitdirs += dir.split (os.pathsep)
+        splitdirs += dir.split(os.pathsep)
 
     for dir in splitdirs:
         for pattern in patterns:
-            p = os.path.join (dir, pattern)
+            p = os.path.join(dir, pattern)
             import glob
-            result.extend (glob.glob (p))
+            result.extend(glob.glob(p))
     return result
-    
+
+
 #
 #   Find out the absolute name of path and returns the list of all the parents,
 #   starting with the immediate one. Parents are returned as relative names.
 #   If 'upper_limit' is specified, directories above it will be pruned.
 #
 def all_parents(path, upper_limit=None, cwd=None):
-
     if not cwd:
         cwd = os.getcwd()
 
@@ -355,7 +361,7 @@ def all_parents(path, upper_limit=None, cwd=None):
     result = []
     while path_abs and path_abs != upper_limit:
         (head, tail) = os.path.split(path)
-        path = os.path.join(path, "..")        
+        path = os.path.join(path, "..")
         result.append(path)
         path_abs = head
 
@@ -363,12 +369,12 @@ def all_parents(path, upper_limit=None, cwd=None):
         raise BaseException("'%s' is not a prefix of '%s'" % (upper_limit, path))
 
     return result
-    
+
+
 #  Search for 'pattern' in parent directories of 'dir', up till and including
 #  'upper_limit', if it is specified, or till the filesystem root otherwise.
 #
 def glob_in_parents(dir, patterns, upper_limit=None):
-
     result = []
     parent_dirs = all_parents(dir, upper_limit)
 
@@ -378,7 +384,8 @@ def glob_in_parents(dir, patterns, upper_limit=None):
 
     return result
 
-#   
+
+#
 #   #
 #   # Assuming 'child' is a subdirectory of 'parent', return the relative
 #   # path from 'parent' to 'child'
@@ -436,13 +443,13 @@ def glob_in_parents(dir, patterns, upper_limit=None):
 
 # Returns the list of paths which are used by the operating system
 # for looking up programs
-def programs_path ():
+def programs_path():
     raw = []
     names = ['PATH', 'Path', 'path']
-    
+
     for name in names:
-        raw.append(os.environ.get (name, ''))
-    
+        raw.append(os.environ.get(name, ''))
+
     result = []
     for elem in raw:
         if elem:
@@ -454,6 +461,7 @@ def programs_path ():
                     result.append(make(p))
 
     return result
+
 
 #   rule make-NT ( native )
 #   {
@@ -830,7 +838,7 @@ def programs_path ():
 #
 
 
-#def glob(dir, patterns):
+# def glob(dir, patterns):
 #    result = []
 #    for pattern in patterns:
 #        result.extend(builtin_glob(os.path.join(dir, pattern)))
@@ -851,15 +859,15 @@ def glob(dirs, patterns, exclude_patterns=None):
         [ glob . : */build/Jamfile ]
     """
 
-    assert(isinstance(patterns, list))
-    assert(isinstance(dirs, list))
+    assert (isinstance(patterns, list))
+    assert (isinstance(dirs, list))
 
     if not exclude_patterns:
         exclude_patterns = []
     else:
-       assert(isinstance(exclude_patterns, list))
+        assert (isinstance(exclude_patterns, list))
 
-    real_patterns = [os.path.join(d, p) for p in patterns for d in dirs]    
+    real_patterns = [os.path.join(d, p) for p in patterns for d in dirs]
     real_exclude_patterns = [os.path.join(d, p) for p in exclude_patterns
                              for d in dirs]
 
@@ -868,6 +876,7 @@ def glob(dirs, patterns, exclude_patterns=None):
     exc = [os.path.normpath(name) for p in real_exclude_patterns
            for name in builtin_glob(p)]
     return [x for x in inc if x not in exc]
+
 
 def glob_tree(roots, patterns, exclude_patterns=None):
     """Recursive version of GLOB. Builds the glob of files while
@@ -884,16 +893,17 @@ def glob_tree(roots, patterns, exclude_patterns=None):
     subdirs = [s for s in glob(roots, ["*"]) if s != "." and s != ".." and os.path.isdir(s)]
     if subdirs:
         result.extend(glob_tree(subdirs, patterns, exclude_patterns))
-        
+
     return result
+
 
 def glob_in_parents(dir, patterns, upper_limit=None):
     """Recursive version of GLOB which glob sall parent directories
     of dir until the first match is found. Returns an empty result if no match
-    is found"""    
-    
-    assert(isinstance(dir, str))
-    assert(isinstance(patterns, list))
+    is found"""
+
+    assert (isinstance(dir, str))
+    assert (isinstance(patterns, list))
 
     result = []
 
@@ -914,24 +924,26 @@ def glob_in_parents(dir, patterns, upper_limit=None):
 # The relpath functionality is written by
 # Cimarron Taylor
 def split(p, rest=[]):
-    (h,t) = os.path.split(p)
-    if len(h) < 1: return [t]+rest
-    if len(t) < 1: return [h]+rest
-    return split(h,[t]+rest)
+    (h, t) = os.path.split(p)
+    if len(h) < 1: return [t] + rest
+    if len(t) < 1: return [h] + rest
+    return split(h, [t] + rest)
+
 
 def commonpath(l1, l2, common=[]):
     if len(l1) < 1: return (common, l1, l2)
     if len(l2) < 1: return (common, l1, l2)
     if l1[0] != l2[0]: return (common, l1, l2)
-    return commonpath(l1[1:], l2[1:], common+[l1[0]])
+    return commonpath(l1[1:], l2[1:], common + [l1[0]])
+
 
 def relpath(p1, p2):
-    (common,l1,l2) = commonpath(split(p1), split(p2))
+    (common, l1, l2) = commonpath(split(p1), split(p2))
     p = []
     if len(l1) > 0:
-        p = [ '../' * len(l1) ]
+        p = ['../' * len(l1)]
     p = p + l2
     if p:
-        return os.path.join( *p )
+        return os.path.join(*p)
     else:
         return "."

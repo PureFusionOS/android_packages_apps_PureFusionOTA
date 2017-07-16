@@ -9,17 +9,20 @@
 
 <!-- Begin Banner -->
 
-    <H1 CLASS="title">Tutorial</H1>
-    <HR CLASS="banner">
+<H1 CLASS="title">Tutorial</H1>
+<HR CLASS="banner">
 
 <!-- End Banner -->
 
 <!-- Begin Nav -->
 
 <DIV CLASS='nav'>
-    <A HREF='container_sink.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19 SRC='../../../../doc/src/images/prev.png'></A>
-    <A HREF='tutorial.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19 SRC='../../../../doc/src/images/up.png'></A>
-    <A HREF='writing_filters.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19 SRC='../../../../doc/src/images/next.png'></A>
+    <A HREF='container_sink.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19
+                                       SRC='../../../../doc/src/images/prev.png'></A>
+    <A HREF='tutorial.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19
+                                 SRC='../../../../doc/src/images/up.png'></A>
+    <A HREF='writing_filters.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19
+                                        SRC='../../../../doc/src/images/next.png'></A>
 </DIV>
 
 <!-- End Nav -->
@@ -27,14 +30,29 @@
 <A NAME="container_device"></A>
 <H2>2.1.4. Writing a <CODE>container_device</CODE></H2>
 
-<P>Suppose you want to write a Device for reading from and writing to an STL container. In order for combined reading and writing to be useful, you will also need to support seeking within the container. There are several types of Devices which combine reading and writing; they differ according to whether there are two separate character sequences for input and output, or a single combined sequence, and whether there are separate position indicators for reading and writing or a single read/write position indicator. <I>See</I> <A HREF="../guide/modes.html">Modes</A> for details.</P>
+<P>Suppose you want to write a Device for reading from and writing to an STL container. In order for
+    combined reading and writing to be useful, you will also need to support seeking within the
+    container. There are several types of Devices which combine reading and writing; they differ
+    according to whether there are two separate character sequences for input and output, or a
+    single combined sequence, and whether there are separate position indicators for reading and
+    writing or a single read/write position indicator. <I>See</I> <A HREF="../guide/modes.html">Modes</A>
+    for details.</P>
 
 
-<P>A narrow-character Device for read-write access to a single character sequence with a single position indicator is called a <A HREF="../concepts/seekable_device.html">SeekableDevice</A>. A typical SeekableDevice looks like this:</P>
+<P>A narrow-character Device for read-write access to a single character sequence with a single
+    position indicator is called a <A HREF="../concepts/seekable_device.html">SeekableDevice</A>. A
+    typical SeekableDevice looks like this:</P>
 
-<PRE CLASS="broken_ie"><SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS="literal">&lt;iosfwd&gt;</SPAN>                           <SPAN CLASS='comment'>// streamsize, seekdir</SPAN>
-<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="HEADER" HREF="../../../../boost/iostreams/categories.hpp"><SPAN CLASS='literal'>&lt;boost/iostreams/categories.hpp&gt;</SPAN></A>   <SPAN CLASS='comment'>// seekable_device_tag</SPAN>
-<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="HEADER" HREF="../../../../boost/iostreams/positioning.hpp"><SPAN CLASS='literal'>&lt;boost/iostreams/positioning.hpp&gt;</SPAN></A>  <SPAN CLASS='comment'>// stream_offset</SPAN>
+<PRE CLASS="broken_ie"><SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS="literal">&lt;iosfwd&gt;</SPAN>                           <SPAN
+        CLASS='comment'>// streamsize, seekdir</SPAN>
+<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="HEADER"
+                                              HREF="../../../../boost/iostreams/categories.hpp"><SPAN
+            CLASS='literal'>&lt;boost/iostreams/categories.hpp&gt;</SPAN></A>   <SPAN
+            CLASS='comment'>// seekable_device_tag</SPAN>
+<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="HEADER"
+                                              HREF="../../../../boost/iostreams/positioning.hpp"><SPAN
+            CLASS='literal'>&lt;boost/iostreams/positioning.hpp&gt;</SPAN></A>  <SPAN
+            CLASS='comment'>// stream_offset</SPAN>
 
 <SPAN CLASS='keyword'>namespace</SPAN> io = boost::iostreams;
 
@@ -73,13 +91,24 @@
     <SPAN CLASS='comment'>/* Other members */</SPAN>
 };</PRE>
 
-<P>Here the member type <A HREF="../guide/traits.html#char_type"><CODE>char_type</CODE></A> indicates the type of characters handled by my_source, which will almost always be <CODE>char</CODE> or <CODE>wchar_t</CODE>. The member type <A HREF="../guide/traits.html#char_type">category</A> indicates which of the fundamental i/o operations are supported by the device. The category tag <A HREF="../guide/traits.html#category_tags"><CODE>seekable_tag</CODE></A> indicates that <A HREF="../functions/read.html"><CODE>read</CODE></A>, <A HREF="../functions/write.html"><CODE>write</CODE></A> and the single-sequence version of <A HREF="../functions/seek.html"><CODE>seek</CODE></A> are supported.</P>
+<P>Here the member type <A HREF="../guide/traits.html#char_type"><CODE>char_type</CODE></A>
+    indicates the type of characters handled by my_source, which will almost always be
+    <CODE>char</CODE> or <CODE>wchar_t</CODE>. The member type <A
+            HREF="../guide/traits.html#char_type">category</A> indicates which of the fundamental
+    i/o operations are supported by the device. The category tag <A
+            HREF="../guide/traits.html#category_tags"><CODE>seekable_tag</CODE></A> indicates that
+    <A HREF="../functions/read.html"><CODE>read</CODE></A>, <A HREF="../functions/write.html"><CODE>write</CODE></A>
+    and the single-sequence version of <A HREF="../functions/seek.html"><CODE>seek</CODE></A> are
+    supported.</P>
 
-<P>The type <A HREF="../functions/positioning.html#synopsis"><CODE>stream_offset</CODE></A> is used by the Iostreams library to hold stream offsets.</P>
+<P>The type <A HREF="../functions/positioning.html#synopsis"><CODE>stream_offset</CODE></A> is used
+    by the Iostreams library to hold stream offsets.</P>
 
 <P>You could also write the above example as follows:</P>
 
-<PRE CLASS="broken_ie"><SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="HEADER" HREF="../../../../boost/iostreams/concepts.hpp"><SPAN CLASS='literal'>&lt;boost/iostreams/concepts.hpp&gt;</SPAN></A>  <SPAN CLASS='comment'>// seekable_device</SPAN>
+<PRE CLASS="broken_ie"><SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="HEADER"
+                                                                     HREF="../../../../boost/iostreams/concepts.hpp"><SPAN
+        CLASS='literal'>&lt;boost/iostreams/concepts.hpp&gt;</SPAN></A>  <SPAN CLASS='comment'>// seekable_device</SPAN>
 
 <SPAN CLASS='keyword'>class</SPAN> my_source : <SPAN CLASS='keyword'>public</SPAN> seekable_device {
 <SPAN CLASS='keyword'>public</SPAN>:
@@ -90,15 +119,25 @@
     <SPAN CLASS='comment'>/* Other members */</SPAN>
 };</PRE>
 
-<P>Here <A HREF="../classes/device.html#synopsis"><CODE>seekable_device</CODE></A> is a convenience base class which provides the member types <CODE>char_type</CODE> and <CODE>category</CODE>, as well as no-op implementations of member functions <CODE>close</CODE> and <CODE>imbue</CODE>, not needed here.
+<P>Here <A HREF="../classes/device.html#synopsis"><CODE>seekable_device</CODE></A> is a convenience
+    base class which provides the member types <CODE>char_type</CODE> and <CODE>category</CODE>, as
+    well as no-op implementations of member functions <CODE>close</CODE> and <CODE>imbue</CODE>, not
+    needed here.
 
-<P>You're now ready to write your <CODE>container_device</CODE>. Again, let's assume your container's iterators are RandomAccessIterators.</P>
+<P>You're now ready to write your <CODE>container_device</CODE>. Again, let's assume your
+    container's iterators are RandomAccessIterators.</P>
 
-<PRE CLASS="broken_ie"><SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;algorithm&gt;</SPAN>                       <SPAN CLASS='comment'>// copy, min</SPAN>
-<SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;iosfwd&gt;</SPAN>                          <SPAN CLASS='comment'>// streamsize</SPAN>
-<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS='header' HREF="../../../../boost/iostreams/categories.hpp"><SPAN CLASS='literal'>&lt;boost/iostreams/categories.hpp&gt;</SPAN></A>  <SPAN CLASS='comment'>// source_tag</SPAN>
+<PRE CLASS="broken_ie"><SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;algorithm&gt;</SPAN>                       <SPAN
+        CLASS='comment'>// copy, min</SPAN>
+<SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;iosfwd&gt;</SPAN>                          <SPAN
+            CLASS='comment'>// streamsize</SPAN>
+<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS='header'
+                                              HREF="../../../../boost/iostreams/categories.hpp"><SPAN
+            CLASS='literal'>&lt;boost/iostreams/categories.hpp&gt;</SPAN></A>  <SPAN
+            CLASS='comment'>// source_tag</SPAN>
 
-<SPAN CLASS='keyword'>namespace</SPAN> boost { <SPAN CLASS='keyword'>namespace</SPAN> iostreams { <SPAN CLASS='keyword'>namespace</SPAN> example {
+<SPAN CLASS='keyword'>namespace</SPAN> boost { <SPAN
+            CLASS='keyword'>namespace</SPAN> iostreams { <SPAN CLASS='keyword'>namespace</SPAN> example {
 
 <SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS="keyword">typename</SPAN> Container&gt;
 <SPAN CLASS="keyword">class</SPAN> container_device {
@@ -121,7 +160,8 @@
             pos_ += result;
             <SPAN CLASS="keyword">return</SPAN> result;
         } <SPAN CLASS="keyword">else</SPAN> {
-            <SPAN CLASS="keyword">return</SPAN> <SPAN CLASS='numeric_literal'>-1</SPAN>; <SPAN CLASS='comment'>// EOF</SPAN>
+            <SPAN CLASS="keyword">return</SPAN> <SPAN CLASS='numeric_literal'>-1</SPAN>; <SPAN
+            CLASS='comment'>// EOF</SPAN>
         }
     }
     std::streamsize write(<SPAN CLASS="keyword">const</SPAN> char_type* s, std::streamsize n)
@@ -176,23 +216,47 @@
 
 <P>Here, note that</P>
 <UL>
-<LI>The member type <CODE>char_type</CODE> is defined to be equal to the container's <CODE>value_type</CODE>;
-<LI>The member type <CODE>category</CODE> tells the Iostreams library that <CODE>container_device</CODE> is a model of <A HREF="../concepts/seekable_device.html">SeekableDevice</A>;
-<LI>A <CODE>container_device</CODE> can be constructed from a instance of <CODE>Container</CODE>, which is passed and stored by reference, and accessible <I>via</I> the member function <CODE>container()</CODE>;
-<LI>The implementation of <CODE>read</CODE> is identical to the implementation in <A HREF="container_source.html"><CODE>container_source</CODE></A>.
+    <LI>The member type <CODE>char_type</CODE> is defined to be equal to the container's <CODE>value_type</CODE>;
+    <LI>The member type <CODE>category</CODE> tells the Iostreams library that <CODE>container_device</CODE>
+        is a model of <A HREF="../concepts/seekable_device.html">SeekableDevice</A>;
+    <LI>A <CODE>container_device</CODE> can be constructed from a instance of <CODE>Container</CODE>,
+        which is passed and stored by reference, and accessible <I>via</I> the member function
+        <CODE>container()</CODE>;
+    <LI>The implementation of <CODE>read</CODE> is identical to the implementation in <A
+            HREF="container_source.html"><CODE>container_source</CODE></A>.
 </UL>
 
-<P>The implementation of <CODE>write</CODE> is a bit different from the implementation in <A HREF="container_sink.html"><CODE>container_sink</CODE></A>. Rather than simply appending characters to the container, you first check whether the current character position is somewhere in the middle of the container. If it is, you attempt to satisfy the write request by overwriting existing characters in the container, starting at the current character position. If you reach the end of the container before the write request is satisfied, you insert the remaining characters at the end.</P>
+<P>The implementation of <CODE>write</CODE> is a bit different from the implementation in <A
+        HREF="container_sink.html"><CODE>container_sink</CODE></A>. Rather than simply appending
+    characters to the container, you first check whether the current character position is somewhere
+    in the middle of the container. If it is, you attempt to satisfy the write request by
+    overwriting existing characters in the container, starting at the current character position. If
+    you reach the end of the container before the write request is satisfied, you insert the
+    remaining characters at the end.</P>
 
-<P>The implementation of <CODE>seek</CODE> is straightforward. First, you calculate the new character position based on <CODE>off</CODE> and <CODE>way</CODE>: if <CODE>way</CODE> is <CODE>ios_base::beg</CODE>, the new character position is simply <CODE>off</CODE>; if <CODE>way</CODE> is <CODE>ios_base::cur</CODE>, the new character position is <CODE>pos_ + off</CODE>; if <CODE>way</CODE> is <CODE>ios_base::end</CODE>, the new character position is <CODE>container_.size() + off - 1</CODE>. Next, you check whether the new character position is a valid offset, and throw an exception if it isn't. Instances of <CODE>std::basic_streambuf</CODE> are allowed to return <CODE>-1</CODE> to indicate failure, but the policy of the Boost Iostreams library is that errors should be indicated by throwing an exception (<I>see</I> <A HREF="../guide/exceptions.html">Exceptions</A>). Finally, you set the new position and return it.</P>
+<P>The implementation of <CODE>seek</CODE> is straightforward. First, you calculate the new
+    character position based on <CODE>off</CODE> and <CODE>way</CODE>: if <CODE>way</CODE> is <CODE>ios_base::beg</CODE>,
+    the new character position is simply <CODE>off</CODE>; if <CODE>way</CODE> is <CODE>ios_base::cur</CODE>,
+    the new character position is <CODE>pos_ + off</CODE>; if <CODE>way</CODE> is <CODE>ios_base::end</CODE>,
+    the new character position is <CODE>container_.size() + off - 1</CODE>. Next, you check whether
+    the new character position is a valid offset, and throw an exception if it isn't. Instances of
+    <CODE>std::basic_streambuf</CODE> are allowed to return <CODE>-1</CODE> to indicate failure, but
+    the policy of the Boost Iostreams library is that errors should be indicated by throwing an
+    exception (<I>see</I> <A HREF="../guide/exceptions.html">Exceptions</A>). Finally, you set the
+    new position and return it.</P>
 
 <P>You can use a container_device as follows</P>
 
 <PRE CLASS="broken_ie"><SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;cassert&gt;</SPAN>
-<SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;ios&gt;</SPAN> <SPAN CLASS='comment'>// ios_base::beg</SPAN>
+<SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;ios&gt;</SPAN> <SPAN
+            CLASS='comment'>// ios_base::beg</SPAN>
 <SPAN CLASS='preprocessor'>#include</SPAN> <SPAN CLASS='literal'>&lt;string&gt;</SPAN>
-<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="header" HREF="../../../../boost/iostreams/stream.hpp"><SPAN CLASS='literal'>&lt;boost/iostreams/stream.hpp&gt;</SPAN></A>
-<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="header"  HREF="../../example/container_device.hpp"><SPAN CLASS='literal'>&lt;libs/iostreams/example/container_device.hpp&gt;</SPAN></A>
+<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="header"
+                                              HREF="../../../../boost/iostreams/stream.hpp"><SPAN
+            CLASS='literal'>&lt;boost/iostreams/stream.hpp&gt;</SPAN></A>
+<SPAN CLASS='preprocessor'>#include</SPAN> <A CLASS="header"
+                                              HREF="../../example/container_device.hpp"><SPAN
+            CLASS='literal'>&lt;libs/iostreams/example/container_device.hpp&gt;</SPAN></A>
 
 <SPAN CLASS="keyword">namespace</SPAN> io = boost::iostreams;
 <SPAN CLASS="keyword">namespace</SPAN> ex = boost::iostreams::example;
@@ -215,9 +279,12 @@
 <!-- Begin Nav -->
 
 <DIV CLASS='nav'>
-    <A HREF='container_sink.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19 SRC='../../../../doc/src/images/prev.png'></A>
-    <A HREF='tutorial.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19 SRC='../../../../doc/src/images/up.png'></A>
-    <A HREF='writing_filters.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19 SRC='../../../../doc/src/images/next.png'></A>
+    <A HREF='container_sink.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19
+                                       SRC='../../../../doc/src/images/prev.png'></A>
+    <A HREF='tutorial.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19
+                                 SRC='../../../../doc/src/images/up.png'></A>
+    <A HREF='writing_filters.html'><IMG BORDER=0 WIDTH=19 HEIGHT=19
+                                        SRC='../../../../doc/src/images/next.png'></A>
 </DIV>
 
 <!-- End Nav -->
@@ -227,9 +294,13 @@
 <HR>
 
 
-<P CLASS="copyright">&copy; Copyright 2008 <a href="http://www.coderage.com/" target="_top">CodeRage, LLC</a><br/>&copy; Copyright 2004-2007 <a href="http://www.coderage.com/turkanis/" target="_top">Jonathan Turkanis</a></P>
-<P CLASS="copyright"> 
-    Use, modification, and distribution are subject to the Boost Software License, Version 2.0. (See accompanying file <A HREF="../../../../LICENSE_1_0.txt">LICENSE_1_0.txt</A> or copy at <A HREF="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</A>)
+<P CLASS="copyright">&copy; Copyright 2008 <a href="http://www.coderage.com/" target="_top">CodeRage,
+    LLC</a><br/>&copy; Copyright 2004-2007 <a href="http://www.coderage.com/turkanis/"
+                                              target="_top">Jonathan Turkanis</a></P>
+<P CLASS="copyright">
+    Use, modification, and distribution are subject to the Boost Software License, Version 2.0. (See
+    accompanying file <A HREF="../../../../LICENSE_1_0.txt">LICENSE_1_0.txt</A> or copy at <A
+        HREF="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</A>)
 </P>
 <!-- End Footer -->
 

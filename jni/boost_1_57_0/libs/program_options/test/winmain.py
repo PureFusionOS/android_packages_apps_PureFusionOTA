@@ -1,4 +1,3 @@
-
 import string
 from StringIO import StringIO
 
@@ -17,10 +16,11 @@ testcases = r"""1 -> 1
 1\\1 -> 1\\1
 """
 
-#testcases = r"""1\\\\" -> 1\\
-#"""
+# testcases = r"""1\\\\" -> 1\\
+# """
 
 t = StringIO(testcases)
+
 
 def quote(s):
     result = s.replace("\\", r"\\")
@@ -31,7 +31,7 @@ def quote(s):
 for s in t:
     s = string.strip(s)
     (value, result) = string.split(s, "->")
-#    print value, result
+    #    print value, result
     tokens = string.split(result, ",")
     value = quote(value)
     tokens = map(string.strip, tokens)

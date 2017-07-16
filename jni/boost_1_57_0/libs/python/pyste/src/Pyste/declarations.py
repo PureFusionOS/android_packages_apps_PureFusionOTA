@@ -13,9 +13,10 @@ Defines classes that represent declarations found in C++ header files.
 # automatically
 version = '1.0'
 
-#==============================================================================
+
+# ==============================================================================
 # Declaration
-#==============================================================================
+# ==============================================================================
 class Declaration(object):
     '''Base class for all declarations.
     @ivar name: The name of the declaration.
@@ -35,7 +36,6 @@ class Declaration(object):
         self.incomplete = False
         self.is_unique = True
 
-
     def FullName(self):
         '''
         Returns the full qualified name: "boost::inner::Test"
@@ -46,19 +46,17 @@ class Declaration(object):
         if namespace and not namespace.endswith('::'):
             namespace += '::'
         return namespace + self.name
-    
-    
-    def __repr__(self):        
-        return '<Declaration %s at %s>' % (self.FullName(), id(self))
 
+    def __repr__(self):
+        return '<Declaration %s at %s>' % (self.FullName(), id(self))
 
     def __str__(self):
         return 'Declaration of %s' % self.FullName()
-    
-    
-#==============================================================================
+
+
+# ==============================================================================
 # Class
-#==============================================================================
+# ==============================================================================
 class Class(Declaration):
     '''
     Represents a C++ class or struct. Iteration through it yields its members.
@@ -85,12 +83,10 @@ class Class(Declaration):
         self.hierarchy = ()
         self.operator = {}
 
-
     def __iter__(self):
         '''iterates through the class' members.
         '''
-        return iter(self.__members)            
-
+        return iter(self.__members)
 
     def Constructors(self, publics_only=True):
         '''Returns a list of the constructors for this class.
@@ -104,7 +100,6 @@ class Class(Declaration):
                 constructors.append(member)
         return constructors
 
-    
     def HasCopyConstructor(self):
         '''Returns true if this class has a public copy constructor.
         @rtype: bool
@@ -114,7 +109,6 @@ class Class(Declaration):
                 return True
         return False
 
-
     def HasDefaultConstructor(self):
         '''Returns true if this class has a public default constructor.
         @rtype: bool
@@ -123,7 +117,6 @@ class Class(Declaration):
             if cons.IsDefault():
                 return True
         return False
-
 
     def AddMember(self, member):
         if member.name in self.__member_names:
@@ -138,16 +131,16 @@ class Class(Declaration):
         if isinstance(member, ClassOperator):
             self.operator[member.name] = member
 
-
     def ValidMemberTypes():
-        return (NestedClass, Method, Constructor, Destructor, ClassVariable, 
-                ClassOperator, ConverterOperator, ClassEnumeration)   
+        return (NestedClass, Method, Constructor, Destructor, ClassVariable,
+                ClassOperator, ConverterOperator, ClassEnumeration)
+
     ValidMemberTypes = staticmethod(ValidMemberTypes)
 
-                          
-#==============================================================================
+
+# ==============================================================================
 # NestedClass
-#==============================================================================
+# ==============================================================================
 class NestedClass(Class):
     '''The declaration of a class/struct inside another class/struct.
     
@@ -163,18 +156,17 @@ class NestedClass(Class):
         self.class_ = class_
         self.visibility = visib
 
-
     def FullName(self):
         '''The full name of this class, like ns::outer::inner.
         @rtype: string
         '''
         return '%s::%s' % (self.class_, self.name)
-    
 
-#==============================================================================
+
+# ==============================================================================
 # Scope    
-#==============================================================================
-class Scope:    
+# ==============================================================================
+class Scope:
     '''Used to represent the visibility of various members inside a class.
     @cvar public: public visibility
     @cvar private: private visibility
@@ -183,11 +175,11 @@ class Scope:
     public = 'public'
     private = 'private'
     protected = 'protected'
-    
- 
-#==============================================================================
+
+
+# ==============================================================================
 # Base    
-#==============================================================================
+# ==============================================================================
 class Base:
     '''Represents a base class of another class.
     @ivar _name: the full name of the base class.
@@ -198,10 +190,10 @@ class Base:
         self.name = name
         self.visibility = visibility
 
-    
-#==============================================================================
+
+# ==============================================================================
 # Function    
-#==============================================================================
+# ==============================================================================
 class Function(Declaration):
     '''The declaration of a function.
     @ivar _result: instance of L{Type} or None.
@@ -209,22 +201,20 @@ class Function(Declaration):
     @ivar _throws: exception specifiers or None 
     '''
 
-    def __init__(self, name, namespace, result, params, throws=None): 
+    def __init__(self, name, namespace, result, params, throws=None):
         Declaration.__init__(self, name, namespace)
         # the result type: instance of Type, or None (constructors)            
         self.result = result
         # the parameters: instances of Type
         self.parameters = params
         # the exception specification
-        self.throws     = throws 
-
+        self.throws = throws
 
     def Exceptions(self):
         if self.throws is None:
             return ""
         else:
-            return " throw(%s)" % ', '.join ([x.FullName() for x in self.throws]) 
-
+            return " throw(%s)" % ', '.join([x.FullName() for x in self.throws])
 
     def PointerDeclaration(self, force=False):
         '''Returns a declaration of a pointer to this function.
@@ -235,10 +225,9 @@ class Function(Declaration):
             return '&%s' % self.FullName()
         else:
             result = self.result.FullName()
-            params = ', '.join([x.FullName() for x in self.parameters]) 
+            params = ', '.join([x.FullName() for x in self.parameters])
             return '(%s (*)(%s)%s)&%s' % (result, params, self.Exceptions(), self.FullName())
 
-    
     def MinArgs(self):
         min = 0
         for arg in self.parameters:
@@ -247,34 +236,33 @@ class Function(Declaration):
         return min
 
     minArgs = property(MinArgs)
-    
 
     def MaxArgs(self):
         return len(self.parameters)
 
     maxArgs = property(MaxArgs)
 
-    
-    
-#==============================================================================
+
+# ==============================================================================
 # Operator
-#==============================================================================
+# ==============================================================================
 class Operator(Function):
     '''The declaration of a custom operator. Its name is the same as the 
     operator name in C++, ie, the name of the declaration "operator+(..)" is
     "+".
     '''
-    
+
     def FullName(self):
         namespace = self.namespace or ''
         if not namespace.endswith('::'):
             namespace += '::'
-        return namespace + 'operator' + self.name 
+        return namespace + 'operator' + self.name
+
+        # ==============================================================================
 
 
-#==============================================================================
 # Method
-#==============================================================================
+# ==============================================================================
 class Method(Function):
     '''The declaration of a method.
     
@@ -287,7 +275,8 @@ class Method(Function):
     @ivar _throws: list of exception specificiers or None
     '''
 
-    def __init__(self, name, class_, result, params, visib, virtual, abstract, static, const, throws=None): 
+    def __init__(self, name, class_, result, params, visib, virtual, abstract, static, const,
+                 throws=None):
         Function.__init__(self, name, None, result, params, throws)
         self.visibility = visib
         self.virtual = virtual
@@ -296,10 +285,8 @@ class Method(Function):
         self.class_ = class_
         self.const = const
 
-    
     def FullName(self):
         return self.class_ + '::' + self.name
-
 
     def PointerDeclaration(self, force=False):
         '''Returns a declaration of a pointer to this member function.
@@ -313,17 +300,19 @@ class Method(Function):
             return '&%s' % self.FullName()
         else:
             result = self.result.FullName()
-            params = ', '.join([x.FullName() for x in self.parameters]) 
+            params = ', '.join([x.FullName() for x in self.parameters])
             const = ''
             if self.const:
-                const = 'const'            
-            return '(%s (%s::*)(%s) %s%s)&%s' %\
-                (result, self.class_, params, const, self.Exceptions(), self.FullName())  
+                const = 'const'
+            return '(%s (%s::*)(%s) %s%s)&%s' % \
+                   (result, self.class_, params, const, self.Exceptions(), self.FullName())
 
 
-#==============================================================================
+            # ==============================================================================
+
+
 # Constructor
-#==============================================================================
+# ==============================================================================
 class Constructor(Method):
     '''A class' constructor.
     '''
@@ -331,12 +320,10 @@ class Constructor(Method):
     def __init__(self, name, class_, params, visib):
         Method.__init__(self, name, class_, None, params, visib, False, False, False, False)
 
-
     def IsDefault(self):
         '''Returns True if this constructor is a default constructor.
         '''
         return len(self.parameters) == 0 and self.visibility == Scope.public
-
 
     def IsCopy(self):
         '''Returns True if this constructor is a copy constructor.
@@ -345,18 +332,17 @@ class Constructor(Method):
             return False
         param = self.parameters[0]
         class_as_param = self.parameters[0].name == self.class_
-        param_reference = isinstance(param, ReferenceType) 
+        param_reference = isinstance(param, ReferenceType)
         is_public = self.visibility == Scope.public
         return param_reference and class_as_param and param.const and is_public
-        
 
     def PointerDeclaration(self, force=False):
         return ''
 
 
-#==============================================================================
+# ==============================================================================
 # Destructor
-#==============================================================================
+# ==============================================================================
 class Destructor(Method):
     'The destructor of a class.'
 
@@ -366,37 +352,33 @@ class Destructor(Method):
     def FullName(self):
         return self.class_ + '::~' + self.name
 
-
     def PointerDeclaration(self, force=False):
         return ''
 
 
-
-#==============================================================================
+# ==============================================================================
 # ClassOperator
-#==============================================================================
+# ==============================================================================
 class ClassOperator(Method):
     'A custom operator in a class.'
-    
+
     def FullName(self):
         return self.class_ + '::operator ' + self.name
 
 
-
-#==============================================================================
+# ==============================================================================
 # ConverterOperator
-#==============================================================================
+# ==============================================================================
 class ConverterOperator(ClassOperator):
     'An operator in the form "operator OtherClass()".'
-    
+
     def FullName(self):
         return self.class_ + '::operator ' + self.result.FullName()
 
-    
 
-#==============================================================================
+# ==============================================================================
 # Type
-#==============================================================================
+# ==============================================================================
 class Type(Declaration):
     '''Represents the type of a variable or parameter.
     @ivar _const: if the type is constant.
@@ -424,7 +406,6 @@ class Type(Declaration):
             const = ''
         return '<Type ' + const + self.name + '>'
 
-
     def FullName(self):
         if self.const:
             const = 'const '
@@ -433,61 +414,60 @@ class Type(Declaration):
         return const + self.name + self.suffix
 
 
-#==============================================================================
+# ==============================================================================
 # ArrayType
-#==============================================================================
+# ==============================================================================
 class ArrayType(Type):
     '''Represents an array.
     @ivar min: the lower bound of the array, usually 0. Can be None.
     @ivar max: the upper bound of the array. Can be None.
     '''
 
-    def __init__(self, name, const, min, max): 
+    def __init__(self, name, const, min, max):
         'min and max can be None.'
         Type.__init__(self, name, const)
         self.min = min
-        self.max = max        
+        self.max = max
+
+        # ==============================================================================
 
 
-
-#==============================================================================
-# ReferenceType    
-#==============================================================================
-class ReferenceType(Type): 
+# ReferenceType
+# ==============================================================================
+class ReferenceType(Type):
     '''A reference type.'''
 
     def __init__(self, name, const=False, default=None, expandRef=True, suffix=''):
         Type.__init__(self, name, const, default)
         if expandRef:
             self.suffix = suffix + '&'
-        
-        
-#==============================================================================
+
+
+# ==============================================================================
 # PointerType
-#==============================================================================
+# ==============================================================================
 class PointerType(Type):
     'A pointer type.'
-    
+
     def __init__(self, name, const=False, default=None, expandPointer=False, suffix=''):
         Type.__init__(self, name, const, default)
         if expandPointer:
             self.suffix = suffix + '*'
-   
 
-#==============================================================================
+
+# ==============================================================================
 # FundamentalType
-#==============================================================================
-class FundamentalType(Type): 
+# ==============================================================================
+class FundamentalType(Type):
     'One of the fundamental types, like int, void, etc.'
 
-    def __init__(self, name, const=False, default=None): 
+    def __init__(self, name, const=False, default=None):
         Type.__init__(self, name, const, default)
 
 
-
-#==============================================================================
+# ==============================================================================
 # FunctionType
-#==============================================================================
+# ==============================================================================
 class FunctionType(Type):
     '''A pointer to a function.
     @ivar _result: the return value
@@ -495,58 +475,56 @@ class FunctionType(Type):
     @ivar _name: the name of the function.
     '''
 
-    def __init__(self, result, parameters):  
+    def __init__(self, result, parameters):
         Type.__init__(self, '', False)
         self.result = result
         self.parameters = parameters
         self.name = self.FullName()
 
-
     def FullName(self):
         full = '%s (*)' % self.result.FullName()
         params = [x.FullName() for x in self.parameters]
-        full += '(%s)' % ', '.join(params)        
+        full += '(%s)' % ', '.join(params)
         return full
-    
-    
-#==============================================================================
+
+
+# ==============================================================================
 # MethodType
-#==============================================================================
+# ==============================================================================
 class MethodType(FunctionType):
     '''A pointer to a member function of a class.
     @ivar _class: The fullname of the class that the method belongs to.
     '''
 
-    def __init__(self, result, parameters, class_):  
+    def __init__(self, result, parameters, class_):
         self.class_ = class_
         FunctionType.__init__(self, result, parameters)
-
 
     def FullName(self):
         full = '%s (%s::*)' % (self.result.FullName(), self.class_)
         params = [x.FullName() for x in self.parameters]
         full += '(%s)' % ', '.join(params)
         return full
-    
-     
-#==============================================================================
+
+
+# ==============================================================================
 # Variable
-#==============================================================================
+# ==============================================================================
 class Variable(Declaration):
     '''Represents a global variable.
 
     @type _type: L{Type}
     @ivar _type: The type of the variable.
     '''
-    
+
     def __init__(self, type, name, namespace):
         Declaration.__init__(self, name, namespace)
         self.type = type
 
 
-#==============================================================================
+# ==============================================================================
 # ClassVariable
-#==============================================================================
+# ==============================================================================
 class ClassVariable(Variable):
     '''Represents a class variable.
 
@@ -564,26 +542,24 @@ class ClassVariable(Variable):
         self.visibility = visib
         self.static = static
         self.class_ = class_
-    
 
     def FullName(self):
         return self.class_ + '::' + self.name
 
-        
-#==============================================================================
+
+# ==============================================================================
 # Enumeration    
-#==============================================================================
+# ==============================================================================
 class Enumeration(Declaration):
     '''Represents an enum.
 
     @type _values: dict of str => int
     @ivar _values: holds the values for this enum.
     '''
-    
+
     def __init__(self, name, namespace):
         Declaration.__init__(self, name, namespace)
-        self.values = {} # dict of str => int
-
+        self.values = {}  # dict of str => int
 
     def ValueFullName(self, name):
         '''Returns the full name for a value in the enum.
@@ -595,9 +571,9 @@ class Enumeration(Declaration):
         return namespace + name
 
 
-#==============================================================================
+# ==============================================================================
 # ClassEnumeration
-#==============================================================================
+# ==============================================================================
 class ClassEnumeration(Enumeration):
     '''Represents an enum inside a class.
 
@@ -610,19 +586,17 @@ class ClassEnumeration(Enumeration):
         self.class_ = class_
         self.visibility = visib
 
-
     def FullName(self):
         return '%s::%s' % (self.class_, self.name)
-
 
     def ValueFullName(self, name):
         assert name in self.values
         return '%s::%s' % (self.class_, name)
 
-    
-#==============================================================================
+
+# ==============================================================================
 # Typedef
-#==============================================================================
+# ==============================================================================
 class Typedef(Declaration):
     '''A Typedef declaration.
 
@@ -639,12 +613,9 @@ class Typedef(Declaration):
         self.visibility = Scope.public
 
 
-
-
-                          
-#==============================================================================
+# ==============================================================================
 # Unknown        
-#==============================================================================
+# ==============================================================================
 class Unknown(Declaration):
     '''A declaration that Pyste does not know how to handle.
     '''

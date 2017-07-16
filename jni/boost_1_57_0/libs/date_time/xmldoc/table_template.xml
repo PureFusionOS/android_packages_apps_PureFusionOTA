@@ -5,28 +5,32 @@
 
 <!-- this file is here simply to make the creation of new tables easier and uniform in their layout -->
 
-  <para>
+<para>
     <informaltable frame="all">
-      <tgroup cols="2">
-        <thead>
-          <row>
-            <entry valign="top" morerows="1">Syntax</entry>
-            <entry>Description</entry>
-          </row>
-          <row>
-              <entry>Example</entry>
-          </row>
-        </thead>
-        <tbody>
-          <row>
-            <entry valign="top" morerows="1"><screen>time_zone_ptr zone()</screen></entry>
-            <entry>Returns associated time_zone object via a time_zone_ptr</entry>
-          </row>
-          <row>
-            <entry><screen>the example...</screen></entry>
-          </row>
+        <tgroup cols="2">
+            <thead>
+                <row>
+                    <entry morerows="1" valign="top">Syntax</entry>
+                    <entry>Description</entry>
+                </row>
+                <row>
+                    <entry>Example</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry morerows="1" valign="top">
+                        <screen>time_zone_ptr zone()</screen>
+                    </entry>
+                    <entry>Returns associated time_zone object via a time_zone_ptr</entry>
+                </row>
+                <row>
+                    <entry>
+                        <screen>the example...</screen>
+                    </entry>
+                </row>
 
-        </tbody>
-      </tgroup>
+            </tbody>
+        </tgroup>
     </informaltable>
-  </para>
+</para>

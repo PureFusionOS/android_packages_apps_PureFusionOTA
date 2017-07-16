@@ -26,8 +26,10 @@ def reduce_test(comm, generator, kind, op, op_kind, root):
         assert result == None
     return
 
-reduce_test(mpi.world, int_generator, "integers", lambda x,y:x + y, "sum", 0)
-reduce_test(mpi.world, int_generator, "integers", lambda x,y:x * y, "product", 1)
+
+reduce_test(mpi.world, int_generator, "integers", lambda x, y: x + y, "sum", 0)
+reduce_test(mpi.world, int_generator, "integers", lambda x, y: x * y, "product", 1)
 reduce_test(mpi.world, int_generator, "integers", min, "minimum", 0)
-reduce_test(mpi.world, string_generator, "strings", lambda x,y:x + y, "concatenation", 0)
-reduce_test(mpi.world, string_list_generator, "list of strings", lambda x,y:x + y, "concatenation", 0)
+reduce_test(mpi.world, string_generator, "strings", lambda x, y: x + y, "concatenation", 0)
+reduce_test(mpi.world, string_list_generator, "list of strings", lambda x, y: x + y,
+            "concatenation", 0)

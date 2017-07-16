@@ -26,6 +26,7 @@ def all_to_all_test(comm, generator, kind):
     if comm.rank == 0: print "OK."
     return
 
+
 all_to_all_test(mpi.world, int_generator, "integers")
 all_to_all_test(mpi.world, gps_generator, "GPS positions")
 all_to_all_test(mpi.world, string_generator, "strings")

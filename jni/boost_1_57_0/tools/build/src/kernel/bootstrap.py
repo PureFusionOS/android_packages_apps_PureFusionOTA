@@ -6,6 +6,7 @@
 import imp
 import sys
 
+
 def bootstrap(root_path):
     """Performs python-side bootstrapping of Boost.Build/Python.
 
@@ -22,4 +23,3 @@ def bootstrap(root_path):
 
     import b2.build_system
     return b2.build_system.main()
-

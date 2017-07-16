@@ -9,20 +9,20 @@
   -->
 
 <head>
-<title>Compose Property Map Adaptor</title>
+    <title>Compose Property Map Adaptor</title>
 </head>
 
-<body bgcolor="#ffffff" link="#0000ee" text="#000000" vlink="#551a8b" 
-      alink="#ff0000"> 
-<img src="../../../boost.png" 
-     alt="C++ Boost" width="277" height="86"> 
+<body bgcolor="#ffffff" link="#0000ee" text="#000000" vlink="#551a8b"
+      alink="#ff0000">
+<img src="../../../boost.png"
+     alt="C++ Boost" width="277" height="86">
 
 <br Clear>
 
 
 <h2>
-<a name="sec:compose-property-map"></a>Compose Property Map
-Adaptor
+    <a name="sec:compose-property-map"></a>Compose Property Map
+    Adaptor
 </h2>
 
 <pre>
@@ -30,10 +30,10 @@ compose_property_map&lt;FPMap, GPMap&gt;
 </pre>
 
 <p>
-This property map is an adaptor that composes two property map.  The
-new property map will of the same model
-as <tt>FPMap</tt>. <tt>GPMap</tt> must
-model <a href="./ReadablePropertyMap.html">Readable Property Map</a>.
+    This property map is an adaptor that composes two property map. The
+    new property map will of the same model
+    as <tt>FPMap</tt>. <tt>GPMap</tt> must
+    model <a href="./ReadablePropertyMap.html">Readable Property Map</a>.
 </p>
 
 <h3>Example</h3>
@@ -81,7 +81,7 @@ int main()
 <h3>Where Defined</h3>
 
 <p>
-<a href="../../../boost/property_map/compose_property_map.hpp"><tt>boost/property_map/compose_property_map.hpp</tt></a>
+    <a href="../../../boost/property_map/compose_property_map.hpp"><tt>boost/property_map/compose_property_map.hpp</tt></a>
 </p>
 
 <h3>Template Parameters</h3>
@@ -90,27 +90,28 @@ int main()
 
 <table border>
 
-<tr>
-<th>Parameter</th><th>Description</th>
-</tr>
+    <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+    </tr>
 
-<tr>
-<td><tt>FPMap</tt></td> 
-<td>Must be a property map of any kind.</td>
-</tr>
+    <tr>
+        <td><tt>FPMap</tt></td>
+        <td>Must be a property map of any kind.</td>
+    </tr>
 
-<tr>
-<td><tt>GPMap</tt></td>
-<td>Must be a model of <a href="./ReadablePropertyMap.html">Readable Property Map</a>.</td>
-</tr>
+    <tr>
+        <td><tt>GPMap</tt></td>
+        <td>Must be a model of <a href="./ReadablePropertyMap.html">Readable Property Map</a>.</td>
+    </tr>
 
 </table>
 
 <H3>Members</H3>
 
 <p>
-In addition to the methods and functions required by property maps,
-this class has the following members:
+    In addition to the methods and functions required by property maps,
+    this class has the following members:
 </p>
 
 <hr>
@@ -136,14 +137,14 @@ Returns a <tt>compose_property_map</tt> using the given property maps type.
 <hr>
 
 <table>
-<tr valign="top">
-<td nowrap>Copyright &copy; 2013</td>
-<td>Eurodecision</td>
-</tr>
-<tr valign="top">
-<td nowrap>Author:</td>
-<td>Guillaume Pinot</td>
-</tr>
+    <tr valign="top">
+        <td nowrap>Copyright &copy; 2013</td>
+        <td>Eurodecision</td>
+    </tr>
+    <tr valign="top">
+        <td nowrap>Author:</td>
+        <td>Guillaume Pinot</td>
+    </tr>
 </table>
 
 </body>

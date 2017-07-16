@@ -1,10 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 
 
-	<title>time2_demo</title>
-</head><body>
+    <title>time2_demo</title>
+</head>
+<body>
 
 <pre><font color="#c80000">/*
 Copyright (c) 2008 Howard Hinnant
@@ -36,7 +39,7 @@ Much thanks to Andrei Alexandrescu,
                Peter Dimov,
                Jeff Garland,
                Terry Golubiewski,
-               Daniel KrÃ¼gler,
+               Daniel Krügler,
                Anthony Williams.
 
 Synopsis
@@ -681,7 +684,8 @@ private:
 
 public:
     time_point();  <font color="#c80000">// has value "epoch"</font>
-    explicit time_point(const duration&amp; d);  <font color="#c80000">// same as time_point() + d</font>
+    explicit time_point(const duration&amp; d);  <font
+            color="#c80000">// same as time_point() + d</font>
 
     <font color="#c80000">// conversions</font>
     template &lt;class Duration2&gt;
@@ -2234,8 +2238,10 @@ void basic_examples()
     mut.try_lock_until(time_limit);
 <font color="#c80000">//    mut.try_lock_for(time_limit);        // desired compile-time error</font>
 <font color="#c80000">//    mut.try_lock_until(milliseconds(30)); // desired compile-time error</font>
-    cv.wait_for(m, minutes(1));    <font color="#c80000">// real code would put this in a loop</font>
-    cv.wait_until(m, time_limit);  <font color="#c80000">// real code would put this in a loop</font>
+    cv.wait_for(m, minutes(1));    <font
+            color="#c80000">// real code would put this in a loop</font>
+    cv.wait_until(m, time_limit);  <font
+            color="#c80000">// real code would put this in a loop</font>
     <font color="#c80000">// For those who prefer floating point</font>
     this_thread::sleep_for(duration&lt;double&gt;(0.25));
     this_thread::sleep_until(system_clock::now() + duration&lt;double&gt;(1.5));
@@ -2289,15 +2295,20 @@ public:
 
 <font color="#c80000">// Sparse sampling of length units</font>
 typedef length&lt;std::ratio&lt;1&gt; &gt;          meter;        <font color="#c80000">// set meter as "unity"</font>
-typedef length&lt;std::centi&gt;              centimeter;   <font color="#c80000">// 1/100 meter</font>
-typedef length&lt;std::kilo&gt;               kilometer;    <font color="#c80000">// 1000  meters</font>
+typedef length&lt;std::centi&gt;              centimeter;   <font
+            color="#c80000">// 1/100 meter</font>
+typedef length&lt;std::kilo&gt;               kilometer;    <font
+            color="#c80000">// 1000  meters</font>
 typedef length&lt;std::ratio&lt;254, 10000&gt; &gt; inch;         <font color="#c80000">// 254/10000 meters</font>
 <font color="#c80000">// length takes ratio instead of two integral types so that definitions can be made like so:</font>
-typedef length&lt;std::ratio_multiply&lt;std::ratio&lt;12&gt;, inch::ratio&gt;::type&gt;   foot;  <font color="#c80000">// 12 inchs</font>
-typedef length&lt;std::ratio_multiply&lt;std::ratio&lt;5280&gt;, foot::ratio&gt;::type&gt; mile;  <font color="#c80000">// 5280 feet</font>
+typedef length&lt;std::ratio_multiply&lt;std::ratio&lt;12&gt;, inch::ratio&gt;::type&gt;   foot;  <font
+            color="#c80000">// 12 inchs</font>
+typedef length&lt;std::ratio_multiply&lt;std::ratio&lt;5280&gt;, foot::ratio&gt;::type&gt; mile;  <font
+            color="#c80000">// 5280 feet</font>
 
 <font color="#c80000">// Need a floating point definition of seconds</font>
-typedef std::datetime::duration&lt;double&gt; seconds;                         <font color="#c80000">// unity</font>
+typedef std::datetime::duration&lt;double&gt; seconds;                         <font
+            color="#c80000">// unity</font>
 <font color="#c80000">// Demo of (scientific) support for sub-nanosecond resolutions</font>
 typedef std::datetime::duration&lt;double,  std::pico&gt; picosecond;  <font color="#c80000">// 10^-12 seconds</font>
 typedef std::datetime::duration&lt;double, std::femto&gt; femtosecond; <font color="#c80000">// 10^-15 seconds</font>
@@ -2354,10 +2365,14 @@ public:
 
 <font color="#c80000">// Example SI-Units</font>
 typedef quantity&lt;std::ratio&lt;0&gt;, std::ratio&lt;0&gt; &gt;  Scalar;
-typedef quantity&lt;std::ratio&lt;1&gt;, std::ratio&lt;0&gt; &gt;  Time;         <font color="#c80000">// second</font>
-typedef quantity&lt;std::ratio&lt;0&gt;, std::ratio&lt;1&gt; &gt;  Distance;     <font color="#c80000">// meter</font>
-typedef quantity&lt;std::ratio&lt;-1&gt;, std::ratio&lt;1&gt; &gt; Speed;        <font color="#c80000">// meter/second</font>
-typedef quantity&lt;std::ratio&lt;-2&gt;, std::ratio&lt;1&gt; &gt; Acceleration; <font color="#c80000">// meter/second^2</font>
+typedef quantity&lt;std::ratio&lt;1&gt;, std::ratio&lt;0&gt; &gt;  Time;         <font
+            color="#c80000">// second</font>
+typedef quantity&lt;std::ratio&lt;0&gt;, std::ratio&lt;1&gt; &gt;  Distance;     <font
+            color="#c80000">// meter</font>
+typedef quantity&lt;std::ratio&lt;-1&gt;, std::ratio&lt;1&gt; &gt; Speed;        <font
+            color="#c80000">// meter/second</font>
+typedef quantity&lt;std::ratio&lt;-2&gt;, std::ratio&lt;1&gt; &gt; Acceleration; <font
+            color="#c80000">// meter/second^2</font>
 
 template &lt;class R1, class R2, class R3, class R4&gt;
 quantity&lt;typename std::ratio_subtract&lt;R1, R3&gt;::type, typename std::ratio_subtract&lt;R2, R4&gt;::type&gt;
@@ -3535,7 +3550,8 @@ void manipulate_clock_object(system_clock clock)
 template &lt;long long speed&gt;
 struct cycle_count
 {
-    typedef typename ratio_multiply&lt;ratio&lt;speed&gt;, mega&gt;::type frequency;  <font color="#c80000">// Mhz</font>
+    typedef typename ratio_multiply&lt;ratio&lt;speed&gt;, mega&gt;::type frequency;  <font
+            color="#c80000">// Mhz</font>
     typedef typename ratio_divide&lt;ratio&lt;1&gt;, frequency&gt;::type period;
     typedef long long rep;
     typedef std::datetime::duration&lt;rep, period&gt; duration;
@@ -3579,7 +3595,8 @@ void cycle_count_delay()
     cout &lt;&lt; "delay = " &lt;&lt; delayns.count() &lt;&lt; " nanoseconds which is " &lt;&lt; delay.count() &lt;&lt; " cycles\n";
     clock::time_point start = clock::now();
     clock::time_point stop = start + delay;
-    while (clock::now() &lt; stop)  <font color="#c80000">// no multiplies or divides in this loop</font>
+    while (clock::now() &lt; stop)  <font
+            color="#c80000">// no multiplies or divides in this loop</font>
         ;
     clock::time_point end = clock::now();
     clock::duration elapsed = end - start;
@@ -3608,7 +3625,8 @@ void cycle_count_delay()
     cout &lt;&lt; "delay = " &lt;&lt; delayns.count() &lt;&lt; " nanoseconds which is " &lt;&lt; delay.count() &lt;&lt; " cycles\n";
     clock::time_point start = clock::now();
     clock::time_point stop = start + delay;
-    while (clock::now() &lt; stop)  <font color="#c80000">// no multiplies or divides in this loop</font>
+    while (clock::now() &lt; stop)  <font
+            color="#c80000">// no multiplies or divides in this loop</font>
         ;
     clock::time_point end = clock::now();
     clock::duration elapsed = end - start;
@@ -4037,4 +4055,5 @@ LCFI12:
 */</font>
 </pre>
 
-</body></html>
+</body>
+</html>

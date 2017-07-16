@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -44,11 +43,17 @@
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">Zistená nekompatibilita</string>
-    <string name="main_not_compatible_message">Táto ROM nepodporuje OTA aktualizácie. Pre viac informácií kontaktujte vývojárov.</string>
+    <string name="main_not_compatible_message">Táto ROM nepodporuje OTA aktualizácie. Pre viac
+        informácií kontaktujte vývojárov.
+    </string>
     <string name="main_not_connected_title">Nie je pripojenie</string>
-    <string name="main_not_connected_message">Nemáte pripojenie na Internet. Skontrolujte pripojenie cez Wi-Fi alebo mobilnú sieť a skúste to prosím znovu.</string>
+    <string name="main_not_connected_message">Nemáte pripojenie na Internet. Skontrolujte pripojenie
+        cez Wi-Fi alebo mobilnú sieť a skúste to prosím znovu.
+    </string>
     <string name="main_playstore_title">BitCoin</string>
-    <string name="main_playstore_message">Nemáte aplikáciu pre prácu s \"bitcoin:\".\n\nChcete nájsť aplikáciu na Google Play?</string>
+    <string name="main_playstore_message">Nemáte aplikáciu pre prácu s \"bitcoin:\".\n\nChcete nájsť
+        aplikáciu na Google Play?
+    </string>
 
     <!-- Content Descriptions -->
     <string name="main_button_icon">Ikona tlačidla</string>

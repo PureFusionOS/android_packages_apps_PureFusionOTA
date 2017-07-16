@@ -28,20 +28,20 @@ def test_user_configuration():
 
     """
 
-    implicitConfigLoadMessage =  \
+    implicitConfigLoadMessage = \
         "notice: Loading user-config configuration file: *"
-    explicitConfigLoadMessage =  \
+    explicitConfigLoadMessage = \
         "notice: Loading explicitly specified user configuration file:"
-    disabledConfigLoadMessage =  \
+    disabledConfigLoadMessage = \
         "notice: User configuration file loading explicitly disabled."
     testMessage = "_!_!_!_!_!_!_!_!_ %s _!_!_!_!_!_!_!_!_"
     toolsetName = "__myDummyToolset__"
     subdirName = "ASubDirectory"
     configFileNames = ["ups_lala_1.jam", "ups_lala_2.jam",
-        os.path.join(subdirName, "ups_lala_3.jam")]
+                       os.path.join(subdirName, "ups_lala_3.jam")]
 
     t = BoostBuild.Tester(["toolset=%s" % toolsetName,
-        "--debug-configuration"], pass_toolset=False, use_test_config=False)
+                           "--debug-configuration"], pass_toolset=False, use_test_config=False)
 
     for configFileName in configFileNames:
         message = "ECHO \"%s\" ;" % testMessage % configFileName
@@ -76,13 +76,13 @@ ECHO test-index: $(test-index:E=(unknown)) ;
 
         def __assertionFailure(self, message):
             BoostBuild.annotation("failure", "Internal test assertion failure "
-                "- %s" % message)
+                                             "- %s" % message)
             self.__tester.fail_test(1)
 
         def __call__(self, test_id, env, extra_args=None, *args, **kwargs):
             if env == "" and not canSetEmptyEnvironmentVariable:
                 self.__assertionFailure("Can not set empty environment "
-                    "variables on this platform.")
+                                        "variables on this platform.")
             self.__registerTestId(str(test_id))
             if extra_args is None:
                 extra_args = []
@@ -98,7 +98,7 @@ ECHO test-index: $(test-index:E=(unknown)) ;
         def __registerTestId(self, test_id):
             if test_id in self.__test_ids:
                 self.__assertionFailure("Multiple test cases encountered "
-                    "using the same test id '%s'." % test_id)
+                                        "using the same test id '%s'." % test_id)
             self.__test_ids.append(test_id)
 
     test = LocalTester(t)
@@ -281,7 +281,7 @@ def _getExternalEnv(name):
     toolsetName = "__myDummyToolset__"
 
     t = BoostBuild.Tester(["toolset=%s" % toolsetName], pass_toolset=False,
-        use_test_config=False)
+                          use_test_config=False)
     try:
         #   Prepare a dummy toolset so we do not get errors in case the default
         # one is not found.

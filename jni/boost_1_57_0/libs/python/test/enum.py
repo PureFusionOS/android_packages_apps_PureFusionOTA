@@ -65,7 +65,8 @@ exercise_pickling = '''
 enum_ext.color.green
 '''
 
-def run(args = None):
+
+def run(args=None):
     import sys
     import doctest
     import pickle
@@ -74,12 +75,14 @@ def run(args = None):
         sys.argv = args
     self = sys.modules.get(__name__)
     if (hasattr(pickle, "HIGHEST_PROTOCOL")):
-      self.__doc__ += exercise_pickling
+        self.__doc__ += exercise_pickling
     return doctest.testmod(self)
+
 
 if __name__ == '__main__':
     print "running..."
     import sys
+
     status = run()[0]
     if (status == 0): print "Done."
     sys.exit(status)

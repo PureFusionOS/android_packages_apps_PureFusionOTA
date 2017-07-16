@@ -33,7 +33,6 @@ import targets
 
 
 class AliasTarget(targets.BasicTarget):
-
     def __init__(self, *args):
         targets.BasicTarget.__init__(self, *args)
 
@@ -46,9 +45,9 @@ class AliasTarget(targets.BasicTarget):
         # look like 100% alias.
         return base.add(subvariant.sources_usage_requirements())
 
+
 @metatarget
 def alias(name, sources=[], requirements=[], default_build=[], usage_requirements=[]):
-
     project = get_manager().projects().current()
     targets = get_manager().targets()
 
@@ -59,6 +58,6 @@ def alias(name, sources=[], requirements=[], default_build=[], usage_requirement
         targets.main_target_default_build(default_build, project),
         targets.main_target_usage_requirements(usage_requirements or [], project)))
 
+
 # Declares the 'alias' target. It will build sources, and return them unaltered.
 get_manager().projects().add_rule("alias", alias)
-

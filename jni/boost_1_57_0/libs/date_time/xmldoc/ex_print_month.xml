@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2004 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,13 +8,14 @@
 -->
 
 <section id="date_time.examples.print_month">
-  <title>Print Month</title>
+    <title>Print Month</title>
 
-  <para>  
-    Simple utility to print out days of the month with the days of a month. Demontstrates date iteration (date_time::date_itr).
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        Simple utility to print out days of the month with the days of a month. Demontstrates date
+        iteration (date_time::date_itr).
+    </para>
+    <programlisting>
+        <![CDATA[
   /* This example prints all the dates in a month. It demonstrates
    * the use of iterators as well as functions of the gregorian_calendar
    * 
@@ -70,5 +71,5 @@
   }
 
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

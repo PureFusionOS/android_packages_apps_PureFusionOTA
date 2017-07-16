@@ -10,48 +10,48 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 <root>
 
-<test pattern="" text="" result="true"/>
-<test pattern="pattern" text="pattern" result="true"/>
-<test pattern="" text="pattern" result="false"/>
-<test pattern="pattern" text="" result="false"/>
+    <test pattern="" result="true" text="" />
+    <test pattern="pattern" result="true" text="pattern" />
+    <test pattern="" result="false" text="pattern" />
+    <test pattern="pattern" result="false" text="" />
 
-<test pattern="*" text="" result="true"/>
-<test pattern="*" text="pattern" result="true"/>
+    <test pattern="*" result="true" text="" />
+    <test pattern="*" result="true" text="pattern" />
 
-<test pattern="*pattern*" text="" result="false"/>
-<test pattern="*pattern*" text="__pattern__" result="true"/>
-<test pattern="*pattern*" text="pattern" result="true"/>
-<test pattern="*pattern*" text="patter" result="false"/>
-<test pattern="*pattern*" text="patte__" result="false"/>
-<test pattern="*pattern*" text="attern" result="false"/>
-<test pattern="*pattern*" text="__ttern" result="false"/>
+    <test pattern="*pattern*" result="false" text="" />
+    <test pattern="*pattern*" result="true" text="__pattern__" />
+    <test pattern="*pattern*" result="true" text="pattern" />
+    <test pattern="*pattern*" result="false" text="patter" />
+    <test pattern="*pattern*" result="false" text="patte__" />
+    <test pattern="*pattern*" result="false" text="attern" />
+    <test pattern="*pattern*" result="false" text="__ttern" />
 
-<test pattern="*pattern" text="" result="false"/>
-<test pattern="*pattern" text="__pattern" result="true"/>
-<test pattern="*pattern" text="pattern" result="true"/>
-<test pattern="*pattern" text="pattern__" result="false"/>
-<test pattern="*pattern" text="patter" result="false"/>
-<test pattern="*pattern" text="patte__" result="false"/>
-<test pattern="*pattern" text="attern" result="false"/>
-<test pattern="*pattern" text="__ttern" result="false"/>
+    <test pattern="*pattern" result="false" text="" />
+    <test pattern="*pattern" result="true" text="__pattern" />
+    <test pattern="*pattern" result="true" text="pattern" />
+    <test pattern="*pattern" result="false" text="pattern__" />
+    <test pattern="*pattern" result="false" text="patter" />
+    <test pattern="*pattern" result="false" text="patte__" />
+    <test pattern="*pattern" result="false" text="attern" />
+    <test pattern="*pattern" result="false" text="__ttern" />
 
-<test pattern="pattern*" text="" result="false"/>
-<test pattern="pattern*" text="pattern__" result="true"/>
-<test pattern="pattern*" text="pattern" result="true"/>
-<test pattern="pattern*" text="patter" result="false"/>
-<test pattern="pattern*" text="__pattern" result="false"/>
-<test pattern="pattern*" text="attern" result="false"/>
-<test pattern="pattern*" text="patter_" result="false"/>
-<test pattern="pattern*" text="patte__" result="false"/>
+    <test pattern="pattern*" result="false" text="" />
+    <test pattern="pattern*" result="true" text="pattern__" />
+    <test pattern="pattern*" result="true" text="pattern" />
+    <test pattern="pattern*" result="false" text="patter" />
+    <test pattern="pattern*" result="false" text="__pattern" />
+    <test pattern="pattern*" result="false" text="attern" />
+    <test pattern="pattern*" result="false" text="patter_" />
+    <test pattern="pattern*" result="false" text="patte__" />
 
-<test pattern="patt*ern" text="" result="false"/>
-<test pattern="patt*ern" text="patt__ern" result="true"/>
-<test pattern="patt*ern" text="pattern" result="true"/>
-<test pattern="patter*n" text="patter__n" result="true"/>
-<test pattern="p*attern" text="pttern" result="false"/>
-<test pattern="p*attern" text="pattern" result="true"/>
-<test pattern="patter*n" text="patter" result="false"/>
-<test pattern="p*attern" text="attern" result="false"/>
-<test pattern="p*attern" text="p_ttern" result="false"/>
+    <test pattern="patt*ern" result="false" text="" />
+    <test pattern="patt*ern" result="true" text="patt__ern" />
+    <test pattern="patt*ern" result="true" text="pattern" />
+    <test pattern="patter*n" result="true" text="patter__n" />
+    <test pattern="p*attern" result="false" text="pttern" />
+    <test pattern="p*attern" result="true" text="pattern" />
+    <test pattern="patter*n" result="false" text="patter" />
+    <test pattern="p*attern" result="false" text="attern" />
+    <test pattern="p*attern" result="false" text="p_ttern" />
 
 </root>

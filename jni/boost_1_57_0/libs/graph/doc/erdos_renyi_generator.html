@@ -11,8 +11,8 @@
                Andrew Lumsdaine
   -->
 <Head>
-  <Title>Boost Graph Library: Erd&ouml;s-Renyi Generator</Title>
-<script language="JavaScript" type="text/JavaScript">
+    <Title>Boost Graph Library: Erd&ouml;s-Renyi Generator</Title>
+    <script language="JavaScript" type="text/JavaScript">
 <!--
 function address(host, user) {
         var atchar = '@';
@@ -21,13 +21,14 @@ function address(host, user) {
         document.write(thingy);
 }
 //-->
-</script>
+
+    </script>
 </head>
 
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <tt>erdos_renyi_iterator</tt>
 
@@ -61,26 +62,26 @@ public:
 </PRE>
 
 <p> This class template implements a generator for Erd&ouml;s-Renyi
-graphs, suitable for initializing an <a
-href="adjacency_list.html"><tt>adjacency_list</tt></a> or other graph
-structure with iterator-based initialization. An Erd&ouml;s-Renyi
-graph <em>G = (n, p)</em> is a graph with <em>n</em> vertices
-that. The probability of having an edge <em>(u, v)</em> in <em>G</em>
-is <em>p</em> for any vertices <em>u</em> and <em>v</em>. Typically,
-there are no self-loops, but the generator can optionally introduce
-self-loops with probability <em>p</em>. This generator will not
-produce any parallel edges and will produce edges in sorted order (as
-required by, e.g., the <a
-href="compressed_sparse_row.html"><tt>compressed_sparse_row_graph</tt></a>).</p>
+    graphs, suitable for initializing an <a
+            href="adjacency_list.html"><tt>adjacency_list</tt></a> or other graph
+    structure with iterator-based initialization. An Erd&ouml;s-Renyi
+    graph <em>G = (n, p)</em> is a graph with <em>n</em> vertices
+    that. The probability of having an edge <em>(u, v)</em> in <em>G</em>
+    is <em>p</em> for any vertices <em>u</em> and <em>v</em>. Typically,
+    there are no self-loops, but the generator can optionally introduce
+    self-loops with probability <em>p</em>. This generator will not
+    produce any parallel edges and will produce edges in sorted order (as
+    required by, e.g., the <a
+            href="compressed_sparse_row.html"><tt>compressed_sparse_row_graph</tt></a>).</p>
 
 <p>Erd&ouml;s-Renyi graphs typically exhibit very little
-structure. For this reason, they are rarely useful in modeling
-real-world problems. However, they are often used when determining
-the theoretical complexity of complex graph algorithms.</p>
+    structure. For this reason, they are rarely useful in modeling
+    real-world problems. However, they are often used when determining
+    the theoretical complexity of complex graph algorithms.</p>
 
 <p>If you want the possibility of generating parallel edges and don't
-care about sorted order, use the <a
-href="erdos_renyi_generator.html"><tt>erdos_renyi_iterator</tt></a>.</p>
+    care about sorted order, use the <a
+            href="erdos_renyi_generator.html"><tt>erdos_renyi_iterator</tt></a>.</p>
 
 <h3>Where Defined</h3>
 
@@ -91,7 +92,7 @@ href="erdos_renyi_generator.html"><tt>erdos_renyi_iterator</tt></a>.</p>
 <a name="default-constructor"/>
 <pre>erdos_renyi_iterator();</pre>
 <blockquote>
-Constructs a past-the-end iterator.
+    Constructs a past-the-end iterator.
 </blockquote>
 
 <pre>
@@ -99,12 +100,12 @@ erdos_renyi_iterator(RandomGenerator&amp; gen, vertices_size_type n,
                      double fraction = 0.0, bool allow_self_loops = false);
 </pre>
 <blockquote>
-Constructs an Erd&ouml;s-Renyi generator iterator that creates a
-graph with <tt>n</tt> vertices and a given <tt>fraction</tt> of the
-total number of edges that a simple graph may have.
-<tt>probability</tt>. Random vertices and edges are selected using the
-random number generator <tt>gen</tt>. Self-loops are permitted only when
-<tt>allow_self_loops</tt> is <tt>true</tt>.
+    Constructs an Erd&ouml;s-Renyi generator iterator that creates a
+    graph with <tt>n</tt> vertices and a given <tt>fraction</tt> of the
+    total number of edges that a simple graph may have.
+    <tt>probability</tt>. Random vertices and edges are selected using the
+    random number generator <tt>gen</tt>. Self-loops are permitted only when
+    <tt>allow_self_loops</tt> is <tt>true</tt>.
 </blockquote>
 
 <pre>
@@ -112,11 +113,11 @@ erdos_renyi_iterator(RandomGenerator&amp; gen, vertices_size_type n,
                      edges_size_type m, bool allow_self_loops = false);
 </pre>
 <blockquote>
-Constructs an Erd&ouml;s-Renyi generator iterator that creates a
-graph with <tt>n</tt> vertices and <tt>m</tt> edges.
-<tt>probability</tt>. Random vertices and edges are selected using the
-random number generator <tt>gen</tt>. Self-loops are permitted only when
-<tt>allow_self_loops</tt> is <tt>true</tt>.
+    Constructs an Erd&ouml;s-Renyi generator iterator that creates a
+    graph with <tt>n</tt> vertices and <tt>m</tt> edges.
+    <tt>probability</tt>. Random vertices and edges are selected using the
+    random number generator <tt>gen</tt>. Self-loops are permitted only when
+    <tt>allow_self_loops</tt> is <tt>true</tt>.
 </blockquote>
 
 <H3>Example</H3>
@@ -141,12 +142,20 @@ int main()
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2005</TD><TD>
-<A HREF="http://www.boost.org/people/doug_gregor.html">Doug Gregor</A>, Indiana University (<script language="Javascript">address("cs.indiana.edu", "dgregor")</script>)<br>
-  <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Indiana University (<script language="Javascript">address("osl.iu.edu", "lums")</script>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2005</TD>
+        <TD>
+            <A HREF="http://www.boost.org/people/doug_gregor.html">Doug Gregor</A>, Indiana
+            University (
+            <script language="Javascript">address("cs.indiana.edu", "dgregor")</script>
+            )<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Indiana University (
+            <script language="Javascript">address("osl.iu.edu", "lums")</script>
+            )
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

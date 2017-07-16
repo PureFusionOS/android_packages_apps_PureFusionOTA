@@ -23,9 +23,11 @@ from b2.util import bjam_signature, value_to_jam
 
 __width = 30
 
+
 def set_width(width):
     global __width
     __width = 30
+
 
 __components = []
 __built_components = []
@@ -35,17 +37,21 @@ __announced_checks = False
 __log_file = None
 __log_fd = -1
 
+
 def register_components(components):
     """Declare that the components specified by the parameter exist."""
     __components.extend(components)
-    
+
+
 def components_building(components):
     """Declare that the components specified by the parameters will be build."""
     __built_components.extend(components)
 
+
 def log_component_configuration(component, message):
     """Report something about component configuration that the user should better know."""
     __component_logs.setdefault(component, []).append(message)
+
 
 def log_check_result(result):
     global __announced_checks
@@ -55,12 +61,12 @@ def log_check_result(result):
 
     print result
 
+
 def log_library_search_result(library, result):
     log_check_result(("    - %(library)s : %(result)s" % locals()).rjust(width))
 
 
 def print_component_configuration():
-
     print "\nComponent configuration:"
     for c in __components:
         if c in __built_components:
@@ -74,7 +80,9 @@ def print_component_configuration():
             print "        -" + m
     print ""
 
+
 __builds_cache = {}
+
 
 def builds(metatarget_reference, project, ps, what):
     # Attempt to build a metatarget named by 'metatarget-reference'
@@ -94,7 +102,7 @@ def builds(metatarget_reference, project, ps, what):
         jam_targets = []
         for t in targets:
             jam_targets.append(t.actualize())
-        
+
         x = ("    - %s" % what).rjust(__width)
         if bjam.call("UPDATE_NOW", jam_targets, str(__log_fd), "ignore-minus-n"):
             __builds_cache[(what, ps)] = True
@@ -106,6 +114,7 @@ def builds(metatarget_reference, project, ps, what):
         return result
     else:
         return existing
+
 
 def set_log_file(log_file_name):
     # Called by Boost.Build startup code to specify name of a file
@@ -120,21 +129,21 @@ def set_log_file(log_file_name):
     __log_file = open(log_file_name, "w")
     __log_fd = __log_file.fileno()
 
+
 # Frontend rules
 
 class CheckTargetBuildsWorker:
-
     def __init__(self, target, true_properties, false_properties):
         self.target = target
         self.true_properties = property.create_from_strings(true_properties, True)
         self.false_properties = property.create_from_strings(false_properties, True)
 
     def check(self, ps):
-        
+
         # FIXME: this should not be hardcoded. Other checks might
         # want to consider different set of features as relevant.
         toolset = ps.get('toolset')[0]
-        toolset_version_property = "<toolset-" + toolset + ":version>" ;
+        toolset_version_property = "<toolset-" + toolset + ":version>";
         relevant = ps.get_properties('target-os') + \
                    ps.get_properties("toolset") + \
                    ps.get_properties(toolset_version_property) + \
@@ -142,12 +151,13 @@ class CheckTargetBuildsWorker:
                    ps.get_properties("architecture")
         rps = property_set.create(relevant)
         t = get_manager().targets().current()
-        p = t.project()        
+        p = t.project()
         if builds(self.target, p, rps, "%s builds" % self.target):
             choosen = self.true_properties
         else:
             choosen = self.false_properties
         return property.evaluate_conditionals_in_context(choosen, ps)
+
 
 @bjam_signature((["target"], ["true_properties", "*"], ["false_properties", "*"]))
 def check_target_builds(target, true_properties, false_properties):
@@ -155,6 +165,5 @@ def check_target_builds(target, true_properties, false_properties):
     value = value_to_jam(worker.check)
     return "<conditional>" + value
 
+
 get_manager().projects().add_rule("check-target-builds", check_target_builds)
-
-

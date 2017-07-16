@@ -21,14 +21,16 @@ r'''>>> from getting_started2 import *
     'Hello from Florida! Please come soon!'
 '''
 
-def run(args = None):
+
+def run(args=None):
     if args is not None:
         import sys
         sys.argv = args
     import doctest, test_getting_started2
     return doctest.testmod(test_getting_started2)
 
+
 if __name__ == '__main__':
     import sys
-    sys.exit(run()[0])
 
+    sys.exit(run()[0])

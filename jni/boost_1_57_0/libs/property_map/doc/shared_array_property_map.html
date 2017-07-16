@@ -7,11 +7,11 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Shared Array Property Map</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-	ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Shared Array Property Map</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
@@ -23,19 +23,19 @@ shared_array_property_map&lt;ValueType, OffsetMap&gt;
 </PRE>
 
 <P>
-This property map is an adaptor that contains a <a
-href="../../smart_ptr/shared_array.htm">boost::shared_array</a> and uses that
-array to store the property map's data.  The resulting property map is a model
-of <a href="./LvaluePropertyMap.html">Lvalue Property Map</a>.
-The <tt>OffsetMap</tt> type is responsible for converting
-key objects to integers that can be used as offsets into the array.
+    This property map is an adaptor that contains a <a
+        href="../../smart_ptr/shared_array.htm">boost::shared_array</a> and uses that
+    array to store the property map's data. The resulting property map is a model
+    of <a href="./LvaluePropertyMap.html">Lvalue Property Map</a>.
+    The <tt>OffsetMap</tt> type is responsible for converting
+    key objects to integers that can be used as offsets into the array.
 
 <P>
 
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/property_map/shared_array_property_map.hpp"><TT>boost/property_map/shared_array_property_map.hpp</TT></a>
+    <a href="../../../boost/property_map/shared_array_property_map.hpp"><TT>boost/property_map/shared_array_property_map.hpp</TT></a>
 
 <p>
 <H3>Model Of</H3>
@@ -49,24 +49,28 @@ key objects to integers that can be used as offsets into the array.
 <P>
 
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
 
-<TR>
-<TD><TT>ValueType</TT></TD>
-<TD>The value type of the property map.</TD>
-<TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>ValueType</TT></TD>
+        <TD>The value type of the property map.</TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
 
-<TR>
-<TD><TT>OffsetMap</TT></TD> <TD>Must be a model of <a
-href="./ReadablePropertyMap.html">Readable Property Map</a>
-and the value type must be convertible to <tt>std::size_t</tt>.
-</TD> <TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>OffsetMap</TT></TD>
+        <TD>Must be a model of <a
+                href="./ReadablePropertyMap.html">Readable Property Map</a>
+            and the value type must be convertible to <tt>std::size_t</tt>.
+        </TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
 </TABLE>
 <P>
@@ -74,9 +78,9 @@ and the value type must be convertible to <tt>std::size_t</tt>.
 <H3>Members</H3>
 
 <P>
-In addition to the methods and functions required by <a
-href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
-class has the following members.
+    In addition to the methods and functions required by <a
+        href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
+    class has the following members.
 
 <hr>
 
@@ -91,7 +95,7 @@ This is the same type as
 <pre>
 shared_array_property_map(size_t n)
 </pre>
-Constructor. Builds the property map with a size of <tt>n</tt> elements.  The
+Constructor. Builds the property map with a size of <tt>n</tt> elements. The
 <tt>OffsetMap</tt> is default constructed.
 
 <hr>
@@ -99,7 +103,7 @@ Constructor. Builds the property map with a size of <tt>n</tt> elements.  The
 <pre>
 shared_array_property_map(size_t n, OffsetMap m)
 </pre>
-Constructor.  Builds the property map with a size of <tt>n</tt> elements.
+Constructor. Builds the property map with a size of <tt>n</tt> elements.
 
 <hr>
 
@@ -122,10 +126,13 @@ A function for conveniently creating a shared array map.
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2009</TD><TD>
-Trustees of Indiana University.
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2009</TD>
+        <TD>
+            Trustees of Indiana University.
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

@@ -5,8 +5,8 @@
 import unittest
 from _header_test import *
 
+
 class HeaderTest(unittest.TestCase):
-    
     def testIt(self):
         self.assertEqual(choice.red, 0)
         self.assertEqual(choice.blue, 1)
@@ -22,6 +22,7 @@ class HeaderTest(unittest.TestCase):
         self.assertRaises(NameError, lambda: foo())
         self.assertRaises(NameError, lambda: bar.value)
         self.assertRaises(NameError, lambda: ForwardDeclared())
-        
+
+
 if __name__ == '__main__':
-    unittest.main()    
+    unittest.main()

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -19,17 +18,27 @@
     <string name="preferences_name">Ajustes</string>
     <string name="twrp_ors_cat">OpenRecoveryScript</string>
     <string name="twrp_ors_title">Habilitar OpenRecoveryScript</string>
-    <string name="twrp_ors_summary">Funciona con TWRP y algunos recoveries CWM custom (no oficiales)</string>
-    <string name="twrp_ors_information">ORS permite a esta app flashear el archivo vía recovery sin necesidad de interacción del usuario. Simplemente pulse instalar y espere a que finalice.</string>
+    <string name="twrp_ors_summary">Funciona con TWRP y algunos recoveries CWM custom (no
+        oficiales)
+    </string>
+    <string name="twrp_ors_information">ORS permite a esta app flashear el archivo vía recovery sin
+        necesidad de interacción del usuario. Simplemente pulse instalar y espere a que finalice.
+    </string>
     <string name="twrp_ors_delete_after">Borrar después de instalar</string>
-    <string name="twrp_ors_delete_after_summary">¿Desea que open recovery script borre la actualización después de instalarla?</string>
+    <string name="twrp_ors_delete_after_summary">¿Desea que open recovery script borre la
+        actualización después de instalarla?
+    </string>
     <string name="twrp_ors_install_prefs">Preferencias de instalación</string>
-    <string name="twrp_ors_install_prefs_summary">Indique las preferencias de instalación si utiliza el script ORS</string>
+    <string name="twrp_ors_install_prefs_summary">Indique las preferencias de instalación si utiliza
+        el script ORS
+    </string>
     <string name="twrp_ors_wipe_data">Borrar Data</string>
     <string name="twrp_ors_wipe_cache">Borrar Cache</string>
     <string name="twrp_ors_wipe_dalvik">Borrar Dalvik</string>
     <string name="notifications_title">Notificaciones</string>
-    <string name="background_service_summary">Comprobar automáticamente las actualizaciones y mostrar una notificación si hay alguna disponible</string>
+    <string name="background_service_summary">Comprobar automáticamente las actualizaciones y
+        mostrar una notificación si hay alguna disponible
+    </string>
     <string name="background_frequency">Frecuencia de comprobación</string>
     <string name="background_30mins">30 mins</string>
     <string name="background_60mins">60 mins</string>

@@ -45,10 +45,10 @@ from b2.util.utility import ungrist
 
 feature.feature("install-default-prefix", [], ["free", "incidental"])
 
+
 @bjam_signature((["name", "package_name", "?"], ["requirements", "*"],
                  ["binaries", "*"], ["libraries", "*"], ["headers", "*"]))
 def install(name, package_name=None, requirements=[], binaries=[], libraries=[], headers=[]):
-
     requirements = requirements[:]
     binaries = binaries[:]
     libraries
@@ -63,14 +63,14 @@ def install(name, package_name=None, requirements=[], binaries=[], libraries=[],
         option.set("bindir", None)
         option.set("libdir", None)
         option.set("includedir", None)
-            
+
     # If <install-source-root> is not specified, all headers are installed to
     # prefix/include, no matter what their relative path is. Sometimes that is
     # what is needed.
     install_source_root = property.select('install-source-root', requirements)
     if install_source_root:
         requirements = property.change(requirements, 'install-source-root', None)
-            
+
     install_header_subdir = property.select('install-header-subdir', requirements)
     if install_header_subdir:
         install_header_subdir = ungrist(install_header_subdir[0])
@@ -93,16 +93,16 @@ def install(name, package_name=None, requirements=[], binaries=[], libraries=[],
     include_locate = option.get("includedir", os.path.join(prefix, "include"))
 
     stage.install(name + "-bin", binaries, requirements + ["<location>" + bin_locate])
-    
+
     alias(name + "-lib", [name + "-lib-shared", name + "-lib-static"])
-    
+
     # Since the install location of shared libraries differs on universe
     # and cygwin, use target alternatives to make different targets.
     # We should have used indirection conditioanl requirements, but it's
     # awkward to pass bin-locate and lib-locate from there to another rule.
     alias(name + "-lib-shared", [name + "-lib-shared-universe"])
     alias(name + "-lib-shared", [name + "-lib-shared-cygwin"], ["<target-os>cygwin"])
-    
+
     # For shared libraries, we install both explicitly specified one and the
     # shared libraries that the installed executables depend on.
     stage.install(name + "-lib-shared-universe", binaries + libraries,
@@ -115,7 +115,8 @@ def install(name, package_name=None, requirements=[], binaries=[], libraries=[],
     # For static libraries, we do not care about executable dependencies, since
     # static libraries are already incorporated into them.
     stage.install(name + "-lib-static", libraries, requirements +
-                  ["<location>" + lib_locate, "<install-dependencies>on", "<install-type>STATIC_LIB"])
+                  ["<location>" + lib_locate, "<install-dependencies>on",
+                   "<install-type>STATIC_LIB"])
     stage.install(name + "-headers", headers, requirements \
                   + ["<location>" + os.path.join(include_locate, s) for s in install_header_subdir]
                   + install_source_root)
@@ -124,8 +125,10 @@ def install(name, package_name=None, requirements=[], binaries=[], libraries=[],
 
     pt = get_manager().projects().current()
 
-    for subname in ["bin", "lib", "headers", "lib-shared", "lib-static", "lib-shared-universe", "lib-shared-cygwin"]:
+    for subname in ["bin", "lib", "headers", "lib-shared", "lib-static", "lib-shared-universe",
+                    "lib-shared-cygwin"]:
         pt.mark_targets_as_explicit([name + "-" + subname])
+
 
 @bjam_signature((["target_name"], ["package_name"], ["data", "*"], ["requirements", "*"]))
 def install_data(target_name, package_name, data, requirements):
@@ -136,7 +139,7 @@ def install_data(target_name, package_name, data, requirements):
         # If --prefix is explicitly specified on the command line,
         # then we need wipe away any settings of datarootdir
         option.set("datarootdir", None)
-    
+
     prefix = get_prefix(package_name, requirements)
     datadir = option.get("datarootdir", os.path.join(prefix, "share"))
 
@@ -145,13 +148,13 @@ def install_data(target_name, package_name, data, requirements):
 
     get_manager().projects().current().mark_targets_as_explicit([target_name])
 
-def get_prefix(package_name, requirements):
 
+def get_prefix(package_name, requirements):
     specified = property.select("install-default-prefix", requirements)
     if specified:
         specified = ungrist(specified[0])
     prefix = option.get("prefix", specified)
-    requirements = property.change(requirements, "install-default-prefix", None)    
+    requirements = property.change(requirements, "install-default-prefix", None)
     # Or some likely defaults if neither is given.
     if not prefix:
         if os.name == "nt":
@@ -160,4 +163,3 @@ def get_prefix(package_name, requirements):
             prefix = "/usr/local"
 
     return prefix
-

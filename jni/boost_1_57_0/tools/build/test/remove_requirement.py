@@ -9,7 +9,6 @@ import BoostBuild
 
 t = BoostBuild.Tester(use_test_config=False)
 
-
 t.write("jamroot.jam", """
 project : requirements <threading>multi <variant>debug:<link>static ;
 
@@ -80,7 +79,6 @@ int main() {}
 t.write("sub/broken/math.h", """
 Broken
 """)
-
 
 t.run_build_system()
 

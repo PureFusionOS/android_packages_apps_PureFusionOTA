@@ -9,13 +9,16 @@ r'''>>> import getting_started1
     11 * 11 = 121
 '''
 
-def run(args = None):
+
+def run(args=None):
     if args is not None:
         import sys
         sys.argv = args
     import doctest, test_getting_started1
     return doctest.testmod(test_getting_started1)
 
+
 if __name__ == '__main__':
     import sys
+
     sys.exit(run()[0])

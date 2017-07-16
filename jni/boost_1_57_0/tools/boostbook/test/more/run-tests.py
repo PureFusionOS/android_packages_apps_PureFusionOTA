@@ -25,14 +25,15 @@ def usage_and_exit():
     print __doc__
     sys.exit(2)
 
+
 def main(argv):
     script_directory = os.path.dirname(sys.argv[0])
     boostbook_directory = os.path.join(script_directory, "../../xsl")
 
     try:
         opts, args = getopt.getopt(argv, "",
-            ["generate-gold"])
-        if(len(args)): usage_and_exit()
+                                   ["generate-gold"])
+        if (len(args)): usage_and_exit()
     except getopt.GetoptError:
         usage_and_exit()
 
@@ -45,7 +46,7 @@ def main(argv):
     # Walk the test directory
 
     parser = etree.XMLParser()
-    
+
     try:
         boostbook_xsl = etree.XSLT(
             etree.parse(os.path.join(boostbook_directory, "docbook.xsl"), parser)
@@ -54,7 +55,7 @@ def main(argv):
         print "Error parsing boostbook xsl:"
         print error
         sys.exit(1)
-    
+
     for root, dirs, files in os.walk(os.path.join(script_directory, 'tests')):
         for filename in files:
             (base, ext) = os.path.splitext(filename)
@@ -72,7 +73,8 @@ def main(argv):
                     file = open(gold_path, 'w')
                     try:
                         file.write(doc_text)
-                    finally: file.close()
+                    finally:
+                        file.close()
                 else:
                     file = open(gold_path, 'r')
                     try:
@@ -81,10 +83,12 @@ def main(argv):
                         file.close()
                     compare_xml(src_path, doc_text, gold_text)
 
+
 def run_boostbook(parser, boostbook_xsl, file):
     doc = boostbook_xsl(etree.parse(file, parser))
     normalize_boostbook_ids(doc)
     return etree.tostring(doc)
+
 
 def normalize_boostbook_ids(doc):
     ids = {}
@@ -92,12 +96,12 @@ def normalize_boostbook_ids(doc):
 
     for node in doc.xpath("//*[starts-with(@id, 'id') or contains(@id, '_id')]"):
         id = node.get('id')
-        
-        if(id in ids):
+
+        if (id in ids):
             print 'Duplicate id: ' + id
-        
+
         match = re.match("(.+_id|id)([mp]?\d+)((?:-bb)?)", id)
-        if(match):
+        if (match):
             # Truncate id name, as it sometimes has different lengths...
             match2 = re.match("(.*?)([^.]*?)(_?id)", match.group(1))
             base = match2.group(1) + match2.group(2)[:14] + match2.group(3)
@@ -107,14 +111,15 @@ def normalize_boostbook_ids(doc):
 
     for node in doc.xpath("//*[@linkend or @id]"):
         x = node.get('linkend')
-        if(x in ids): node.set('linkend', ids[x])
+        if (x in ids): node.set('linkend', ids[x])
         x = node.get('id')
-        if(x in ids): node.set('id', ids[x])
+        if (x in ids): node.set('id', ids[x])
+
 
 def compare_xml(file, doc_text, gold_text):
     # Had hoped to use xmldiff but it turned out to be a pain to install.
     # So instead just do a text diff.
-    
+
     if (doc_text != gold_text):
         print "Error: " + file
         print
@@ -126,6 +131,7 @@ def compare_xml(file, doc_text, gold_text):
         )
         print
         print
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

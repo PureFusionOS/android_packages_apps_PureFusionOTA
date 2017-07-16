@@ -17,7 +17,6 @@ t.write("subdir/jamfile.jam", 'ECHO "Loaded subdir" ;')
 t.run_build_system(subdir="subdir")
 t.expect_output_lines("Loaded subdir")
 
-
 # Regression test for a more contrived case. The top-level Jamfile refers to
 # subdir via use-project, while subdir's Jamfile is being loaded. The
 # motivation why use-project referring to subprojects is useful can be found

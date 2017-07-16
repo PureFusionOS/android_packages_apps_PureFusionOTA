@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.3.10: http://docutils.sourceforge.net/" />
-<title>Boost Pointer Container Library</title>
-<style type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="generator" content="Docutils 0.3.10: http://docutils.sourceforge.net/"/>
+    <title>Boost Pointer Container Library</title>
+    <style type="text/css">
 
 /*
 :Author: David Goodger
@@ -284,21 +285,24 @@ tt.docutils {
 ul.auto-toc {
   list-style-type: none }
 
-</style>
+
+    </style>
 </head>
 <body>
 <div class="document" id="boost-pointer-container-library">
-<h1 class="title"><img alt="Boost" src="boost.png" /> Pointer Container Library</h1>
-<h2 class="subtitle" id="indirected-functions">Indirected functions</h2>
-<p>It is quite common that we have two pointers and what to compare the
-pointed to objects. Also, we have usually already defined how
-to compare the objects. So to avoid some tedious boiler-plate code
-this library defines predicates that apply an indirection before comparing.</p>
-<p>When the container uses <tt class="docutils literal"><span class="pre">void*</span></tt> internally, we can use the
-class <tt class="docutils literal"><span class="pre">void_ptr_indirect_fun</span></tt>; otherwise we use the class
-<tt class="docutils literal"><span class="pre">indirect_fun</span></tt>.</p>
-<p><strong>Example:</strong></p>
-<pre class="literal-block">
+    <h1 class="title"><img alt="Boost" src="boost.png"/> Pointer Container Library</h1>
+    <h2 class="subtitle" id="indirected-functions">Indirected functions</h2>
+    <p>It is quite common that we have two pointers and what to compare the
+        pointed to objects. Also, we have usually already defined how
+        to compare the objects. So to avoid some tedious boiler-plate code
+        this library defines predicates that apply an indirection before comparing.</p>
+    <p>When the container uses <tt class="docutils literal"><span class="pre">void*</span></tt>
+        internally, we can use the
+        class <tt class="docutils literal"><span class="pre">void_ptr_indirect_fun</span></tt>;
+        otherwise we use the class
+        <tt class="docutils literal"><span class="pre">indirect_fun</span></tt>.</p>
+    <p><strong>Example:</strong></p>
+    <pre class="literal-block">
 std::string* bar = new std::string(&quot;bar&quot;);
 std::string* foo = new std::string(&quot;foo&quot;);
 BOOST_ASSERT( indirect_fun&lt; std::less&lt;std::string&gt; &gt;()( bar, foo ) == true );
@@ -309,25 +313,31 @@ void*       vptr2  = ptr2;
 void_ptr_indirect_fun&lt; std::less&lt;std::string&gt;, std::string&gt; cast_fun;
 BOOST_CHECK( cast_fun( vptr1, vptr2 ) == true );
 </pre>
-<p><strong>See also:</strong></p>
-<ul class="simple">
-<li><a class="reference" href="http://www.boost.org/libs/utility/utility.htm#result_of">result_of</a></li>
-<li><a class="reference" href="http://www.boost.org/libs/iterator/doc/pointee.html">pointee</a></li>
-<li><a class="reference" href="ptr_set.html">ptr_set</a></li>
-<li><a class="reference" href="ptr_multiset.html">ptr_multiset</a></li>
-</ul>
-<p><strong>Navigate</strong></p>
-<ul class="simple">
-<li><a class="reference" href="ptr_container.html">home</a></li>
-<li><a class="reference" href="reference.html">reference</a></li>
-</ul>
-<p><strong>Remarks:</strong></p>
-<p>The class <tt class="docutils literal"><span class="pre">indirect_fun</span></tt> will work with smart pointers such as <a class="reference" href="http://www.boost.org/libs/smart_ptr/shared_ptr.htm">boost::shared_ptr&lt;T&gt;</a>
-because of the type traits <tt class="docutils literal"><span class="pre">pointee&lt;T&gt;::type</span></tt> from the header <tt class="docutils literal"><span class="pre">&lt;boost/pointee.hpp&gt;</span></tt>.</p>
-<p><strong>Synopsis:</strong></p>
-<p>Since the definition of the predicates is somewhat trivial, only the
-first operation is expanded inline.</p>
-<pre class="literal-block">
+    <p><strong>See also:</strong></p>
+    <ul class="simple">
+        <li><a class="reference" href="http://www.boost.org/libs/utility/utility.htm#result_of">result_of</a>
+        </li>
+        <li><a class="reference"
+               href="http://www.boost.org/libs/iterator/doc/pointee.html">pointee</a></li>
+        <li><a class="reference" href="ptr_set.html">ptr_set</a></li>
+        <li><a class="reference" href="ptr_multiset.html">ptr_multiset</a></li>
+    </ul>
+    <p><strong>Navigate</strong></p>
+    <ul class="simple">
+        <li><a class="reference" href="ptr_container.html">home</a></li>
+        <li><a class="reference" href="reference.html">reference</a></li>
+    </ul>
+    <p><strong>Remarks:</strong></p>
+    <p>The class <tt class="docutils literal"><span class="pre">indirect_fun</span></tt> will work
+        with smart pointers such as <a class="reference"
+                                       href="http://www.boost.org/libs/smart_ptr/shared_ptr.htm">boost::shared_ptr&lt;T&gt;</a>
+        because of the type traits <tt class="docutils literal"><span class="pre">pointee&lt;T&gt;::type</span></tt>
+        from the header <tt class="docutils literal"><span
+                class="pre">&lt;boost/pointee.hpp&gt;</span></tt>.</p>
+    <p><strong>Synopsis:</strong></p>
+    <p>Since the definition of the predicates is somewhat trivial, only the
+        first operation is expanded inline.</p>
+    <pre class="literal-block">
 namespace boost
 {      
 
@@ -401,14 +411,20 @@ namespace boost
          
 } // namespace 'boost'  
 </pre>
-<hr><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Copyright:</th><td class="field-body">Thorsten Ottosen 2004-2006. Use, modification and distribution is subject to the Boost Software License, Version 1.0 (see <a class="reference" href="http://www.boost.org/LICENSE_1_0.txt">LICENSE_1_0.txt</a>).</td>
-</tr>
-</tbody>
-</table>
+    <hr>
+    <table class="docutils field-list" frame="void" rules="none">
+        <col class="field-name"/>
+        <col class="field-body"/>
+        <tbody valign="top">
+        <tr class="field">
+            <th class="field-name">Copyright:</th>
+            <td class="field-body">Thorsten Ottosen 2004-2006. Use, modification and distribution is
+                subject to the Boost Software License, Version 1.0 (see <a class="reference"
+                                                                           href="http://www.boost.org/LICENSE_1_0.txt">LICENSE_1_0.txt</a>).
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

@@ -13,7 +13,7 @@ import tempfile
 import BoostBuild
 
 t = BoostBuild.Tester(["-ffile.jam"], workdir=os.getcwd(), pass_d0=False,
-    pass_toolset=False)
+                      pass_toolset=False)
 
 t.write("file.jam", "EXIT [ PWD ] : 0 ;")
 
@@ -22,6 +22,6 @@ t.expect_output_lines("*%s*" % tempfile.gettempdir(), False)
 t.expect_output_lines("*build/v2/test*")
 
 t.run_build_system(status=1, subdir="/must/fail/with/absolute/path",
-    stderr=None)
+                   stderr=None)
 
 t.cleanup()

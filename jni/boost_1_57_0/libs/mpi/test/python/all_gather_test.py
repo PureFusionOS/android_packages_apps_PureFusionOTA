@@ -18,8 +18,9 @@ def all_gather_test(comm, generator, kind):
     for p in range(0, comm.size):
         assert result[p] == generator(p)
     if comm.rank == 0: print "OK."
-       
+
     return
+
 
 all_gather_test(mpi.world, int_generator, "integers")
 all_gather_test(mpi.world, gps_generator, "GPS positions")

@@ -9,7 +9,6 @@
 
 import BoostBuild
 
-
 t = BoostBuild.Tester(use_test_config=False)
 
 t.write("main.cpp", """\
@@ -49,7 +48,6 @@ lib liba : a.cpp : <use>libb ;
 t.run_build_system(["-d2"])
 t.expect_addition("bin/$toolset/debug/main.exe")
 
-
 # Test the order between searched libraries.
 t.write("jamroot.jam", """\
 exe main : main.cpp png z ;
@@ -68,7 +66,6 @@ lib z : png : <name>zzz ;
 
 t.run_build_system(["-a", "-n", "-d+2"])
 t.fail_test(t.stdout().find("png") < t.stdout().find("zzz"))
-
 
 # Test the order between prebuilt libraries.
 t.write("first.a", "")

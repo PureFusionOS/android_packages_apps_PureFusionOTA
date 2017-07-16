@@ -1,15 +1,15 @@
 /*
- *  Permit this Carbon application to launch on OS X
- *
- *  © 1997-2000 Metrowerks Corp.
- *
- *  Questions and comments to:
- *       <mailto:support@metrowerks.com>
- *       <http://www.metrowerks.com/>
- */
+*  Permit this Carbon application to launch on OS X
+*
+*  ï¿½ 1997-2000 Metrowerks Corp.
+*
+*  Questions and comments to:
+*       <mailto:support@metrowerks.com>
+*       <http://www.metrowerks.com/>
+*/
 
 
-/*----------------------------carb ¥ Carbon on OS X launch information --------------------------*/
+/*----------------------------carb ï¿½ Carbon on OS X launch information --------------------------*/
 type 'carb' {
 };
 

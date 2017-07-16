@@ -33,9 +33,9 @@ def included_resource_newer_than_rc_script():
     #   self sufficient so these options protect it from being adversly
     #   affected by any local (mis)configuration..
     t = BoostBuild.Tester(["-d4", "--debug-configuration",
-        "--ignore-site-config", "--user-config=", "toolset=%s" % toolsetName],
-        pass_d0=False, pass_toolset=False, use_test_config=False,
-        translate_suffixes=False)
+                           "--ignore-site-config", "--user-config=", "toolset=%s" % toolsetName],
+                          pass_d0=False, pass_toolset=False, use_test_config=False,
+                          translate_suffixes=False)
 
     # Prepare a dummy toolset so we do not get errors in case the default one
     # is not found and that we can test rc.jam functionality without having to

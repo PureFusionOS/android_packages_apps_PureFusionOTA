@@ -6,7 +6,8 @@
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
 
-from b2.util import call_jam_function, bjam_signature
+from b2.util import call_jam_function
+
 
 def call(*args):
     a1 = args[0]

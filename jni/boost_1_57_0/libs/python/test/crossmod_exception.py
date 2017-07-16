@@ -8,12 +8,12 @@ import crossmod_exception_a
 import crossmod_exception_b
 
 try:
-  crossmod_exception_b.tossit()
+    crossmod_exception_b.tossit()
 except IndexError:
-  pass
+    pass
 try:
-  crossmod_exception_a.tossit()
+    crossmod_exception_a.tossit()
 except IndexError:
-  pass
+    pass
 
 print "Done."

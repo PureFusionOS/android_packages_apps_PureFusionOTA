@@ -7,52 +7,52 @@
  copy at http://www.boost.org/LICENSE_1_0.txt)
 """
 
-
 from numpy import *
 from os import popen
 from os.path import isfile
 
-#from pylab import *
+# from pylab import *
 
-#toolset = "gcc-4.5"
-#toolset = "intel-11.1"
+# toolset = "gcc-4.5"
+# toolset = "intel-11.1"
 toolset = "msvc"
-#toolset = "msvc-10.0"
+# toolset = "msvc-10.0"
 
-#bin_path = "bin/gcc-4.5/release/"
-#bin_path = "bin/intel-linux-11.1/release/"
+# bin_path = "bin/gcc-4.5/release/"
+# bin_path = "bin/intel-linux-11.1/release/"
 bin_path = "bin\\msvc-10.0\\release\\threading-multi\\"
 extension = ".exe"
-#extension = ""
+# extension = ""
 
-bins = [ "odeint_rk4_lorenz_array" , "odeint_rk4_lorenz_range" , "generic_odeint_rk4_lorenz" , "nr_rk4_lorenz" ,  "rt_generic_rk4_lorenz" , "gsl_rk4_lorenz" ]
+bins = ["odeint_rk4_lorenz_array", "odeint_rk4_lorenz_range", "generic_odeint_rk4_lorenz",
+        "nr_rk4_lorenz", "rt_generic_rk4_lorenz", "gsl_rk4_lorenz"]
 
 results = []
 
-print "Performance tests for " , bin_path
+print "Performance tests for ", bin_path
 print
 
 for bin in bins:
-        #system( "bjam toolset=" + toolset + " -a " + bin );
-        if isfile( bin_path + bin + extension):
-                print "Running" , bin
-                res = popen( bin_path+bin+extension ).read()
-                print bin , res
-                results.append( res )
-        else:
-                print "no executable found:" , bin_path + bin + extension
-                results.append( 0 )
+    # system( "bjam toolset=" + toolset + " -a " + bin );
+    if isfile(bin_path + bin + extension):
+        print "Running", bin
+        res = popen(bin_path + bin + extension).read()
+        print bin, res
+        results.append(res)
+    else:
+        print "no executable found:", bin_path + bin + extension
+        results.append(0)
 
-print "Results from" , bin_path
+print "Results from", bin_path
 print
 
 for i in range(len(bins)):
-        print bins[i] , results[i]
+    print bins[i], results[i]
 
-res = array( results , dtype='float' )
-savetxt( bin_path + "rk4_lorenz.dat" , res )
+res = array(results, dtype='float')
+savetxt(bin_path + "rk4_lorenz.dat", res)
 
-res = 100*res[0]/res
+res = 100 * res[0] / res
 
 bar_width = 0.6
 

@@ -5,8 +5,8 @@
 import unittest
 from _smart_ptr import *
 
-class BasicExampleTest(unittest.TestCase):
 
+class BasicExampleTest(unittest.TestCase):
     def testIt(self):
         c = NewC()
         d = NewD()
@@ -18,5 +18,6 @@ class BasicExampleTest(unittest.TestCase):
         a = NewA()
         self.assertEqual(GetA(a), 1)
 
+
 if __name__ == '__main__':
-    unittest.main()     
+    unittest.main()

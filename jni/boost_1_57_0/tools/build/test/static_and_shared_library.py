@@ -15,18 +15,20 @@ static-lib auxilliary1 : c.cpp ;
 lib auxilliary2 : c.cpp ;
 """)
 
+
 def reset():
     t.rm("lib/bin")
 
+
 t.run_build_system(subdir='lib')
 t.expect_addition("lib/bin/$toolset/debug/" * BoostBuild.List("c.obj "
-    "auxilliary1.lib auxilliary2.dll"))
+                                                              "auxilliary1.lib auxilliary2.dll"))
 t.expect_nothing_more()
 
 reset()
 t.run_build_system(["link=shared"], subdir="lib")
 t.expect_addition("lib/bin/$toolset/debug/" * BoostBuild.List("c.obj "
-    "auxilliary1.lib auxilliary2.dll"))
+                                                              "auxilliary1.lib auxilliary2.dll"))
 t.expect_nothing_more()
 
 reset()

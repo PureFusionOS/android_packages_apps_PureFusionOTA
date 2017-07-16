@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -24,7 +23,8 @@
     <string name="main_donate">Doar</string>
     <string name="main_donate_summary">Doar para o desenvolvedor da ROM</string>
     <string name="main_tap_to_download">Toque para baixar</string>
-    <string name="main_download_completed_details">Download completo. Toque para ver detalhes</string>
+    <string name="main_download_completed_details">Download completo. Toque para ver detalhes
+    </string>
     <string name="main_last_checked">Ultima verificação de atualização em</string>
 
     <!-- ROM Information -->
@@ -38,9 +38,13 @@
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">Não é compatível</string>
-    <string name="main_not_compatible_message">Essa ROM não é compatível com Atualizações OTA. Por favor, entre em contato com o desenvolvedor para mais informações</string>
+    <string name="main_not_compatible_message">Essa ROM não é compatível com Atualizações OTA. Por
+        favor, entre em contato com o desenvolvedor para mais informações
+    </string>
     <string name="main_not_connected_title">Desconectado</string>
-    <string name="main_not_connected_message">Você não está conectado a nenhuma rede. Por favor, ative a rede de dados móvel ou Wi-Fi e tente novamente.</string>
+    <string name="main_not_connected_message">Você não está conectado a nenhuma rede. Por favor,
+        ative a rede de dados móvel ou Wi-Fi e tente novamente.
+    </string>
 
     <!-- Content Descriptions -->
     <string name="main_button_icon">Ícone do Botão</string>

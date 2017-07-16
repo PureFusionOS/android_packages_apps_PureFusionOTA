@@ -18,8 +18,8 @@ from b2.util import bjam_signature
 
 type.register("NOTFILE_MAIN")
 
-class NotfileGenerator(generators.Generator):
 
+class NotfileGenerator(generators.Generator):
     def run(self, project, name, ps, sources):
         pass
         action_name = ps.get('action')[0]
@@ -31,16 +31,17 @@ class NotfileGenerator(generators.Generator):
         return [get_manager().virtual_targets().register(
             virtual_target.NotFileTarget(name, project, action))]
 
+
 generators.register(NotfileGenerator("notfile.main", False, [], ["NOTFILE_MAIN"]))
 
 toolset.flags("notfile.run", "ACTION", [], ["<action>"])
 
 get_manager().engine().register_action("notfile.run", "$(ACTION)")
 
+
 @bjam_signature((["target_name"], ["action"], ["sources", "*"], ["requirements", "*"],
                  ["default_build", "*"]))
 def notfile(target_name, action, sources, requirements, default_build):
-
     requirements.append("<action>" + action)
 
     return targets.create_typed_metatarget(target_name, "NOTFILE_MAIN", sources, requirements,

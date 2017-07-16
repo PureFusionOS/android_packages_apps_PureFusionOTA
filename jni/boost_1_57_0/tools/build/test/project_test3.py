@@ -6,8 +6,9 @@
 # (See accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt)
 
-import BoostBuild
 import os
+
+import BoostBuild
 
 t = BoostBuild.Tester(translate_suffixes=0)
 
@@ -17,7 +18,7 @@ os.remove("jamroot.jam")
 t.run_build_system(status=1)
 
 t.expect_output_lines("error: Could not find parent for project at '.'\n"
-    "error: Did not find Jamfile.jam or Jamroot.jam in any parent directory.")
+                      "error: Did not find Jamfile.jam or Jamroot.jam in any parent directory.")
 
 t.set_tree("project-test3")
 t.run_build_system()
@@ -30,12 +31,12 @@ a.cpp
 
 t.expect_addition("bin/$toolset/debug/a.exe")
 t.expect_content("bin/$toolset/debug/a.exe",
-"$toolset/debug\n" +
-"bin/$toolset/debug/a.obj lib/bin/$toolset/debug/b.obj " +
-"lib2/bin/$toolset/debug/c.obj lib2/bin/$toolset/debug/d.obj " +
-"lib2/helper/bin/$toolset/debug/e.obj " +
-"lib3/bin/$toolset/debug/f.obj\n"
-)
+                 "$toolset/debug\n" +
+                 "bin/$toolset/debug/a.obj lib/bin/$toolset/debug/b.obj " +
+                 "lib2/bin/$toolset/debug/c.obj lib2/bin/$toolset/debug/d.obj " +
+                 "lib2/helper/bin/$toolset/debug/e.obj " +
+                 "lib3/bin/$toolset/debug/f.obj\n"
+                 )
 
 t.expect_addition("lib/bin/$toolset/debug/b.obj")
 t.expect_content("lib/bin/$toolset/debug/b.obj", """\
@@ -87,19 +88,19 @@ t.expect_touch(["bin/$toolset/debug/a.obj",
 
 t.run_build_system(["release", "optimization=off,speed"])
 t.expect_addition(["bin/$toolset/release/a.exe",
-                  "bin/$toolset/release/a.obj",
-                  "bin/$toolset/release/optimization-off/a.exe",
-                  "bin/$toolset/release/optimization-off/a.obj"])
+                   "bin/$toolset/release/a.obj",
+                   "bin/$toolset/release/optimization-off/a.exe",
+                   "bin/$toolset/release/optimization-off/a.obj"])
 
 t.run_build_system(["--clean-all"])
 t.expect_removal(["bin/$toolset/debug/a.obj",
-                 "bin/$toolset/debug/a.exe",
-                 "lib/bin/$toolset/debug/b.obj",
-                 "lib/bin/$toolset/debug/m.exe",
-                 "lib2/bin/$toolset/debug/c.obj",
-                 "lib2/bin/$toolset/debug/d.obj",
-                 "lib2/bin/$toolset/debug/l.exe",
-                 "lib3/bin/$toolset/debug/f.obj"])
+                  "bin/$toolset/debug/a.exe",
+                  "lib/bin/$toolset/debug/b.obj",
+                  "lib/bin/$toolset/debug/m.exe",
+                  "lib2/bin/$toolset/debug/c.obj",
+                  "lib2/bin/$toolset/debug/d.obj",
+                  "lib2/bin/$toolset/debug/l.exe",
+                  "lib3/bin/$toolset/debug/f.obj"])
 
 # Now test target ids in command line.
 t.set_tree("project-test3")
@@ -124,13 +125,13 @@ t.expect_nothing_more()
 t.set_tree("project-test3")
 t.run_build_system(["/lib2"])
 t.expect_addition("lib2/bin/$toolset/debug/" *
-    BoostBuild.List("c.obj d.obj l.exe"))
+                  BoostBuild.List("c.obj d.obj l.exe"))
 t.expect_addition("bin/$toolset/debug/a.obj")
 t.expect_nothing_more()
 
 t.run_build_system(["lib"])
 t.expect_addition("lib/bin/$toolset/debug/" *
-    BoostBuild.List("b.obj m.exe"))
+                  BoostBuild.List("b.obj m.exe"))
 t.expect_nothing_more()
 
 t.cleanup()

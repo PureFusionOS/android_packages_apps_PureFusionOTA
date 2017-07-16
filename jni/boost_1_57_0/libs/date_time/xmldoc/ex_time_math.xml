@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2004 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,13 +8,13 @@
 -->
 
 <section id="date_time.examples.time_math">
-  <title>Time Math</title>
+    <title>Time Math</title>
 
-  <para> 
-    Various types of calculations with times and time durations.  
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        Various types of calculations with times and time durations.
+    </para>
+    <programlisting>
+        <![CDATA[
   /* Some simple examples of constructing and calculating with times
    * Output:
    * 2002-Feb-01 00:00:00 - 2002-Feb-01 05:04:02.001000000 = -5:04:02.001000000
@@ -44,5 +44,5 @@
     return 0;
   }
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

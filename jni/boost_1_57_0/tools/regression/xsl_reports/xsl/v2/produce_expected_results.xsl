@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 
 Copyright MetaCommunications, Inc. 2003-2005.
 
@@ -9,28 +8,26 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 -->
 
-<xsl:stylesheet
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:meta="http://www.meta-comm.com"
-    exclude-result-prefixes="meta"
-    version="1.0">
+<xsl:stylesheet xmlns:meta="http://www.meta-comm.com"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="meta" version="1.0">
 
-  <xsl:import href="common.xsl"/>
+    <xsl:import href="common.xsl" />
 
-  <xsl:output method="xml" encoding="utf-8"/>
-  
-  <xsl:template match="/">
-    <root>
-      <expected-failures>
-        <xsl:apply-templates select="*//test-log"/>
-      </expected-failures>
-    </root>
-  </xsl:template>
-  
-  <xsl:template match="test-log">
-    <xsl:if test="meta:is_test_log_a_test_case(.)">
-        <test-result library="{@library}" test-name="{@test-name}" toolset="{@toolset}" result="{@result}" />
-    </xsl:if>
-  </xsl:template>
+    <xsl:output encoding="utf-8" method="xml" />
+
+    <xsl:template match="/">
+        <root>
+            <expected-failures>
+                <xsl:apply-templates select="*//test-log" />
+            </expected-failures>
+        </root>
+    </xsl:template>
+
+    <xsl:template match="test-log">
+        <xsl:if test="meta:is_test_log_a_test_case(.)">
+            <test-result library="{@library}" result="{@result}" test-name="{@test-name}"
+                toolset="{@toolset}" />
+        </xsl:if>
+    </xsl:template>
 
 </xsl:stylesheet>

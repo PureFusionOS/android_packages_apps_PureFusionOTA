@@ -5,8 +5,9 @@
 # Boost Software License, Version 1.0. (See accompanying file 
 # LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-import BoostBuild
 import os
+
+import BoostBuild
 
 # Run test in real directory in order to find Boost.Test via Boost Top-Level
 # Jamroot.

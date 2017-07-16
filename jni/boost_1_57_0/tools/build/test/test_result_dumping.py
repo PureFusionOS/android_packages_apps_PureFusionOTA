@@ -9,7 +9,6 @@
 
 import BoostBuild
 
-
 ###############################################################################
 #
 #   Test that dumping Boost Build based testing results works in case test code
@@ -28,6 +27,6 @@ t.write("TestSource/test.cpp", "int main() {}\n")
 
 t.run_build_system(subdir="TestBuild")
 t.expect_output_lines('boost-test(RUN) "*/TestBuild/test" : '
-    '"../TestSource/test.cpp"')
+                      '"../TestSource/test.cpp"')
 
 t.cleanup()

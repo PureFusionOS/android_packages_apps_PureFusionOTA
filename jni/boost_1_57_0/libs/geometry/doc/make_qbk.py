@@ -36,14 +36,17 @@ cmd = cmd + " --copyright src/copyright_block.qbk"
 cmd = cmd + " --output_member_variables false"
 cmd = cmd + " > generated/%s.qbk"
 
+
 def run_command(command):
     if os.system(command) != 0:
         raise Exception("Error running %s" % command)
 
+
 def remove_all_files(dir):
     if os.path.exists(dir):
         for f in os.listdir(dir):
-            os.remove(dir+f)
+            os.remove(dir + f)
+
 
 def call_doxygen():
     os.chdir("doxy")
@@ -51,38 +54,45 @@ def call_doxygen():
     run_command(doxygen_cmd)
     os.chdir("..")
 
+
 def group_to_quickbook(section):
     run_command(cmd % ("group__" + section.replace("_", "__"), section))
+
 
 def model_to_quickbook(section):
     run_command(cmd % ("classboost_1_1geometry_1_1model_1_1" + section.replace("_", "__"), section))
 
+
 def model_to_quickbook2(classname, section):
     run_command(cmd % ("classboost_1_1geometry_1_1model_1_1" + classname, section))
+
 
 def struct_to_quickbook(section):
     run_command(cmd % ("structboost_1_1geometry_1_1" + section.replace("_", "__"), section))
 
+
 def class_to_quickbook(section):
     run_command(cmd % ("classboost_1_1geometry_1_1" + section.replace("_", "__"), section))
+
 
 def strategy_to_quickbook(section):
     p = section.find("::")
     ns = section[:p]
-    strategy = section[p+2:]
+    strategy = section[p + 2:]
     run_command(cmd % ("classboost_1_1geometry_1_1strategy_1_1"
-        + ns.replace("_", "__") + "_1_1" + strategy.replace("_", "__"), 
-        ns + "_" + strategy))
-        
+                       + ns.replace("_", "__") + "_1_1" + strategy.replace("_", "__"),
+                       ns + "_" + strategy))
+
+
 def cs_to_quickbook(section):
     run_command(cmd % ("structboost_1_1geometry_1_1cs_1_1" + section.replace("_", "__"), section))
-        
+
 
 call_doxygen()
 
 algorithms = ["append", "assign", "make", "clear"
     , "area", "buffer", "centroid", "convert", "correct", "covered_by"
-    , "convex_hull", "crosses", "difference", "disjoint", "distance" 
+    , "convex_hull", "crosses", "difference", "disjoint", "distance"
     , "envelope", "equals", "expand", "for_each", "is_simple", "is_valid"
     , "intersection", "intersects", "length", "num_geometries"
     , "num_interior_rings", "num_points", "overlaps"
@@ -91,14 +101,14 @@ algorithms = ["append", "assign", "make", "clear"
 
 access_functions = ["get", "set", "exterior_ring", "interior_rings"
     , "num_points", "num_interior_rings", "num_geometries"]
-    
+
 coordinate_systems = ["cartesian", "geographic", "polar", "spherical", "spherical_equatorial"]
 
 core = ["closure", "coordinate_system", "coordinate_type", "cs_tag"
     , "dimension", "exception", "interior_type"
     , "degree", "radian"
     , "is_radian", "point_order"
-    , "point_type", "ring_type", "tag", "tag_cast" ]
+    , "point_type", "ring_type", "tag", "tag_cast"]
 
 exceptions = ["exception", "centroid_exception"];
 
@@ -108,7 +118,6 @@ iterators = ["circular_iterator", "closing_iterator"
 models = ["point", "linestring", "box"
     , "polygon", "segment", "ring"
     , "multi_linestring", "multi_point", "multi_polygon", "referring_segment"]
-
 
 strategies = ["distance::pythagoras", "distance::pythagoras_box_box"
     , "distance::pythagoras_point_box", "distance::haversine"
@@ -127,19 +136,17 @@ strategies = ["distance::pythagoras", "distance::pythagoras_box_box"
     , "transform::inverse_transformer", "transform::map_transformer"
     , "transform::rotate_transformer", "transform::scale_transformer"
     , "transform::translate_transformer", "transform::ublas_transformer"
-    ]
-    
+              ]
+
 views = ["box_view", "segment_view"
     , "closeable_view", "reversible_view", "identity_view"]
 
-
-
 for i in algorithms:
     group_to_quickbook(i)
-    
+
 for i in access_functions:
     group_to_quickbook(i)
-    
+
 for i in coordinate_systems:
     cs_to_quickbook(i)
 
@@ -154,13 +161,12 @@ for i in iterators:
 
 for i in models:
     model_to_quickbook(i)
-   
+
 for i in strategies:
     strategy_to_quickbook(i)
 
 for i in views:
     struct_to_quickbook(i)
-    
 
 model_to_quickbook2("d2_1_1point__xy", "point_xy")
 

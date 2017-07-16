@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -18,11 +17,18 @@
 <resources>
 
     <string name="about_about_title">O aplikácii</string>
-    <string name="about_about_summary">Táto aplikácia vznikla po tom, ako som sa sklamal pri používaní podobných aplikácií, ktoré nefungovali tak, ako by som si predstavoval. Naprogramoval som aplikáciu pre moju ROM, ale potom som si rýchlo uvedomil, že by mohla byť užitočná aj pre ďalších vývojárov. Výsledkom je, že som jej kód poskytol aj pre ostatných vývojárov.</string>
+    <string name="about_about_summary">Táto aplikácia vznikla po tom, ako som sa sklamal pri
+        používaní podobných aplikácií, ktoré nefungovali tak, ako by som si predstavoval.
+        Naprogramoval som aplikáciu pre moju ROM, ale potom som si rýchlo uvedomil, že by mohla byť
+        užitočná aj pre ďalších vývojárov. Výsledkom je, že som jej kód poskytol aj pre ostatných
+        vývojárov.
+    </string>
     <string name="about_credits_title">Poďakovanie</string>
     <string name="about_credits_summary">Celkovo ďakujeme</string>
     <string name="about_donate_title">Prispieť</string>
-    <string name="about_donate_summary">Ak vám táto aplikácia uľahčila život, zvážte prosím dar pre vývojárov (Kryten2k35)</string>
+    <string name="about_donate_summary">Ak vám táto aplikácia uľahčila život, zvážte prosím dar pre
+        vývojárov (Kryten2k35)
+    </string>
     <string name="about_donate_button_summary">Podporiť</string>
     <string name="about_version_title">Verzia</string>
     <string name="about_app_version">Verzia aplikácie:</string>

@@ -30,8 +30,8 @@ import b2.build.targets as targets
 from b2.manager import get_manager
 from b2.util import bjam_signature
 
-class CastTargetClass(targets.TypedTarget):
 
+class CastTargetClass(targets.TypedTarget):
     def construct(name, source_targets, ps):
         result = []
         for s in source_targets:
@@ -41,22 +41,20 @@ class CastTargetClass(targets.TypedTarget):
             if s.action():
                 get_manager().errors()("Only non-derived targets allowed as sources for 'cast'.")
 
-
             r = s.clone_with_different_type(self.type())
             result.append(get_manager().virtual_targets().register(r))
 
         return result
-    
+
 
 @bjam_signature((["name", "type"], ["sources", "*"], ["requirements", "*"],
                  ["default_build", "*"], ["usage_requirements", "*"]))
 def cast(name, type, sources, requirements, default_build, usage_requirements):
-   
     from b2.manager import get_manager
     t = get_manager().targets()
-    
+
     project = get_manager().projects().current()
-        
+
     return t.main_target_alternative(
         CastTargetClass(name, project, type,
                         t.main_target_sources(sources, name),

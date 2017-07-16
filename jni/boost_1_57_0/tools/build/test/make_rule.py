@@ -32,7 +32,6 @@ t.run_build_system()
 t.expect_addition("bin/$toolset/debug/foo.bar")
 t.fail_test(string.find(t.read("bin/$toolset/debug/foo.bar"), "12345678") == -1)
 
-
 # Regression test. Make sure that if a main target is requested two times, and
 # build requests differ only in incidental properties, the main target is
 # created only once. The bug was discovered by Kirill Lapshin.

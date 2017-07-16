@@ -4,7 +4,9 @@
 
 from b2.build import type
 
-def register ():
-    type.register_type ('HTML', ['html'])
 
-register ()
+def register():
+    type.register_type('HTML', ['html'])
+
+
+register()

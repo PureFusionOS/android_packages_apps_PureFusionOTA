@@ -19,12 +19,12 @@ use English;
 $max_args = $ARGV[0];
 
 open (OUT, ">maybe_include.hpp") or die("Cannot write to maybe_include.hpp");
-for($on_arg = 0; $on_arg <= $max_args; ++$on_arg) {
+for ($on_arg = 0; $on_arg <= $max_args; ++$on_arg) {
     if ($on_arg == 0) {
-	print OUT "#if";
+        print OUT "#if";
     }
     else {
-	print OUT "#elif";
+        print OUT "#elif";
     }
     print OUT " BOOST_FUNCTION_NUM_ARGS == $on_arg\n";
     print OUT "#  ifndef BOOST_FUNCTION_$on_arg\n";

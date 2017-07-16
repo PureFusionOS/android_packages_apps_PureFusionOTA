@@ -98,7 +98,7 @@ class TreeDifference:
 
     def ignore_directories(self):
         """Removes directories from our lists of found differences."""
-        not_dir = lambda x : x[-1] != "/"
+        not_dir = lambda x: x[-1] != "/"
         self.added_files = filter(not_dir, self.added_files)
         self.removed_files = filter(not_dir, self.removed_files)
         self.modified_files = filter(not_dir, self.modified_files)
@@ -112,7 +112,7 @@ class TreeDifference:
 
     def empty(self):
         return not (self.added_files or self.removed_files or
-            self.modified_files or self.touched_files)
+                    self.modified_files or self.touched_files)
 
 
 def build_tree(path):

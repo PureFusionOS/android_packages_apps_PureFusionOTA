@@ -10,7 +10,6 @@ import BoostBuild
 
 tester = BoostBuild.Tester(use_test_config=False)
 
-
 ################################################################################
 #
 # Test without giving the project an explicit id.
@@ -46,7 +45,6 @@ tester.expect_addition("a/bin/$toolset/debug/test1.exe")
 tester.rm("bin")
 tester.rm("a/bin")
 
-
 ################################################################################
 #
 # Run the same test from the "a" directory.
@@ -60,7 +58,6 @@ tester.expect_addition("a/bin/$toolset/debug/test1.exe")
 
 tester.rm("bin")
 tester.rm("a/bin")
-
 
 ################################################################################
 #
@@ -82,7 +79,6 @@ tester.expect_addition("a/bin/$toolset/debug/test1.exe")
 tester.rm("bin")
 tester.rm("a/bin")
 
-
 ################################################################################
 #
 # Now, give the project an id in its attributes.
@@ -103,7 +99,6 @@ tester.expect_addition("a/bin/$toolset/debug/test1.exe")
 tester.rm("bin")
 tester.rm("a/bin")
 
-
 ################################################################################
 #
 # Give the project an id in both ways at once.
@@ -123,7 +118,6 @@ tester.expect_addition("a/bin/$toolset/debug/test1.exe")
 
 tester.rm("bin")
 tester.rm("a/bin")
-
 
 ################################################################################
 #
@@ -146,7 +140,6 @@ tester.expect_addition("bin/$toolset/debug/test.exe")
 tester.rm("bin")
 tester.rm("a/bin")
 
-
 ################################################################################
 #
 # Test an absolute path in canonical format.
@@ -166,7 +159,6 @@ tester.expect_addition("bin/$toolset/debug/test.exe")
 
 tester.rm("bin")
 tester.rm("a/bin")
-
 
 ################################################################################
 #
@@ -207,7 +199,6 @@ tester.rm("bin")
 tester.rm("a")
 tester.rm("jamroot.jam")
 tester.rm("test.cpp")
-
 
 ################################################################################
 #

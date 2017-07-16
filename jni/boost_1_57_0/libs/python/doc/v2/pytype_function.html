@@ -5,132 +5,134 @@
 <!-- file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt) -->
 <html>
 <head>
-  <meta http-equiv="Content-Type" content=
-  "text/html; charset=us-ascii">
-  <link rel="stylesheet" type="text/css" href="../boost.css">
+    <meta http-equiv="Content-Type" content=
+            "text/html; charset=us-ascii">
+    <link rel="stylesheet" type="text/css" href="../boost.css">
 
-  <title>Boost.Python -
-  &lt;boost/python/doobject/pytype_function.hpp&gt;</title>
+    <title>Boost.Python -
+        &lt;boost/python/doobject/pytype_function.hpp&gt;</title>
 </head>
 
 <body>
-  <table border="0" cellpadding="7" cellspacing="0" width="100%"
-  summary="header">
+<table border="0" cellpadding="7" cellspacing="0" width="100%"
+       summary="header">
     <tr>
-      <td valign="top" width="300">
-        <h3><a href="../../../../index.htm"><img height="86" width=
-        "277" alt="C++ Boost" src="../../../../boost.png" border=
-        "0"></a></h3>
-      </td>
+        <td valign="top" width="300">
+            <h3><a href="../../../../index.htm"><img height="86" width=
+                    "277" alt="C++ Boost" src="../../../../boost.png" border=
+                                                             "0"></a></h3>
+        </td>
 
-      <td valign="top">
-        <h1 align="center"><a href=
-        "../index.html">Boost.Python</a></h1>
+        <td valign="top">
+            <h1 align="center"><a href=
+                                          "../index.html">Boost.Python</a></h1>
 
-        <h2 align="center">Header
-        &lt;boost/python/converter/pytype_function.hpp&gt;</h2>
-      </td>
+            <h2 align="center">Header
+                &lt;boost/python/converter/pytype_function.hpp&gt;</h2>
+        </td>
     </tr>
-  </table>
-  <hr>
+</table>
+<hr>
 
-  <h2>Contents</h2>
+<h2>Contents</h2>
 
-  <dl class="page-index">
+<dl class="page-index">
     <dt><a href="#introduction">Introduction</a></dt>
 
     <dt><a href="#classes">Classes</a></dt>
 
     <dd>
-      <dl class="page-index">
-        <dt><a href="#wrap_pytype-spec">Class
-        <code>wrap_pytype</code></a></dt>
+        <dl class="page-index">
+            <dt><a href="#wrap_pytype-spec">Class
+                <code>wrap_pytype</code></a></dt>
 
-        <dd>
-          <dl class="page-index">
-            <dt><a href="#wrap_pytype-spec-synopsis">Class
-            <code>wrap_pytype</code> synopsis</a></dt>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#wrap_pytype-spec-synopsis">Class
+                        <code>wrap_pytype</code> synopsis</a></dt>
 
-          </dl>
-        </dd>
-      </dl>
+                </dl>
+            </dd>
+        </dl>
     </dd>
 
     <dd>
-      <dl class="page-index">
-        <dt><a href="#registered_pytype-spec">Class
-        <code>registered_pytype</code></a></dt>
+        <dl class="page-index">
+            <dt><a href="#registered_pytype-spec">Class
+                <code>registered_pytype</code></a></dt>
 
-        <dd>
-          <dl class="page-index">
-            <dt><a href="#registered_pytype-spec-synopsis">Class
-            <code>registered_pytype</code> synopsis</a></dt>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#registered_pytype-spec-synopsis">Class
+                        <code>registered_pytype</code> synopsis</a></dt>
 
-          </dl>
-        </dd>
-      </dl>
+                </dl>
+            </dd>
+        </dl>
     </dd>
 
     <dd>
-      <dl class="page-index">
-        <dt><a href="#expected_from_python_type-spec">Class
-        <code>expected_from_python_type</code></a></dt>
+        <dl class="page-index">
+            <dt><a href="#expected_from_python_type-spec">Class
+                <code>expected_from_python_type</code></a></dt>
 
-        <dd>
-          <dl class="page-index">
-            <dt><a href="#expected_from_python_type-spec-synopsis">Class
-            <code>expected_from_python_type</code> synopsis</a></dt>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#expected_from_python_type-spec-synopsis">Class
+                        <code>expected_from_python_type</code> synopsis</a></dt>
 
-          </dl>
-        </dd>
-      </dl>
+                </dl>
+            </dd>
+        </dl>
     </dd>
 
     <dd>
-      <dl class="page-index">
-        <dt><a href="#to_python_target_type-spec">Class
-        <code>to_python_target_type</code></a></dt>
+        <dl class="page-index">
+            <dt><a href="#to_python_target_type-spec">Class
+                <code>to_python_target_type</code></a></dt>
 
-        <dd>
-          <dl class="page-index">
-            <dt><a href="#to_python_target_type-spec-synopsis">Class
-            <code>to_python_target_type</code> synopsis</a></dt>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#to_python_target_type-spec-synopsis">Class
+                        <code>to_python_target_type</code> synopsis</a></dt>
 
-          </dl>
-        </dd>
-      </dl>
+                </dl>
+            </dd>
+        </dl>
     </dd>
 
     <dt><a href="#examples">Examples</a></dt>
-  </dl>
-  <hr>
+</dl>
+<hr>
 
-  <h2><a name="introduction" id=
-  "introduction"></a>Introduction</h2>
+<h2><a name="introduction" id=
+        "introduction"></a>Introduction</h2>
 
-  <p>To support Pythonic signatures the converters should supply a <code>get_pytype</code> function
-  returning a pointer to the associated <code>PyTypeObject</code>. See for example
-  <a href="ResultConverter.html#ResultConverter-concept">ResultConverter</a> or 
-  <a href="to_python_converter.html#to_python_converter-spec">to_python_converter</a>.
-  The classes in this header file are meant to be used when implmenting <code>get_pytype</code>.
-  There are also <code>_direct</code> versions of the templates of <code>class T</code> which
-  should be used with undecorated type parameter, expected to be in the conversion registry when the module loads.
-  </p>
+<p>To support Pythonic signatures the converters should supply a <code>get_pytype</code> function
+    returning a pointer to the associated <code>PyTypeObject</code>. See for example
+    <a href="ResultConverter.html#ResultConverter-concept">ResultConverter</a> or
+    <a href="to_python_converter.html#to_python_converter-spec">to_python_converter</a>.
+    The classes in this header file are meant to be used when implmenting <code>get_pytype</code>.
+    There are also <code>_direct</code> versions of the templates of <code>class T</code> which
+    should be used with undecorated type parameter, expected to be in the conversion registry when
+    the module loads.
+</p>
 
-  <h2><a name="classes" id="classes"></a>Classes</h2>
+<h2><a name="classes" id="classes"></a>Classes</h2>
 
-  <h3><a name="wrap_pytype-spec" id=
-  "wrap_pytype-spec"></a>Class
-  <code>wrap_pytype</code></h3>
+<h3><a name="wrap_pytype-spec" id=
+        "wrap_pytype-spec"></a>Class
+    <code>wrap_pytype</code></h3>
 
-  <p>
-   This template generates a static <code>get_pytype</code> member returning the template parameter.
-  </p>
+<p>
+    This template generates a static <code>get_pytype</code> member returning the template
+    parameter.
+</p>
 
-  <h4><a name="wrap_pytype-spec-synopsis" id=
-  "wrap_pytype-spec-synopsis"></a>Class
-  <code>wrap_pytype</code> synopsis</h4>
-  <pre>
+<h4><a name="wrap_pytype-spec-synopsis" id=
+        "wrap_pytype-spec-synopsis"></a>Class
+    <code>wrap_pytype</code> synopsis</h4>
+<pre>
 namespace boost { namespace python { namespace converter{
 
     template &lt; PyTypeObject const *pytype &gt;
@@ -144,21 +146,21 @@ namespace boost { namespace python { namespace converter{
 </pre>
 
 
-  <h3><a name="registered_pytype-spec" id=
-  "registered_pytype-spec"></a>Class
-  <code>registered_pytype</code></h3>
+<h3><a name="registered_pytype-spec" id=
+        "registered_pytype-spec"></a>Class
+    <code>registered_pytype</code></h3>
 
-  <p>
-   This template should be used with template parameters which are (possibly decorated)
-   types exported to python using <a href="class.html"><code>class_</code></a>.
-   The generated a static <code>get_pytype</code> member 
-   returns the corresponding python type.
-  </p>
+<p>
+    This template should be used with template parameters which are (possibly decorated)
+    types exported to python using <a href="class.html"><code>class_</code></a>.
+    The generated a static <code>get_pytype</code> member
+    returns the corresponding python type.
+</p>
 
-  <h4><a name="registered_pytype-spec-synopsis" id=
-  "registered_pytype-spec-synopsis"></a>Class
-  <code>registered_pytype</code> synopsis</h4>
-  <pre>
+<h4><a name="registered_pytype-spec-synopsis" id=
+        "registered_pytype-spec-synopsis"></a>Class
+    <code>registered_pytype</code> synopsis</h4>
+<pre>
 namespace boost { namespace python { namespace converter{
 
     template &lt; class T &gt;
@@ -172,19 +174,20 @@ namespace boost { namespace python { namespace converter{
 </pre>
 
 
-  <h3><a name="expected_from_python_type-spec" id=
-  "expected_from_python_type-spec"></a>Class
-  <code>expected_from_python_type</code></h3>
+<h3><a name="expected_from_python_type-spec" id=
+        "expected_from_python_type-spec"></a>Class
+    <code>expected_from_python_type</code></h3>
 
-  <p>
-   This template generates a static <code>get_pytype</code> member which inspects the registered
-   <code>from_python</code> converters for the type <code>T</code> and returns a matching python type.
-  </p>
+<p>
+    This template generates a static <code>get_pytype</code> member which inspects the registered
+    <code>from_python</code> converters for the type <code>T</code> and returns a matching python
+    type.
+</p>
 
-  <h4><a name="expected_from_python_type-spec-synopsis" id=
-  "expected_from_python_type-spec-synopsis"></a>Class
-  <code>expected_from_python_type</code> synopsis</h4>
-  <pre>
+<h4><a name="expected_from_python_type-spec-synopsis" id=
+        "expected_from_python_type-spec-synopsis"></a>Class
+    <code>expected_from_python_type</code> synopsis</h4>
+<pre>
 namespace boost { namespace python { namespace converter{
 
     template &lt; class T &gt;
@@ -198,19 +201,19 @@ namespace boost { namespace python { namespace converter{
 </pre>
 
 
-  <h3><a name="to_python_target_type-spec" id=
-  "to_python_target_type-spec"></a>Class
-  <code>to_python_target_type</code></h3>
+<h3><a name="to_python_target_type-spec" id=
+        "to_python_target_type-spec"></a>Class
+    <code>to_python_target_type</code></h3>
 
-  <p>
-   This template generates a static <code>get_pytype</code> member returning the 
-   python type to which T can be converted.
-  </p>
+<p>
+    This template generates a static <code>get_pytype</code> member returning the
+    python type to which T can be converted.
+</p>
 
-  <h4><a name="to_python_target_type-spec-synopsis" id=
-  "to_python_target_type-spec-synopsis"></a>Class
-  <code>to_python_target_type</code> synopsis</h4>
-  <pre>
+<h4><a name="to_python_target_type-spec-synopsis" id=
+        "to_python_target_type-spec-synopsis"></a>Class
+    <code>to_python_target_type</code> synopsis</h4>
+<pre>
 namespace boost { namespace python { namespace converter{
 
     template &lt; class T &gt;
@@ -224,17 +227,18 @@ namespace boost { namespace python { namespace converter{
 </pre>
 
 
-  <h2><a name="examples" id="examples"></a>Examples</h2>
+<h2><a name="examples" id="examples"></a>Examples</h2>
 
-    This example presumes that someone has implemented the standard <a href=
-    "http://www.python.org/doc/2.2/ext/dnt-basics.html">noddy example
+This example presumes that someone has implemented the standard <a href=
+                                                                           "http://www.python.org/doc/2.2/ext/dnt-basics.html">noddy
+    example
     module</a> from the Python documentation, and placed the corresponding
-    declarations in <code>"noddy.h"</code>. Because
-    <code>noddy_NoddyObject</code> is the ultimate trivial extension type,
-    the example is a bit contrived: it wraps a function for which all
-    information is contained in the <i>type</i> of its return value.
+declarations in <code>"noddy.h"</code>. Because
+<code>noddy_NoddyObject</code> is the ultimate trivial extension type,
+the example is a bit contrived: it wraps a function for which all
+information is contained in the <i>type</i> of its return value.
 
-    <h3>C++ module definition</h3>
+<h3>C++ module definition</h3>
 <pre>
 #include &lt;boost/python/reference.hpp&gt;
 #include &lt;boost/python/module.hpp&gt;
@@ -269,7 +273,7 @@ BOOST_PYTHON_MODULE(to_python_converter)
 
 
 <p>The following example registers to and from python converters using the templates
-<code>expected_from_python_type</code> and <code>to_pyhton_target_type</code>.
+    <code>expected_from_python_type</code> and <code>to_pyhton_target_type</code>.
 </p>
 <pre>
 #include &lt;boost/python/module.hpp&gt;
@@ -365,6 +369,6 @@ func( (A)arg1) -> A :
 </pre>
 
 
-  <p><i>&copy; Copyright <a href="mailto:nickm at sitius dot com">Nikolay Mladenov</a> 2007.</i></p>
+<p><i>&copy; Copyright <a href="mailto:nickm at sitius dot com">Nikolay Mladenov</a> 2007.</i></p>
 </body>
 </html>

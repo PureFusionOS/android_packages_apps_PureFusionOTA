@@ -4,71 +4,72 @@
 <!-- Software License, Version 1.0. (See accompanying -->
 <!-- file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt) -->
 <html>
-  <head>
+<head>
     <meta name="generator" content=
-    "HTML Tidy for Windows (vers 1st August 2002), see www.w3.org">
+            "HTML Tidy for Windows (vers 1st August 2002), see www.w3.org">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <link rel="stylesheet" type="text/css" href="../boost.css">
 
     <title>Boost.Python - &lt;boost/python/return_by_value.hpp&gt;</title>
-  </head>
+</head>
 
-  <body>
-    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
-    "header">
-      <tr>
+<body>
+<table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+        "header">
+    <tr>
         <td valign="top" width="300">
-          <h3><a href="../../../../index.htm"><img height="86" width="277"
-          alt="C++ Boost" src="../../../../boost.png" border="0"></a></h3>
+            <h3><a href="../../../../index.htm"><img height="86" width="277"
+                                                     alt="C++ Boost" src="../../../../boost.png"
+                                                     border="0"></a></h3>
         </td>
 
         <td valign="top">
-          <h1 align="center"><a href="../index.html">Boost.Python</a></h1>
+            <h1 align="center"><a href="../index.html">Boost.Python</a></h1>
 
-          <h2 align="center">Header
-          &lt;boost/python/return_by_value.hpp&gt;</h2>
+            <h2 align="center">Header
+                &lt;boost/python/return_by_value.hpp&gt;</h2>
         </td>
-      </tr>
-    </table>
-    <hr>
+    </tr>
+</table>
+<hr>
 
-    <h2>Contents</h2>
+<h2>Contents</h2>
 
-    <dl class="page-index">
-      <dt><a href="#classes">Classes</a></dt>
+<dl class="page-index">
+    <dt><a href="#classes">Classes</a></dt>
 
-      <dd>
+    <dd>
         <dl class="page-index">
-          <dt><a href="#return_by_value-spec">Class
-          <code>return_by_value</code></a></dt>
+            <dt><a href="#return_by_value-spec">Class
+                <code>return_by_value</code></a></dt>
 
-          <dd>
-            <dl class="page-index">
-              <dt><a href="#return_by_value-spec-synopsis">Class
-              <code>return_by_value</code> synopsis</a></dt>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#return_by_value-spec-synopsis">Class
+                        <code>return_by_value</code> synopsis</a></dt>
 
-              <dt><a href="#return_by_value-spec-metafunctions">Class
-              <code>return_by_value</code> metafunctions</a></dt>
-            </dl>
-          </dd>
+                    <dt><a href="#return_by_value-spec-metafunctions">Class
+                        <code>return_by_value</code> metafunctions</a></dt>
+                </dl>
+            </dd>
         </dl>
-      </dd>
+    </dd>
 
-      <dt><a href="#examples">Example</a></dt>
-    </dl>
-    <hr>
+    <dt><a href="#examples">Example</a></dt>
+</dl>
+<hr>
 
-    <h2><a name="classes"></a>Classes</h2>
+<h2><a name="classes"></a>Classes</h2>
 
-    <h3><a name="return_by_value-spec"></a>Class
+<h3><a name="return_by_value-spec"></a>Class
     <code>return_by_value</code></h3>
 
-    <p><code>return_by_value</code> is a model of <a href=
-    "ResultConverter.html#ResultConverterGenerator-concept">ResultConverterGenerator</a>
+<p><code>return_by_value</code> is a model of <a href=
+                                                         "ResultConverter.html#ResultConverterGenerator-concept">ResultConverterGenerator</a>
     which can be used to wrap C++ functions returning any reference or value
     type such that the return value is copied into a new Python object.</p>
 
-    <h4><a name="return_by_value-spec-synopsis"></a>Class
+<h4><a name="return_by_value-spec-synopsis"></a>Class
     <code>return_by_value</code> synopsis</h4>
 <pre>
 namespace boost { namespace python
@@ -80,21 +81,21 @@ namespace boost { namespace python
 }}
 </pre>
 
-    <h4><a name="return_by_value-spec-metafunctions"></a>Class
+<h4><a name="return_by_value-spec-metafunctions"></a>Class
     <code>return_by_value</code> metafunctions</h4>
 <pre>
 template &lt;class T&gt; struct apply
 </pre>
 
-    <dl class="metafunction-semantics">
-      <dt><b>Returns:</b> <code>typedef <a href=
-      "to_python_value.html#to_python_value-spec">to_python_value</a>&lt;T&gt;
-      type;</code></dt>
-    </dl>
+<dl class="metafunction-semantics">
+    <dt><b>Returns:</b> <code>typedef <a href=
+                                                 "to_python_value.html#to_python_value-spec">to_python_value</a>&lt;T&gt;
+        type;</code></dt>
+</dl>
 
-    <h2><a name="examples"></a>Example</h2>
+<h2><a name="examples"></a>Example</h2>
 
-    <h3>C++ Module Definition</h3>
+<h3>C++ Module Definition</h3>
 <pre>
 #include &lt;boost/python/module.hpp&gt;
 #include &lt;boost/python/class.hpp&gt;
@@ -128,7 +129,7 @@ BOOST_PYTHON_MODULE(my_module)
 }
 </pre>
 
-    <h3>Python Code</h3>
+<h3>Python Code</h3>
 <pre>
 &gt;&gt;&gt; from my_module import *
 &gt;&gt;&gt; b = b1() # each of these calls
@@ -136,14 +137,15 @@ BOOST_PYTHON_MODULE(my_module)
 &gt;&gt;&gt; b = b3() # new Bar object
 </pre>
 
-    <p>Revised 
+<p>Revised
     <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d %B, %Y" startspan -->
-  13 November, 2002
-  <!--webbot bot="Timestamp" endspan i-checksum="39359" -->
-    </p>
+    13 November, 2002
+    <!--webbot bot="Timestamp" endspan i-checksum="39359" -->
+</p>
 
-    <p><i>&copy; Copyright <a href=
-    "http://www.boost.org/people/dave_abrahams.htm">Dave Abrahams</a> 2002.</i></p>
-  </body>
+<p><i>&copy; Copyright <a href=
+                                  "http://www.boost.org/people/dave_abrahams.htm">Dave Abrahams</a>
+    2002.</i></p>
+</body>
 </html>
 

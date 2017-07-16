@@ -4,8 +4,10 @@
 
 from b2.build import type
 
-def register ():
+
+def register():
     type.register_type('PREPROCESSED_C', ['i'], 'C')
     type.register_type('PREPROCESSED_CPP', ['ii'], 'CPP')
 
-register ()
+
+register()

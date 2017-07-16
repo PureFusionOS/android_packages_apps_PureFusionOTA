@@ -66,10 +66,10 @@ import sys
 import tempfile
 import traceback
 
-
 tempfile.template = 'testcmd.'
 
 _Cleanup = []
+
 
 def _clean():
     global _Cleanup
@@ -79,6 +79,7 @@ def _clean():
     for test in list:
         test.cleanup()
 
+
 sys.exitfunc = _clean
 
 
@@ -87,7 +88,7 @@ def caller(tblist, skip):
     arr = []
     for file, line, name, text in tblist:
         if file[-10:] == "TestCmd.py":
-                break
+            break
         arr = [(file, line, name, text)] + arr
     atfrom = "at"
     for file, line, name, text in arr[skip:]:
@@ -126,7 +127,7 @@ def fail_test(self=None, condition=True, function=None, skip=0):
     at = caller(traceback.extract_stack(), skip)
 
     sys.stderr.write("FAILED test" + of + desc + sep + at + """
-in directory: """ + os.getcwd() )
+in directory: """ + os.getcwd())
     sys.exit(1)
 
 
@@ -213,7 +214,7 @@ def match_re(lines=None, res=None):
 
 class TestCmd:
     def __init__(self, description=None, program=None, workdir=None,
-        subdir=None, verbose=False, match=None, inpath=None):
+                 subdir=None, verbose=False, match=None, inpath=None):
 
         self._cwd = os.getcwd()
         self.description_set(description)
@@ -302,10 +303,10 @@ class TestCmd:
         if not condition:
             return
         self.condition = 'fail_test'
-        fail_test(self = self,
-                  condition = condition,
-                  function = function,
-                  skip = skip)
+        fail_test(self=self,
+                  condition=condition,
+                  function=function,
+                  skip=skip)
 
     def match(self, lines, matches):
         """Compare actual and expected file contents."""
@@ -324,10 +325,10 @@ class TestCmd:
         if not condition:
             return
         self.condition = 'no_result'
-        no_result(self = self,
-                  condition = condition,
-                  function = function,
-                  skip = skip)
+        no_result(self=self,
+                  condition=condition,
+                  function=function,
+                  skip=skip)
 
     def pass_test(self, condition=True, function=None):
         """Cause the test to pass."""
@@ -374,7 +375,7 @@ class TestCmd:
         return open(file, mode).read()
 
     def run(self, program=None, arguments=None, chdir=None, stdin=None,
-        universal_newlines=True):
+            universal_newlines=True):
         """
           Runs a test of the program or script for the test environment.
         Standard output and error output are saved for future retrieval via the
@@ -405,8 +406,8 @@ class TestCmd:
         if self.verbose:
             sys.stderr.write(join(cmd, " ") + "\n")
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=chdir,
-            universal_newlines=universal_newlines)
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=chdir,
+                             universal_newlines=universal_newlines)
 
         if stdin:
             if type(stdin) is ListType:
@@ -550,6 +551,7 @@ class TestCmd:
         (write == None).
 
         """
+
         def _walk_chmod(arg, dirname, names):
             st = os.stat(dirname)
             os.chmod(dirname, arg(st[stat.ST_MODE]))
@@ -558,8 +560,8 @@ class TestCmd:
                 st = os.stat(fullname)
                 os.chmod(fullname, arg(st[stat.ST_MODE]))
 
-        _mode_writable = lambda mode: stat.S_IMODE(mode|0200)
-        _mode_non_writable = lambda mode: stat.S_IMODE(mode&~0200)
+        _mode_writable = lambda mode: stat.S_IMODE(mode | 0200)
+        _mode_non_writable = lambda mode: stat.S_IMODE(mode & ~0200)
 
         if write:
             f = _mode_writable

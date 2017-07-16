@@ -21,23 +21,23 @@ from b2.manager import get_manager
 
 feature.feature("symlink-location", ["project-relative", "build-relative"], ["incidental"])
 
-class SymlinkTarget(targets.BasicTarget):
 
+class SymlinkTarget(targets.BasicTarget):
     _count = 0
 
     def __init__(self, project, targets, sources):
-         
+
         # Generate a fake name for now. Need unnamed targets eventually.
         fake_name = "symlink#%s" % SymlinkTarget._count
         SymlinkTarget._count = SymlinkTarget._count + 1
 
         b2.build.targets.BasicTarget.__init__(self, fake_name, project, sources)
-    
+
         # Remember the targets to map the sources onto. Pad or truncate
         # to fit the sources given.
         assert len(targets) <= len(sources)
         self.targets = targets[:] + sources[len(targets):]
-            
+
         # The virtual targets corresponding to the given targets.
         self.virtual_targets = []
 
@@ -47,7 +47,7 @@ class SymlinkTarget(targets.BasicTarget):
             s = self.targets[i]
             a = virtual_target.Action(self.manager(), [t], "symlink.ln", ps)
             vt = virtual_target.FileTarget(os.path.basename(s), t.type(), self.project(), a)
-                        
+
             # Place the symlink in the directory relative to the project
             # location, instead of placing it in the build directory.
             if not ps.get('symlink-location') == "project-relative":
@@ -58,6 +58,7 @@ class SymlinkTarget(targets.BasicTarget):
             i = i + 1
 
         return (property_set.empty(), self.virtual_targets)
+
 
 # Creates a symbolic link from a set of targets to a set of sources.
 # The targets and sources map one to one. The symlinks generated are
@@ -74,20 +75,18 @@ class SymlinkTarget(targets.BasicTarget):
 # Names for symlink are relative to the project location. They cannot
 # include ".." path components.
 def symlink(targets, sources):
-
     from b2.manager import get_manager
-    t = get_manager().targets()   
+    t = get_manager().targets()
     p = get_manager().projects().current()
 
     return t.main_target_alternative(
-        SymlinkTarget(p, targets, 
+        SymlinkTarget(p, targets,
                       # Note: inline targets are not supported for symlink, intentionally,
                       # since it's used to linking existing non-local targets.
                       sources))
 
 
 def setup_ln(targets, sources, ps):
-
     source_path = bjam.call("get-target-variable", sources[0], "LOCATE")[0]
     target_path = bjam.call("get-target-variable", targets[0], "LOCATE")[0]
     rel = os.path.relpath(source_path, target_path)
@@ -95,6 +94,7 @@ def setup_ln(targets, sources, ps):
         bjam.call("set-target-variable", targets, "PATH_TO_SOURCE", "")
     else:
         bjam.call("set-target-variable", targets, "PATH_TO_SOURCE", rel)
+
 
 if os.name == 'nt':
     ln_action = """echo "NT symlinks not supported yet, making copy"

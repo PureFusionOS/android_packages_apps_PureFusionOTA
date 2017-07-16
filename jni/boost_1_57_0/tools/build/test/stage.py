@@ -29,7 +29,6 @@ t.write("auxilliary/1", "")
 t.run_build_system()
 t.expect_addition(["dist/a.dll", "dist/a.h", "dist/1"])
 
-
 # Regression test: the following was causing a "duplicate target name" error.
 t.write("jamfile.jam", """\
 project : requirements <hardcode-dll-paths>true ;
@@ -39,7 +38,6 @@ alias dist-alias : dist ;
 """)
 
 t.run_build_system()
-
 
 # Test the <location> property.
 t.write("jamfile.jam", """\
@@ -52,7 +50,6 @@ t.expect_addition("ds/a.dll")
 
 t.run_build_system(["release"])
 t.expect_addition("rs/a.dll")
-
 
 # Test the <location> property in subprojects. Thanks to Kirill Lapshin for the
 # bug report.
@@ -76,7 +73,6 @@ t.rm("dist")
 t.rm("d/bin")
 t.run_build_system(subdir="d")
 t.expect_addition("dist/a.exe")
-
 
 # Check that 'stage' does not incorrectly reset target suffixes.
 t.write("a.cpp", "int main() {}\n")

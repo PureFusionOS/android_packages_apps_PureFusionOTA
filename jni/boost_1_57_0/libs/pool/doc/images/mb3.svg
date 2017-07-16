@@ -1,33 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   version="1.1"
-   width="842"
-   height="941"
-   id="svg2">
-  <metadata
-     id="metadata8">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs6" />
-  <image
-     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0oAAAOtCAYAAAC/m5XXAAAABHNCSVQICAgIfAhkiAAAIABJREFU
+<svg xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink"
+    height="941" id="svg2" version="1.1" width="842" xmlns="http://www.w3.org/2000/svg">
+    <metadata id="metadata8">
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs id="defs6" />
+    <image height="941" id="image10" width="842" x="0" y="0" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0oAAAOtCAYAAAC/m5XXAAAABHNCSVQICAgIfAhkiAAAIABJREFU
 eJzs3U1oHOme7/mvemrouX1vVplpSRQz6evCiGo6lXhulzwXLCgrCjVFqy7MPZhQgr1Ri6NVy4up
 0vYYPYkKepWnzsLqlQodQSPRqcRU98IGg5iQClKLLhX1kpk0hceUW7FwSzoce/IuLndxchYRkYpM
 Rb4oFXqx/fuAsRQZ8TxPvDzK/Ofzjyf6arVaDREREREREan7o/NugIiIiIiIyEWjQElERERERKSJ
@@ -1327,10 +1313,5 @@ ewmWAC/i7b3VyRwqERF5uKhHSUTkERKsZPZFSZIC34MdE246SXCOo4wosy3lKkkSEXk87OhR+uYf
 Wd5///3I838EfpK0tnZiQYmIiIiIiPTS+++/z7PPPht5/tTW1tYXbai7iIiIiIjInrSYg4iIiIiI
 SBslSiIiIiIiIm2UKImIiIiIiLRRoiQiIiIiItJGiZKIiIiIiEgbJUoiIiIiIiJtlCiJiIiIiIi0
 UaIkIiIiIiLSRomSiIiIiIhIGyVKIiIiIiIibf4/1H5h7TvcOQEAAAAASUVORK5CYII=
-"
-     x="0"
-     y="0"
-     width="842"
-     height="941"
-     id="image10" />
+" />
 </svg>

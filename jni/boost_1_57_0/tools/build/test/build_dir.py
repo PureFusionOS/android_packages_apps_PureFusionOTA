@@ -15,7 +15,6 @@ import BoostBuild
 
 t = BoostBuild.Tester(use_test_config=False)
 
-
 # Test that top-level project can affect build dir.
 t.write("jamroot.jam", "import gcc ;")
 t.write("jamfile.jam", """\
@@ -63,7 +62,7 @@ t.write("jamroot.jam", "")
 # Test that we get an error when no project id is specified.
 t.run_build_system(["--build-dir=foo"])
 t.fail_test(string.find(t.stdout(),
-                   "warning: the --build-dir option will be ignored") == -1)
+                        "warning: the --build-dir option will be ignored") == -1)
 
 t.write("jamroot.jam", """\
 project foo ;
@@ -103,6 +102,6 @@ build-project sub ;
 
 t.run_build_system(["--build-dir=build"], status=1)
 t.fail_test(string.find(t.stdout(),
-    "Absolute directory specified via 'build-dir' project attribute") == -1)
+                        "Absolute directory specified via 'build-dir' project attribute") == -1)
 
 t.cleanup()

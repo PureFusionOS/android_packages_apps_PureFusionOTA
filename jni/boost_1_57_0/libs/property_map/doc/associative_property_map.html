@@ -7,11 +7,11 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Associative Property Map Adaptor</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-	ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Associative Property Map Adaptor</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
@@ -23,16 +23,16 @@ associative_property_map&lt;UniquePairAssociativeContainer&gt;
 </PRE>
 
 <P>
-This property map is an adaptor that converts any type that is a model
-of both <a
-href="http://www.sgi.com/tech/stl/PairAssociativeContainer.html">Pair
-Associative Container</a> and <a
-href="http://www.sgi.com/tech/stl/UniqueAssociativeContainer.html">Unique
-Associative Container</a> such as <a
-href="http://www.sgi.com/tech/stl/Map.html"><tt>std::map</tt></a> into
-a mutable <a href="./LvaluePropertyMap.html">Lvalue Property Map</a>.
-Note that the adaptor only retains a reference to the container, so
-the lifetime of the container must encompass the use of the adaptor.
+    This property map is an adaptor that converts any type that is a model
+    of both <a
+        href="http://www.sgi.com/tech/stl/PairAssociativeContainer.html">Pair
+    Associative Container</a> and <a
+        href="http://www.sgi.com/tech/stl/UniqueAssociativeContainer.html">Unique
+    Associative Container</a> such as <a
+        href="http://www.sgi.com/tech/stl/Map.html"><tt>std::map</tt></a> into
+    a mutable <a href="./LvaluePropertyMap.html">Lvalue Property Map</a>.
+    Note that the adaptor only retains a reference to the container, so
+    the lifetime of the container must encompass the use of the adaptor.
 </P>
 
 <h3>Example</h3>
@@ -85,7 +85,7 @@ main()
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/property_map/property_map.hpp"><TT>boost/property_map/property_map.hpp</TT></a>
+    <a href="../../../boost/property_map/property_map.hpp"><TT>boost/property_map/property_map.hpp</TT></a>
 
 <p>
 <H3>Model Of</H3>
@@ -99,20 +99,23 @@ main()
 <P>
 
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
 
-<TR>
-<TD><TT>UniquePairAssociativeContainer</TT></TD> 
-<TD>Must be a model of both <a
-href="http://www.sgi.com/tech/stl/PairAssociativeContainer.html">Pair
-Associative Container</a> and <a
-href="http://www.sgi.com/tech/stl/UniqueAssociativeContainer.html">Unique
-Associative Container</a> .</TD>
-<TD>&nbsp;</td>
-</tr>
+    <TR>
+        <TD><TT>UniquePairAssociativeContainer</TT></TD>
+        <TD>Must be a model of both <a
+                href="http://www.sgi.com/tech/stl/PairAssociativeContainer.html">Pair
+            Associative Container</a> and <a
+                href="http://www.sgi.com/tech/stl/UniqueAssociativeContainer.html">Unique
+            Associative Container</a> .
+        </TD>
+        <TD>&nbsp;</td>
+    </tr>
 
 </TABLE>
 <P>
@@ -120,9 +123,9 @@ Associative Container</a> .</TD>
 <H3>Members</H3>
 
 <P>
-In addition to the methods and functions required by <a
-href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
-class has the following members.
+    In addition to the methods and functions required by <a
+        href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
+    class has the following members.
 
 <hr>
 
@@ -168,23 +171,26 @@ The <TT>key_type</TT> and
 A function for conveniently creating an associative property map.
 
 
-
 <hr>
 
 
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy 2002</TD><TD>
-<a HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</a>,
-Indiana University (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-<A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana University (<A HREF="mailto:llee1@osl.iu.edu">llee1@osl.iu.edu</A>)<br>
-<A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Indiana University (<A
-HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy 2002</TD>
+        <TD>
+            <a HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</a>,
+            Indiana University (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+            <A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana
+            University (<A HREF="mailto:llee1@osl.iu.edu">llee1@osl.iu.edu</A>)<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Indiana University (<A
+                HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

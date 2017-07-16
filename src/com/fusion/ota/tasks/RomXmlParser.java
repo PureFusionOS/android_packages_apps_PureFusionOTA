@@ -38,279 +38,278 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class RomXmlParser extends DefaultHandler implements Constants {
 
-	public final String TAG = this.getClass().getSimpleName();
+    public final String TAG = this.getClass().getSimpleName();
+    boolean tagRomName = false;
+    boolean tagVersionName = false;
+    boolean tagVersionNumber = false;
+    boolean tagDirectUrl = false;
+    boolean tagHttpUrl = false;
+    boolean tagMD5 = false;
+    boolean tagLog = false;
+    boolean tagAndroid = false;
+    boolean tagDeveloper = false;
+    boolean tagWebsite = false;
+    boolean tagDonateUrl = false;
+    boolean tagBitCoinUrl = false;
+    boolean tagFileSize = false;
+    boolean tagAddonsCount = false;
+    boolean tagAddonUrl = false;
+    private StringBuffer value = new StringBuffer();
+    private Context mContext;
 
-	private StringBuffer value = new StringBuffer();
-	private Context mContext;
+    public void parse(File xmlFile, Context context) throws IOException {
+        mContext = context;
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
+            saxParser.parse(xmlFile, this);
 
-	boolean tagRomName = false;
-	boolean tagVersionName = false;
-	boolean tagVersionNumber = false;
-	boolean tagDirectUrl = false;
-	boolean tagHttpUrl = false;
-	boolean tagMD5 = false;
-	boolean tagLog = false;
-	boolean tagAndroid = false;
-	boolean tagDeveloper = false;
-	boolean tagWebsite = false;
-	boolean tagDonateUrl = false;
-	boolean tagBitCoinUrl = false;
-	boolean tagFileSize = false;
-	boolean tagAddonsCount = false;
-	boolean tagAddonUrl = false;
+            Utils.setUpdateAvailability(context);
 
-	public void parse(File xmlFile, Context context) throws IOException {
-		mContext = context;
-		try {
-			SAXParserFactory factory = SAXParserFactory.newInstance();
-			SAXParser saxParser = factory.newSAXParser();
-			saxParser.parse(xmlFile, this);
+        } catch (ParserConfigurationException ex) {
+            Log.e(TAG, "", ex);
+        } catch (SAXException ex) {
+            Log.e(TAG, "", ex);
+        }
+    }
 
-			Utils.setUpdateAvailability(context);
+    @Override
+    public void startElement(String uri, String localName, String qName,
+                             Attributes attributes) throws SAXException {
 
-		} catch (ParserConfigurationException ex) {
-			Log.e(TAG, "", ex);
-		} catch (SAXException ex) {
-			Log.e(TAG, "", ex);
-		}
-	}
+        value.setLength(0);
 
-	@Override
-	public void startElement(String uri, String localName, String qName,
-			Attributes attributes) throws SAXException {
-		
-		value.setLength(0);
+        if (attributes.getLength() > 0) {
 
-		if (attributes.getLength() > 0) {
+            @SuppressWarnings("unused")
+            String tag = "<" + qName;
+            for (int i = 0; i < attributes.getLength(); i++) {
 
-			@SuppressWarnings("unused")
-			String tag = "<" + qName;
-			for (int i = 0; i < attributes.getLength(); i++) {
+                tag += " " + attributes.getLocalName(i) + "="
+                        + attributes.getValue(i);
+            }
+            tag += ">";
+        }
 
-				tag += " " + attributes.getLocalName(i) + "="
-						+ attributes.getValue(i);
-			}
-			tag += ">";
-		}
+        if (qName.equalsIgnoreCase("romname")) {
+            tagRomName = true;
+        }
 
-		if (qName.equalsIgnoreCase("romname")) {
-			tagRomName = true;
-		}
+        if (qName.equalsIgnoreCase("versionname")) {
+            tagVersionName = true;
+        }
 
-		if (qName.equalsIgnoreCase("versionname")) {
-			tagVersionName = true;
-		}
-		
-		if (qName.equalsIgnoreCase("versionnumber")) {
-			tagVersionNumber = true;
-		}
+        if (qName.equalsIgnoreCase("versionnumber")) {
+            tagVersionNumber = true;
+        }
 
-		if (qName.equalsIgnoreCase("directurl")) {
-			tagDirectUrl = true;
-		}
+        if (qName.equalsIgnoreCase("directurl")) {
+            tagDirectUrl = true;
+        }
 
-		if (qName.equalsIgnoreCase("httpurl")) {
-			tagHttpUrl = true;
-		}
-		
-		if (qName.equalsIgnoreCase("android")) {
-			tagAndroid = true;
-		}
+        if (qName.equalsIgnoreCase("httpurl")) {
+            tagHttpUrl = true;
+        }
 
-		if (qName.equalsIgnoreCase("checkmd5")) {
-			tagMD5 = true;
-		}
-		
-		if (qName.equalsIgnoreCase("filesize")) {
-			tagFileSize = true;
-		}
-		
-		if (qName.equalsIgnoreCase("developer")) {
-			tagDeveloper = true;
-		}
+        if (qName.equalsIgnoreCase("android")) {
+            tagAndroid = true;
+        }
 
-		if (qName.equalsIgnoreCase("websiteurl")) {
-			tagWebsite = true;
-		}
+        if (qName.equalsIgnoreCase("checkmd5")) {
+            tagMD5 = true;
+        }
 
-		if (qName.equalsIgnoreCase("donateurl")) {
-			tagDonateUrl = true;
-		}
-		
-		if (qName.equalsIgnoreCase("bitcoinaddress")) {
-			tagBitCoinUrl = true;
-		}
-		
-		if (qName.equalsIgnoreCase("changelog")) {
-			tagLog = true;
-		}
-		
-		if (qName.equalsIgnoreCase("addoncount")) {
-			tagAddonsCount = true;
-		}
+        if (qName.equalsIgnoreCase("filesize")) {
+            tagFileSize = true;
+        }
 
-		if (qName.equalsIgnoreCase("addonsurl")) {
-			tagAddonUrl = true;
-		}
+        if (qName.equalsIgnoreCase("developer")) {
+            tagDeveloper = true;
+        }
 
-	}
+        if (qName.equalsIgnoreCase("websiteurl")) {
+            tagWebsite = true;
+        }
 
-	@Override
-	public void characters(char[] buffer, int start, int length) 
-			throws SAXException{
-		value.append(buffer, start, length);;
-		
-	}    
+        if (qName.equalsIgnoreCase("donateurl")) {
+            tagDonateUrl = true;
+        }
 
-	public void endElement(String uri, String localName, String qName)
-			throws SAXException {
-		
-		String input = value.toString().trim();
-		
-		if (tagRomName) {
-			RomUpdate.setRomName(mContext, input);
-			tagRomName = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Name = " + input);
-		}
+        if (qName.equalsIgnoreCase("bitcoinaddress")) {
+            tagBitCoinUrl = true;
+        }
 
-		if (tagVersionName) {
-			RomUpdate.setVersionName(mContext, input);
-			tagVersionName = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Version = " + input);
-		}
-		
-		if (tagVersionNumber) {
-			RomUpdate.setVersionNumber(mContext, Integer.parseInt(input));
-			tagVersionNumber = false;
-			if (DEBUGGING)
-				Log.d(TAG, "OTA Version = " + input);
-		}
+        if (qName.equalsIgnoreCase("changelog")) {
+            tagLog = true;
+        }
 
-		if (tagDirectUrl) {
-			if (!input.isEmpty()) {
-				RomUpdate.setDirectUrl(mContext, input);
-				setUrlDomain(input);
-			} else {
-				RomUpdate.setDirectUrl(mContext, "null");
-			}
-			RomUpdate.setDirectUrl(mContext, input);
-			tagDirectUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "URL = " + input);
-		}
+        if (qName.equalsIgnoreCase("addoncount")) {
+            tagAddonsCount = true;
+        }
 
-		if (tagHttpUrl) {
-			if (!input.isEmpty()) {
-				RomUpdate.setHttpUrl(mContext, input);
-				setUrlDomain(input);
-			} else {
-				RomUpdate.setHttpUrl(mContext, "null");
-			}
-			tagHttpUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "HTTP URL = " + input);
-		}
-		
-		if (tagAndroid) {
-			RomUpdate.setAndroidVersion(mContext, input);
-			tagAndroid = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Android Version = " + input);
-		}
+        if (qName.equalsIgnoreCase("addonsurl")) {
+            tagAddonUrl = true;
+        }
 
-		if (tagMD5) {
-			RomUpdate.setMd5(mContext, input);
-			tagMD5 = false;
-			if (DEBUGGING)
-				Log.d(TAG, "MD5 = " + input);
-		}
-		
-		if (tagFileSize) {
-			RomUpdate.setFileSize(mContext, Integer.parseInt(input));
-			tagFileSize = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Filesize = " + input);
-		}
-		
-		if (tagDeveloper) {
-			RomUpdate.setDeveloper(mContext, input);
-			tagDeveloper = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Developer = " + input);
-		}
+    }
 
-		if (tagWebsite) {
-			if (!input.isEmpty()) {
-				RomUpdate.setWebsite(mContext, input);
-			} else {
-				RomUpdate.setWebsite(mContext, "null");
-			}
-			tagWebsite = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Website = " + input);
-		}
+    @Override
+    public void characters(char[] buffer, int start, int length)
+            throws SAXException {
+        value.append(buffer, start, length);
+        ;
 
-		if (tagDonateUrl) {
-			if (!input.isEmpty()) {
-				RomUpdate.setDonateLink(mContext, input);
-			} else {
-				RomUpdate.setDonateLink(mContext, "null");
-			}			
-			tagDonateUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Donate URL = " + input);
-		}
-		
-		if (tagBitCoinUrl) {
-			if (input.contains("bitcoin:")) {
-				RomUpdate.setBitCoinLink(mContext, input);
-			} else if (input.isEmpty()) { 
-				RomUpdate.setBitCoinLink(mContext, "null");
-			} else {		
-				RomUpdate.setBitCoinLink(mContext, "bitcoin:" + input);
-			}
-			
-			tagBitCoinUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "BitCoin URL = " + input);
-		}
-		
-		if (tagLog) {
-			RomUpdate.setChangelog(mContext, input);
-			tagLog = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Changelog = " + input);
-		}
-		
-		if (tagAddonsCount) {
-			RomUpdate.setAddonsCount(mContext, Integer.parseInt(input));
-			tagAddonsCount = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Addons Count = " + input);
-		}
-		
-		if (tagAddonUrl) {
-			RomUpdate.setAddonsUrl(mContext, input);
-			tagAddonUrl = false;
-			if (DEBUGGING)
-				Log.d(TAG, "Addons URL = " + input);
-		}
-	}
-	
-	private void setUrlDomain(String input) {
-		URI uri;
-		try {
-			uri = new URI(input);
-			String domain = uri.getHost();
-			RomUpdate.setUrlDomain(mContext, domain.startsWith("www.") ? domain.substring(4) : domain);
-		} catch (URISyntaxException e) {
-			Log.e(TAG, e.getMessage());
-			RomUpdate.setUrlDomain(mContext, "Error");
-		}
-	    
-		
-	}
+    }
+
+    public void endElement(String uri, String localName, String qName)
+            throws SAXException {
+
+        String input = value.toString().trim();
+
+        if (tagRomName) {
+            RomUpdate.setRomName(mContext, input);
+            tagRomName = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Name = " + input);
+        }
+
+        if (tagVersionName) {
+            RomUpdate.setVersionName(mContext, input);
+            tagVersionName = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Version = " + input);
+        }
+
+        if (tagVersionNumber) {
+            RomUpdate.setVersionNumber(mContext, Integer.parseInt(input));
+            tagVersionNumber = false;
+            if (DEBUGGING)
+                Log.d(TAG, "OTA Version = " + input);
+        }
+
+        if (tagDirectUrl) {
+            if (!input.isEmpty()) {
+                RomUpdate.setDirectUrl(mContext, input);
+                setUrlDomain(input);
+            } else {
+                RomUpdate.setDirectUrl(mContext, "null");
+            }
+            RomUpdate.setDirectUrl(mContext, input);
+            tagDirectUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "URL = " + input);
+        }
+
+        if (tagHttpUrl) {
+            if (!input.isEmpty()) {
+                RomUpdate.setHttpUrl(mContext, input);
+                setUrlDomain(input);
+            } else {
+                RomUpdate.setHttpUrl(mContext, "null");
+            }
+            tagHttpUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "HTTP URL = " + input);
+        }
+
+        if (tagAndroid) {
+            RomUpdate.setAndroidVersion(mContext, input);
+            tagAndroid = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Android Version = " + input);
+        }
+
+        if (tagMD5) {
+            RomUpdate.setMd5(mContext, input);
+            tagMD5 = false;
+            if (DEBUGGING)
+                Log.d(TAG, "MD5 = " + input);
+        }
+
+        if (tagFileSize) {
+            RomUpdate.setFileSize(mContext, Integer.parseInt(input));
+            tagFileSize = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Filesize = " + input);
+        }
+
+        if (tagDeveloper) {
+            RomUpdate.setDeveloper(mContext, input);
+            tagDeveloper = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Developer = " + input);
+        }
+
+        if (tagWebsite) {
+            if (!input.isEmpty()) {
+                RomUpdate.setWebsite(mContext, input);
+            } else {
+                RomUpdate.setWebsite(mContext, "null");
+            }
+            tagWebsite = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Website = " + input);
+        }
+
+        if (tagDonateUrl) {
+            if (!input.isEmpty()) {
+                RomUpdate.setDonateLink(mContext, input);
+            } else {
+                RomUpdate.setDonateLink(mContext, "null");
+            }
+            tagDonateUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Donate URL = " + input);
+        }
+
+        if (tagBitCoinUrl) {
+            if (input.contains("bitcoin:")) {
+                RomUpdate.setBitCoinLink(mContext, input);
+            } else if (input.isEmpty()) {
+                RomUpdate.setBitCoinLink(mContext, "null");
+            } else {
+                RomUpdate.setBitCoinLink(mContext, "bitcoin:" + input);
+            }
+
+            tagBitCoinUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "BitCoin URL = " + input);
+        }
+
+        if (tagLog) {
+            RomUpdate.setChangelog(mContext, input);
+            tagLog = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Changelog = " + input);
+        }
+
+        if (tagAddonsCount) {
+            RomUpdate.setAddonsCount(mContext, Integer.parseInt(input));
+            tagAddonsCount = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Addons Count = " + input);
+        }
+
+        if (tagAddonUrl) {
+            RomUpdate.setAddonsUrl(mContext, input);
+            tagAddonUrl = false;
+            if (DEBUGGING)
+                Log.d(TAG, "Addons URL = " + input);
+        }
+    }
+
+    private void setUrlDomain(String input) {
+        URI uri;
+        try {
+            uri = new URI(input);
+            String domain = uri.getHost();
+            RomUpdate.setUrlDomain(mContext, domain.startsWith("www.") ? domain.substring(4) : domain);
+        } catch (URISyntaxException e) {
+            Log.e(TAG, e.getMessage());
+            RomUpdate.setUrlDomain(mContext, "Error");
+        }
+
+
+    }
 }
 

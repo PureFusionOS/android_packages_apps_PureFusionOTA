@@ -10,16 +10,16 @@ import sys
 
 options = {}
 
+
 # Set a value for a named option, to be used when not overridden on the command
 # line.
 def set(name, value=None):
-    
     global options
-    
+
     options[name] = value
 
-def get(name, default_value=None, implied_value=None):
 
+def get(name, default_value=None, implied_value=None):
     global options
 
     matches = b2.util.regex.transform(sys.argv, "--" + re.escape(name) + "=(.*)")

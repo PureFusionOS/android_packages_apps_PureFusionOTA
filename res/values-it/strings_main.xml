@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -44,11 +43,17 @@
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">Non compatibile</string>
-    <string name="main_not_compatible_message">Questa ROM non è compatibile con gli aggiornamenti OTA. Per favore contatta lo sviluppatore per maggiori informazioni</string>
+    <string name="main_not_compatible_message">Questa ROM non è compatibile con gli aggiornamenti
+        OTA. Per favore contatta lo sviluppatore per maggiori informazioni
+    </string>
     <string name="main_not_connected_title">Non connesso</string>
-    <string name="main_not_connected_message">Non sei connesso con nessuna rete. Per favore abilita una connessione di rete e riprova.</string>
+    <string name="main_not_connected_message">Non sei connesso con nessuna rete. Per favore abilita
+        una connessione di rete e riprova.
+    </string>
     <string name="main_playstore_title">BitCoin</string>
-    <string name="main_playstore_message">Non disponi di nessuna app in grado di gestire il mime-type \"bitcoin:\".\n\nVuoi cercarne una all\'interno del Google Play Store?</string>
+    <string name="main_playstore_message">Non disponi di nessuna app in grado di gestire il
+        mime-type \"bitcoin:\".\n\nVuoi cercarne una all\'interno del Google Play Store?
+    </string>
 
     <!-- Content Descriptions -->
     <string name="main_button_icon">Icona del pulsante</string>

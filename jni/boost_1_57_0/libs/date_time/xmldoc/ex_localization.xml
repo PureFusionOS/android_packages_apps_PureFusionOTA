@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2005 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,16 +8,17 @@
 -->
 
 <section id="date_time.examples.localization">
-  <title>Localization Demonstration</title>
+    <title>Localization Demonstration</title>
 
-  <para>
-    The boost::date_time library provides the ability to create customized locale facets. Date ordering, language, seperators, and abbreviations can be customized.
-  </para>
-  <!-- <para>
-    This example uses the new (as of 1.33) date_time IO code. An example using the old code is also provided to demonstrate how much easier customized output is (see <link linkend="date_time.examples.legacy_localization">legacy_localization example</link>). 
-  </para> -->
-  <programlisting>
-    <![CDATA[
+    <para>
+        The boost::date_time library provides the ability to create customized locale facets. Date
+        ordering, language, seperators, and abbreviations can be customized.
+    </para>
+    <!-- <para>
+      This example uses the new (as of 1.33) date_time IO code. An example using the old code is also provided to demonstrate how much easier customized output is (see <link linkend="date_time.examples.legacy_localization">legacy_localization example</link>).
+    </para> -->
+    <programlisting>
+        <![CDATA[
   /* The following shows the creation of a facet for the output of 
    * dates in German (please forgive me for any errors in my German --
    * I'm not a native speaker).
@@ -111,5 +112,5 @@
 
   }
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

@@ -7,8 +7,9 @@
 
 import sys
 
+
 def create(t):
-  t.write('''mockinfo.py''', '''
+    t.write('''mockinfo.py''', '''
 import re
 import optparse
 import os
@@ -159,7 +160,7 @@ class MockInfo(object):
     return True
 ''')
 
-  t.write('mock.py', '''
+    t.write('mock.py', '''
 import mockinfo
 import markup
 import sys
@@ -172,7 +173,7 @@ else:
   exit(1)
 ''')
 
-  t.write('mock.jam', '''
+    t.write('mock.jam', '''
 import feature ;
 import toolset ;
 import path ;
@@ -238,9 +239,10 @@ actions link.dll
 
 ''' % sys.executable.replace('\\', '\\\\'))
 
+
 def set_expected(t, markup):
-  verbose = "True" if t.verbose else "False"
-  t.write('markup.py', '''
+    verbose = "True" if t.verbose else "False"
+    t.write('markup.py', '''
 import mockinfo
 info = mockinfo.MockInfo(%s)
 def source_file(name, contents):

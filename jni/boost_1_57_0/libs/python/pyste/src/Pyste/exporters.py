@@ -7,6 +7,6 @@
 # a list of Exporter instances
 exporters = []
 
-current_interface = None # the current interface file being processed
-importing = False    # whetever we are now importing a pyste file.
-                     # exporters created here shouldn't export themselves
+current_interface = None  # the current interface file being processed
+importing = False  # whetever we are now importing a pyste file.
+# exporters created here shouldn't export themselves

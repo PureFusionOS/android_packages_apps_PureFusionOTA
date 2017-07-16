@@ -86,21 +86,23 @@ after creating second intstance of X instances count is 2
 
 """
 
-#import sys; sys.path.append(r'P:\Actimize4.0\smart_const\py_smart_const___Win32_Debug')
+# import sys; sys.path.append(r'P:\Actimize4.0\smart_const\py_smart_const___Win32_Debug')
 import properties_ext as properties
 
 
-def run(args = None):
+def run(args=None):
     import sys
     import doctest
 
     if args is not None:
         sys.argv = args
     return doctest.testmod(sys.modules.get(__name__))
-    
+
+
 if __name__ == '__main__':
     print "running..."
     import sys
+
     status = run()[0]
     if (status == 0): print "Done."
     sys.exit(status)

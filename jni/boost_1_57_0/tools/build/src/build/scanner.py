@@ -37,20 +37,21 @@ from b2.manager import get_manager
 import property
 
 
-def reset ():
+def reset():
     """ Clear the module state. This is mainly for testing purposes.
     """
     global __scanners, __rv_cache, __scanner_cache
 
     # Maps registered scanner classes to relevant properties
     __scanners = {}
-    
+
     # A cache of scanners.
     # The key is: class_name.properties_tag, where properties_tag is the concatenation 
     # of all relevant properties, separated by '-'
     __scanner_cache = {}
-    
-reset ()
+
+
+reset()
 
 
 def register(scanner_class, relevant_properties):
@@ -60,60 +61,62 @@ def register(scanner_class, relevant_properties):
     """
     __scanners[str(scanner_class)] = relevant_properties
 
+
 def registered(scanner_class):
     """ Returns true iff a scanner of that class is registered
     """
     return __scanners.has_key(str(scanner_class))
-    
+
+
 def get(scanner_class, properties):
     """ Returns an instance of previously registered scanner
         with the specified properties.
     """
     scanner_name = str(scanner_class)
-    
+
     if not registered(scanner_name):
-        raise BaseException ("attempt to get unregisted scanner: %s" % scanner_name)
+        raise BaseException("attempt to get unregisted scanner: %s" % scanner_name)
 
     relevant_properties = __scanners[scanner_name]
     r = property.select(relevant_properties, properties)
 
     scanner_id = scanner_name + '.' + '-'.join(r)
-    
+
     if not __scanner_cache.has_key(scanner_name):
         __scanner_cache[scanner_name] = scanner_class(r)
 
     return __scanner_cache[scanner_name]
 
+
 class Scanner:
     """ Base scanner class.
     """
-    def __init__ (self):
+
+    def __init__(self):
         pass
-    
-    def pattern (self):
+
+    def pattern(self):
         """ Returns a pattern to use for scanning.
         """
-        raise BaseException ("method must be overriden")
+        raise BaseException("method must be overriden")
 
-    def process (self, target, matches):
+    def process(self, target, matches):
         """ Establish necessary relationship between targets,
             given actual target beeing scanned, and a list of
             pattern matches in that file.
         """
-        raise BaseException ("method must be overriden")
+        raise BaseException("method must be overriden")
 
 
 # Common scanner class, which can be used when there's only one
 # kind of includes (unlike C, where "" and <> includes have different
 # search paths).
 class CommonScanner(Scanner):
-
-    def __init__ (self, includes):
+    def __init__(self, includes):
         Scanner.__init__(self)
         self.includes = includes
 
     def process(self, target, matches, binding):
-
         target_path = os.path.normpath(os.path.dirname(binding[0]))
         bjam.call("mark-included", target, matches)
 
@@ -121,14 +124,14 @@ class CommonScanner(Scanner):
                                                    [target_path] + self.includes)
         get_manager().scanners().propagate(self, matches)
 
+
 class ScannerRegistry:
-    
-    def __init__ (self, manager):
+    def __init__(self, manager):
         self.manager_ = manager
         self.count_ = 0
         self.exported_scanners_ = {}
 
-    def install (self, scanner, target, vtarget):
+    def install(self, scanner, target, vtarget):
         """ Installs the specified scanner on actual target 'target'. 
             vtarget: virtual target from which 'target' was actualized.
         """
@@ -143,7 +146,7 @@ class ScannerRegistry:
             exported_name = self.exported_scanners_[scanner]
 
         engine.set_target_variable(target, "HDRRULE", exported_name)
-        
+
         # scanner reflects difference in properties affecting    
         # binding of 'target', which will be known when processing
         # includes for it, will give information on how to
@@ -157,4 +160,3 @@ class ScannerRegistry:
         engine.set_target_variable(targets, "HDRRULE",
                                    self.exported_scanners_[scanner])
         engine.set_target_variable(targets, "HDRGRIST", str(id(scanner)))
-

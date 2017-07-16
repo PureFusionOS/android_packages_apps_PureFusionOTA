@@ -4,7 +4,12 @@
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
 
-import sys, os, subprocess, tempfile, re
+import os
+import re
+import subprocess
+import sys
+import tempfile
+
 
 def main(args, directory):
     if len(args) != 1:
@@ -14,29 +19,30 @@ def main(args, directory):
 
     failures = 0
     failures += run_quickbook(quickbook_command, 'svg_missing.qbk',
-            deps_gold = 'svg_missing_deps.txt')
+                              deps_gold='svg_missing_deps.txt')
     failures += run_quickbook(quickbook_command, 'svg_missing.qbk',
-            locations_gold = 'svg_missing_locs.txt')
+                              locations_gold='svg_missing_locs.txt')
     failures += run_quickbook(quickbook_command, 'missing_relative.qbk',
-            deps_gold = 'missing_relative_deps.txt',
-            locations_gold = 'missing_relative_locs.txt')
+                              deps_gold='missing_relative_deps.txt',
+                              locations_gold='missing_relative_locs.txt')
     failures += run_quickbook(quickbook_command, 'include_path.qbk',
-            deps_gold = 'include_path_deps.txt',
-            locations_gold = 'include_path_locs.txt',
-            input_path = ['sub1', 'sub2'])
+                              deps_gold='include_path_deps.txt',
+                              locations_gold='include_path_locs.txt',
+                              input_path=['sub1', 'sub2'])
     failures += run_quickbook(quickbook_command, 'include_glob.qbk',
-            deps_gold = 'include_glob_deps.txt',
-            locations_gold = 'include_glob_locs.txt',
-            input_path = ['sub1', 'sub2'])
+                              deps_gold='include_glob_deps.txt',
+                              locations_gold='include_glob_locs.txt',
+                              input_path=['sub1', 'sub2'])
 
     if failures == 0:
         print "Success"
     else:
-        print "Failures:",failures
+        print "Failures:", failures
         exit(failures)
 
-def run_quickbook(quickbook_command, filename, output_gold = None,
-        deps_gold = None, locations_gold = None, input_path = []):
+
+def run_quickbook(quickbook_command, filename, output_gold=None,
+                  deps_gold=None, locations_gold=None, input_path=[]):
     failures = 0
 
     command = [quickbook_command, '--debug', filename]
@@ -84,7 +90,7 @@ def run_quickbook(quickbook_command, filename, output_gold = None,
         if deps_filename: os.unlink(deps_filename)
 
     if deps_gold:
-        gold = load_dependencies(deps_gold, adjust_paths = True)
+        gold = load_dependencies(deps_gold, adjust_paths=True)
         if deps != gold:
             failures = failures + 1
             print "Dependencies don't match:"
@@ -93,7 +99,7 @@ def run_quickbook(quickbook_command, filename, output_gold = None,
             print
 
     if locations_gold:
-        gold = load_locations(locations_gold, adjust_paths = True)
+        gold = load_locations(locations_gold, adjust_paths=True)
         if locations != gold:
             failures = failures + 1
             print "Dependencies don't match:"
@@ -114,7 +120,8 @@ def run_quickbook(quickbook_command, filename, output_gold = None,
 
     return failures
 
-def load_dependencies(filename, adjust_paths = False):
+
+def load_dependencies(filename, adjust_paths=False):
     dependencies = set()
     f = open(filename, 'r')
     for path in f:
@@ -126,7 +133,8 @@ def load_dependencies(filename, adjust_paths = False):
         dependencies.add(path)
     return dependencies
 
-def load_locations(filename, adjust_paths = False):
+
+def load_locations(filename, adjust_paths=False):
     line_matcher = re.compile("^([+-g]) (.*)$")
     dependencies = {}
     f = open(filename, 'r')
@@ -154,12 +162,14 @@ def load_locations(filename, adjust_paths = False):
             if path in dependencies:
                 raise Exception("Duplicate path (%1s) in %2s" % (path, filename))
             dependencies[path] = found
-    return { 'dependencies': dependencies, 'globs': globs }
+    return {'dependencies': dependencies, 'globs': globs}
+
 
 def temp_filename(extension):
-    file = tempfile.mkstemp(suffix = extension)
+    file = tempfile.mkstemp(suffix=extension)
     os.close(file[0])
     return file[1]
+
 
 def load_file(filename):
     f = open(filename, 'r')
@@ -169,5 +179,6 @@ def load_file(filename):
         f.close()
 
     return None
+
 
 main(sys.argv[1:], os.path.dirname(sys.argv[0]))

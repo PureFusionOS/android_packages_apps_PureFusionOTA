@@ -43,11 +43,13 @@ feature.feature('pch',
 feature.feature('pch-header', [], ['free', 'dependency'])
 feature.feature('pch-file', [], ['free', 'dependency'])
 
+
 class PchGenerator(generators.Generator):
     """
         Base PCH generator. The 'run' method has the logic to prevent this generator
         from being run unless it's being used for a top-level PCH target.
     """
+
     def action_class(self):
         return builtin.CompileAction
 
@@ -66,14 +68,15 @@ class PchGenerator(generators.Generator):
             pass
         else:
             r = self.run_pch(project, name,
-                 prop_set.add_raw(['<define>BOOST_BUILD_PCH_ENABLED']),
-                 sources)
+                             prop_set.add_raw(['<define>BOOST_BUILD_PCH_ENABLED']),
+                             sources)
             return generators.add_usage_requirements(
                 r, ['<define>BOOST_BUILD_PCH_ENABLED'])
 
     # This rule must be overridden by the derived classes.
     def run_pch(self, project, name, prop_set, sources):
         pass
+
 
 # NOTE: requirements are empty, default pch generator can be applied when
 # pch=off.

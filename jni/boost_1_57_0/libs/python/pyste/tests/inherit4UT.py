@@ -5,8 +5,8 @@
 import unittest
 from _inherit4 import *
 
-class TestInherit4(unittest.TestCase):
 
+class TestInherit4(unittest.TestCase):
     def testIt(self):
         self.assert_(issubclass(B, A))
         self.assert_(issubclass(C, A))
@@ -26,6 +26,7 @@ class TestInherit4(unittest.TestCase):
         self.assertEqual(c.x, 100)
         self.assertEqual(c.y, 200)
         self.assertEqual(c.z, 300)
+
 
 if __name__ == '__main__':
     unittest.main()

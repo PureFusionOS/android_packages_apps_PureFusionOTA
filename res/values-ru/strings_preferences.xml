@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -18,17 +17,25 @@
 
     <string name="preferences_name">Настройки</string>
     <string name="twrp_ors_title">Скрипт для рекавери</string>
-    <string name="twrp_ors_summary">Работает на TWRP и некоторых кастомных рековери на основе CWM</string>
-    <string name="twrp_ors_information">Если включить скрипт, ОТА-обновление установится автоматически, без участия пользователя. Просто нажмите установить и ждите завершения.</string>
+    <string name="twrp_ors_summary">Работает на TWRP и некоторых кастомных рековери на основе CWM
+    </string>
+    <string name="twrp_ors_information">Если включить скрипт, ОТА-обновление установится
+        автоматически, без участия пользователя. Просто нажмите установить и ждите завершения.
+    </string>
     <string name="twrp_ors_delete_after">Удалить после установки</string>
-    <string name="twrp_ors_delete_after_summary">Удалить архив с обновлением после установки?</string>
+    <string name="twrp_ors_delete_after_summary">Удалить архив с обновлением после установки?
+    </string>
     <string name="twrp_ors_install_prefs">Действия во время установки</string>
-    <string name="twrp_ors_install_prefs_summary">Выберите действия, которые выполняются скриптом во время установки</string>
+    <string name="twrp_ors_install_prefs_summary">Выберите действия, которые выполняются скриптом во
+        время установки
+    </string>
     <string name="twrp_ors_wipe_data">Очистить Data</string>
     <string name="twrp_ors_wipe_cache">Очистить Cache</string>
     <string name="twrp_ors_wipe_dalvik">Очистить Dalvik</string>
     <string name="notifications_title">Уведомления</string>
-    <string name="background_service_summary">Автоматически проверять наличие обновлений и показывать уведомление, если доступно</string>
+    <string name="background_service_summary">Автоматически проверять наличие обновлений и
+        показывать уведомление, если доступно
+    </string>
     <string name="background_frequency">Частота проверки обновлений</string>
     <string name="background_30mins">Каждые 30 минут</string>
     <string name="background_60mins">Каждые 60 минут</string>
@@ -53,8 +60,9 @@
     <string name="notifications_vibrate">Вибрация</string>
     <string name="silent_ringtone">Без звука</string>
     <string name="notification_ignore_release_title">Игнорировать релиз</string>
-    <string name="notification_ignoring_release">Игнорируемая версия: </string>
-    <string name="notification_not_ignoring_release">В данный момент никакой релиз не игнорируется</string>
+    <string name="notification_ignoring_release">Игнорируемая версия:</string>
+    <string name="notification_not_ignoring_release">В данный момент никакой релиз не игнорируется
+    </string>
     <string name="storage">Хранилище</string>
     <string name="storage_location">Место хранения</string>
 

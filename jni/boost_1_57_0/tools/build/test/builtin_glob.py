@@ -28,6 +28,7 @@ def test_glob(files, glob, expected, setup=""):
     t.run_build_system(stdout="\n".join(expected + [""]))
     t.cleanup()
 
+
 # one or both arguments empty
 test_glob([], "[ GLOB : ]", [])
 test_glob([], "[ GLOB . : ]", [])

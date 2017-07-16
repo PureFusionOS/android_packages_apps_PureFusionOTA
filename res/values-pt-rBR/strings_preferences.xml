@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -18,17 +17,26 @@
 
     <string name="preferences_name">Configurações</string>
     <string name="twrp_ors_title">Habilitar OpenRecoveryScript</string>
-    <string name="twrp_ors_summary">Funciona no TWRP e em alguns CWM personalizados (não oficiais)</string>
-    <string name="twrp_ors_information">Permite esse app instalar o arquivo via recuperação sem necessidade de interação do usuário. Simplesmente toque em instalar e espere acabar.</string>
+    <string name="twrp_ors_summary">Funciona no TWRP e em alguns CWM personalizados (não oficiais)
+    </string>
+    <string name="twrp_ors_information">Permite esse app instalar o arquivo via recuperação sem
+        necessidade de interação do usuário. Simplesmente toque em instalar e espere acabar.
+    </string>
     <string name="twrp_ors_delete_after">Apagar depois da instalação</string>
-    <string name="twrp_ors_delete_after_summary">O ORS deve apagar o arquivo de atualização após a instalação?</string>
+    <string name="twrp_ors_delete_after_summary">O ORS deve apagar o arquivo de atualização após a
+        instalação?
+    </string>
     <string name="twrp_ors_install_prefs">Configurações de Instalação</string>
-    <string name="twrp_ors_install_prefs_summary">Escolha algumas configurações de instalação ao usar o ORS</string>
+    <string name="twrp_ors_install_prefs_summary">Escolha algumas configurações de instalação ao
+        usar o ORS
+    </string>
     <string name="twrp_ors_wipe_data">Apagar Dados</string>
     <string name="twrp_ors_wipe_cache">Apagar Cache</string>
     <string name="twrp_ors_wipe_dalvik">Apagar Cache Dalvik</string>
     <string name="notifications_title">Notificações</string>
-    <string name="background_service_summary">Verifica por atualizações automaticamente e mostra uma notificação se estiver disponível</string>
+    <string name="background_service_summary">Verifica por atualizações automaticamente e mostra uma
+        notificação se estiver disponível
+    </string>
     <string name="background_frequency">Frequência de verificação</string>
     <string name="background_30mins">30 Minutos</string>
     <string name="background_60mins">60 Minutos</string>

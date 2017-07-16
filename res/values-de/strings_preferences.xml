@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -18,17 +17,26 @@
 
     <string name="preferences_name">Einstellungen</string>
     <string name="twrp_ors_title">OpenRecoveryScript verwenden</string>
-    <string name="twrp_ors_summary">Kann mit TWRP und einigen inoffiziellen Versionen von CWM verwendet werden</string>
-    <string name="twrp_ors_information">Damit kann diese App ein Update im Recovery-Modus eigenständig installieren. Drücken Sie nur auf "Installieren" und warten Sie, bis es fertig ist.</string>
+    <string name="twrp_ors_summary">Kann mit TWRP und einigen inoffiziellen Versionen von CWM
+        verwendet werden
+    </string>
+    <string name="twrp_ors_information">Damit kann diese App ein Update im Recovery-Modus
+        eigenständig installieren. Drücken Sie nur auf "Installieren" und warten Sie, bis es fertig
+        ist.
+    </string>
     <string name="twrp_ors_delete_after">Nach Installation entfernen</string>
-    <string name="twrp_ors_delete_after_summary">Update-Datei nach ihrer Installation entfernen</string>
+    <string name="twrp_ors_delete_after_summary">Update-Datei nach ihrer Installation entfernen
+    </string>
     <string name="twrp_ors_install_prefs">Installationseinstellungen</string>
-    <string name="twrp_ors_install_prefs_summary">Verwendung des OpenRecoveryScripts anpassen</string>
+    <string name="twrp_ors_install_prefs_summary">Verwendung des OpenRecoveryScripts anpassen
+    </string>
     <string name="twrp_ors_wipe_data">Data-Verzeichnis bereinigen</string>
     <string name="twrp_ors_wipe_cache">Cache bereinigen</string>
     <string name="twrp_ors_wipe_dalvik">Dalvik bereinigen</string>
     <string name="notifications_title">Benachrichtigungen</string>
-    <string name="background_service_summary">Automatisch auf Updates prüfen und bei neuen Updates benachrichtigen</string>
+    <string name="background_service_summary">Automatisch auf Updates prüfen und bei neuen Updates
+        benachrichtigen
+    </string>
     <string name="background_frequency">Häufigkeit der Überprüfung</string>
     <string name="background_30mins">30 Minuten</string>
     <string name="background_60mins">60 Minuten</string>

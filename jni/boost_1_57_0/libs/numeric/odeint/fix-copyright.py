@@ -9,12 +9,13 @@ from subprocess import check_output as run
 
 def authors(filename):
     log = run(['git', 'log', '--follow',
-              '--date=short','--format=%aN%x09%ad', filename],
+               '--date=short', '--format=%aN%x09%ad', filename],
               universal_newlines=True)
     for line in log.splitlines():
         author, date = line.split('\t')
         if author != 'fix-copyright.py':
             yield author, datetime.strptime(date, '%Y-%m-%d')
+
 
 def new_copyright(filename, previous):
     def f():
@@ -30,7 +31,9 @@ def new_copyright(filename, previous):
             line = 'Copyright ' + fmt.format(start.year, end.year) + ' ' + author
             key = (start, author)
             yield key, line
+
     return map(itemgetter(1), sorted(f()))
+
 
 def fix_copyright(filename):
     # Find copyright block in original file
@@ -40,7 +43,9 @@ def fix_copyright(filename):
     with open(filename, 'r') as f:
         content = list(f)
     for i, line in enumerate(content[:15]):
-        m = re.match(r'^(?P<prefix>\W*)(\(c\))?\s*?copyright\s*(\(c\))?\s+\d{4}(\s*-\s*\d{4})?\s+(?P<name>.+?)\s*$', line, re.IGNORECASE)
+        m = re.match(
+            r'^(?P<prefix>\W*)(\(c\))?\s*?copyright\s*(\(c\))?\s+\d{4}(\s*-\s*\d{4})?\s+(?P<name>.+?)\s*$',
+            line, re.IGNORECASE)
         if m:
             d = m.groupdict()
             prefix.add(d['prefix'])
@@ -57,16 +62,18 @@ def fix_copyright(filename):
         for i, line in enumerate(content):
             if i in lines:
                 for repl in new:
-                    print >>f, prefix + repl
+                    print >> f, prefix + repl
             else:
-                print >>f, line,
+                print >> f, line,
     pass
+
 
 def all_files():
     ls = run(['git', 'ls-files'], universal_newlines=True)
     for filename in ls.splitlines():
         if magic.from_file(filename, mime=True).split('/')[0] == 'text':
             yield filename
+
 
 for f in all_files():
     fix_copyright(f)

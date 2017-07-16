@@ -10,9 +10,9 @@ from SingleCodeUnit import SingleCodeUnit
 from SmartFile import SmartFile
 
 
-#==============================================================================
+# ==============================================================================
 # MultipleCodeUnit
-#==============================================================================
+# ==============================================================================
 class MultipleCodeUnit(object):
     '''
     Represents a bunch of cpp files, where each cpp file represents a header
@@ -27,18 +27,15 @@ class MultipleCodeUnit(object):
         self._current = None
         self.all = SingleCodeUnit(None, None)
 
-    
     def _FunctionName(self, interface_file):
         name = os.path.splitext(interface_file)[0]
         return 'Export_%s' % utils.makeid(name)
-    
 
     def _FileName(self, interface_file):
         filename = os.path.basename(interface_file)
-        filename = '_%s.cpp' % os.path.splitext(filename)[0] 
+        filename = '_%s.cpp' % os.path.splitext(filename)[0]
         return os.path.join(self.outdir, filename)
 
-    
     def SetCurrent(self, interface_file, export_name):
         'Changes the current code unit'
         if export_name is None:
@@ -58,40 +55,36 @@ class MultipleCodeUnit(object):
                     self.functions.append(function)
             self._current = codeunit
 
-
     def Current(self):
         return self._current
 
     current = property(Current, SetCurrent)
-        
-            
+
     def Write(self, section, code):
         if self._current is not None:
             self.current.Write(section, code)
 
-
     def Section(self, section):
-        if self._current is not None: 
+        if self._current is not None:
             return self.current.Section(section)
-
 
     def _CreateOutputDir(self):
         try:
             os.mkdir(self.outdir)
-        except OSError: pass # already created
+        except OSError:
+            pass  # already created
 
-        
     def Save(self):
         # create the directory where all the files will go
         self._CreateOutputDir();
         # order all code units by filename, and merge them all
-        codeunits = {} # filename => list of codeunits
+        codeunits = {}  # filename => list of codeunits
 
         # While ordering all code units by file name, the first code
         # unit in the list of code units is used as the main unit
         # which dumps all the include, declaration and
         # declaration-outside sections at the top of the file.
-        for filename, codeunit in self.codeunits.items(): 
+        for filename, codeunit in self.codeunits.items():
             if filename not in codeunits:
                 # this codeunit is the main codeunit.
                 codeunits[filename] = [codeunit]
@@ -110,9 +103,8 @@ class MultipleCodeUnit(object):
                 codeunit.Save(append)
                 if not append:
                     append = True
-                    
 
-    def GenerateMain(self, interfaces):                    
+    def GenerateMain(self, interfaces):
         # generate the main cpp
         filename = os.path.join(self.outdir, '_main.cpp')
         fout = SmartFile(filename, 'w')
@@ -131,6 +123,3 @@ class MultipleCodeUnit(object):
             fout.write(indent)
             fout.write('%s();\n' % function)
         fout.write('}\n')
-        
-    
-        

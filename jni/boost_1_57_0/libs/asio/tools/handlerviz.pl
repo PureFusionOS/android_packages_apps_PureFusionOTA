@@ -33,96 +33,83 @@ my %all_nodes = ();
 #-------------------------------------------------------------------------------
 # Parse the debugging output and populate the nodes and edges.
 
-sub parse_debug_output()
-{
-  while (my $line = <>)
-  {
-    chomp($line);
+sub parse_debug_output() {
+    while (my $line = <>) {
+        chomp($line);
 
-    if ($line =~ /\@asio\|([^|]*)\|([^|]*)\|(.*)$/)
-    {
-      my $timestamp = $1;
-      my $action = $2;
-      my $description = $3;
+        if ($line =~ /\@asio\|([^|]*)\|([^|]*)\|(.*)$/) {
+            my $timestamp = $1;
+            my $action = $2;
+            my $description = $3;
 
-      # Handler creation.
-      if ($action =~ /^([0-9]+)\*([0-9]+)$/)
-      {
-        my $begin = $1;
-        my $end = $2;
-        my $label = $description;
-        $label =~ s/\./\\n/g;
+            # Handler creation.
+            if ($action =~ /^([0-9]+)\*([0-9]+)$/) {
+                my $begin = $1;
+                my $end = $2;
+                my $label = $description;
+                $label =~ s/\./\\n/g;
 
-        if ($begin eq "0")
-        {
-          $begin = "a" . $anon_id++;
-          $anon_nodes{$begin} = $timestamp;
-          $all_nodes{"$timestamp-$begin"} = $begin;
+                if ($begin eq "0") {
+                    $begin = "a" . $anon_id++;
+                    $anon_nodes{$begin} = $timestamp;
+                    $all_nodes{"$timestamp-$begin"} = $begin;
+                }
+
+                my %edge = (begin => $begin, end => $end, label => $label);
+                push(@edges, \%edge);
+            }
+
+            # Begin handler invocation.
+            elsif ($action =~ /^>([0-9]+)$/) {
+                my %new_node = (label => $description, entry => $timestamp);
+                $new_node{content} = ();
+                $nodes{$1} = \%new_node;
+                $all_nodes{"$timestamp-$1"} = $1;
+            }
+
+            # End handler invocation.
+            elsif ($action =~ /^<([0-9]+)$/) {
+                $nodes{$1}->{exit} = $timestamp;
+            }
+
+            # Handler threw exception.
+            elsif ($action =~ /^!([0-9]+)$/) {
+                push(@{$nodes{$1}->{content}}, "exception");
+            }
+
+            # Handler was destroyed without being invoked.
+            elsif ($action =~ /^~([0-9]+)$/) {
+                my %new_node = (label => "$timestamp destroyed");
+                $new_node{content} = ();
+                $nodes{$1} = \%new_node;
+                $all_nodes{"$timestamp-$1"} = $1;
+            }
+
+            # Handler performed some operation.
+            elsif ($action =~ /^([0-9]+)$/) {
+                if ($1 eq "0") {
+                    my $id = "a" . $anon_id++;
+                    $anon_nodes{$id} = "$timestamp\\l$description";
+                    $all_nodes{"$timestamp-$id"} = $id;
+                }
+                else {
+                    push(@{$nodes{$1}->{content}}, "$description");
+                }
+            }
         }
-
-        my %edge = ( begin=>$begin, end=>$end, label=>$label );
-        push(@edges, \%edge);
-      }
-
-      # Begin handler invocation. 
-      elsif ($action =~ /^>([0-9]+)$/)
-      {
-        my %new_node = ( label=>$description, entry=>$timestamp );
-        $new_node{content} = ();
-        $nodes{$1} = \%new_node;
-        $all_nodes{"$timestamp-$1"} = $1;
-      }
-
-      # End handler invocation.
-      elsif ($action =~ /^<([0-9]+)$/)
-      {
-        $nodes{$1}->{exit} = $timestamp;
-      }
-
-      # Handler threw exception.
-      elsif ($action =~ /^!([0-9]+)$/)
-      {
-        push(@{$nodes{$1}->{content}}, "exception");
-      }
-
-      # Handler was destroyed without being invoked.
-      elsif ($action =~ /^~([0-9]+)$/)
-      {
-        my %new_node = ( label=>"$timestamp destroyed" );
-        $new_node{content} = ();
-        $nodes{$1} = \%new_node;
-        $all_nodes{"$timestamp-$1"} = $1;
-      }
-
-      # Handler performed some operation.
-      elsif ($action =~ /^([0-9]+)$/)
-      {
-        if ($1 eq "0")
-        {
-          my $id = "a" . $anon_id++;
-          $anon_nodes{$id} = "$timestamp\\l$description";
-          $all_nodes{"$timestamp-$id"} = $id;
-        }
-        else
-        {
-          push(@{$nodes{$1}->{content}}, "$description");
-        }
-      }
     }
-  }
 }
 
 #-------------------------------------------------------------------------------
 # Helper function to convert a string to escaped HTML text.
 
-sub escape($)
-{
-  my $text = shift;
-  $text =~ s/&/\&amp\;/g;
-  $text =~ s/</\&lt\;/g;
-  $text =~ s/>/\&gt\;/g;
-  $text =~ s/\t/    /g;
-  return $text;
+sub escape($) {
+    my $text = shift;
+    $text =~ s/&/\&amp\;/g;
+    $text =~ s/</\&lt\;/g;
+    $text =~ s/>/\&gt\;/g;
+    $text =~ s/\t/    /g;
+    return $text;
 }
 
 #-------------------------------------------------------------------------------
@@ -201,96 +188,85 @@ EOF
 #-------------------------------------------------------------------------------
 # Generate dot output from the nodes and edges.
 
-sub print_nodes()
-{
-  foreach my $name (sort keys %nodes)
-  {
-    my $node = $nodes{$name};
-    my $entry = $node->{entry};
-    my $exit = $node->{exit};
-    my $label = escape($node->{label});
-    my $header = $node_header;
-    $header =~ s/%name%/$name/g;
-    $header =~ s/%label%/$label/g;
-    print($header);
+sub print_nodes() {
+    foreach my $name (sort keys %nodes) {
+        my $node = $nodes{$name};
+        my $entry = $node->{entry};
+        my $exit = $node->{exit};
+        my $label = escape($node->{label});
+        my $header = $node_header;
+        $header =~ s/%name%/$name/g;
+        $header =~ s/%label%/$label/g;
+        print($header);
 
-    my $line = $node_content;
-    my $content = $entry . " + " . sprintf("%.6f", $exit - $entry) . "s";
-    $line =~ s/%content%/$content/g;
-    print($line);
+        my $line = $node_content;
+        my $content = $entry . " + " . sprintf("%.6f", $exit - $entry) . "s";
+        $line =~ s/%content%/$content/g;
+        print($line);
 
-    foreach my $content (@{$node->{content}})
-    {
-      $content = escape($content);
-      $content = " " if length($content) == 0;
-      my $line = $node_content;
-      $line =~ s/%content%/$content/g;
-      print($line);
+        foreach my $content (@{$node->{content}}) {
+            $content = escape($content);
+            $content = " " if length($content) == 0;
+            my $line = $node_content;
+            $line =~ s/%content%/$content/g;
+            print($line);
+        }
+
+        print($node_footer);
     }
-
-    print($node_footer);
-  }
 }
 
-sub print_anon_nodes()
-{
-  print($anon_nodes_header);
-  foreach my $name (sort keys %anon_nodes)
-  {
-    my $label = $anon_nodes{$name};
-    my $line = $anon_node;
-    $line =~ s/%name%/$name/g;
-    $line =~ s/%label%/$label/g;
-    print($line);
-  }
-  print($edges_footer);
-}
-
-sub print_edges()
-{
-  print($edges_header);
-  foreach my $e (@edges)
-  {
-    my $begin = $e->{begin};
-    my $end = $e->{end};
-    my $label = $e->{label};
-    my $line = $edge;
-    $line =~ s/%begin%/$begin/g;
-    $line =~ s/%end%/$end/g;
-    $line =~ s/%label%/$label/g;
-    print($line);
-  }
-  print($edges_footer);
-}
-
-sub print_node_order()
-{
-  my $prev = "";
-  print($node_order_header);
-  foreach my $name (sort keys %all_nodes)
-  {
-    if ($prev ne "")
-    {
-      my $begin = $prev;
-      my $end = $all_nodes{$name};
-      my $line = $node_order;
-      $line =~ s/%begin%/$begin/g;
-      $line =~ s/%end%/$end/g;
-      print($line);
+sub print_anon_nodes() {
+    print($anon_nodes_header);
+    foreach my $name (sort keys %anon_nodes) {
+        my $label = $anon_nodes{$name};
+        my $line = $anon_node;
+        $line =~ s/%name%/$name/g;
+        $line =~ s/%label%/$label/g;
+        print($line);
     }
-    $prev = $all_nodes{$name};
-  }
-  print($node_order_footer);
+    print($edges_footer);
 }
 
-sub generate_dot()
-{
-  print($graph_header);
-  print_nodes();
-  print_anon_nodes();
-  print_edges();
-  print_node_order();
-  print($graph_footer);
+sub print_edges() {
+    print($edges_header);
+    foreach my $e (@edges) {
+        my $begin = $e->{begin};
+        my $end = $e->{end};
+        my $label = $e->{label};
+        my $line = $edge;
+        $line =~ s/%begin%/$begin/g;
+        $line =~ s/%end%/$end/g;
+        $line =~ s/%label%/$label/g;
+        print($line);
+    }
+    print($edges_footer);
+}
+
+sub print_node_order() {
+    my $prev = "";
+    print($node_order_header);
+    foreach my $name (sort keys %all_nodes) {
+        if ($prev ne "") {
+            my $begin = $prev;
+            my $end = $all_nodes{$name};
+            my $line = $node_order;
+            $line =~ s/%begin%/$begin/g;
+            $line =~ s/%end%/$end/g;
+            print($line);
+        }
+        $prev = $all_nodes{$name};
+    }
+    print($node_order_footer);
+}
+
+sub generate_dot() {
+    print($graph_header);
+    print_nodes();
+    print_anon_nodes();
+    print_edges();
+    print_node_order();
+    print($graph_footer);
 }
 
 #-------------------------------------------------------------------------------

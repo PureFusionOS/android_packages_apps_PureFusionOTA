@@ -17,7 +17,7 @@ setup(
     author_email="agurtovoy@meta-comm.com",
     packages=['docutils.writers.html4_refdoc', 'docutils.parsers.rst.directives'],
     package_dir={'docutils.writers.html4_refdoc': 'writers/html4_refdoc'
-                ,'docutils.parsers.rst.directives': 'parsers/rst/directives' },
+        , 'docutils.parsers.rst.directives': 'parsers/rst/directives'},
     package_data={'docutils.writers.html4_refdoc': ['frames.css']},
     scripts=["tools/rst2htmlrefdoc.py"],
-    )
+)

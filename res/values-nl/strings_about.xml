@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -16,10 +15,16 @@
 -->
 <resources>
     <string name="about_about_title">Over</string>
-    <string name="about_about_summary">Deze app is geboren uit frustratie door het gebruik van apps die niet werkte zoals ik dat wilde. Ik heb het ontwikkeld voor mijn ROM, maar realiseerde snel dat andere ontwikkelaars dit ook handig zouden vinden. Daarom heb ik de app gegeneraliseerd en wat implementatieregels voor andere ontwikkelaars geschreven.</string>
+    <string name="about_about_summary">Deze app is geboren uit frustratie door het gebruik van apps
+        die niet werkte zoals ik dat wilde. Ik heb het ontwikkeld voor mijn ROM, maar realiseerde
+        snel dat andere ontwikkelaars dit ook handig zouden vinden. Daarom heb ik de app
+        gegeneraliseerd en wat implementatieregels voor andere ontwikkelaars geschreven.
+    </string>
     <string name="about_credits_title">Credits</string>
     <string name="about_credits_summary">Credits overzicht</string>
     <string name="about_donate_title">Doneer</string>
-    <string name="about_donate_summary">Als deze app je leven makkelijker heeft gemaakt, overweeg dan alsjeblieft te doneren aan de ontwikkelaar (Kryten2k35)</string>
+    <string name="about_donate_summary">Als deze app je leven makkelijker heeft gemaakt, overweeg
+        dan alsjeblieft te doneren aan de ontwikkelaar (Kryten2k35)
+    </string>
     <string name="about_donate_button_summary">Geef me maar een biertje</string>
 </resources>

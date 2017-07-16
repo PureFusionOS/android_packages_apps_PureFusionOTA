@@ -10,7 +10,6 @@
 
 import BoostBuild
 
-
 # Create a temporary working directory.
 t = BoostBuild.Tester()
 
@@ -28,7 +27,7 @@ t.run_build_system()
 
 # First, create a list of three pathnames.
 file_list = BoostBuild.List("bin/$toolset/debug/") * \
-    BoostBuild.List("hello.exe hello.obj")
+            BoostBuild.List("hello.exe hello.obj")
 # Second, assert that those files were added as result of the last build system
 # invocation.
 t.expect_addition(file_list)

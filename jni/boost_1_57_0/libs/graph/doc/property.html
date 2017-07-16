@@ -7,21 +7,21 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Boost Graph Library: Property</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Boost Graph Library: Property</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
 <H1><A NAME="sec:property"></A>
-<TT>property&lt;PropertyTag, T, NextProperty&gt;</TT>
+    <TT>property&lt;PropertyTag, T, NextProperty&gt;</TT>
 </H1>
 
 This class can be used with the <a
-href="./adjacency_list.html"><tt>adjacency_list</tt></a> and the <a
-href="./adjacency_matrix.html"><tt>adjacency_matrix</tt></a> classes
+        href="./adjacency_list.html"><tt>adjacency_list</tt></a> and the <a
+        href="./adjacency_matrix.html"><tt>adjacency_matrix</tt></a> classes
 to specify what kind of properties should be attached to the vertices
 and edges of the graph, and to the graph object itself.
 
@@ -49,37 +49,41 @@ namespace boost {
 
 <P>
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
-<tr>
-<td><tt>PropertyTag</tt></td>
+    <tr>
+        <td><tt>PropertyTag</tt></td>
 
-<td>A type to identify (give a unique name to) the property. There are
-several predefined tags, and it is easy to add more. For convenience,
-BGL also provides predefined objects of the tag types (enum values)
-for use as arguments to functions that expect property tag objects
-(such as <tt>adjacency_list</tt>'s <a
-href="./adjacency_list.html#property-map-accessors"> property map
-accessor</a> functions). </td>
+        <td>A type to identify (give a unique name to) the property. There are
+            several predefined tags, and it is easy to add more. For convenience,
+            BGL also provides predefined objects of the tag types (enum values)
+            for use as arguments to functions that expect property tag objects
+            (such as <tt>adjacency_list</tt>'s <a
+                    href="./adjacency_list.html#property-map-accessors"> property map
+                accessor</a> functions).
+        </td>
 
-<td>&nbsp;</td>
-</tr>
+        <td>&nbsp;</td>
+    </tr>
 
-<tr>
-<td><tt>T</tt></td>
-<td> This type specifies the type of the property values. </td>
-<td>&nbsp;</td>
-</tr>
+    <tr>
+        <td><tt>T</tt></td>
+        <td> This type specifies the type of the property values.</td>
+        <td>&nbsp;</td>
+    </tr>
 
-<tr>
-<td><tt>NextProperty</tt></td>
-<td>This parameter allows <tt>property</tt> types to be
-  nested, so that an arbitrary number of properties can be attached to
-  the same graph.</td>
-<td><tt>no_property</tt></td>
-</tr>
+    <tr>
+        <td><tt>NextProperty</tt></td>
+        <td>This parameter allows <tt>property</tt> types to be
+            nested, so that an arbitrary number of properties can be attached to
+            the same graph.
+        </td>
+        <td><tt>no_property</tt></td>
+    </tr>
 </table>
 
 <h3>Where Defined</h3>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2005 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,18 +8,24 @@
 -->
 
 <section id="date_time.examples.meeting_planner">
-  <title>Teleconference Scheduler (partial listing)</title>
+    <title>Teleconference Scheduler (partial listing)</title>
 
-  <para> 
-    The Teleconference Scheduler is a Qt based example (found in the examples/qt directory). Partial listings of <link linkend="meeting_planner_hpp">meeting_planner.hpp</link> and <link linkend="planner_form_cpp">planner_form.cpp</link> are provided to illustrate techniques for using the local_date_time and tz_database objects. 
-  </para>
-  
-  <anchor id="planner_form_cpp" />
-  <para>
-    The planner_form class is derived from a QDialog. This listing illustrates the initialization of a tz_database object and using it to populate combo boxes with region lists. Only the init function is listed here for the sake of brevity.
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        The Teleconference Scheduler is a Qt based example (found in the examples/qt directory).
+        Partial listings of <link linkend="meeting_planner_hpp">meeting_planner.hpp</link> and <link
+        linkend="planner_form_cpp">planner_form.cpp
+    </link> are provided to illustrate techniques for using the local_date_time and tz_database
+        objects.
+    </para>
+
+    <anchor id="planner_form_cpp" />
+    <para>
+        The planner_form class is derived from a QDialog. This listing illustrates the
+        initialization of a tz_database object and using it to populate combo boxes with region
+        lists. Only the init function is listed here for the sake of brevity.
+    </para>
+    <programlisting>
+        <![CDATA[
 
   void planner_form::init() {
     try{
@@ -53,14 +59,16 @@
   }
 
     ]]>
-  </programlisting>
-  
-  <anchor id="meeting_planner_hpp" />
-  <para>
-    This class coordinates local times across multiple time zones. It accomplishes this by iterating across a collection of time zones and verifying that the target time falls within a set period (a workday).
-  </para>
-  <programlisting>
-    <![CDATA[
+    </programlisting>
+
+    <anchor id="meeting_planner_hpp" />
+    <para>
+        This class coordinates local times across multiple time zones. It accomplishes this by
+        iterating across a collection of time zones and verifying that the target time falls within
+        a set period (a workday).
+    </para>
+    <programlisting>
+        <![CDATA[
 
   /* The heart of the meeting_planner is the synchronization of different
    * time zones to a single point in time.
@@ -183,5 +191,5 @@
   };
 
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

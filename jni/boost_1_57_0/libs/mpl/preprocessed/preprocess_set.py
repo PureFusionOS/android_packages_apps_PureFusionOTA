@@ -1,4 +1,3 @@
-
 # Copyright Aleksey Gurtovoy 2001-2006
 #
 # Distributed under the Boost Software License, Version 1.0. 
@@ -11,11 +10,12 @@
 # $Date$
 # $Revision$
 
-import preprocess
 import os.path
 
+import preprocess
+
 preprocess.main(
-      [ "plain" ]
+    ["plain"]
     , "set"
-    , os.path.join( "boost", "mpl", "set", "aux_", "preprocessed" )
-    )
+    , os.path.join("boost", "mpl", "set", "aux_", "preprocessed")
+)

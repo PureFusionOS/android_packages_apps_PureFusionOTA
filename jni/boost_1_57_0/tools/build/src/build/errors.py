@@ -16,16 +16,16 @@
 # Python assertions are to be used.
 
 import bjam
-import traceback
 import sys
+import traceback
+
 
 def format(message, prefix=""):
     parts = str(message).split("\n")
-    return "\n".join(prefix+p for p in parts)
-    
+    return "\n".join(prefix + p for p in parts)
+
 
 class Context:
-
     def __init__(self, message, nested=None):
         self.message_ = message
         self.nested_ = nested
@@ -37,8 +37,8 @@ class Context:
             for n in self.nested_:
                 n.report(indent + "    ")
 
-class JamfileContext:
 
+class JamfileContext:
     def __init__(self):
         raw = bjam.backtrace()
         self.raw_ = raw
@@ -47,8 +47,8 @@ class JamfileContext:
         for r in self.raw_:
             print indent + "    - %s:%s" % (r[0], r[1])
 
-class ExceptionWithUserContext(Exception):
 
+class ExceptionWithUserContext(Exception):
     def __init__(self, message, context,
                  original_exception=None, original_tb=None, stack=None):
         Exception.__init__(self, message)
@@ -71,10 +71,11 @@ class ExceptionWithUserContext(Exception):
                 traceback.print_tb(self.original_tb_)
             elif self.stack_:
                 for l in traceback.format_list(self.stack_):
-                    print l,                
+                    print l,
         else:
             print "    use the '--stacktrace' option to get Python stacktrace"
         print
+
 
 def user_error_checkpoint(callable):
     def wrapper(self, *args):
@@ -87,11 +88,11 @@ def user_error_checkpoint(callable):
             errors.handle_stray_exception(e)
         finally:
             errors.pop_user_context()
-            
-    return wrapper
-                            
-class Errors:
 
+    return wrapper
+
+
+class Errors:
     def __init__(self):
         self.contexts_ = []
         self._count = 0
@@ -116,12 +117,9 @@ class Errors:
 
     def handle_stray_exception(self, e):
         raise ExceptionWithUserContext("unexpected exception", self.contexts_[:],
-                                       e, sys.exc_info()[2])    
+                                       e, sys.exc_info()[2])
+
     def __call__(self, message):
         self._count = self._count + 1
-        raise ExceptionWithUserContext(message, self.contexts_[:], 
+        raise ExceptionWithUserContext(message, self.contexts_[:],
                                        stack=traceback.extract_stack())
-
-        
-
-    

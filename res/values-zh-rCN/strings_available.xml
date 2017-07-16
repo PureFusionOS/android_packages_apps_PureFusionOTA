@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -31,7 +30,8 @@
     <string name="available_reboot_confirm">现在重启吗？</string>
     <string name="available_url_error">地址错误：请查看你的ROM开发者</string>
     <string name="available_reboot_manual_title">请现在重启</string>
-    <string name="available_reboot_manual_message">请重启至恢复模式然后刷新ROM.\n\n你可以在这里找到 /sdcard/Downloads</string>
+    <string name="available_reboot_manual_message">请重启至恢复模式然后刷新ROM.\n\n你可以在这里找到 /sdcard/Downloads
+    </string>
     <string name="available_wrong_network_title">选择了错误的网络</string>
     <string name="available_wrong_network_message">您在尝试使用移动数据下载，并且设置只允许Wifi，请更改相应的设置。</string>
 

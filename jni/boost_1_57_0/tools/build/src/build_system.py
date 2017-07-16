@@ -64,6 +64,7 @@ out_xml = False
 default_toolset = None
 default_toolset_version = None
 
+
 ################################################################################
 #
 # Public rules.
@@ -75,6 +76,7 @@ default_toolset_version = None
 #
 def command_line_free_features():
     return command_line_free_features
+
 
 # Sets the default toolset & version to be used in case no other toolset has
 # been used explicitly by either the loaded configuration files, the loaded
@@ -88,13 +90,17 @@ def set_default_toolset(toolset, version=None):
 
 pre_build_hook = []
 
+
 def add_pre_build_hook(callable):
     pre_build_hook.append(callable)
 
+
 post_build_hook = None
+
 
 def set_post_build_hook(callable):
     post_build_hook = callable
+
 
 ################################################################################
 #
@@ -105,7 +111,6 @@ def set_post_build_hook(callable):
 # Returns actual Jam targets to be used for executing a clean request.
 #
 def actual_clean_targets(targets):
-
     # Construct a list of projects explicitly detected as targets on this build
     # system run. These are the projects under which cleaning is allowed.
     for t in targets:
@@ -130,7 +135,9 @@ def actual_clean_targets(targets):
 
     return [t.actualize() for t in to_clean]
 
+
 _target_id_split = re.compile("(.*)//(.*)")
+
 
 # Given a target id, try to find and return the corresponding target. This is
 # only invoked when there is no Jamfile in ".". This code somewhat duplicates
@@ -138,7 +145,6 @@ _target_id_split = re.compile("(.*)//(.*)")
 # project-targets instance.
 #
 def find_target(target_id):
-
     projects = get_manager().projects()
     m = _target_id_split.match(target_id)
     if m:
@@ -154,9 +160,10 @@ def find_target(target_id):
 
     return result
 
-def initialize_config_module(module_name, location=None):
 
+def initialize_config_module(module_name, location=None):
     get_manager().projects().initialize(module_name, location)
+
 
 # Helper rule used to load configuration files. Loads the first configuration
 # file with the given 'filename' at 'path' into module with name 'module-name'.
@@ -165,7 +172,6 @@ def initialize_config_module(module_name, location=None):
 # configuration file or nothing if no file was loaded.
 #
 def load_config(module_name, filename, paths, must_find=False):
-
     if debug_config:
         print "notice: Searching  '%s' for '%s' configuration file '%s." \
               % (paths, module_name, filename)
@@ -188,7 +194,7 @@ def load_config(module_name, filename, paths, must_find=False):
         # with relative paths work. This is of most importance
         # for project-config.jam, but may be used in other
         # config files as well.
-        attributes = get_manager().projects().attributes(module_name) ;
+        attributes = get_manager().projects().attributes(module_name);
         attributes.set('source-location', os.path.dirname(where), True)
         get_manager().projects().load_standalone(module_name, where)
 
@@ -201,6 +207,7 @@ def load_config(module_name, filename, paths, must_find=False):
             print msg
 
     return where
+
 
 # Loads all the configuration files used by Boost Build in the following order:
 #
@@ -231,7 +238,6 @@ def load_config(module_name, filename, paths, must_find=False):
 # internal unit testing system but may be used freely in other places as well.
 #
 def load_configuration_files():
-
     # Flag indicating that site configuration should not be loaded.
     ignore_site_config = "--ignore-site-config" in sys.argv
 
@@ -244,7 +250,8 @@ def load_configuration_files():
             break
 
     if test_config:
-        where = load_config("test-config", os.path.basename(test_config), [os.path.dirname(test_config)])
+        where = load_config("test-config", os.path.basename(test_config),
+                            [os.path.dirname(test_config)])
         if where:
             if debug_config:
                 print "notice: Regular site and user configuration files will"
@@ -296,7 +303,8 @@ def load_configuration_files():
                     print "notice: Loading explicitly specified user configuration file:"
                     print "    " + user_config
 
-                    load_config('user-config', os.path.basename(user_config), [os.path.dirname(user_config)], True)
+                    load_config('user-config', os.path.basename(user_config),
+                                [os.path.dirname(user_config)], True)
             else:
                 load_config('user-config', os.path.basename(user_config), user_path)
         else:
@@ -324,13 +332,12 @@ def load_configuration_files():
 # be processed as if they had been specified by the user.
 #
 def process_explicit_toolset_requests():
-
     extra_properties = []
 
     option_toolsets = [e for option in b2.util.regex.transform(sys.argv, "^--toolset=(.*)$")
                        for e in option.split(',')]
     feature_toolsets = [e for option in b2.util.regex.transform(sys.argv, "^toolset=(.*)$")
-                       for e in option.split(',')]
+                        for e in option.split(',')]
 
     for t in option_toolsets + feature_toolsets:
 
@@ -339,7 +346,7 @@ def process_explicit_toolset_requests():
 
         if debug_config:
             print "notice: [cmdline-cfg] Detected command-line request for '%s': toolset= %s version=%s" \
-            % (toolset_version, toolset, version)
+                  % (toolset_version, toolset, version)
 
         # If the toolset is not known, configure it now.
         known = False
@@ -362,14 +369,13 @@ def process_explicit_toolset_requests():
             if debug_config:
                 print "notice: [cmdline-cfg] toolset '%s' not previously configured; attempting to auto-configure now" % toolset_version
             if version is not None:
-               using(toolset, version)
+                using(toolset, version)
             else:
-               using(toolset)
+                using(toolset)
 
         else:
 
             if debug_config:
-
                 print "notice: [cmdline-cfg] toolset '%s' already configured" % toolset_version
 
         # Make sure we get an appropriate property into the build request in
@@ -378,11 +384,10 @@ def process_explicit_toolset_requests():
         if not t in sys.argv and not t in feature_toolsets:
 
             if debug_config:
-                print "notice: [cmdline-cfg] adding toolset=%s) to the build request." % t ;
+                print "notice: [cmdline-cfg] adding toolset=%s) to the build request." % t;
             extra_properties += "toolset=%s" % t
 
     return extra_properties
-
 
 
 # Returns 'true' if the given 'project' is equal to or is a (possibly indirect)
@@ -392,7 +397,6 @@ def process_explicit_toolset_requests():
 #
 @cached
 def should_clean_project(project):
-
     if project in project_targets:
         return True
     else:
@@ -403,6 +407,7 @@ def should_clean_project(project):
         else:
             return False
 
+
 ################################################################################
 #
 # main()
@@ -411,7 +416,6 @@ def should_clean_project(project):
 ################################################################################
 
 def main():
-
     sys.argv = bjam.variable("ARGV")
 
     # FIXME: document this option.
@@ -431,8 +435,8 @@ def main():
         except ExceptionWithUserContext, e:
             e.report()
 
-def main_real():
 
+def main_real():
     global debug_config, out_xml
 
     debug_config = "--debug-configuration" in sys.argv
@@ -446,7 +450,6 @@ def main_real():
     import b2.build.configure as configure
 
     if "--version" in sys.argv:
-
         version.report()
         return
 
@@ -481,11 +484,11 @@ def main_real():
             dt = "gcc"
             if os.name == 'nt':
                 dt = "msvc"
-            # FIXME:
-            #else if [ os.name ] = MACOSX
-            #{
-            #    default-toolset = darwin ;
-            #}
+                # FIXME:
+                # else if [ os.name ] = MACOSX
+                # {
+                #    default-toolset = darwin ;
+                # }
 
         print "warning: No toolsets are configured."
         print "warning: Configuring default toolset '%s'." % dt
@@ -511,7 +514,8 @@ def main_real():
 
     # Check that we actually found something to build.
     if not current_project and not target_ids:
-        get_manager().errors()("no Jamfile in current directory found, and no target references specified.")
+        get_manager().errors()(
+            "no Jamfile in current directory found, and no target references specified.")
         # FIXME:
         # EXIT
 
@@ -555,7 +559,7 @@ def main_real():
 
             if not t:
                 print "notice: could not find main target '%s'" % id
-                print "notice: assuming it's a name of file to create " ;
+                print "notice: assuming it's a name of file to create ";
                 explicitly_requested_files.append(id)
             else:
                 targets.append(t)
@@ -609,189 +613,189 @@ def main_real():
         actual_targets.append(t.actualize())
 
 
-     # FIXME: restore
-##     # If XML data output has been requested prepare additional rules and targets
-##     # so we can hook into Jam to collect build data while its building and have
-##     # it trigger the final XML report generation after all the planned targets
-##     # have been built.
-##     if $(.out-xml)
-##     {
-##         # Get a qualified virtual target name.
-##         rule full-target-name ( target )
-##         {
-##             local name = [ $(target).name ] ;
-##             local project = [ $(target).project ] ;
-##             local project-path = [ $(project).get location ] ;
-##             return $(project-path)//$(name) ;
-##         }
+        # FIXME: restore
+    ##     # If XML data output has been requested prepare additional rules and targets
+    ##     # so we can hook into Jam to collect build data while its building and have
+    ##     # it trigger the final XML report generation after all the planned targets
+    ##     # have been built.
+    ##     if $(.out-xml)
+    ##     {
+    ##         # Get a qualified virtual target name.
+    ##         rule full-target-name ( target )
+    ##         {
+    ##             local name = [ $(target).name ] ;
+    ##             local project = [ $(target).project ] ;
+    ##             local project-path = [ $(project).get location ] ;
+    ##             return $(project-path)//$(name) ;
+    ##         }
 
-##         # Generate an XML file containing build statistics for each constituent.
-##         #
-##         rule out-xml ( xml-file : constituents * )
-##         {
-##             # Prepare valid XML header and footer with some basic info.
-##             local nl = "
-## " ;
-##             local jam       = [ version.jam ] ;
-##             local os        = [ modules.peek : OS OSPLAT JAMUNAME ] "" ;
-##             local timestamp = [ modules.peek : JAMDATE ] ;
-##             local cwd       = [ PWD ] ;
-##             local command   = $(.sys.argv) ;
-##             local bb-version = [ version.boost-build ] ;
-##             .header on $(xml-file) =
-##                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-##                 "$(nl)<build format=\"1.0\" version=\"$(bb-version)\">"
-##                 "$(nl)  <jam version=\"$(jam:J=.)\" />"
-##                 "$(nl)  <os name=\"$(os[1])\" platform=\"$(os[2])\"><![CDATA[$(os[3-]:J= )]]></os>"
-##                 "$(nl)  <timestamp><![CDATA[$(timestamp)]]></timestamp>"
-##                 "$(nl)  <directory><![CDATA[$(cwd)]]></directory>"
-##                 "$(nl)  <command><![CDATA[\"$(command:J=\" \")\"]]></command>"
-##                 ;
-##             .footer on $(xml-file) =
-##                 "$(nl)</build>" ;
+    ##         # Generate an XML file containing build statistics for each constituent.
+    ##         #
+    ##         rule out-xml ( xml-file : constituents * )
+    ##         {
+    ##             # Prepare valid XML header and footer with some basic info.
+    ##             local nl = "
+    ## " ;
+    ##             local jam       = [ version.jam ] ;
+    ##             local os        = [ modules.peek : OS OSPLAT JAMUNAME ] "" ;
+    ##             local timestamp = [ modules.peek : JAMDATE ] ;
+    ##             local cwd       = [ PWD ] ;
+    ##             local command   = $(.sys.argv) ;
+    ##             local bb-version = [ version.boost-build ] ;
+    ##             .header on $(xml-file) =
+    ##                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+    ##                 "$(nl)<build format=\"1.0\" version=\"$(bb-version)\">"
+    ##                 "$(nl)  <jam version=\"$(jam:J=.)\" />"
+    ##                 "$(nl)  <os name=\"$(os[1])\" platform=\"$(os[2])\"><![CDATA[$(os[3-]:J= )]]></os>"
+    ##                 "$(nl)  <timestamp><![CDATA[$(timestamp)]]></timestamp>"
+    ##                 "$(nl)  <directory><![CDATA[$(cwd)]]></directory>"
+    ##                 "$(nl)  <command><![CDATA[\"$(command:J=\" \")\"]]></command>"
+    ##                 ;
+    ##             .footer on $(xml-file) =
+    ##                 "$(nl)</build>" ;
 
-##             # Generate the target dependency graph.
-##             .contents on $(xml-file) +=
-##                 "$(nl)  <targets>" ;
-##             for local t in [ virtual-target.all-targets ]
-##             {
-##                 local action = [ $(t).action ] ;
-##                 if $(action)
-##                     # If a target has no action, it has no dependencies.
-##                 {
-##                     local name = [ full-target-name $(t) ] ;
-##                     local sources = [ $(action).sources ] ;
-##                     local dependencies ;
-##                     for local s in $(sources)
-##                     {
-##                         dependencies += [ full-target-name $(s) ] ;
-##                     }
+    ##             # Generate the target dependency graph.
+    ##             .contents on $(xml-file) +=
+    ##                 "$(nl)  <targets>" ;
+    ##             for local t in [ virtual-target.all-targets ]
+    ##             {
+    ##                 local action = [ $(t).action ] ;
+    ##                 if $(action)
+    ##                     # If a target has no action, it has no dependencies.
+    ##                 {
+    ##                     local name = [ full-target-name $(t) ] ;
+    ##                     local sources = [ $(action).sources ] ;
+    ##                     local dependencies ;
+    ##                     for local s in $(sources)
+    ##                     {
+    ##                         dependencies += [ full-target-name $(s) ] ;
+    ##                     }
 
-##                     local path = [ $(t).path ] ;
-##                     local jam-target = [ $(t).actual-name ] ;
+    ##                     local path = [ $(t).path ] ;
+    ##                     local jam-target = [ $(t).actual-name ] ;
 
-##                     .contents on $(xml-file) +=
-##                         "$(nl)    <target>"
-##                         "$(nl)      <name><![CDATA[$(name)]]></name>"
-##                         "$(nl)      <dependencies>"
-##                         "$(nl)        <dependency><![CDATA[$(dependencies)]]></dependency>"
-##                         "$(nl)      </dependencies>"
-##                         "$(nl)      <path><![CDATA[$(path)]]></path>"
-##                         "$(nl)      <jam-target><![CDATA[$(jam-target)]]></jam-target>"
-##                         "$(nl)    </target>"
-##                         ;
-##                 }
-##             }
-##             .contents on $(xml-file) +=
-##                 "$(nl)  </targets>" ;
+    ##                     .contents on $(xml-file) +=
+    ##                         "$(nl)    <target>"
+    ##                         "$(nl)      <name><![CDATA[$(name)]]></name>"
+    ##                         "$(nl)      <dependencies>"
+    ##                         "$(nl)        <dependency><![CDATA[$(dependencies)]]></dependency>"
+    ##                         "$(nl)      </dependencies>"
+    ##                         "$(nl)      <path><![CDATA[$(path)]]></path>"
+    ##                         "$(nl)      <jam-target><![CDATA[$(jam-target)]]></jam-target>"
+    ##                         "$(nl)    </target>"
+    ##                         ;
+    ##                 }
+    ##             }
+    ##             .contents on $(xml-file) +=
+    ##                 "$(nl)  </targets>" ;
 
-##             # Build $(xml-file) after $(constituents). Do so even if a
-##             # constituent action fails and regenerate the xml on every bjam run.
-##             INCLUDES $(xml-file) : $(constituents) ;
-##             ALWAYS $(xml-file) ;
-##             __ACTION_RULE__ on $(xml-file) = build-system.out-xml.generate-action ;
-##             out-xml.generate $(xml-file) ;
-##         }
+    ##             # Build $(xml-file) after $(constituents). Do so even if a
+    ##             # constituent action fails and regenerate the xml on every bjam run.
+    ##             INCLUDES $(xml-file) : $(constituents) ;
+    ##             ALWAYS $(xml-file) ;
+    ##             __ACTION_RULE__ on $(xml-file) = build-system.out-xml.generate-action ;
+    ##             out-xml.generate $(xml-file) ;
+    ##         }
 
-##         # The actual build actions are here; if we did this work in the actions
-##         # clause we would have to form a valid command line containing the
-##         # result of @(...) below (the name of the XML file).
-##         #
-##         rule out-xml.generate-action ( args * : xml-file
-##             : command status start end user system : output ? )
-##         {
-##             local contents =
-##                 [ on $(xml-file) return $(.header) $(.contents) $(.footer) ] ;
-##             local f = @($(xml-file):E=$(contents)) ;
-##         }
+    ##         # The actual build actions are here; if we did this work in the actions
+    ##         # clause we would have to form a valid command line containing the
+    ##         # result of @(...) below (the name of the XML file).
+    ##         #
+    ##         rule out-xml.generate-action ( args * : xml-file
+    ##             : command status start end user system : output ? )
+    ##         {
+    ##             local contents =
+    ##                 [ on $(xml-file) return $(.header) $(.contents) $(.footer) ] ;
+    ##             local f = @($(xml-file):E=$(contents)) ;
+    ##         }
 
-##         # Nothing to do here; the *real* actions happen in
-##         # out-xml.generate-action.
-##         actions quietly out-xml.generate { }
+    ##         # Nothing to do here; the *real* actions happen in
+    ##         # out-xml.generate-action.
+    ##         actions quietly out-xml.generate { }
 
-##         # Define the out-xml file target, which depends on all the targets so
-##         # that it runs the collection after the targets have run.
-##         out-xml $(.out-xml) : $(actual-targets) ;
+    ##         # Define the out-xml file target, which depends on all the targets so
+    ##         # that it runs the collection after the targets have run.
+    ##         out-xml $(.out-xml) : $(actual-targets) ;
 
-##         # Set up a global __ACTION_RULE__ that records all the available
-##         # statistics about each actual target in a variable "on" the --out-xml
-##         # target.
-##         #
-##         rule out-xml.collect ( xml-file : target : command status start end user
-##             system : output ? )
-##         {
-##             local nl = "
-## " ;
-##             # Open the action with some basic info.
-##             .contents on $(xml-file) +=
-##                 "$(nl)  <action status=\"$(status)\" start=\"$(start)\" end=\"$(end)\" user=\"$(user)\" system=\"$(system)\">" ;
+    ##         # Set up a global __ACTION_RULE__ that records all the available
+    ##         # statistics about each actual target in a variable "on" the --out-xml
+    ##         # target.
+    ##         #
+    ##         rule out-xml.collect ( xml-file : target : command status start end user
+    ##             system : output ? )
+    ##         {
+    ##             local nl = "
+    ## " ;
+    ##             # Open the action with some basic info.
+    ##             .contents on $(xml-file) +=
+    ##                 "$(nl)  <action status=\"$(status)\" start=\"$(start)\" end=\"$(end)\" user=\"$(user)\" system=\"$(system)\">" ;
 
-##             # If we have an action object we can print out more detailed info.
-##             local action = [ on $(target) return $(.action) ] ;
-##             if $(action)
-##             {
-##                 local action-name    = [ $(action).action-name ] ;
-##                 local action-sources = [ $(action).sources     ] ;
-##                 local action-props   = [ $(action).properties  ] ;
+    ##             # If we have an action object we can print out more detailed info.
+    ##             local action = [ on $(target) return $(.action) ] ;
+    ##             if $(action)
+    ##             {
+    ##                 local action-name    = [ $(action).action-name ] ;
+    ##                 local action-sources = [ $(action).sources     ] ;
+    ##                 local action-props   = [ $(action).properties  ] ;
 
-##                 # The qualified name of the action which we created the target.
-##                 .contents on $(xml-file) +=
-##                     "$(nl)    <name><![CDATA[$(action-name)]]></name>" ;
+    ##                 # The qualified name of the action which we created the target.
+    ##                 .contents on $(xml-file) +=
+    ##                     "$(nl)    <name><![CDATA[$(action-name)]]></name>" ;
 
-##                 # The sources that made up the target.
-##                 .contents on $(xml-file) +=
-##                     "$(nl)    <sources>" ;
-##                 for local source in $(action-sources)
-##                 {
-##                     local source-actual = [ $(source).actual-name ] ;
-##                     .contents on $(xml-file) +=
-##                         "$(nl)      <source><![CDATA[$(source-actual)]]></source>" ;
-##                 }
-##                 .contents on $(xml-file) +=
-##                     "$(nl)    </sources>" ;
+    ##                 # The sources that made up the target.
+    ##                 .contents on $(xml-file) +=
+    ##                     "$(nl)    <sources>" ;
+    ##                 for local source in $(action-sources)
+    ##                 {
+    ##                     local source-actual = [ $(source).actual-name ] ;
+    ##                     .contents on $(xml-file) +=
+    ##                         "$(nl)      <source><![CDATA[$(source-actual)]]></source>" ;
+    ##                 }
+    ##                 .contents on $(xml-file) +=
+    ##                     "$(nl)    </sources>" ;
 
-##                 # The properties that define the conditions under which the
-##                 # target was built.
-##                 .contents on $(xml-file) +=
-##                     "$(nl)    <properties>" ;
-##                 for local prop in [ $(action-props).raw ]
-##                 {
-##                     local prop-name = [ MATCH ^<(.*)>$ : $(prop:G) ] ;
-##                     .contents on $(xml-file) +=
-##                         "$(nl)      <property name=\"$(prop-name)\"><![CDATA[$(prop:G=)]]></property>" ;
-##                 }
-##                 .contents on $(xml-file) +=
-##                     "$(nl)    </properties>" ;
-##             }
+    ##                 # The properties that define the conditions under which the
+    ##                 # target was built.
+    ##                 .contents on $(xml-file) +=
+    ##                     "$(nl)    <properties>" ;
+    ##                 for local prop in [ $(action-props).raw ]
+    ##                 {
+    ##                     local prop-name = [ MATCH ^<(.*)>$ : $(prop:G) ] ;
+    ##                     .contents on $(xml-file) +=
+    ##                         "$(nl)      <property name=\"$(prop-name)\"><![CDATA[$(prop:G=)]]></property>" ;
+    ##                 }
+    ##                 .contents on $(xml-file) +=
+    ##                     "$(nl)    </properties>" ;
+    ##             }
 
-##             local locate = [ on $(target) return $(LOCATE) ] ;
-##             locate ?= "" ;
-##             .contents on $(xml-file) +=
-##                 "$(nl)    <jam-target><![CDATA[$(target)]]></jam-target>"
-##                 "$(nl)    <path><![CDATA[$(target:G=:R=$(locate))]]></path>"
-##                 "$(nl)    <command><![CDATA[$(command)]]></command>"
-##                 "$(nl)    <output><![CDATA[$(output)]]></output>" ;
-##             .contents on $(xml-file) +=
-##                 "$(nl)  </action>" ;
-##         }
+    ##             local locate = [ on $(target) return $(LOCATE) ] ;
+    ##             locate ?= "" ;
+    ##             .contents on $(xml-file) +=
+    ##                 "$(nl)    <jam-target><![CDATA[$(target)]]></jam-target>"
+    ##                 "$(nl)    <path><![CDATA[$(target:G=:R=$(locate))]]></path>"
+    ##                 "$(nl)    <command><![CDATA[$(command)]]></command>"
+    ##                 "$(nl)    <output><![CDATA[$(output)]]></output>" ;
+    ##             .contents on $(xml-file) +=
+    ##                 "$(nl)  </action>" ;
+    ##         }
 
-##         # When no __ACTION_RULE__ is set "on" a target, the search falls back to
-##         # the global module.
-##         module
-##         {
-##             __ACTION_RULE__ = build-system.out-xml.collect
-##                 [ modules.peek build-system : .out-xml ] ;
-##         }
+    ##         # When no __ACTION_RULE__ is set "on" a target, the search falls back to
+    ##         # the global module.
+    ##         module
+    ##         {
+    ##             __ACTION_RULE__ = build-system.out-xml.collect
+    ##                 [ modules.peek build-system : .out-xml ] ;
+    ##         }
 
-##         IMPORT
-##             build-system :
-##             out-xml.collect
-##             out-xml.generate-action
-##             : :
-##             build-system.out-xml.collect
-##             build-system.out-xml.generate-action
-##             ;
-##     }
+    ##         IMPORT
+    ##             build-system :
+    ##             out-xml.collect
+    ##             out-xml.generate-action
+    ##             : :
+    ##             build-system.out-xml.collect
+    ##             build-system.out-xml.generate-action
+    ##             ;
+    ##     }
 
     j = option.get("jobs")
     if j:
@@ -831,14 +835,14 @@ def main_real():
         bjam.call("UPDATE", "clean")
     else:
         # FIXME:
-        #configure.print-configure-checks-summary ;
+        # configure.print-configure-checks-summary ;
 
         if pre_build_hook:
             for h in pre_build_hook:
                 h()
 
         bjam.call("DEPENDS", "all", actual_targets)
-        ok = bjam.call("UPDATE_NOW", "all") # FIXME: add out-xml
+        ok = bjam.call("UPDATE_NOW", "all")  # FIXME: add out-xml
         if post_build_hook:
             post_build_hook(ok)
         # Prevent automatic update of the 'all' target, now that

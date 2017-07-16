@@ -15,18 +15,16 @@ from syscmd import syscmd
 if 0:
     for s in sources:
         syscmd('boosthtml %s' % s)
-else:        
+else:
     extensions = ('html', 'pdf')
 
     if len(sys.argv) > 1:
         extensions = sys.argv[1:]
 
-    all = [ '%s.%s' % (os.path.splitext(s)[0],ext)
-          for ext in extensions
-          for s in sources 
-        ]
+    all = ['%s.%s' % (os.path.splitext(s)[0], ext)
+           for ext in extensions
+           for s in sources
+           ]
 
     print 'make %s' % ' '.join(all)
     syscmd('make %s' % ' '.join(all))
-
-

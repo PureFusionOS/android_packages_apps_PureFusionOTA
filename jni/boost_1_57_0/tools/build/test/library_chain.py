@@ -62,7 +62,6 @@ t.run_build_system(["link=static"])
 t.expect_addition("bin/$toolset/debug/link-static/main.exe")
 t.rm(["bin", "a/bin", "b/bin"])
 
-
 # Check that <library> works for static linking.
 t.write("b/jamfile.jam", "lib b : b.cpp : <library>../a//a ;")
 
@@ -78,7 +77,6 @@ t.expect_addition("bin/$toolset/debug/main.exe")
 
 t.rm(["bin", "a/bin", "b/bin"])
 
-
 # Test that putting a library in sources of a searched library works.
 t.write("jamfile.jam", """\
 exe main : main.cpp png ;
@@ -90,7 +88,7 @@ t.run_build_system(["-a", "-d+2"], status=None, stderr=None)
 # Try to find the "zzz" string either in response file (for Windows compilers),
 # or in the standard output.
 rsp = t.adjust_names("bin/$toolset/debug/main.exe.rsp")[0]
-if os.path.exists(rsp) and ( string.find(open(rsp).read(), "zzz") != -1 ):
+if os.path.exists(rsp) and (string.find(open(rsp).read(), "zzz") != -1):
     pass
 elif string.find(t.stdout(), "zzz") != -1:
     pass
@@ -117,8 +115,8 @@ void a() {}
 t.run_build_system(subdir="a")
 t.expect_addition("a/dist/a.dll")
 
-if ( os.name == 'nt' or os.uname()[0].lower().startswith('cygwin') ) and \
-    BoostBuild.get_toolset() != 'gcc':
+if (os.name == 'nt' or os.uname()[0].lower().startswith('cygwin')) and \
+                BoostBuild.get_toolset() != 'gcc':
     # This is a Windows import library -- we know the exact name.
     file = "a/dist/a.lib"
 else:

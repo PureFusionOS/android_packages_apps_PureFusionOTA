@@ -32,8 +32,8 @@ feature.feature('so-version', [], ['free', 'incidental'])
 # Unix builds only.
 feature.feature('install-no-version-symlinks', ['on'], ['optional', 'incidental'])
 
-class InstallTargetClass(targets.BasicTarget):
 
+class InstallTargetClass(targets.BasicTarget):
     def update_location(self, ps):
         """If <location> is not set, sets it based on the project data."""
 
@@ -50,7 +50,7 @@ class InstallTargetClass(targets.BasicTarget):
         if a:
             ps = a.properties()
             properties = ps.all()
-            
+
             # Unless <hardcode-dll-paths>true is in properties, which can happen
             # only if the user has explicitly requested it, nuke all <dll-path>
             # properties.
@@ -76,7 +76,6 @@ class InstallTargetClass(targets.BasicTarget):
         properties.extend(build_ps.get_properties('dependency'))
 
         properties.extend(build_ps.get_properties('location'))
-        
 
         properties.extend(build_ps.get_properties('install-no-version-symlinks'))
 
@@ -89,7 +88,6 @@ class InstallTargetClass(targets.BasicTarget):
             properties.append(property.Property(p.feature(), os.path.abspath(p.value())))
 
         return property_set.create(properties)
-    
 
     def construct(self, name, source_targets, ps):
 
@@ -100,7 +98,8 @@ class InstallTargetClass(targets.BasicTarget):
         if ename:
             ename = ename[0]
         if ename and len(source_targets) > 1:
-            get_manager().errors()("When <name> property is used in 'install', only one source is allowed")
+            get_manager().errors()(
+                "When <name> property is used in 'install', only one source is allowed")
 
         result = []
 
@@ -115,13 +114,14 @@ class InstallTargetClass(targets.BasicTarget):
             if t and b2.build.type.registered("INSTALLED_" + t):
 
                 if ename:
-                    get_manager().errors()("In 'install': <name> property specified with target that requires relinking.")
+                    get_manager().errors()(
+                        "In 'install': <name> property specified with target that requires relinking.")
                 else:
                     (r, targets) = generators.construct(self.project(), name, "INSTALLED_" + t,
                                                         new_ps, [i])
                     assert isinstance(r, property_set.PropertySet)
                     staged_targets.extend(targets)
-                    
+
             else:
                 staged_targets.append(copy_file(self.project(), ename, i, new_ps))
 
@@ -164,18 +164,18 @@ class InstallTargetClass(targets.BasicTarget):
     # CONSIDER: figure out why we can not use virtual-target.traverse here.
     #
     def collect_targets(self, targets):
-        
+
         s = [t.creating_subvariant() for t in targets]
-        s = unique(filter(lambda l: l != None,s))
-        
+        s = unique(filter(lambda l: l != None, s))
+
         result = set(targets)
         for i in s:
             i.all_referenced_targets(result)
-           
+
         result2 = []
         for r in result:
             if isinstance(r, property.Property):
-                
+
                 if r.feature().name() != 'use':
                     result2.append(r.value())
             else:
@@ -188,11 +188,11 @@ class InstallTargetClass(targets.BasicTarget):
     def include_type(self, type, types_to_include):
         return any(b2.build.type.is_subtype(type, ti) for ti in types_to_include)
 
+
 # Creates a copy of target 'source'. The 'properties' object should have a
 # <location> property which specifies where the target must be placed.
 #
 def copy_file(project, name, source, ps):
-
     if not name:
         name = source.name()
 
@@ -215,9 +215,11 @@ def copy_file(project, name, source, ps):
     name = os.path.join(relative, os.path.basename(name))
     return virtual_target.FileTarget(name, source.type(), project, new_a, exact=True)
 
+
 def symlink(name, project, source, ps):
     a = virtual_target.Action([source], "symlink.ln", ps)
     return virtual_target.FileTarget(name, source.type(), project, a, exact=True)
+
 
 def relink_file(project, source, ps):
     action = source[0].action()
@@ -232,8 +234,8 @@ def relink_file(project, source, ps):
 # relinking to the new location.
 b2.build.type.register('INSTALLED_EXE', [], 'EXE')
 
-class InstalledExeGenerator(generators.Generator):
 
+class InstalledExeGenerator(generators.Generator):
     def __init__(self):
         generators.Generator.__init__(self, "install-exe", False, ['EXE'], ['INSTALLED_EXE'])
 
@@ -247,24 +249,26 @@ class InstalledExeGenerator(generators.Generator):
         else:
             # See if the dll-path properties are not changed during
             # install. If so, copy, don't relink.
-            need_relink = source[0].action() and ps.get('dll-path') != source[0].action().properties().get('dll-path')
+            need_relink = source[0].action() and ps.get('dll-path') != source[
+                0].action().properties().get('dll-path')
 
         if need_relink:
             return [relink_file(project, source, ps)]
         else:
             return [copy_file(project, None, source[0], ps)]
 
-generators.register(InstalledExeGenerator())
 
+generators.register(InstalledExeGenerator())
 
 # Installing a shared link on Unix might cause a creation of versioned symbolic
 # links.
 b2.build.type.register('INSTALLED_SHARED_LIB', [], 'SHARED_LIB')
 
-class InstalledSharedLibGenerator(generators.Generator):
 
+class InstalledSharedLibGenerator(generators.Generator):
     def __init__(self):
-        generators.Generator.__init__(self, 'install-shared-lib', False, ['SHARED_LIB'], ['INSTALLED_SHARED_LIB'])
+        generators.Generator.__init__(self, 'install-shared-lib', False, ['SHARED_LIB'],
+                                      ['INSTALLED_SHARED_LIB'])
 
     def run(self, project, name, ps, source):
 
@@ -280,7 +284,7 @@ class InstalledSharedLibGenerator(generators.Generator):
             else:
 
                 need_relink = ps.get('dll-path') != source.action().properties().get('dll-path')
-                
+
                 if need_relink:
                     # Rpath changed, need to relink.
                     copied = relink_file(project, source, ps)
@@ -304,13 +308,13 @@ class InstalledSharedLibGenerator(generators.Generator):
                 # compatibility guarantees. If not, it is possible to skip those
                 # symlinks.
                 if ps.get('install-no-version-symlinks') != ['on']:
-                
                     result.append(symlink(m.group(1) + '.' + m.group(2), project, copied, ps))
                     result.append(symlink(m.group(1) + '.' + m.group(2) + '.' + m.group(3),
                                           project, copied, ps))
 
             return result
-            
+
+
 generators.register(InstalledSharedLibGenerator())
 
 
@@ -319,7 +323,6 @@ generators.register(InstalledSharedLibGenerator())
 @bjam_signature((["name"], ["sources", "*"], ["requirements", "*"],
                  ["default_build", "*"], ["usage_requirements", "*"]))
 def install(name, sources, requirements=[], default_build=[], usage_requirements=[]):
-
     requirements = requirements[:]
     # Unless the user has explicitly asked us to hardcode dll paths, add
     # <hardcode-dll-paths>false in requirements, to override default value.
@@ -331,9 +334,9 @@ def install(name, sources, requirements=[], default_build=[], usage_requirements
 
     from b2.manager import get_manager
     t = get_manager().targets()
-    
+
     project = get_manager().projects().current()
-        
+
     return t.main_target_alternative(
         InstallTargetClass(name, project,
                            t.main_target_sources(sources, name),
@@ -341,6 +344,6 @@ def install(name, sources, requirements=[], default_build=[], usage_requirements
                            t.main_target_default_build(default_build, project),
                            t.main_target_usage_requirements(usage_requirements, project)))
 
+
 get_manager().projects().add_rule("install", install)
 get_manager().projects().add_rule("stage", install)
-

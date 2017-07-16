@@ -14,7 +14,6 @@ from b2.manager import get_manager
 
 
 class MessageTargetClass(targets.BasicTarget):
-
     def __init__(self, name, project, *args):
 
         targets.BasicTarget.__init__(self, name, project, [])
@@ -26,21 +25,22 @@ class MessageTargetClass(targets.BasicTarget):
         if not self.built:
             for arg in self.args:
                 if type(arg) == type([]):
-                    arg = " ".join(arg)                
+                    arg = " ".join(arg)
                 print arg
             self.built = True
 
         return (property_set.empty(), [])
 
-def message(name, *args):
 
+def message(name, *args):
     if type(name) == type([]):
         name = name[0]
 
     t = get_manager().targets()
-    
+
     project = get_manager().projects().current()
-        
+
     return t.main_target_alternative(MessageTargetClass(*((name, project) + args)))
+
 
 get_manager().projects().add_rule("message", message)

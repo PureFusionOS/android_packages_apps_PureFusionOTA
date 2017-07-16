@@ -19,14 +19,13 @@ t.write("hello.cpp", "int main() {}\n")
 t.run_build_system()
 t.ignore("*.tds")
 t.expect_addition(BoostBuild.List("bin/$toolset/debug/hello") * \
-    [".exe", ".obj"])
+                  [".exe", ".obj"])
 t.expect_nothing_more()
 
 t.run_build_system(["hello2"])
 t.expect_addition("bin/$toolset/debug/hello2.exe")
 
 t.rm(".")
-
 
 # Test that 'explicit' used in a helper rule applies to the current project, and
 # not to the Jamfile where the helper rule is defined.

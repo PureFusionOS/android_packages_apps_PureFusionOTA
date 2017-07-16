@@ -7,14 +7,13 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Boost Graph Library: Reverse Graph Adaptor</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Boost Graph Library: Reverse Graph Adaptor</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
-
 
 
 <H1><A NAME="sec:reverse-graph-adaptor"></A>
@@ -33,7 +32,7 @@ way to obtain a transposed view of a graph.
 <H3>Example</H3>
 
 The example from <a
-href="../example/reverse-graph-eg.cpp"><tt>examples/reverse-graph-eg.cpp</tt></a>.
+        href="../example/reverse-graph-eg.cpp"><tt>examples/reverse-graph-eg.cpp</tt></a>.
 
 <pre>
 int
@@ -88,20 +87,26 @@ reversed graph:
 
 <P>
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
-<TR><TD><TT>BidirectionalGraph</TT></TD>
-<TD>The graph type to be adapted.</TD>
-<TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>BidirectionalGraph</TT></TD>
+        <TD>The graph type to be adapted.</TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
-<TR><TD><TT>GraphReference</TT></TD>
-<TD>This type should be <tt>const&nbsp;BidirectionalGraph&amp;</tt>
-if you want to create a const reverse graph, or <tt>BidirectionalGraph&amp;</tt> if you want to create a non-const reverse graph.</TD>
-<TD><tt>const&nbsp;BidirectionalGraph&amp;</tt></TD>
-</TR>
+    <TR>
+        <TD><TT>GraphReference</TT></TD>
+        <TD>This type should be <tt>const&nbsp;BidirectionalGraph&amp;</tt>
+            if you want to create a const reverse graph, or <tt>BidirectionalGraph&amp;</tt> if you
+            want to create a non-const reverse graph.
+        </TD>
+        <TD><tt>const&nbsp;BidirectionalGraph&amp;</tt></TD>
+    </TR>
 
 
 </table>
@@ -110,16 +115,16 @@ if you want to create a const reverse graph, or <tt>BidirectionalGraph&amp;</tt>
 <H3>Model of</H3>
 
 <P>
-<a href="./BidirectionalGraph.html">BidirectionalGraph</a>
-and optionally
-<a href="./VertexListGraph.html">VertexListGraph</a>
-and <a href="./PropertyGraph.html">PropertyGraph</a>
+    <a href="./BidirectionalGraph.html">BidirectionalGraph</a>
+    and optionally
+    <a href="./VertexListGraph.html">VertexListGraph</a>
+    and <a href="./PropertyGraph.html">PropertyGraph</a>
 
 
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/graph/reverse_graph.hpp"><TT>boost/graph/reverse_graph.hpp</TT></a>
+    <a href="../../../boost/graph/reverse_graph.hpp"><TT>boost/graph/reverse_graph.hpp</TT></a>
 
 
 <H2>Associated Types</H2>
@@ -402,7 +407,8 @@ put(PropertyTag, const reverse_graph&amp; g, X x, const Value&amp; value)
 This sets the property value for <tt>x</tt> to
 <tt>value</tt>. <tt>x</tt> is either a vertex or edge descriptor.
 <tt>Value</tt> must be convertible to
-<tt>typename property_traits&lt;property_map&lt;reverse_graph, PropertyTag&gt;::type&gt::value_type</tt>
+<tt>typename property_traits&lt;property_map&lt;reverse_graph,
+    PropertyTag&gt;::type&gt::value_type</tt>
 
 <hr>
 
@@ -414,7 +420,7 @@ get_property(reverse_graph&amp; g, GraphPropertyTag);
 Return the property specified by <tt>GraphPropertyTag</tt> that is
 attached to the graph object <tt>g</tt>. The <tt>property_value</tt>
 traits class is defined in <a
-href="../../../boost/pending/property.hpp"><tt>boost/pending/property.hpp</tt></a>.
+        href="../../../boost/pending/property.hpp"><tt>boost/pending/property.hpp</tt></a>.
 
 <hr>
 
@@ -424,23 +430,26 @@ const typename property_value&lt;GraphProperties, GraphPropertyTag&gt;::type&amp
 get_property(const reverse_graph&amp; g, GraphPropertyTag);
 </pre>
 Return the property specified by <tt>GraphPropertyTag</tt> that is
-attached to the graph object <tt>g</tt>.  The <tt>property_value</tt>
+attached to the graph object <tt>g</tt>. The <tt>property_value</tt>
 traits class is defined in <a
-href="../../../boost/pending/property.hpp"><tt>boost/pending/property.hpp</tt></a>.
+        href="../../../boost/pending/property.hpp"><tt>boost/pending/property.hpp</tt></a>.
 
 <hr>
 
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2000-2001</TD><TD>
-<a HREF="http://www.boost.org/people/dave_abrahams.htm">Dave Abrahams</a>
-(<A HREF="mailto:david.abrahams@rcn.com">david.abrahams@rcn.com</A>)<br>
-<A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
-Indiana University (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2000-2001</TD>
+        <TD>
+            <a HREF="http://www.boost.org/people/dave_abrahams.htm">Dave Abrahams</a>
+            (<A HREF="mailto:david.abrahams@rcn.com">david.abrahams@rcn.com</A>)<br>
+            <A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
+            Indiana University (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

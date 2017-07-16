@@ -5,8 +5,8 @@
 import unittest
 from _enums import *
 
-class EnumsTest(unittest.TestCase):
 
+class EnumsTest(unittest.TestCase):
     def testIt(self):
         self.assertEqual(int(Red), 0)
         self.assertEqual(int(Blue), 1)

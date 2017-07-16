@@ -23,29 +23,34 @@ print "<p>\n";
 print "<table border=\"1\">\n";
 print "<tr><td>Test</td>\n";
 
-while(<>) {
-  if(/^\*\*\* (.*) \*\*\*$/) {
-    $filename = $1;
-    $first = ($first == 0 ? 0 : $first-1);
-    if($first == 0) {
-      print "</tr>\n\n<tr align=right>\n<td align=left><a href=\"http://www.boost.org/$filename\">$filename</a></td>\n";
+while (<>) {
+    if (/^\*\*\* (.*) \*\*\*$/) {
+        $filename = $1;
+        $first = ($first == 0 ? 0 : $first - 1);
+        if ($first == 0) {
+            print "</tr>\n\n<tr align=right>\n<td align=left><a href=\"http://www.boost.org/$filename\">$filename</a></td>\n";
+        }
     }
-  } elsif(/^\*\* (.*)/) {
-    $compiler = $1;
-    if($first) {
-      print "<td>$compiler</td>\n";
-    } else {
-      $ct = 1;
+    elsif (/^\*\* (.*)/) {
+        $compiler = $1;
+        if ($first) {
+            print "<td>$compiler</td>\n";
+        }
+        else {
+            $ct = 1;
+        }
     }
-  } elsif($ct && /^CPU time: ([.0-9]*) s user, ([.0-9]*) s system/) {
-    $time = $1 + $2;
-  } elsif($ct && /^Pass$/) {
-    printf "<td>%.02f</td>\n", $time;
-    $ct = 0; 
-  } elsif($ct && /^Fail$/) {
-    print "<td>-</td>\n";
-    $ct = 0; 
-  }  
+    elsif ($ct && /^CPU time: ([.0-9]*) s user, ([.0-9]*) s system/) {
+        $time = $1 + $2;
+    }
+    elsif ($ct && /^Pass$/) {
+        printf "<td>%.02f</td>\n", $time;
+        $ct = 0;
+    }
+    elsif ($ct && /^Fail$/) {
+        print "<td>-</td>\n";
+        $ct = 0;
+    }
 }
 
 print "</tr>\n";

@@ -16,10 +16,11 @@
       "Mateusz Loskot <mateusz -at- loskot.net>",
       "Adam Wulkiewicz <adam.wulkiewicz -at- gmail.com>"
     ],
-    "description":
-      "The Boost.Geometry library provides geometric algorithms, primitives and spatial index.",
+    "description": "The Boost.Geometry library provides geometric algorithms, primitives and spatial index.",
     "category": [
-      "Algorithms", "Data", "Math"
+      "Algorithms",
+      "Data",
+      "Math"
     ]
   }
 ]

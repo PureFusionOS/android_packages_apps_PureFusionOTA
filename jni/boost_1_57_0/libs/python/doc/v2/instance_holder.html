@@ -5,81 +5,82 @@
 <!-- Software License, Version 1.0. (See accompanying -->
 <!-- file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt) -->
 <html>
-  <head>
+<head>
     <meta name="generator" content="HTML Tidy, see www.w3.org">
     <meta http-equiv="Content-Type" content=
-    "text/html; charset=iso-8859-1">
+            "text/html; charset=iso-8859-1">
     <link rel="stylesheet" type="text/css" href="../boost.css">
 
     <title>Boost.Python - &lt;boost/python/instance_holder.hpp&gt;</title>
-  </head>
+</head>
 
 <style type="text/css">
  p.c4 {font-style: italic}
  span.c3 {color: #ff0000}
  h2.c2 {text-align: center}
  h1.c1 {text-align: center}
+
 </style>
 
-  <body link="#0000ff" vlink="#800080">
-    <table border="0" cellpadding="7" cellspacing="0" width="100%"
-    summary="header">
-      <tr>
+<body link="#0000ff" vlink="#800080">
+<table border="0" cellpadding="7" cellspacing="0" width="100%"
+       summary="header">
+    <tr>
         <td valign="top" width="300">
-          <h3><a href="../../../../index.htm"><img height="86" width= 
-          "277" alt="C++ Boost" src="../../../../boost.png" border=
-          "0"></a></h3>
+            <h3><a href="../../../../index.htm"><img height="86" width=
+                    "277" alt="C++ Boost" src="../../../../boost.png" border=
+                                                             "0"></a></h3>
 
         <td valign="top">
-          <h1 class="c1"><a href="../index.html">Boost.Python</a></h1>
+            <h1 class="c1"><a href="../index.html">Boost.Python</a></h1>
 
-          <h2 class="c2">Header &lt;boost/python/instance_holder.hpp&gt;</h2>
-    </table>
-    <hr>
+            <h2 class="c2">Header &lt;boost/python/instance_holder.hpp&gt;</h2>
+</table>
+<hr>
 
-    <h2>Contents</h2>
+<h2>Contents</h2>
 
-    <dl class="page-index">
-      <dt><a href="#introduction">Introduction</a>
+<dl class="page-index">
+    <dt><a href="#introduction">Introduction</a>
 
-      <dt><a href="#classes">Classes</a>
+    <dt><a href="#classes">Classes</a>
 
-      <dd>
+    <dd>
         <dl class="page-index">
-          <dt><a href="#instance_holder-spec">Class
-          <code>instance_holder</code></a>
+            <dt><a href="#instance_holder-spec">Class
+                <code>instance_holder</code></a>
 
-          <dd>
-            <dl class="page-index">
-              <dt><a href="#instance_holder-spec-synopsis">Class
-              <code>instance_holder</code> synopsis</a>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#instance_holder-spec-synopsis">Class
+                        <code>instance_holder</code> synopsis</a>
 
-              <dt><a href="#instance_holder-spec-ctors">Class
-              <code>instance_holder</code> destructor</a>
+                    <dt><a href="#instance_holder-spec-ctors">Class
+                        <code>instance_holder</code> destructor</a>
 
-              <dt><a href="#instance_holder-spec-modifiers">Class
-              <code>instance_holder</code> modifier functions</a>
+                    <dt><a href="#instance_holder-spec-modifiers">Class
+                        <code>instance_holder</code> modifier functions</a>
 
-              <dt><a href="#instance_holder-spec-observers">Class
-              <code>instance_holder</code> observer functions</a>
-            </dl>
+                    <dt><a href="#instance_holder-spec-observers">Class
+                        <code>instance_holder</code> observer functions</a>
+                </dl>
         </dl>
 
-      <dt><a href="#examples">Example</a>
-    </dl>
-    <hr>
+    <dt><a href="#examples">Example</a>
+</dl>
+<hr>
 
-    <h2><a name="introduction"></a>Introduction</h2>
+<h2><a name="introduction"></a>Introduction</h2>
 
-    <p><code>&lt;boost/python/instance_holder.hpp&gt;</code> provides
+<p><code>&lt;boost/python/instance_holder.hpp&gt;</code> provides
     <code>class&nbsp;instance_holder</code>, the base class for types
     which hold C++ instances of wrapped classes.
 
-    <h2><a name="classes"></a>Classes</h2>
+<h2><a name="classes"></a>Classes</h2>
 
-    <h3><a name="instance_holder-spec"></a>Class <code>instance_holder</code></h3>
+<h3><a name="instance_holder-spec"></a>Class <code>instance_holder</code></h3>
 
-    <p><code>instance_holder</code> is an abstract base class whose
+<p><code>instance_holder</code> is an abstract base class whose
     concrete derived classes hold C++ class instances within their
     Python object wrappers. To allow multiple inheritance in Python
     from C++ class wrappers, each such Python object contains a chain
@@ -87,10 +88,10 @@
     function for a wrapped C++ class is invoked, a new
     <code>instance_holder</code> instance is created and installed in
     the Python object using its <code><a
-    href="#instance_holder-spec-modifiers">install</a></code>()
+            href="#instance_holder-spec-modifiers">install</a></code>()
     function. Each concrete class derived from
     <code>instance_holder</code> must provide a <code><a
-    href="#instance_holder-spec-observers">holds</a>()</code>
+            href="#instance_holder-spec-observers">holds</a>()</code>
     implementation which allows Boost.Python to query it for the
     type(s) it is holding. In order to support the held type's wrapped
     constructor(s), the class must also provide constructors that can
@@ -101,7 +102,7 @@
     Python, and may be ignored, depending on the specific
     <code>instance_holder</code> subclass.
 
-    <h4><a name="instance_holder-spec-synopsis"></a>Class instance_holder
+<h4><a name="instance_holder-spec-synopsis"></a>Class instance_holder
     synopsis</h4>
 <pre>
 namespace boost { namespace python
@@ -121,44 +122,44 @@ namespace boost { namespace python
 }}
 </pre>
 
-    <h4><a name="instance_holder-spec-ctors">Class <code>instance_holder</code>
+<h4><a name="instance_holder-spec-ctors">Class <code>instance_holder</code>
     destructor</a></h4>
 <pre>
 virtual ~instance_holder();
 </pre>
 
-    <dl class="function-semantics">
-      <dt><b>Effects:</b> destroys the object
-    </dl>
+<dl class="function-semantics">
+    <dt><b>Effects:</b> destroys the object
+</dl>
 
-    <h4><a name="instance_holder-spec-modifiers">Class
+<h4><a name="instance_holder-spec-modifiers">Class
     <code>instance_holder</code> modifiers</a></h4>
 <pre>
 void install(PyObject* inst) throw();
 </pre>
 
-    <dl class="function-semantics">
-      <dt><b>Requires:</b> <code>inst</code> is a Python instance of a
-      wrapped C++ class type, or is a type derived from a wrapped C++
-      class type.
-      <dt><b>Effects:</b> installs the new instance at the head of the
-      Python object's chain of held instances.
-      <dt><b>Throws:</b> nothing
-    </dl>
+<dl class="function-semantics">
+    <dt><b>Requires:</b> <code>inst</code> is a Python instance of a
+        wrapped C++ class type, or is a type derived from a wrapped C++
+        class type.
+    <dt><b>Effects:</b> installs the new instance at the head of the
+        Python object's chain of held instances.
+    <dt><b>Throws:</b> nothing
+</dl>
 
-    <h4><a name="instance_holder-spec-observers">Class <code>instance_holder</code>
+<h4><a name="instance_holder-spec-observers">Class <code>instance_holder</code>
     observers</a></h4>
 <pre>
 virtual void* holds(type_info x) = 0;
 </pre>
 
-    <dl class="function-semantics">
-      <dt><b>Returns:</b> A pointer to an object of the type described
-      by <code>x</code> if <code>*this</code> contains such an object,
-      0 otherwise.
-    </dl>
+<dl class="function-semantics">
+    <dt><b>Returns:</b> A pointer to an object of the type described
+        by <code>x</code> if <code>*this</code> contains such an object,
+        0 otherwise.
+</dl>
 
-    <h2><a name="examples"></a>Example</h2> 
+<h2><a name="examples"></a>Example</h2>
 
 The following is a simplified version of the instance holder template
 used by Boost.Python to wrap classes held by smart pointers:
@@ -206,14 +207,15 @@ struct pointer_holder : instance_holder
 };
 </pre>
 
-    <p>Revised 
+<p>Revised
     <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d %B, %Y" startspan -->
-  13 November, 2002
-  <!--webbot bot="Timestamp" endspan i-checksum="39359" -->
+    13 November, 2002
+    <!--webbot bot="Timestamp" endspan i-checksum="39359" -->
 
 
-    <p class="c4">&copy; Copyright <a href= 
-    "http://www.boost.org/people/dave_abrahams.htm">Dave Abrahams</a> 2002. 
+<p class="c4">&copy; Copyright <a href=
+                                          "http://www.boost.org/people/dave_abrahams.htm">Dave
+    Abrahams</a> 2002.
 
-  </body>
+</body>
 </html>

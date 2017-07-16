@@ -6,20 +6,19 @@
 #    (See accompanying file LICENSE_1_0.txt or copy at
 #         http://www.boost.org/LICENSE_1_0.txt)
 
-import BoostBuild
-
 import os
 import os.path
 import sys
 
+import BoostBuild
+
 xml = "--xml" in sys.argv
 toolset = BoostBuild.get_toolset()
-
 
 # Clear environment for testing.
 #
 for s in ("BOOST_ROOT", "BOOST_BUILD_PATH", "JAM_TOOLSET", "BCCROOT",
-    "MSVCDir", "MSVC", "MSVCNT", "MINGW", "watcom"):
+          "MSVCDir", "MSVC", "MSVCNT", "MINGW", "watcom"):
     try:
         del os.environ[s]
     except:
@@ -68,7 +67,8 @@ def run_tests(critical_tests, other_tests):
             exc_type, exc_value, exc_tb = sys.exc_info()
             try:
                 BoostBuild.annotation("failure - unhandled exception", "%s - "
-                    "%s" % (exc_type.__name__, exc_value))
+                                                                       "%s" % (
+                                      exc_type.__name__, exc_value))
                 BoostBuild.annotate_stack_trace(exc_tb)
             finally:
                 #   Explicitly clear a hard-to-garbage-collect traceback
@@ -87,7 +87,7 @@ def run_tests(critical_tests, other_tests):
                 finally:
                     f.close()
 
-        #   Restore the current directory, which might have been changed by the
+        # Restore the current directory, which might have been changed by the
         # test.
         os.chdir(invocation_dir)
 
@@ -103,7 +103,7 @@ def run_tests(critical_tests, other_tests):
             print """
 <test-log library="build" test-name="%s" test-type="run" toolset="%s" test-program="%s" target-directory="%s">
 <run result="%s">""" % (test, toolset, "tools/build/v2/test/" + test + ".py",
-                "boost/bin.v2/boost.build.tests/" + toolset + "/" + test, rs)
+                        "boost/bin.v2/boost.build.tests/" + toolset + "/" + test, rs)
             if not passed:
                 BoostBuild.flush_annotations(1)
             print """
@@ -146,8 +146,8 @@ def reorder_tests(tests, first_test):
 
 
 critical_tests = ["unit_tests", "module_actions", "startup_v2", "core_d12",
-    "core_typecheck", "core_delete_module", "core_language", "core_arguments",
-    "core_varnames", "core_import_module"]
+                  "core_typecheck", "core_delete_module", "core_language", "core_arguments",
+                  "core_varnames", "core_import_module"]
 
 # We want to collect debug information about the test site before running any
 # of the tests, but only when not running the tests interactively. Then the
@@ -198,8 +198,8 @@ tests = ["absolute_sources",
          "custom_generator",
          "default_build",
          "default_features",
-# This test is known to be broken itself.
-#         "default_toolset",
+         # This test is known to be broken itself.
+         #         "default_toolset",
          "dependency_property",
          "dependency_test",
          "direct_request_test",

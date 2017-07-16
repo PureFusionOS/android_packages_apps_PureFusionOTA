@@ -17,7 +17,8 @@ report_author = "Douglas Gregor <dgregor@osl.iu.edu>"
 boost_dev_list = "Boost Developer List <boost@lists.boost.org>"
 boost_testing_list = "Boost Testing List <boost-testing@lists.boost.org>"
 
-def sorted_keys( dict ):
+
+def sorted_keys(dict):
     result = dict.keys()
     result.sort()
     return result
@@ -27,6 +28,7 @@ class Platform:
     """
     All of the failures for a particular platform.
     """
+
     def __init__(self, name):
         self.name = name
         self.failures = list()
@@ -47,19 +49,23 @@ class Platform:
         self.maintainers.append(maintainer)
         return
 
+
 class Failure:
     """
     A single test case failure in the report.
     """
+
     def __init__(self, test, platform):
         self.test = test
         self.platform = platform
         return
 
+
 class Test:
     """
     All of the failures for a single test name within a library.
     """
+
     def __init__(self, library, name):
         self.library = library
         self.name = name
@@ -87,10 +93,12 @@ class Test:
             pass
         return count
 
+
 class Library:
     """
     All of the information about the failures in a single library.
     """
+
     def __init__(self, name):
         self.name = name
         self.maintainers = list()
@@ -125,10 +133,12 @@ class Library:
             pass
         return count
 
+
 class Maintainer:
     """
     Information about the maintainer of a library
     """
+
     def __init__(self, name, email):
         self.name = name
         self.email = email
@@ -208,10 +218,12 @@ There are failures in these libraries you maintain:
 
         return message
 
+
 class PlatformMaintainer:
     """
     Information about the platform maintainer of a library
     """
+
     def __init__(self, name, email):
         self.name = name
         self.email = email
@@ -265,15 +277,17 @@ The following platforms have a large number of failures:
         for platform in self.platforms:
             if platform.isBroken():
                 message += ('  ' + platform.name + ' ('
-                            + str(len(platform.failures))  + ' failures)\n')
+                            + str(len(platform.failures)) + ' failures)\n')
 
         return message
-    
+
+
 class Report:
     """
     The complete report of all failing test cases.
     """
-    def __init__(self, branch = 'trunk'):
+
+    def __init__(self, branch='trunk'):
         self.branch = branch
         self.date = None
         self.url = None
@@ -341,14 +355,14 @@ class Report:
             if m:
                 self.url = m.group(1)
                 continue
-                
+
             # Check for a library header
             m = library_regex.match(line)
             if m:
                 current_library = Library(m.group(1))
                 self.libraries[m.group(1)] = current_library
                 continue
-                
+
             # Check for a library test and its failures
             m = failure_regex.match(line)
             if m:
@@ -383,7 +397,7 @@ class Report:
         ping_url = base_url + "issues.html"
         os.system('curl -O ' + ping_url)
         os.system('rm -f issues.html')
-            
+
         for x in range(30):
             # Update issues-email.txt
             url = base_url + "issues-email.txt"
@@ -395,7 +409,7 @@ class Report:
                 return True
 
             print 'Failed to fetch issues email. '
-            time.sleep (30)
+            time.sleep(30)
 
         return False
 
@@ -412,7 +426,7 @@ class Report:
         for line in file('../../../libs/maintainers.txt', 'r'):
             if line.startswith('#'):
                 continue
-            m = lib_maintainer_regex.match (line)
+            m = lib_maintainer_regex.match(line)
             if m:
                 libname = m.group(1)
                 if self.libraries.has_key(m.group(1)):
@@ -448,7 +462,7 @@ class Report:
         for line in file('../../../libs/platform_maintainers.txt', 'r'):
             if line.startswith('#'):
                 continue
-            m = platform_maintainer_regex.match (line)
+            m = platform_maintainer_regex.match(line)
             if m:
                 platformname = m.group(2)
                 if self.platforms.has_key(platformname):
@@ -511,13 +525,13 @@ Detailed report:
         if self.numFailures() == 0:
             message += "No failures! Yay!\n"
             return message
-            
+
         # List the platforms that are broken
         any_broken_platforms = self.numReportableFailures() < self.numFailures()
         if any_broken_platforms:
             message += """The following platforms have a large number of failures:
 """
-            for platform in sorted_keys( self.platforms ):
+            for platform in sorted_keys(self.platforms):
                 if self.platforms[platform].isBroken():
                     message += ('  ' + platform + ' ('
                                 + str(len(self.platforms[platform].failures))
@@ -528,31 +542,31 @@ Failures on these "broken" platforms will be omitted from the results below.
 Please see the full report for information about these failures.
 
 """
-   
+
         # Display the number of failures
-        message += (str(self.numReportableFailures()) + ' failures in ' + 
+        message += (str(self.numReportableFailures()) + ' failures in ' +
                     str(len(self.libraries)) + ' libraries')
         if any_broken_platforms:
             message += (' (plus ' + str(self.numFailures() - self.numReportableFailures())
                         + ' from broken platforms)')
-                        
+
         message += '\n'
 
         # Display the number of failures per library
-        for k in sorted_keys( self.libraries ):
+        for k in sorted_keys(self.libraries):
             library = self.libraries[k]
             num_failures = library.numFailures()
             message += '  ' + library.name + ' ('
-                
+
             if library.numReportableFailures() > 0:
                 message += (str(library.numReportableFailures())
                             + " failures")
-                
+
             if library.numReportableFailures() < num_failures:
                 if library.numReportableFailures() > 0:
                     message += ', plus '
-                                
-                message += (str(num_failures-library.numReportableFailures()) 
+
+                message += (str(num_failures - library.numReportableFailures())
                             + ' failures on broken platforms')
             message += ')\n'
             pass
@@ -560,7 +574,7 @@ Please see the full report for information about these failures.
         message += '\n'
 
         # Provide the details for the failures in each library.
-        for k in sorted_keys( self.libraries ):
+        for k in sorted_keys(self.libraries):
             library = self.libraries[k]
             if library.numReportableFailures() > 0:
                 message += '\n|' + library.name + '|\n'
@@ -582,13 +596,13 @@ Please see the full report for information about these failures.
         otherwise.
         """
         brokenPlatforms = 0
-        for platform in sorted_keys( self.platforms ):
+        for platform in sorted_keys(self.platforms):
             if self.platforms[platform].isBroken():
                 brokenPlatforms = brokenPlatforms + 1
 
         if brokenPlatforms == 0:
             return None;
-        
+
         message = """From: Douglas Gregor <dgregor@osl.iu.edu>
 To: boost-testing@lists.boost.org
 Reply-To: boost-testing@lists.boost.org
@@ -615,7 +629,7 @@ Detailed report:
         message += """
 Platforms with a large number of failures:
 """
-        for platform in sorted_keys( self.platforms ):
+        for platform in sorted_keys(self.platforms):
             if self.platforms[platform].isBroken():
                 message += ('  ' + platform + ' ('
                             + str(len(self.platforms[platform].failures))
@@ -623,115 +637,117 @@ Platforms with a large number of failures:
 
         return message
 
+
 # Send a message to "person" (a maintainer of a library that is
 # failing).
 # maintainers is the result of get_library_maintainers()
-def send_individualized_message (branch, person, maintainers):
-  # There are several states we could be in:
-  #   0 Initial state. Eat everything up to the "NNN failures in MMM
-  #     libraries" line
-  #   1 Suppress output within this library
-  #   2 Forward output within this library
-  state = 0
- 
-  failures_in_lib_regex = re.compile('\d+ failur.*\d+ librar')
-  lib_failures_regex = re.compile('  (\S+) \((\d+)\)')
-  lib_start_regex = re.compile('\|(\S+)\|')
-  general_pass_regex = re.compile('  http://')
-  for line in file('issues-email.txt', 'r'):
-    if state == 0:
-        lfm = lib_failures_regex.match(line)
-        if lfm:
-            # Pass the line through if the current person is a
-            # maintainer of this library
-            if lfm.group(1) in maintainers and person in maintainers[lfm.group(1)]:
-                message += line
-                print line,
-                
-        elif failures_in_lib_regex.match(line):
-            message += "\nThere are failures in these libraries you maintain:\n"
-        elif general_pass_regex.match(line):
-            message += line
-            
-    lib_start = lib_start_regex.match(line)
-    if lib_start:
-        if state == 0:
-            message += '\n'
-            
-        if lib_start.group(1) in maintainers and person in maintainers[lib_start.group(1)]:
-            message += line
-            state = 2
-        else:
-            state = 1
-    else:
-        if state == 1:
-            pass
-        elif state == 2:
-            message += line
+def send_individualized_message(branch, person, maintainers):
+    # There are several states we could be in:
+    #   0 Initial state. Eat everything up to the "NNN failures in MMM
+    #     libraries" line
+    #   1 Suppress output within this library
+    #   2 Forward output within this library
+    state = 0
 
-  if '--debug' in sys.argv:
-      print '-----------------Message text----------------'
-      print message
-  else:
-      print
-      
-  if '--send' in sys.argv:
-      print "Sending..."
-      smtp = smtplib.SMTP('milliways.osl.iu.edu')
-      smtp.sendmail(from_addr = 'Douglas Gregor <dgregor@osl.iu.edu>',
-                    to_addrs = person[1],
-                    msg = message)
-      print "Done."
+    failures_in_lib_regex = re.compile('\d+ failur.*\d+ librar')
+    lib_failures_regex = re.compile('  (\S+) \((\d+)\)')
+    lib_start_regex = re.compile('\|(\S+)\|')
+    general_pass_regex = re.compile('  http://')
+    for line in file('issues-email.txt', 'r'):
+        if state == 0:
+            lfm = lib_failures_regex.match(line)
+            if lfm:
+                # Pass the line through if the current person is a
+                # maintainer of this library
+                if lfm.group(1) in maintainers and person in maintainers[lfm.group(1)]:
+                    message += line
+                    print line,
+
+            elif failures_in_lib_regex.match(line):
+                message += "\nThere are failures in these libraries you maintain:\n"
+            elif general_pass_regex.match(line):
+                message += line
+
+        lib_start = lib_start_regex.match(line)
+        if lib_start:
+            if state == 0:
+                message += '\n'
+
+            if lib_start.group(1) in maintainers and person in maintainers[lib_start.group(1)]:
+                message += line
+                state = 2
+            else:
+                state = 1
+        else:
+            if state == 1:
+                pass
+            elif state == 2:
+                message += line
+
+    if '--debug' in sys.argv:
+        print '-----------------Message text----------------'
+        print message
+    else:
+        print
+
+    if '--send' in sys.argv:
+        print "Sending..."
+        smtp = smtplib.SMTP('milliways.osl.iu.edu')
+        smtp.sendmail(from_addr='Douglas Gregor <dgregor@osl.iu.edu>',
+                      to_addrs=person[1],
+                      msg=message)
+        print "Done."
 
 
 # Send a message to the developer's list
 def send_boost_developers_message(branch, maintainers, failing_libraries):
-  to_line = 'boost@lists.boost.org'
-  from_line = 'Douglas Gregor <dgregor@osl.iu.edu>'
+    to_line = 'boost@lists.boost.org'
+    from_line = 'Douglas Gregor <dgregor@osl.iu.edu>'
 
-  message = """From: Douglas Gregor <dgregor@osl.iu.edu>
+    message = """From: Douglas Gregor <dgregor@osl.iu.edu>
 To: boost@lists.boost.org
 Reply-To: boost@lists.boost.org
 Subject: Boost regression testing notification ("""
 
-  message += str(datetime.date.today()) + " [" + branch + "]"
-  message += ")"
+    message += str(datetime.date.today()) + " [" + branch + "]"
+    message += ")"
 
-  message += """
+    message += """
 
 """
 
-  for line in file('issues-email.txt', 'r'):
-      # Right before the detailed report, put out a warning message if
-      # any libraries with failures to not have maintainers listed.
-      if line.startswith('Detailed report:'):
-          missing_maintainers = False
-          for lib in failing_libraries:
-              if not(lib in maintainers) or maintainers[lib] == list():
-                  missing_maintainers = True
+    for line in file('issues-email.txt', 'r'):
+        # Right before the detailed report, put out a warning message if
+        # any libraries with failures to not have maintainers listed.
+        if line.startswith('Detailed report:'):
+            missing_maintainers = False
+            for lib in failing_libraries:
+                if not (lib in maintainers) or maintainers[lib] == list():
+                    missing_maintainers = True
 
-          if missing_maintainers:
-              message += """WARNING: The following libraries have failing regression tests but do
+            if missing_maintainers:
+                message += """WARNING: The following libraries have failing regression tests but do
 not have a maintainer on file. Once a maintainer is found, add an
 entry to libs/maintainers.txt to eliminate this message.
 """
 
-              for lib in failing_libraries:
-                  if not(lib in maintainers) or maintainers[lib] == list():
-                      message += '  ' + lib + '\n'
-              message += '\n'
-              
-      message += line
-      
-  if '--send' in sys.argv:
-      print 'Sending notification email...'
-      smtp = smtplib.SMTP('milliways.osl.iu.edu')
-      smtp.sendmail(from_addr = from_line, to_addrs = to_line, msg = message)
-      print 'Done.'
+                for lib in failing_libraries:
+                    if not (lib in maintainers) or maintainers[lib] == list():
+                        message += '  ' + lib + '\n'
+                message += '\n'
 
-  if '--debug' in sys.argv:
-      print "----------Boost developer's message text----------"
-      print message
+        message += line
+
+    if '--send' in sys.argv:
+        print 'Sending notification email...'
+        smtp = smtplib.SMTP('milliways.osl.iu.edu')
+        smtp.sendmail(from_addr=from_line, to_addrs=to_line, msg=message)
+        print 'Done.'
+
+    if '--debug' in sys.argv:
+        print "----------Boost developer's message text----------"
+        print message
+
 
 ###############################################################################
 # Main program                                                                #
@@ -760,9 +776,9 @@ if not okay:
         Subject: Regression status script failed on """
         message += str(datetime.date.today()) + " [" + branch + "]"
         smtp = smtplib.SMTP('milliways.osl.iu.edu')
-        smtp.sendmail(from_addr = 'Douglas Gregor <dgregor@osl.iu.edu>',
-                      to_addrs = 'dgregor@osl.iu.edu',
-                      msg = message)
+        smtp.sendmail(from_addr='Douglas Gregor <dgregor@osl.iu.edu>',
+                      to_addrs='dgregor@osl.iu.edu',
+                      msg=message)
     sys.exit(1)
 
 # Try to parse maintainers information
@@ -778,12 +794,12 @@ for maintainer_name in report.maintainers:
         if '--send' in sys.argv:
             print ('Sending notification email to ' + maintainer.name + '...')
             smtp = smtplib.SMTP('milliways.osl.iu.edu')
-            smtp.sendmail(from_addr = report_author, 
-                          to_addrs = maintainer.email,
-                          msg = email)
+            smtp.sendmail(from_addr=report_author,
+                          to_addrs=maintainer.email,
+                          msg=email)
             print 'done.\n'
         else:
-            print 'Would send a notification e-mail to',maintainer.name
+            print 'Would send a notification e-mail to', maintainer.name
 
         if '--debug' in sys.argv:
             print ('Message text for ' + maintainer.name + ':\n')
@@ -798,12 +814,12 @@ for maintainer_name in report.platform_maintainers:
         if '--send' in sys.argv:
             print ('Sending notification email to ' + maintainer.name + '...')
             smtp = smtplib.SMTP('milliways.osl.iu.edu')
-            smtp.sendmail(from_addr = report_author, 
-                          to_addrs = maintainer.email,
-                          msg = email)
+            smtp.sendmail(from_addr=report_author,
+                          to_addrs=maintainer.email,
+                          msg=email)
             print 'done.\n'
         else:
-            print 'Would send a notification e-mail to',maintainer.name
+            print 'Would send a notification e-mail to', maintainer.name
 
         if '--debug' in sys.argv:
             print ('Message text for ' + maintainer.name + ':\n')
@@ -813,9 +829,9 @@ email = report.composeSummaryEmail()
 if '--send' in sys.argv:
     print 'Sending summary email to Boost developer list...'
     smtp = smtplib.SMTP('milliways.osl.iu.edu')
-    smtp.sendmail(from_addr = report_author, 
-                  to_addrs = boost_dev_list,
-                  msg = email)
+    smtp.sendmail(from_addr=report_author,
+                  to_addrs=boost_dev_list,
+                  msg=email)
     print 'done.\n'
 if '--debug' in sys.argv:
     print 'Message text for summary:\n'
@@ -826,9 +842,9 @@ if email:
     if '--send' in sys.argv:
         print 'Sending summary email to Boost testing list...'
         smtp = smtplib.SMTP('milliways.osl.iu.edu')
-        smtp.sendmail(from_addr = report_author, 
-                      to_addrs = boost_testing_list,
-                      msg = email)
+        smtp.sendmail(from_addr=report_author,
+                      to_addrs=boost_testing_list,
+                      msg=email)
         print 'done.\n'
     if '--debug' in sys.argv:
         print 'Message text for testing summary:\n'

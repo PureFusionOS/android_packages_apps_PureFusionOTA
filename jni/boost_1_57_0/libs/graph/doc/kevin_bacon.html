@@ -7,61 +7,61 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Kevin Bacon Example</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Kevin Bacon Example</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
 <H1>Six Degrees of Kevin Bacon</H1>
 
 <P>
-A fun application of graph theory comes up in the popular game ``Six
-Degrees of Kevin Bacon''. The idea of the game is to connect an actor
-to Kevin Bacon through a trail of actors who appeared together in
-movies, and do so in less than six steps. For example, Theodore
-Hesburgh (President Emeritus of the University of Notre Dame) was in
-the movie ``Rudy'' with the actor Gerry Becker, who was in the movie
-``Sleepers'' with Kevin Bacon. Why Kevin Bacon? For some reason the
-three students who invented the game, Mike Ginelli, Craig Fass, and
-Brian Turtle decided that Kevin Bacon is the center of the
-entertainment world. The Kevin Bacon game is quite similar to the <a
-href="http://www.oakland.edu/~grossman/erdoshp.html">Erd&ouml;s
-Number</a> which has ``been a part of the folklore of
-mathematicians throughout the world for many years''.
+    A fun application of graph theory comes up in the popular game ``Six
+    Degrees of Kevin Bacon''. The idea of the game is to connect an actor
+    to Kevin Bacon through a trail of actors who appeared together in
+    movies, and do so in less than six steps. For example, Theodore
+    Hesburgh (President Emeritus of the University of Notre Dame) was in
+    the movie ``Rudy'' with the actor Gerry Becker, who was in the movie
+    ``Sleepers'' with Kevin Bacon. Why Kevin Bacon? For some reason the
+    three students who invented the game, Mike Ginelli, Craig Fass, and
+    Brian Turtle decided that Kevin Bacon is the center of the
+    entertainment world. The Kevin Bacon game is quite similar to the <a
+        href="http://www.oakland.edu/~grossman/erdoshp.html">Erd&ouml;s
+    Number</a> which has ``been a part of the folklore of
+    mathematicians throughout the world for many years''.
 
 <P>
-The ``Six Degrees of Kevin Bacon'' game is really a graph problem.  If
-you assign each actor to a vertex, and add an edge between two actors
-if they have appeared together in a movie, then you have a graph that
-represents the data for this game. Then the problem of finding a trail
-of actors to Kevin Bacon becomes a traditional graph problem: that of
-finding a <I>path</I> between two vertices. Since we wish to find a
-path that is shorter than six steps, ideally we would find the
-<I>shortest path</I> between the vertices. One might think to apply
-Dijkstra's shortest path algorithm to this problem, but that would be
-overkill since Dijkstra's algorithm is meant for situations when each
-edge has an associated length (or weight) and the goal is to find the
-path with the shortest cumulative length. Since we are only concerned
-with finding the shortest paths in terms of the number of edges the
-breadth-first search algorithm will solve the problem (and use less
-time than Dijkstra's).
+    The ``Six Degrees of Kevin Bacon'' game is really a graph problem. If
+    you assign each actor to a vertex, and add an edge between two actors
+    if they have appeared together in a movie, then you have a graph that
+    represents the data for this game. Then the problem of finding a trail
+    of actors to Kevin Bacon becomes a traditional graph problem: that of
+    finding a <I>path</I> between two vertices. Since we wish to find a
+    path that is shorter than six steps, ideally we would find the
+    <I>shortest path</I> between the vertices. One might think to apply
+    Dijkstra's shortest path algorithm to this problem, but that would be
+    overkill since Dijkstra's algorithm is meant for situations when each
+    edge has an associated length (or weight) and the goal is to find the
+    path with the shortest cumulative length. Since we are only concerned
+    with finding the shortest paths in terms of the number of edges the
+    breadth-first search algorithm will solve the problem (and use less
+    time than Dijkstra's).
 
 <P>
 
 <H2>Input File and Graph Setup</H2>
 
 <P>
-For this example we will use a much smaller graph than all movies and
-all actors. The full source code for this example is in <a
-href="../example/kevin-bacon.cpp"><TT>examples/kevin-bacon.cpp</TT></a>.
-We have supplied a file <TT>kevin-bacon.dat</TT> which contains a list
-of actor pairs who appeared in the same movie. Each line of the file
-contains an actor's name, a movie, and another actor that appeared in
-the movie. The ``;'' character is used as a separator. Here is an
-excerpt.
+    For this example we will use a much smaller graph than all movies and
+    all actors. The full source code for this example is in <a
+        href="../example/kevin-bacon.cpp"><TT>examples/kevin-bacon.cpp</TT></a>.
+    We have supplied a file <TT>kevin-bacon.dat</TT> which contains a list
+    of actor pairs who appeared in the same movie. Each line of the file
+    contains an actor's name, a movie, and another actor that appeared in
+    the movie. The ``;'' character is used as a separator. Here is an
+    excerpt.
 
 <P>
 <PRE>
@@ -69,8 +69,8 @@ Patrick Stewart;Prince of Egypt, The (1998);Steve Martin
 </PRE>
 
 <P>
-Our first task will be to read in the file and create a graph from
-it. We use a <TT>std::ifstream</TT> to input the file.
+    Our first task will be to read in the file and create a graph from
+    it. We use a <TT>std::ifstream</TT> to input the file.
 
 <P>
 <PRE>
@@ -82,11 +82,11 @@ it. We use a <TT>std::ifstream</TT> to input the file.
 </PRE>
 
 <P>
-We will want to attach the actor's names to the vertices in the graph,
-and the movie names to the edges. We use the <TT>property</TT> class to
-specify the addition of these vertex and edge properties to the graph.
-We choose to use an undirected graph, because the relationship of
-actors appearing together in a movie is symmetric.
+    We will want to attach the actor's names to the vertices in the graph,
+    and the movie names to the edges. We use the <TT>property</TT> class to
+    specify the addition of these vertex and edge properties to the graph.
+    We choose to use an undirected graph, because the relationship of
+    actors appearing together in a movie is symmetric.
 
 <P>
 <PRE>
@@ -98,8 +98,8 @@ actors appearing together in a movie is symmetric.
 </PRE>
 
 <P>
-To access the properties, we will need to obtain property map
-objects from the graph. The following code shows how this is done.
+    To access the properties, we will need to obtain property map
+    objects from the graph. The following code shows how this is done.
 
 <P>
 <PRE>
@@ -108,9 +108,9 @@ objects from the graph. The following code shows how this is done.
 </PRE>
 
 <P>
-Next we can start to loop through the file, parsing each line into a
-sequence of tokens using the <a href="../../tokenizer/index.html">Boost
-Tokenizer Library</a>.
+    Next we can start to loop through the file, parsing each line into a
+    sequence of tokens using the <a href="../../tokenizer/index.html">Boost
+    Tokenizer Library</a>.
 
 <P>
 <PRE>
@@ -122,16 +122,16 @@ Tokenizer Library</a>.
 </PRE>
 
 <P>
-Each line of the input corresponds to an edge in the graph, with the
-two actors as the vertices incident to the edge, and the movie name
-will be a property attached to the edge. One challenge in creating the
-graph from this format of input is that the edges are specified by a
-pair of actor names. As we add vertices to the graph, we'll need to
-create a map from actor names to their vertices so that later
-appearances of the same actor (on a different edge) can be linked with
-the correct vertex in the graph. The <a
-href="http://www.sgi.com/tech/stl/Map.html"><TT>std::map</TT></a>
-can be used to implement this mapping.
+    Each line of the input corresponds to an edge in the graph, with the
+    two actors as the vertices incident to the edge, and the movie name
+    will be a property attached to the edge. One challenge in creating the
+    graph from this format of input is that the edges are specified by a
+    pair of actor names. As we add vertices to the graph, we'll need to
+    create a map from actor names to their vertices so that later
+    appearances of the same actor (on a different edge) can be linked with
+    the correct vertex in the graph. The <a
+        href="http://www.sgi.com/tech/stl/Map.html"><TT>std::map</TT></a>
+    can be used to implement this mapping.
 
 <P>
 <PRE>
@@ -141,11 +141,11 @@ can be used to implement this mapping.
 </PRE>
 
 <P>
-The first token will be an actor's name. If the actor is not already
-in our actor's map we will add a vertex to the graph, set the name
-property of the vertex, and record the vertex descriptor in the map.
-If the actor is already in the graph, we will retrieve the vertex
-descriptor from the map's <TT>pos</TT> iterator.
+    The first token will be an actor's name. If the actor is not already
+    in our actor's map we will add a vertex to the graph, set the name
+    property of the vertex, and record the vertex descriptor in the map.
+    If the actor is already in the graph, we will retrieve the vertex
+    descriptor from the map's <TT>pos</TT> iterator.
 
 <P>
 <PRE>
@@ -166,9 +166,9 @@ descriptor from the map's <TT>pos</TT> iterator.
 </PRE>
 
 <P>
-The second token is the name of the movie, and the third token is the
-other actor. We use the same technique as above to insert the second
-actor into the graph.
+    The second token is the name of the movie, and the third token is the
+    other actor. We use the same technique as above to insert the second
+    actor into the graph.
 
 <P>
 <PRE>
@@ -184,8 +184,8 @@ actor into the graph.
 </PRE>
 
 <P>
-The final step is to add an edge connecting the two actors, and record
-the name of the connecting movie. 
+    The final step is to add an edge connecting the two actors, and record
+    the name of the connecting movie.
 
 <P>
 <PRE>
@@ -200,16 +200,16 @@ the name of the connecting movie.
 <H2>A Custom Visitor Class</H2>
 
 <P>
-We create a custom visitor class to record the Kevin Bacon
-numbers. The Kevin Bacon number will be the shortest distances from
-each actor to Kevin Bacon. This distance has also been referred to as
-the ``Bacon Number'' in memory of the ``Erdos Number'' used to rank
-mathematicians according to how many publications separate them from
-Paul Erdos. The shortest distance to from Kevin Bacon to each actor
-will follow the breadth-first tree. The BFS algorithm identifies edges
-that belong to the breadth-first tree and calls our visitor's
-<tt>tree_edge</tt> function. We record the distance to the target
-vertex as one plus the distance to the source vertex.
+    We create a custom visitor class to record the Kevin Bacon
+    numbers. The Kevin Bacon number will be the shortest distances from
+    each actor to Kevin Bacon. This distance has also been referred to as
+    the ``Bacon Number'' in memory of the ``Erdos Number'' used to rank
+    mathematicians according to how many publications separate them from
+    Paul Erdos. The shortest distance to from Kevin Bacon to each actor
+    will follow the breadth-first tree. The BFS algorithm identifies edges
+    that belong to the breadth-first tree and calls our visitor's
+    <tt>tree_edge</tt> function. We record the distance to the target
+    vertex as one plus the distance to the source vertex.
 
 
 <PRE>
@@ -239,7 +239,7 @@ vertex as one plus the distance to the source vertex.
 </PRE>
 
 <P>
-We will use a vector to store the bacon numbers.
+    We will use a vector to store the bacon numbers.
 
 <P>
 <PRE>
@@ -249,9 +249,9 @@ We will use a vector to store the bacon numbers.
 <H2>Apply the Breadth-First Search</H2>
 
 <P>
-The BFS algorithm requires a source vertex as input; of course this
-will be Kevin Bacon. We now call the BGL BFS algorithm, passing in the
-graph, source vertex, and the visitor.
+    The BFS algorithm requires a source vertex as input; of course this
+    will be Kevin Bacon. We now call the BGL BFS algorithm, passing in the
+    graph, source vertex, and the visitor.
 
 <P>
 <PRE>
@@ -262,9 +262,9 @@ graph, source vertex, and the visitor.
 </PRE>
 
 <P>
-We can output the Bacon number for each actor simply by looping
-through all the vertices in the graph and use them to index into the
-<TT>bacon_number</TT> vector.
+    We can output the Bacon number for each actor simply by looping
+    through all the vertices in the graph and use them to index into the
+    <TT>bacon_number</TT> vector.
 
 <P>
 <PRE>
@@ -275,16 +275,16 @@ through all the vertices in the graph and use them to index into the
 </PRE>
 
 <P>
-Note that vertex descriptor objects can not always be used as indices
-into vectors or arrays such as <TT>bacon_number</TT>. This is valid
-with the <TT>adjacency_list</TT> class with <TT>VertexList=vecS</TT>,
-but not with other variations of <TT>adjacency_list</TT>. A more
-generic way to index based on vertices is to use the ID property
-map (<TT>vertex_index_t</TT>) in coordination with the <A
-HREF="../../property_map/doc/iterator_property_map.html"><TT>iterator_property_map</TT></a>.
+    Note that vertex descriptor objects can not always be used as indices
+    into vectors or arrays such as <TT>bacon_number</TT>. This is valid
+    with the <TT>adjacency_list</TT> class with <TT>VertexList=vecS</TT>,
+    but not with other variations of <TT>adjacency_list</TT>. A more
+    generic way to index based on vertices is to use the ID property
+    map (<TT>vertex_index_t</TT>) in coordination with the <A
+        HREF="../../property_map/doc/iterator_property_map.html"><TT>iterator_property_map</TT></a>.
 
 <P>
-Here are some excepts from the output of the program.
+    Here are some excepts from the output of the program.
 <PRE>
 William Shatner's bacon number is 2
 Denise Richards's bacon number is 1
@@ -295,18 +295,20 @@ Steve Martin's bacon number is 1
 </PRE>
 
 
-
-
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2000-2001</TD><TD>
-<A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>, Indiana University (<A HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2000-2001</TD>
+        <TD>
+            <A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>, Indiana
+            University (<A HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
-</HTML> 
+</HTML>
 <!--  LocalWords:  gif Hesburgh Ginelli Fass Erd vertices cerr namespace vecS
  -->
 <!--  LocalWords:  undirectedS Tokenizer sep tokenizer toks NameVertexMap pos

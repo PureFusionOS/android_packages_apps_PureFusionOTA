@@ -126,7 +126,9 @@
 {'this': 1, 'that': 'the other'}
 
 """
-def run(args = None):
+
+
+def run(args=None):
     import sys
     import doctest
 
@@ -134,14 +136,14 @@ def run(args = None):
         sys.argv = args
     return doctest.testmod(sys.modules.get(__name__))
 
+
 if __name__ == '__main__':
     print "running..."
     import sys
+
     status = run()[0]
     if (status == 0): print "Done."
     import args_ext
+
     help(args_ext)
     sys.exit(status)
-
-
-

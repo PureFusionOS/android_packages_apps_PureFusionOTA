@@ -7,16 +7,16 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>IncidenceGraph</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>IncidenceGraph</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
 <H1><A NAME="concept:IncidenceGraph"></A>
-IncidenceGraph
+    IncidenceGraph
 </H1>
 
 The IncidenceGraph concept provides an interface for
@@ -30,25 +30,25 @@ efficient access to the out-edges of each vertex in the graph.
 <h3>Notation</h3>
 
 <Table>
-<TR>
-<TD><tt>G</tt></TD>
-<TD>A type that is a model of IncidenceGraph.</TD>
-</TR>
+    <TR>
+        <TD><tt>G</tt></TD>
+        <TD>A type that is a model of IncidenceGraph.</TD>
+    </TR>
 
-<TR>
-<TD><tt>g</tt></TD>
-<TD>An object of type <tt>G</tt>.</TD>
-</TR>
+    <TR>
+        <TD><tt>g</tt></TD>
+        <TD>An object of type <tt>G</tt>.</TD>
+    </TR>
 
-<TR>
-<TD><tt>e</tt></TD>
-<TD>An object of type <tt>boost::graph_traits&lt;G&gt;::edge_descriptor</tt>.</TD>
-</TR>
+    <TR>
+        <TD><tt>e</tt></TD>
+        <TD>An object of type <tt>boost::graph_traits&lt;G&gt;::edge_descriptor</tt>.</TD>
+    </TR>
 
-<TR>
-<TD><tt>u, v</tt></TD>
-<TD>Are objects of type <tt>boost::graph_traits&lt;G&gt;::vertex_descriptor</tt>.</TD>
-</TR>
+    <TR>
+        <TD><tt>u, v</tt></TD>
+        <TD>Are objects of type <tt>boost::graph_traits&lt;G&gt;::vertex_descriptor</tt>.</TD>
+    </TR>
 
 </table>
 
@@ -56,30 +56,31 @@ efficient access to the out-edges of each vertex in the graph.
 
 <Table border>
 
-<tr>
-<td><tt>boost::graph_traits&lt;G&gt;::traversal_category</tt><br><br>
- This tag type must be convertible to <tt>incidence_graph_tag</tt>.
-</td>
-</tr>
+    <tr>
+        <td><tt>boost::graph_traits&lt;G&gt;::traversal_category</tt><br><br>
+            This tag type must be convertible to <tt>incidence_graph_tag</tt>.
+        </td>
+    </tr>
 
 
-<TR>
-<TD>
-<pre>boost::graph_traits&lt;G&gt;::out_edge_iterator</pre>
-An out-edge iterator for a vertex <i>v</i> provides access to the
-out-edges of the vertex.  As such, the value type of an out-edge
-iterator is the edge descriptor type of its graph. An out-edge
-iterator must meet the requirements of <a
-href="../../utility/MultiPassInputIterator.html">MultiPassInputIterator</a>.
-</TD>
-</TR>
+    <TR>
+        <TD>
+            <pre>boost::graph_traits&lt;G&gt;::out_edge_iterator</pre>
+            An out-edge iterator for a vertex <i>v</i> provides access to the
+            out-edges of the vertex. As such, the value type of an out-edge
+            iterator is the edge descriptor type of its graph. An out-edge
+            iterator must meet the requirements of <a
+                href="../../utility/MultiPassInputIterator.html">MultiPassInputIterator</a>.
+        </TD>
+    </TR>
 
-<TR>
-<TD><pre>boost::graph_traits&lt;G&gt;::degree_size_type</pre>
-The unsigned integral type used for representing the number
-out-edges or incident edges of a vertex.
-</TD>
-</TR>
+    <TR>
+        <TD>
+            <pre>boost::graph_traits&lt;G&gt;::degree_size_type</pre>
+            The unsigned integral type used for representing the number
+            out-edges or incident edges of a vertex.
+        </TD>
+    </TR>
 
 </table>
 
@@ -87,42 +88,45 @@ out-edges or incident edges of a vertex.
 
 <Table border>
 
-<tr>
-<td><a name="sec:source"><TT>source(e,&nbsp;g)</TT></a></TD>
-<TD>Returns the vertex descriptor for <i>u</i> of the edge <i>(u,v)</i> represented by <TT>e</TT>.<br>
-Return type: <TT>vertex_descriptor</TT>
-</TD>
-</TR>
+    <tr>
+        <td><a name="sec:source"><TT>source(e,&nbsp;g)</TT></a></TD>
+        <TD>Returns the vertex descriptor for <i>u</i> of the edge <i>(u,v)</i> represented by
+            <TT>e</TT>.<br>
+            Return type: <TT>vertex_descriptor</TT>
+        </TD>
+    </TR>
 
 
-<tr>
-<td><a name="sec:target"><TT>target(e,&nbsp;g)</TT></a></TD>
-<TD>Returns the vertex descriptor for <i>v</i> of the edge <i>(u,v)</i> represented by <TT>e</TT>.<br>
-Return type: <TT>vertex_descriptor</TT>
-</td></tr>
+    <tr>
+        <td><a name="sec:target"><TT>target(e,&nbsp;g)</TT></a></TD>
+        <TD>Returns the vertex descriptor for <i>v</i> of the edge <i>(u,v)</i> represented by
+            <TT>e</TT>.<br>
+            Return type: <TT>vertex_descriptor</TT>
+        </td>
+    </tr>
 
-<tr>
-<td><a name="sec:out-edges"><TT>out_edges(u,&nbsp;g)</TT></a></TD>
-<TD>Returns an iterator-range providing access to the out-edges (for
-directed graphs) or incident edges (for undirected graphs) of vertex
-<TT>u</TT> in graph <TT>g</TT>.  The source vertex of an edge obtained
-via an out edge iterator is guaranteed (for both directed and
-undirected graphs) to be the vertex <tt>u</tt> used in the call to
-<tt>out_edges(u, g)</tt> and the target vertex must be a vertex
-adjacent to <tt>u</tt>.<a href="#1">[1]</a>
-<br>
-Return type: <TT>std::pair&lt;out_edge_iterator, out_edge_iterator&gt;</TT>
-</TD>
-</tr>
+    <tr>
+        <td><a name="sec:out-edges"><TT>out_edges(u,&nbsp;g)</TT></a></TD>
+        <TD>Returns an iterator-range providing access to the out-edges (for
+            directed graphs) or incident edges (for undirected graphs) of vertex
+            <TT>u</TT> in graph <TT>g</TT>. The source vertex of an edge obtained
+            via an out edge iterator is guaranteed (for both directed and
+            undirected graphs) to be the vertex <tt>u</tt> used in the call to
+            <tt>out_edges(u, g)</tt> and the target vertex must be a vertex
+            adjacent to <tt>u</tt>.<a href="#1">[1]</a>
+            <br>
+            Return type: <TT>std::pair&lt;out_edge_iterator, out_edge_iterator&gt;</TT>
+        </TD>
+    </tr>
 
-<tr>
-<TD><TT>out_degree(u,&nbsp;g)</TT></TD>
-<TD>Returns the number of out-edges (for directed graphs) or the
-number of incident edges (for undirected graphs) of vertex <TT>u</TT>
-in graph <TT>g</TT>.<br>
-Return type: <TT>degree_size_type</TT>
-</TD>
-</TR>
+    <tr>
+        <TD><TT>out_degree(u,&nbsp;g)</TT></TD>
+        <TD>Returns the number of out-edges (for directed graphs) or the
+            number of incident edges (for undirected graphs) of vertex <TT>u</TT>
+            in graph <TT>g</TT>.<br>
+            Return type: <TT>degree_size_type</TT>
+        </TD>
+    </TR>
 
 </TABLE>
 
@@ -131,9 +135,9 @@ Return type: <TT>degree_size_type</TT>
 <H3>Complexity guarantees</H3>
 
 <P>
-The <TT>source()</TT>, <TT>target()</TT>, and <TT>out_edges()</TT>
-functions must all be constant time. The <tt>out_degree()</tt>
-function must be linear in the number of out-edges.
+    The <TT>source()</TT>, <TT>target()</TT>, and <TT>out_edges()</TT>
+    functions must all be constant time. The <tt>out_degree()</tt>
+    function must be linear in the number of out-edges.
 
 <P>
 
@@ -187,16 +191,20 @@ Therefore, the extra requirement is added that the out-edge connecting
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2000-2001</TD><TD>
-<A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
-Indiana University (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-<A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana University (<A HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
-<A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Indiana University (<A
-HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2000-2001</TD>
+        <TD>
+            <A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
+            Indiana University (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+            <A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana
+            University (<A HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Indiana University (<A
+                HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

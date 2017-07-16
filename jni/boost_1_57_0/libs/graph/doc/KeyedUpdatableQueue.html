@@ -7,47 +7,62 @@
 -->
 <html>
 <head>
-<title>KeyedUpdatableQueue</title>
+    <title>KeyedUpdatableQueue</title>
 </head>
-<body> 
-<img src="../../../boost.png"  alt="C++ Boost">
+<body>
+<img src="../../../boost.png" alt="C++ Boost">
 
 <h2><a name="concept:KeyedUpdatableQueue">KeyedUpdatableQueue</a></h2>
 
-<p>A <i>KeyedUpdatableQueue</i> is a refinement of the <a href="./UpdatableQueue.html">UpdatableQueue</a> concept.
-It requires that models order the contained values by their <i>keys</i>, to which
-values are mapped via a read/write key map.
+<p>A <i>KeyedUpdatableQueue</i> is a refinement of the <a href="./UpdatableQueue.html">UpdatableQueue</a>
+    concept.
+    It requires that models order the contained values by their <i>keys</i>, to which
+    values are mapped via a read/write key map.
 
 <h3>Notation</h3>
 
 <table>
-<tr> <td> <tt>Q</tt> </td>  <td> is a type that models KeyedUpdatableQueue.       </td></tr>
-<tr> <td> <tt>T</tt> </td>  <td> is the value type of <tt>Q</tt>. </td></tr>
+    <tr>
+        <td><tt>Q</tt></td>
+        <td> is a type that models KeyedUpdatableQueue.</td>
+    </tr>
+    <tr>
+        <td><tt>T</tt></td>
+        <td> is the value type of <tt>Q</tt>.</td>
+    </tr>
 </table>
 
 
 <h3>Members</h3>
 
-For a type to model the KeyedUpdatableQueue concept it must have the following members 
+For a type to model the KeyedUpdatableQueue concept it must have the following members
 in addition to the members that are required of types that model <a href="./UpdatableQueue.html">UpdatableQueue</a>:
 
 <p>
 
 <table border="1">
 
-<tr> <td><b>Member</b></td> <td><b>Description</b></td> </tr>
+    <tr>
+        <td><b>Member</b></td>
+        <td><b>Description</b></td>
+    </tr>
 
-<tr> <td> <tt>key_type</tt> </td>
-     <td> The type of keys that are associated with values </td>
-     </tr>
+    <tr>
+        <td><tt>key_type</tt></td>
+        <td> The type of keys that are associated with values</td>
+    </tr>
 
-<tr> <td> <tt>key_map</tt> </td>
-     <td> The key property map type. This type must model <a href="../../property_map/doc/ReadWritePropertyMap.html">Read/Write Property Map</a>. </td>
-     </tr>
+    <tr>
+        <td><tt>key_map</tt></td>
+        <td> The key property map type. This type must model <a
+                href="../../property_map/doc/ReadWritePropertyMap.html">Read/Write Property Map</a>.
+        </td>
+    </tr>
 
-<tr> <td> <tt>key_map keys() const</tt> </td>
-     <td> Returns the key map </td>
-     </tr>
+    <tr>
+        <td><tt>key_map keys() const</tt></td>
+        <td> Returns the key map</td>
+    </tr>
 
 </table>
 
@@ -82,17 +97,17 @@ in addition to the members that are required of types that model <a href="./Upda
 <h3>Models</h3>
 
 <ul>
-<li><tt>boost::d_ary_heap_indirect</tt></a>
+    <li><tt>boost::d_ary_heap_indirect</tt></a>
 </ul>
 
 <br>
 <hr>
 <table>
-<tr>
-<td>Copyright&nbsp;&copy;&nbsp;2010</td>
-<td>Daniel Trebbien (<a href="mailto:dtrebbien@gmail.com">dtrebbien@gmail.com</a>)
-</td>
-</tr>
+    <tr>
+        <td>Copyright&nbsp;&copy;&nbsp;2010</td>
+        <td>Daniel Trebbien (<a href="mailto:dtrebbien@gmail.com">dtrebbien@gmail.com</a>)
+        </td>
+    </tr>
 </table>
 
 </body>

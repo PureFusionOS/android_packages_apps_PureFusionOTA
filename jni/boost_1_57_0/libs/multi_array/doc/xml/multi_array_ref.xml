@@ -1,33 +1,40 @@
 <sect2 id="multi_array_ref">
-<title><literal>multi_array_ref</literal></title>
+    <title>
+        <literal>multi_array_ref</literal>
+    </title>
 
-<para>
-<literal>multi_array_ref</literal> is a multi-dimensional container
-adaptor.  It provides the MultiArray interface over any contiguous
-block of elements.  <literal>multi_array_ref</literal> exports the
-same interface as <literal>multi_array</literal>, with the exception
-of the constructors.
-</para>
+    <para>
+        <literal>multi_array_ref</literal>
+        is a multi-dimensional container
+        adaptor. It provides the MultiArray interface over any contiguous
+        block of elements.  <literal>multi_array_ref</literal> exports the
+        same interface as <literal>multi_array</literal>, with the exception
+        of the constructors.
+    </para>
 
 
-<formalpara>
-      <title>Model Of.</title>
-<para>
-<literal>multi_array_ref</literal> models 
-<link linkend="MultiArray">MultiArray</link>,
-<ulink url="../../../libs/utility/CopyConstructible.html">CopyConstructible</ulink>.
-and depending on the element type, it may also model
-<ulink url="http://www.sgi.com/tech/stl/EqualityComparable.html">EqualityComparable</ulink> and <ulink url="http://www.sgi.com/tech/stl/LessThanComparable.html">LessThanComparable</ulink>. 
-Detailed descriptions are provided here only for operations that are
-not described in the <literal>multi_array</literal> reference.
-</para>
-</formalpara>
+    <formalpara>
+        <title>Model Of.</title>
+        <para>
+            <literal>multi_array_ref</literal>
+            models
+            <link linkend="MultiArray">MultiArray</link>,
+            <ulink url="../../../libs/utility/CopyConstructible.html">CopyConstructible</ulink>.
+            and depending on the element type, it may also model
+            <ulink url="http://www.sgi.com/tech/stl/EqualityComparable.html">EqualityComparable
+            </ulink>
+            and <ulink url="http://www.sgi.com/tech/stl/LessThanComparable.html">
+            LessThanComparable</ulink>.
+            Detailed descriptions are provided here only for operations that are
+            not described in the <literal>multi_array</literal> reference.
+        </para>
+    </formalpara>
 
-<formalpara>
-<title>Synopsis</title>
+    <formalpara>
+        <title>Synopsis</title>
 
-<programlisting>
-<![CDATA[
+        <programlisting>
+            <![CDATA[
 namespace boost {
 
 template <typename ValueType, 
@@ -129,129 +136,161 @@ public:
   void				reindex(index value);
 };
 ]]>
-</programlisting>
-</formalpara>
+        </programlisting>
+    </formalpara>
 
-<formalpara>
-<title>Constructors</title>
+    <formalpara>
+        <title>Constructors</title>
 
-<variablelist>
-<varlistentry>
-<term><programlisting>template &lt;typename ExtentList&gt;
-explicit multi_array_ref(element* data, 
-                     const ExtentList&amp; sizes,
-                     const storage_order&amp; store = c_storage_order(),
-                     const Allocator&amp; alloc = Allocator());
-</programlisting></term>
-<listitem>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <programlisting>template &lt;typename ExtentList&gt; explicit
+                        multi_array_ref(element* data,
+                        const ExtentList&amp; sizes,
+                        const storage_order&amp; store = c_storage_order(),
+                        const Allocator&amp; alloc = Allocator());
+                    </programlisting>
+                </term>
+                <listitem>
 
-<para>
-This constructs a <literal>multi_array_ref</literal> using the specified
-parameters.  <literal>sizes</literal> specifies the shape of the
-constructed <literal>multi_array_ref</literal>.  <literal>store</literal>
-specifies the storage order or layout in memory of the array
-dimensions.  <literal>alloc</literal> is used to
-allocate the contained elements.
-</para>
+                    <para>
+                        This constructs a <literal>multi_array_ref</literal> using the specified
+                        parameters.  <literal>sizes</literal> specifies the shape of the
+                        constructed <literal>multi_array_ref</literal>.
+                        <literal>store</literal>
+                        specifies the storage order or layout in memory of the array
+                        dimensions.  <literal>alloc</literal> is used to
+                        allocate the contained elements.
+                    </para>
 
-<formalpara><title><literal>ExtentList</literal> Requirements</title>
-<para>
-<literal>ExtentList</literal> must model <ulink url="../../utility/Collection.html">Collection</ulink>.
-</para>
-</formalpara>
+                    <formalpara>
+                        <title>
+                            <literal>ExtentList</literal>
+                            Requirements
+                        </title>
+                        <para>
+                            <literal>ExtentList</literal>
+                            must model <ulink url="../../utility/Collection.html">Collection</ulink>.
+                        </para>
+                    </formalpara>
 
-<formalpara><title>Preconditions</title>
-<para><literal>sizes.size() == NumDims;</literal></para>
-</formalpara>
+                    <formalpara>
+                        <title>Preconditions</title>
+                        <para>
+                            <literal>sizes.size() == NumDims;</literal>
+                        </para>
+                    </formalpara>
 
-</listitem>
-</varlistentry>
+                </listitem>
+            </varlistentry>
 
-<varlistentry>
-<term>
-<programlisting><![CDATA[explicit multi_array_ref(element* data,
+            <varlistentry>
+                <term>
+                    <programlisting><![CDATA[explicit multi_array_ref(element* data,
                      extent_gen::gen_type<NumDims>::type ranges,
                      const storage_order& store = c_storage_order());]]>
-</programlisting></term> 
-<listitem>
-<para>
-This constructs a <literal>multi_array_ref</literal> using the specified
-    parameters.  <literal>ranges</literal> specifies the shape and
-index bases of the constructed multi_array_ref. It is the result of 
-<literal>NumDims</literal> chained calls to 
-    <literal>extent_gen::operator[]</literal>. <literal>store</literal>
-specifies the storage order or layout in memory of the array
-dimensions. 
-</para>
-</listitem>
-</varlistentry> 
+                    </programlisting>
+                </term>
+                <listitem>
+                    <para>
+                        This constructs a <literal>multi_array_ref</literal> using the specified
+                        parameters.  <literal>ranges</literal> specifies the shape and
+                        index bases of the constructed multi_array_ref. It is the result of
+                        <literal>NumDims</literal>
+                        chained calls to
+                        <literal>extent_gen::operator[]</literal>.
+                        <literal>store</literal>
+                        specifies the storage order or layout in memory of the array
+                        dimensions.
+                    </para>
+                </listitem>
+            </varlistentry>
 
 
-<varlistentry>
-<term><programlisting>
-<![CDATA[multi_array_ref(const multi_array_ref& x);]]>
-</programlisting></term>
-<listitem>
-<para>This constructs a shallow copy of <literal>x</literal>.
-</para>
+            <varlistentry>
+                <term>
+                    <programlisting>
+                        <![CDATA[multi_array_ref(const multi_array_ref& x);]]>
+                    </programlisting>
+                </term>
+                <listitem>
+                    <para>This constructs a shallow copy of <literal>x</literal>.
+                    </para>
 
-<formalpara>
-<title>Complexity</title>
-<para> Constant time (for contrast, compare this to
-the <literal>multi_array</literal> class copy constructor.
-</para></formalpara>
-</listitem>
-</varlistentry>
+                    <formalpara>
+                        <title>Complexity</title>
+                        <para>Constant time (for contrast, compare this to
+                            the <literal>multi_array</literal> class copy constructor.
+                        </para>
+                    </formalpara>
+                </listitem>
+            </varlistentry>
 
-</variablelist>
+        </variablelist>
 
-</formalpara>
+    </formalpara>
 
 
-<formalpara>
-<title>Modifiers</title>
+    <formalpara>
+        <title>Modifiers</title>
 
-<variablelist>
-<varlistentry>
+        <variablelist>
+            <varlistentry>
 
-<term><programlisting>
-<![CDATA[multi_array_ref& operator=(const multi_array_ref& x);
+                <term>
+                    <programlisting>
+                        <![CDATA[multi_array_ref& operator=(const multi_array_ref& x);
 template <class Array> multi_array_ref& operator=(const Array& x);]]>
-</programlisting>
-</term>
+                    </programlisting>
+                </term>
 
-<listitem>
-<para>This performs an element-wise copy of <literal>x</literal>
-into the current <literal>multi_array_ref</literal>.</para>
+                <listitem>
+                    <para>This performs an element-wise copy of
+                        <literal>x</literal>
+                        into the current <literal>multi_array_ref</literal>.
+                    </para>
 
-<formalpara>
-<title><literal>Array</literal> Requirements</title>
-<para><literal>Array</literal> must model MultiArray. 
-</para></formalpara>
+                    <formalpara>
+                        <title>
+                            <literal>Array</literal>
+                            Requirements
+                        </title>
+                        <para>
+                            <literal>Array</literal>
+                            must model MultiArray.
+                        </para>
+                    </formalpara>
 
-<formalpara>
-<title>Preconditions</title>
-<para>
-<programlisting>std::equal(this->shape(),this->shape()+this->num_dimensions(),
-x.shape());</programlisting></para>
-</formalpara>
+                    <formalpara>
+                        <title>Preconditions</title>
+                        <para>
+                            <programlisting>
+                                std::equal(this->shape(),this->shape()+this->num_dimensions(),
+                                x.shape());
+                            </programlisting>
+                        </para>
+                    </formalpara>
 
 
-<formalpara>
-<title>Postconditions</title>
-<para>
-<programlisting>(*.this) == x;</programlisting>
-</para>
-</formalpara>
+                    <formalpara>
+                        <title>Postconditions</title>
+                        <para>
+                            <programlisting>(*.this) == x;</programlisting>
+                        </para>
+                    </formalpara>
 
-<formalpara>
-<title>Complexity</title>
-<para>The assignment operators perform 
-O(<literal>x.num_elements()</literal>) calls to <literal>element</literal>'s 
-copy constructor.</para></formalpara>
-</listitem>
-</varlistentry>
-</variablelist>
+                    <formalpara>
+                        <title>Complexity</title>
+                        <para>The assignment operators perform
+                            O(<literal>x.num_elements()</literal>) calls to <literal>
+                                element</literal>'s
+                            copy constructor.
+                        </para>
+                    </formalpara>
+                </listitem>
+            </varlistentry>
+        </variablelist>
 
-</formalpara>
+    </formalpara>
 </sect2>

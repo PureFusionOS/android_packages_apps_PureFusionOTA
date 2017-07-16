@@ -7,11 +7,11 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Vector Property Map</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-	ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Vector Property Map</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
@@ -24,22 +24,22 @@ class vector_property_map;
 </PRE>
 
 <P>
-This property map is used to efficiently store properties for a variable 
-number of elements. It's somewhere between <a
-href="associative_property_map.html">associative_property_map</a> and 
-<a href="iterator_property_map.html">iterator_property_map</a>. The latter
-is very fast, but requires that the number of stored elements is known
-when creating property map. The former does not have this requirement, but
-is slower, and requires stored elements to be comparable.
+    This property map is used to efficiently store properties for a variable
+    number of elements. It's somewhere between <a
+        href="associative_property_map.html">associative_property_map</a> and
+    <a href="iterator_property_map.html">iterator_property_map</a>. The latter
+    is very fast, but requires that the number of stored elements is known
+    when creating property map. The former does not have this requirement, but
+    is slower, and requires stored elements to be comparable.
 
 <p>
-The <tt>vector_property_map</tt> uses mapping from key to indices,
-and allows to add new elements. It accoplishes this by storing values
-in a vector, which is resized on demand. 
+    The <tt>vector_property_map</tt> uses mapping from key to indices,
+    and allows to add new elements. It accoplishes this by storing values
+    in a vector, which is resized on demand.
 
 <p>
-Note that <tt>vector_property_map</tt> does not provide reference/pointer 
-stability for stored values.
+    Note that <tt>vector_property_map</tt> does not provide reference/pointer
+    stability for stored values.
 
 <h3>Example</h3>
 
@@ -68,7 +68,7 @@ int main()
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/property_map/vector_property_map.hpp"><TT>boost/property_map/vector_property_map.hpp</TT></a>
+    <a href="../../../boost/property_map/vector_property_map.hpp"><TT>boost/property_map/vector_property_map.hpp</TT></a>
 
 <p>
 <H3>Model Of</H3>
@@ -82,28 +82,32 @@ int main()
 <P>
 
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
 
-<TR>
-<TD><TT>T</TT></TD> 
-<TD>The type of property value. Must be both <a
-href="http://www.sgi.com/tech/stl/Assignable.html">Assignable</a>
-and <a
-href="http://www.sgi.com/tech/stl/DefaultConstructible.html">DefaultConstructible</a>.
-</TD>
-<TD>&nbsp;</td>
-</tr>
+    <TR>
+        <TD><TT>T</TT></TD>
+        <TD>The type of property value. Must be both <a
+                href="http://www.sgi.com/tech/stl/Assignable.html">Assignable</a>
+            and <a
+                    href="http://www.sgi.com/tech/stl/DefaultConstructible.html">DefaultConstructible</a>.
+        </TD>
+        <TD>&nbsp;</td>
+    </tr>
 
-<TR>
-<TD><TT>IndexMap</TT></TD> <TD>Must be a model of <a
-href="./ReadablePropertyMap.html">Readable Property Map</a>
-and the value type must be convertible to
-<tt>std::vector&lt;T&gt;::size_type</tt>.</TD> 
-<TD><a href="identity_property_map.html">identity_property_map</a></TD>
-</TR>
+    <TR>
+        <TD><TT>IndexMap</TT></TD>
+        <TD>Must be a model of <a
+                href="./ReadablePropertyMap.html">Readable Property Map</a>
+            and the value type must be convertible to
+            <tt>std::vector&lt;T&gt;::size_type</tt>.
+        </TD>
+        <TD><a href="identity_property_map.html">identity_property_map</a></TD>
+    </TR>
 
 </TABLE>
 <P>
@@ -111,9 +115,9 @@ and the value type must be convertible to
 <H3>Members</H3>
 
 <P>
-In addition to the methods and functions required by <a
-href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
-class has the following members.
+    In addition to the methods and functions required by <a
+        href="./LvaluePropertyMap.html">Lvalue Property Map</a>, this
+    class has the following members.
 
 <hr>
 
@@ -163,14 +167,14 @@ std::vector&lt;T&gt;::const_iterator storage_end()
 </pre>
 
 <p>This group of methods gives access to begin and end iterators of the
-underlying vector.</p>
+    underlying vector.</p>
 
 <p><b>Rationale:</b> The methods are handy, for example, when it's needed to
-specify a single value for all elements in a freshly created property map. The
-methods are not called simply &quot;begin&quot; and &quot;end&quot; since
-conceptually, <tt>vector_property_map</tt> is unbounded map, and has no end
-iterator. The direct access to the underlying method is not provided, since
-it would decrease encapsulation and make future performance tuning dangerous.
+    specify a single value for all elements in a freshly created property map. The
+    methods are not called simply &quot;begin&quot; and &quot;end&quot; since
+    conceptually, <tt>vector_property_map</tt> is unbounded map, and has no end
+    iterator. The direct access to the underlying method is not provided, since
+    it would decrease encapsulation and make future performance tuning dangerous.
 
 <p><b>Acknolegements:</b> Matthias Troyer suggested adding those functions.
 
@@ -202,19 +206,23 @@ A function for conveniently creating a vector property map.
 <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy 2002</TD><TD>
-<a HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</a>,
-Indiana University (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-<A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana University (<A HREF="mailto:llee1@osl.iu.edu">llee1@osl.iu.edu</A>)<br>
-<A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Indiana University (<A
-HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
-</TD></TR>
-<tr>
-<td nowrap>Copyright &copy; 2003</td><td>Vladimir Prus</td>
-</tr>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy 2002</TD>
+        <TD>
+            <a HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</a>,
+            Indiana University (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+            <A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana
+            University (<A HREF="mailto:llee1@osl.iu.edu">llee1@osl.iu.edu</A>)<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Indiana University (<A
+                HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
+        </TD>
+    </TR>
+    <tr>
+        <td nowrap>Copyright &copy; 2003</td>
+        <td>Vladimir Prus</td>
+    </tr>
 </TABLE>
 
 </BODY>

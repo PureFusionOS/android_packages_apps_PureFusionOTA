@@ -1,4 +1,5 @@
-<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
 (C) Copyright 2002-4 Robert Ramey - http://www.rrsd.com . 
@@ -7,22 +8,23 @@ License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
 -->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../../../boost.css">
-<link rel="stylesheet" type="text/css" href="style.css">
-<title>Serialization - BOOST_STATIC_WARNING</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../../boost.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Serialization - BOOST_STATIC_WARNING</title>
 </head>
 <body link="#0000ff" vlink="#800080">
 <table border="0" cellpadding="7" cellspacing="0" width="100%" summary="header">
-  <tr> 
-    <td valign="top" width="300"> 
-      <h3><a href="../../../index.htm"><img height="86" width="277" alt="C++ Boost" src="../../../boost.png" border="0"></a></h3>
-    </td>
-    <td valign="top"> 
-      <h1 align="center">Serialization</h1>
-      <h2 align="center"><code>smart_cast</code></h2>
-    </td>
-  </tr>
+    <tr>
+        <td valign="top" width="300">
+            <h3><a href="../../../index.htm"><img height="86" width="277" alt="C++ Boost"
+                                                  src="../../../boost.png" border="0"></a></h3>
+        </td>
+        <td valign="top">
+            <h1 align="center">Serialization</h1>
+            <h2 align="center"><code>smart_cast</code></h2>
+        </td>
+    </tr>
 </table>
 <hr>
 <h3>Motivation</h3>
@@ -30,28 +32,28 @@ To cast from one type to another related type, C++ provides the following
 operators:
 
 <dl>
-  <dt><code>static_cast&lt;T *<&gt;(U *)<br>static_cast&lt;T &<&gt;(U &)</code></dt>
-  <dd>
-    <ul>
-      <li>required if neither T nor U are polymorphic
-      <li>permitted in other cases.
-      <li>fails to detect erroneous casts of polymophic pointers/references at runtime.
-      <li>does not permit "cross casting"
-      <li>inline function calls can be optimized away during compile time.
-    </ul>
-  </dd>
-  <p>
-  <dt><code>dynamic_cast&lt;T *<&gt;(U *)<br>dynamic_cast&lt;T &<&gt;(U &)</code></dt>
-  <dd>
-    <ul>
-      <li>permitted if either T or U are polymorphic
-      <li>prohibited in other cases.
-      <li>throws exception on detecting erroneous casts of polymorphic pointers/references
-          at runtime.
-      <li>permits "cross casting"
-      <li>cannot optimise inline virtual functions at compile time.
-    </ul>
-  </dd>
+    <dt><code>static_cast&lt;T *<&gt;(U *)<br>static_cast&lt;T &<&gt;(U &)</code></dt>
+    <dd>
+        <ul>
+            <li>required if neither T nor U are polymorphic
+            <li>permitted in other cases.
+            <li>fails to detect erroneous casts of polymophic pointers/references at runtime.
+            <li>does not permit "cross casting"
+            <li>inline function calls can be optimized away during compile time.
+        </ul>
+    </dd>
+    <p>
+        <dt><code>dynamic_cast&lt;T *<&gt;(U *)<br>dynamic_cast&lt;T &<&gt;(U &)</code></dt>
+    <dd>
+        <ul>
+            <li>permitted if either T or U are polymorphic
+            <li>prohibited in other cases.
+            <li>throws exception on detecting erroneous casts of polymorphic pointers/references
+                at runtime.
+            <li>permits "cross casting"
+            <li>cannot optimise inline virtual functions at compile time.
+        </ul>
+    </dd>
 </dl>
 
 These rules can make it difficult to use casting with a function template argument.
@@ -119,7 +121,7 @@ int main(){
 </code></pre>
 The serialization library includes a mix of classes which use
 both static polymorphism (<strong>CRTP</strong>) and dynamic
-polymorphism via virtual functions.  <code style="white-space: normal">smart_cast</code> 
+polymorphism via virtual functions. <code style="white-space: normal">smart_cast</code>
 was written to address the more problematic manifestations of the
 situation exemplified above.
 
@@ -130,7 +132,7 @@ smart_cast&lt;Target *, Source *&gt;(Source * s);
 smart_cast&lt;Target *>(Source * s);
 smart_cast&lt;Target &, Source &amp;&gt(Source &amp; s);
 </code></pre>
-Note that the above syntax doesn't include 
+Note that the above syntax doesn't include
 <pre><code>
 smart_cast&lt;Target &amp; &gt(Source &amp; s)
 </code></pre>
@@ -140,16 +142,17 @@ smart_cast_reference&lt;Target &amp;&gt(Source &amp; s)
 </code></pre>
 
 <h3>Requirements</h3>
-<code style="white-space: normal">smart_cast</code> can be used only on compilers that support partial
+<code style="white-space: normal">smart_cast</code> can be used only on compilers that support
+partial
 template specialization or on types for which the
 macro <code style="white-space: normal">
-BOOST_BROKEN_COMPILER_TYPE_TRAITS_SPECIALIZATION(&lt;type&gt;)</code>
+    BOOST_BROKEN_COMPILER_TYPE_TRAITS_SPECIALIZATION(&lt;type&gt;)</code>
 has been applied.
 
 <hr>
-<p><i>&copy; Copyright <a href="http://www.rrsd.com">Robert Ramey</a> 2002-2004. 
-Distributed under the Boost Software License, Version 1.0. (See
-accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+<p><i>&copy; Copyright <a href="http://www.rrsd.com">Robert Ramey</a> 2002-2004.
+    Distributed under the Boost Software License, Version 1.0. (See
+    accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 </i></p>
 </body>
 </html>

@@ -14,5 +14,6 @@
 def test1(l):
     return ["foo", "bar"]
 
+
 def test2(l, l2):
     return [l[0], l2[0]]

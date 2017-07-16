@@ -9,7 +9,6 @@
 
 import BoostBuild
 
-
 t = BoostBuild.Tester(use_test_config=False)
 
 t.write("jamfile.jam", """

@@ -9,21 +9,21 @@
 
 <!-- Begin Banner -->
 
-    <H1 CLASS="title">Filter Testing Functions</H1>
-    <HR CLASS="banner">
+<H1 CLASS="title">Filter Testing Functions</H1>
+<HR CLASS="banner">
 
 <!-- End Banner -->
 
 <DL class="page-index">
-  <DT><A href="#overview">Overview</A></DT>
-  <DT><A href="#headers">Headers</A></DT>
-  <DT><A href="#reference">Reference</A>
+    <DT><A href="#overview">Overview</A></DT>
+    <DT><A href="#headers">Headers</A></DT>
+    <DT><A href="#reference">Reference</A>
     <DL>
-      <DT><A href="#test_input">Function template <CODE>test_input_filter</CODE></A></DT>
-      <DT><A href="#test_output">Function template <CODE>test_output_filter</CODE></A></DT>
-      <DT><A href="#test_pair">Function template <CODE>test_filter_pair</CODE></A></DT>
+        <DT><A href="#test_input">Function template <CODE>test_input_filter</CODE></A></DT>
+        <DT><A href="#test_output">Function template <CODE>test_output_filter</CODE></A></DT>
+        <DT><A href="#test_pair">Function template <CODE>test_filter_pair</CODE></A></DT>
     </DL>
-  </DT>
+    </DT>
 </DL>
 
 <HR>
@@ -32,14 +32,18 @@
 <H2>Overview</H2>
 
 <P>
-    The header <A CLASS="header" HREF="../../../../boost/iostreams/filter/test.hpp"><CODE>&lt;boost/iostreams/filter/test.hpp&gt;</CODE></A> provides several overloaded function templates for verifying that a filter works as expected when used in conjunction with non-<A HREF='../concepts/blocking.html'>Blocking</A> <A HREF='../concepts/source.html'>Sources</A> and <A HREF='../concepts/sink.html'>Sinks</A>.
+    The header <A CLASS="header" HREF="../../../../boost/iostreams/filter/test.hpp"><CODE>&lt;boost/iostreams/filter/test.hpp&gt;</CODE></A>
+    provides several overloaded function templates for verifying that a filter works as expected
+    when used in conjunction with non-<A HREF='../concepts/blocking.html'>Blocking</A> <A
+        HREF='../concepts/source.html'>Sources</A> and <A HREF='../concepts/sink.html'>Sinks</A>.
 </P>
 
 <A NAME="headers"></A>
 <H2>Headers</H2>
 
 <DL class="page-index">
-  <DT><A CLASS="header" HREF="../../../../boost/iostreams/filter/test.hpp"><CODE>&lt;boost/iostreams/filter/test.hpp&gt;</CODE></A></DT>
+    <DT><A CLASS="header" HREF="../../../../boost/iostreams/filter/test.hpp"><CODE>&lt;boost/iostreams/filter/test.hpp&gt;</CODE></A>
+    </DT>
 </DL>
 
 <A NAME="reference"></A>
@@ -50,7 +54,8 @@
 
 <H4>Description</H4>
 
-<P>Verifies that the given <A HREF='../concepts/input_filter.html'>InputFilter</A> yields the given output when passed the given input.</P>
+<P>Verifies that the given <A HREF='../concepts/input_filter.html'>InputFilter</A> yields the given
+    output when passed the given input.</P>
 
 <H4>Synopsis</H4>
 
@@ -61,7 +66,8 @@
                         <SPAN CLASS='keyword'>const</SPAN> std::string&amp; input,
                         <SPAN CLASS='keyword'>const</SPAN> std::string&amp; output );
 
-<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> InputFilter, <SPAN CLASS='keyword'>typename</SPAN> Source1, <SPAN CLASS='keyword'>typename</SPAN> Source2&gt;
+<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> InputFilter, <SPAN
+            CLASS='keyword'>typename</SPAN> Source1, <SPAN CLASS='keyword'>typename</SPAN> Source2&gt;
 <SPAN CLASS='keyword'>bool</SPAN> test_input_filter( InputFilter filter, 
                         <SPAN CLASS='keyword'>const</SPAN> Source1&amp; input,
                         <SPAN CLASS='keyword'>const</SPAN> Source2&amp; output );
@@ -74,7 +80,8 @@
 
 <H4>Description</H4>
 
-<P>Verifies that the given <A HREF='../concepts/output_filter.html'>OutputFilter</A> yields the given output when passed the given input.</P>
+<P>Verifies that the given <A HREF='../concepts/output_filter.html'>OutputFilter</A> yields the
+    given output when passed the given input.</P>
 
 <H4>Synopsis</H4>
 
@@ -85,7 +92,8 @@
                          <SPAN CLASS='keyword'>const</SPAN> std::string&amp; input,
                          <SPAN CLASS='keyword'>const</SPAN> std::string&amp; output );
 
-<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> OutputFilter, <SPAN CLASS='keyword'>typename</SPAN> Source1, <SPAN CLASS='keyword'>typename</SPAN> Source2&gt;
+<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> OutputFilter, <SPAN
+            CLASS='keyword'>typename</SPAN> Source1, <SPAN CLASS='keyword'>typename</SPAN> Source2&gt;
 <SPAN CLASS='keyword'>bool</SPAN> test_output_filter( OutputFilter filter, 
                          <SPAN CLASS='keyword'>const</SPAN> Source1&amp; input,
                          <SPAN CLASS='keyword'>const</SPAN> Source2&amp; output );
@@ -97,18 +105,22 @@
 
 <H4>Description</H4>
 
-<P>Verifies that the given data is preserved when it is passed first through a given <A HREF='../concepts/output_filter.html'>OutputFilter</A> and then through a given <A HREF='../concepts/input_filter.html'>InputFilter</A>.</P>
+<P>Verifies that the given data is preserved when it is passed first through a given <A
+        HREF='../concepts/output_filter.html'>OutputFilter</A> and then through a given <A
+        HREF='../concepts/input_filter.html'>InputFilter</A>.</P>
 
 <H4>Synopsis</H4>
 
 <PRE CLASS="broken_ie"><SPAN CLASS="keyword">namespace</SPAN> boost { <SPAN CLASS="keyword">namespace</SPAN> iostreams {
 
-<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> OutputFilter, <SPAN CLASS='keyword'>typename</SPAN> InputFilter&gt;
+<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> OutputFilter, <SPAN
+            CLASS='keyword'>typename</SPAN> InputFilter&gt;
 <SPAN CLASS='keyword'>bool</SPAN> test_filter_pair( OutputFilter first, 
                        InputFilter second,
                        <SPAN CLASS='keyword'>const</SPAN> std::string&amp; data );
 
-<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> OutputFilter, <SPAN CLASS='keyword'>typename</SPAN> InputFilter, <SPAN CLASS='keyword'>typename</SPAN> Source&gt;
+<SPAN CLASS='keyword'>template</SPAN>&lt;<SPAN CLASS='keyword'>typename</SPAN> OutputFilter, <SPAN
+            CLASS='keyword'>typename</SPAN> InputFilter, <SPAN CLASS='keyword'>typename</SPAN> Source&gt;
 <SPAN CLASS='keyword'>bool</SPAN> test_filter_pair( OutputFilter first, 
                        InputFilter second, 
                        <SPAN CLASS='keyword'>const</SPAN> Source&amp; data );
@@ -119,9 +131,12 @@
 
 <HR>
 
-<P CLASS="copyright">&copy; Copyright 2008 <a href="http://www.coderage.com/" target="_top">CodeRage, LLC</a><br/>&copy; Copyright 2004-2007 <a href="http://www.coderage.com/turkanis/" target="_top">Jonathan Turkanis</a></P>
-<P CLASS="copyright"> 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <A HREF="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</A>)
+<P CLASS="copyright">&copy; Copyright 2008 <a href="http://www.coderage.com/" target="_top">CodeRage,
+    LLC</a><br/>&copy; Copyright 2004-2007 <a href="http://www.coderage.com/turkanis/"
+                                              target="_top">Jonathan Turkanis</a></P>
+<P CLASS="copyright">
+    Distributed under the Boost Software License, Version 1.0. (See accompanying file
+    LICENSE_1_0.txt or copy at <A HREF="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</A>)
 </P>
 
 <!-- End Footer -->

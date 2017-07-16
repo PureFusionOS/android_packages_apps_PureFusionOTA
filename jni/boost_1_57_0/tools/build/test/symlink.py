@@ -8,14 +8,14 @@
 # Test the 'symlink' rule.
 
 import os
-import BoostBuild
 
+import BoostBuild
 
 if os.name != 'posix':
     print "The symlink tests can be run on posix only."
     import sys
-    sys.exit(1)
 
+    sys.exit(1)
 
 t = BoostBuild.Tester(use_test_config=False)
 

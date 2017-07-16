@@ -9,7 +9,6 @@ from b2.manager import get_manager
 from b2.tools.cast import cast
 from b2.util import bjam_signature
 
-
 MANAGER = get_manager()
 PROJECT_REGISTRY = MANAGER.projects()
 

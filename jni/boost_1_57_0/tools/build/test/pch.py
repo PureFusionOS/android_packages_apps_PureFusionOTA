@@ -7,7 +7,6 @@
 
 import BoostBuild
 
-
 t = BoostBuild.Tester()
 
 t.write("jamroot.jam", """
@@ -39,7 +38,6 @@ int main() { TestClass c(1, 2); }
 
 t.run_build_system()
 t.expect_addition("bin/$toolset/debug/hello.exe")
-
 
 # Now make the header unusable, without changing timestamp. If everything is OK,
 # Boost.Build will not recreate PCH, and compiler will happily use pre-compiled

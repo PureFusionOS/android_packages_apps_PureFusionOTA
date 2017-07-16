@@ -8,20 +8,20 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Boost Graph Library: Stanford Graph Interface</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Boost Graph Library: Stanford Graph Interface</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
 <H1>
-Using SGB Graphs in BGL
+    Using SGB Graphs in BGL
 </H1>
 
 The Boost Graph Library (BGL) header, <a
-href="../../../boost/graph/stanford_graph.hpp"
+        href="../../../boost/graph/stanford_graph.hpp"
 ><tt>&lt;boost/graph/stanford_graph.hpp&gt;</tt></a>, adapts a
 Stanford GraphBase (SGB) <tt>Graph</tt> pointer into a BGL-compatible
 <a href="./VertexListGraph.html">VertexListGraph</a>.&nbsp; Note that
@@ -31,39 +31,39 @@ concept is fulfilled by defining the appropriate non-member functions
 for <tt>Graph*</tt>.
 
 <H2><a name="sec:SGB"></a>
-The Stanford GraphBase
+    The Stanford GraphBase
 </H2>
 
 <P>
-"The <a href="http://www-cs-staff.stanford.edu/~knuth/sgb.html">Stanford
-GraphBase</a> (SGB) is a collection of datasets and computer programs that
-generate and examine a wide variety of graphs and networks."&nbsp; The SGB was
-developed and published by
-<a href="http://www-cs-staff.stanford.edu/~knuth">Donald E. Knuth</a>
-in 1993.&nbsp; The fully documented source code is available for anonymous ftp
-from <a href="ftp://labrea.stanford.edu/pub/sgb/sgb.tar.gz">Stanford
-University</a> and in the book "The Stanford GraphBase, A Platform for
-Combinatorial Computing," published jointly by ACM Press and Addison-Wesley
-Publishing Company in 1993.&nbsp; (This book contains several chapters with
-additional information not available in the electronic distribution.)
+    "The <a href="http://www-cs-staff.stanford.edu/~knuth/sgb.html">Stanford
+    GraphBase</a> (SGB) is a collection of datasets and computer programs that
+    generate and examine a wide variety of graphs and networks."&nbsp; The SGB was
+    developed and published by
+    <a href="http://www-cs-staff.stanford.edu/~knuth">Donald E. Knuth</a>
+    in 1993.&nbsp; The fully documented source code is available for anonymous ftp
+    from <a href="ftp://labrea.stanford.edu/pub/sgb/sgb.tar.gz">Stanford
+    University</a> and in the book "The Stanford GraphBase, A Platform for
+    Combinatorial Computing," published jointly by ACM Press and Addison-Wesley
+    Publishing Company in 1993.&nbsp; (This book contains several chapters with
+    additional information not available in the electronic distribution.)
 
 <H3><a name="sec:CWEB"></a>
-Prerequisites
+    Prerequisites
 </H3>
 
 The source code of SGB is written in accordance with the rules of the
 <a href="http://www-cs-staff.stanford.edu/~knuth/lp.html">Literate
-Programming</a> paradigm, so you need to make sure that your computer supports
+    Programming</a> paradigm, so you need to make sure that your computer supports
 the <a href="http://www-cs-staff.stanford.edu/~knuth/cweb.html">CWEB</a>
 system.&nbsp; The CWEB sources are available for anonymous ftp from
 <a href="ftp://labrea.stanford.edu/pub/cweb/cweb.tar.gz">Stanford
-University</a>.&nbsp; Bootstrapping CWEB on Unix systems is elementary and
+    University</a>.&nbsp; Bootstrapping CWEB on Unix systems is elementary and
 documented in the CWEB distribution; pre-compiled binary executables of the
 CWEB tools for Win32 systems are available from
 <a href="http://www.literateprogramming.com">www.literateprogramming.com</a>.
 
 <H3><a name="sec:SGB:Installation"></a>
-Installing the SGB
+    Installing the SGB
 </H3>
 
 After you have acquired the <a href="#sec:SGB">SGB sources</a> and have
@@ -76,32 +76,32 @@ comes with an appropriate set of patches that convert all the sources from
 GraphBase in the Boost Graph Library.
 
 <ul>
-<li>
-<b>Unix</b>: After extracting the SGB archive, but prior to invoking
-"<tt>make tests</tt>" and "<tt>make install</tt>," you should say
-"<tt>ln -s PROTOTYPES/*.ch .</tt>" in the root directory where you extracted
-the SGB files (or you can simply copy the change files next to the proper
-source files).&nbsp; The Unix <tt>Makefile</tt> coming with SGB conveniently
-looks for "change files" matching the SGB source files and automatically
-applies them with the "ctangle" processor.&nbsp; The resulting C files will
-smoothly run through the compiler.
-</li>
-<li>
-<b>Win32</b>: The "MSVC" subdirectory of the SGB distribution contains a
-complete set of "Developer Studio Projects" (and a single "Workspace"),
-applicable with Microsoft Developer Studio 6.&nbsp; The installation process
-is documented in the accompanying file <tt>README.MSVC</tt>.&nbsp; The "MSVC"
-contribution has been updated to make use of the "PROTOTYPES" as well, so you
-don't need to worry about that.
-</li>
+    <li>
+        <b>Unix</b>: After extracting the SGB archive, but prior to invoking
+        "<tt>make tests</tt>" and "<tt>make install</tt>," you should say
+        "<tt>ln -s PROTOTYPES/*.ch .</tt>" in the root directory where you extracted
+        the SGB files (or you can simply copy the change files next to the proper
+        source files).&nbsp; The Unix <tt>Makefile</tt> coming with SGB conveniently
+        looks for "change files" matching the SGB source files and automatically
+        applies them with the "ctangle" processor.&nbsp; The resulting C files will
+        smoothly run through the compiler.
+    </li>
+    <li>
+        <b>Win32</b>: The "MSVC" subdirectory of the SGB distribution contains a
+        complete set of "Developer Studio Projects" (and a single "Workspace"),
+        applicable with Microsoft Developer Studio 6.&nbsp; The installation process
+        is documented in the accompanying file <tt>README.MSVC</tt>.&nbsp; The "MSVC"
+        contribution has been updated to make use of the "PROTOTYPES" as well, so you
+        don't need to worry about that.
+    </li>
 </ul>
 
 <H3><a name="sec:UsingSGB"></a>
-Using the SGB
+    Using the SGB
 </H3>
 
 After you have run <a href="#sec:SGB:Installation">the installation
-process</a> of the SGB, you can use the BGL graph interface with the
+    process</a> of the SGB, you can use the BGL graph interface with the
 SGB <tt>Graph*</tt>, <a href="../../../boost/graph/stanford_graph.hpp"
 ><tt>&lt;boost/graph/stanford_graph.hpp&gt;</tt></a>, which will be
 described <a href="#sec:BGL:Interface">next</a>.&nbsp; All you have to
@@ -113,94 +113,94 @@ find the SGB static library file (<tt>libgb.a</tt> on Unix and
 particular compiler about how to do that.
 
 <H3><a name="sec:SGB:Problems"></a>
-Technicalities
+    Technicalities
 </H3>
 
 <ul>
-<li>
-<b>Headerfile selection</b>: The two SGB modules <tt>gb_graph</tt> and
-<tt>gb_io</tt> use the preprocessor switch <tt>SYSV</tt> to select either the
-headerfile <tt>&lt;string.h&gt;</tt> (if <tt>SYSV</tt> is <tt>#define</tt>d)
-or the headerfile <tt>&lt;strings.h&gt;</tt> (if <tt>SYSV</tt> is <i>not</i>
-<tt>#define</tt>d).&nbsp; Some compilers, like <tt>gcc</tt>/<tt>g++</tt>,
-don't care much (<tt>gcc</tt> "knows" about the "string" functions without
-refering to <tt>&lt;string.h&gt;</tt>), but others, like MSVC on Win32, do (so
-all "Developer Studio Projects" in the "MSVC" subdirectory of the
-<a href="#sec:SGB">SGB distribution</a> appropriately define <tt>SYSV</tt>).
-You should be careful to set (or not) <tt>SYSV</tt> according to the needs of
-your compiler.
-</li>
-<li>
-<b>Missing include guards</b>: None of the SGB headerfiles uses "internal
-include guards" to protect itself from multiple inclusion.&nbsp; To avoid
-trouble, you must <i>not</i> <tt>#include</tt> any of the SGB headerfiles
-before or after <a href="#sec:Wrapper">the BGL wrapper</a> in a compilation
-unit; it will fully suffice to use the BGL interface.
-</li>
-<li>
-<b>Preprocessor macros</b>: The SGB headerfiles make liberal use of the
-preprocessor <i>without</i> sticking to a particular convention (like
-all-uppercase names or a particular prefix).&nbsp; At the time of writing,
-already three of these preprocessor macros collide with the conventions of
-either C++, g++, or BGL, and are fixed in <a href="#sec:Wrapper">the BGL
-wrapper</a>.&nbsp; We can not guarantee that no other preprocessor-induced
-problems may arise (but we are willing to learn about any such collisions).
-</li>
+    <li>
+        <b>Headerfile selection</b>: The two SGB modules <tt>gb_graph</tt> and
+        <tt>gb_io</tt> use the preprocessor switch <tt>SYSV</tt> to select either the
+        headerfile <tt>&lt;string.h&gt;</tt> (if <tt>SYSV</tt> is <tt>#define</tt>d)
+        or the headerfile <tt>&lt;strings.h&gt;</tt> (if <tt>SYSV</tt> is <i>not</i>
+        <tt>#define</tt>d).&nbsp; Some compilers, like <tt>gcc</tt>/<tt>g++</tt>,
+        don't care much (<tt>gcc</tt> "knows" about the "string" functions without
+        refering to <tt>&lt;string.h&gt;</tt>), but others, like MSVC on Win32, do (so
+        all "Developer Studio Projects" in the "MSVC" subdirectory of the
+        <a href="#sec:SGB">SGB distribution</a> appropriately define <tt>SYSV</tt>).
+        You should be careful to set (or not) <tt>SYSV</tt> according to the needs of
+        your compiler.
+    </li>
+    <li>
+        <b>Missing include guards</b>: None of the SGB headerfiles uses "internal
+        include guards" to protect itself from multiple inclusion.&nbsp; To avoid
+        trouble, you must <i>not</i> <tt>#include</tt> any of the SGB headerfiles
+        before or after <a href="#sec:Wrapper">the BGL wrapper</a> in a compilation
+        unit; it will fully suffice to use the BGL interface.
+    </li>
+    <li>
+        <b>Preprocessor macros</b>: The SGB headerfiles make liberal use of the
+        preprocessor <i>without</i> sticking to a particular convention (like
+        all-uppercase names or a particular prefix).&nbsp; At the time of writing,
+        already three of these preprocessor macros collide with the conventions of
+        either C++, g++, or BGL, and are fixed in <a href="#sec:Wrapper">the BGL
+        wrapper</a>.&nbsp; We can not guarantee that no other preprocessor-induced
+        problems may arise (but we are willing to learn about any such collisions).
+    </li>
 </ul>
 
 <H2><a name="sec:BGL:Interface"></a>
-The BGL Interface for the SGB
+    The BGL Interface for the SGB
 </H2>
 
 <H3><a name="sec:Wrapper"></a>
-Where Defined
+    Where Defined
 </H3>
 
 <a href="../../../boost/graph/stanford_graph.hpp"
 ><tt>&lt;boost/graph/stanford_graph.hpp&gt;</tt></a>
 
 <p> The main purpose of this Boost Graph Library (BGL) headerfile is to
-<tt>#include</tt> all global definitions for the general stuff of the
-<a href="#sec:SGB">Stanford GraphBase</a> (SGB) and its various graph generator
-functions by reading all <a href="#sec:SGB:Problems">SGB headerfiles</a> as in
-section 2 of the "<tt>test_sample</tt>" program.
+    <tt>#include</tt> all global definitions for the general stuff of the
+    <a href="#sec:SGB">Stanford GraphBase</a> (SGB) and its various graph generator
+    functions by reading all <a href="#sec:SGB:Problems">SGB headerfiles</a> as in
+    section 2 of the "<tt>test_sample</tt>" program.
 
 <p> On top of the SGB stuff, the BGL <tt>stanford_graph.hpp</tt>
-header adds and defines appropriate types and functions for using the
-SGB graphs in the BGL framework.&nbsp; Apart from the improved
-interface, the <a href="#sec:UsingSGB">SGB (static) library</a> is
-used "as is" in the context of BGL.
+    header adds and defines appropriate types and functions for using the
+    SGB graphs in the BGL framework.&nbsp; Apart from the improved
+    interface, the <a href="#sec:UsingSGB">SGB (static) library</a> is
+    used "as is" in the context of BGL.
 
 <H3>
-Model Of
+    Model Of
 </H3>
 
 <a href="./VertexListGraph.html">Vertex List Graph</a> and <a
-href="./PropertyGraph.html">Property Graph</a>.  The set of property
+        href="./PropertyGraph.html">Property Graph</a>. The set of property
 tags that can be used with the SGB graph is described in the <a
-href="#properties">Vertex and Edge Properties</a> section below.
+        href="#properties">Vertex and Edge Properties</a> section below.
 
 
 <H3><a name="sec:Example"></a>
-Example
+    Example
 </H3>
 
 The example program <a href="../example/miles_span.cpp">
-<tt>&lt;example/miles_span.cpp&gt;</tt></a> represents the first
+    <tt>&lt;example/miles_span.cpp&gt;</tt></a> represents the first
 application of the generic framework of BGL to an SGB graph.&nbsp; It
 uses Prim's algorithm to solve the "minimum spanning tree"
 problem.&nbsp; In addition, the programs <a
-href="../../../libs/graph/example/girth.cpp">
-<tt>&lt;example/girth.cpp&gt;</tt></a> and <a
-href="../example/roget_components.cpp">
-<tt>&lt;example/roget_components.cpp&gt;</tt></a> have been ported
+        href="../../../libs/graph/example/girth.cpp">
+    <tt>&lt;example/girth.cpp&gt;</tt></a> and <a
+        href="../example/roget_components.cpp">
+    <tt>&lt;example/roget_components.cpp&gt;</tt></a> have been ported
 from the SGB.&nbsp; We intend to implement more algorithms from SGB in
 a generic fashion and to provide the remaining example programs of SGB
 for the BGL framework.&nbsp; If you would like to help, feel free to
 submit your contributions!
 
 <H3>
-Associated Types
+    Associated Types
 </H3>
 
 <hr>
@@ -212,7 +212,7 @@ We use the type <tt>Vertex*</tt> as the vertex descriptor.
 <hr>
 
 <tt>graph_traits&lt;Graph*&gt;::edge_descriptor</tt><br><br> The type
-for the edge descriptors associated with the <tt>Graph*</tt>.  This is
+for the edge descriptors associated with the <tt>Graph*</tt>. This is
 the type <tt>boost::sgb_edge</tt>. In addition to supporting all the
 required operations of a BGL edge descriptor, the
 <tt>boost::sgb_edge</tt> class has the following constructor.
@@ -282,7 +282,7 @@ is <tt>allow_parallel_edge_tag</tt>.
 <hr>
 
 <H3>
-Non-Member Functions
+    Non-Member Functions
 </H3>
 
 <hr>
@@ -382,17 +382,17 @@ the described below.
 <h3><a name="properties">Vertex and Edge Properties</a></h3>
 
 The SGB <tt>Vertex</tt> and <tt>Arc</tt> structures provide
-&quot;utility&quot; fields for storing extra information.  We provide
+&quot;utility&quot; fields for storing extra information. We provide
 BGL wrappers that provide access to these fields through <a
-href="../../property_map/doc/property_map.html">property maps</a>.  In
+        href="../../property_map/doc/property_map.html">property maps</a>. In
 addition, vertex index and edge length maps are provided. A property
 map object can be obtained from a SGB <tt>Graph*</tt> using the
 <tt>get()</tt> function described in the <a
-href="./PropertyGraph.html">Property Graph</a> concept.
+        href="./PropertyGraph.html">Property Graph</a> concept.
 
 <p>
-The following list of property tags can be used to specify which
-utility field you would like a property map for.
+    The following list of property tags can be used to specify which
+    utility field you would like a property map for.
 </p>
 
 <pre>
@@ -410,49 +410,52 @@ template &lt;class T&gt; b_property;
 </pre>
 
 <p>
-The template parameter <tt>T</tt> for these tags is limited to the
-types in the <tt>util</tt> union declared in the SGB header
-<tt>gb_graph.h</tt>, which are <tt>Vertex*</tt>, <tt>Arc*</tt>,
-<tt>Graph*</tt>, <tt>char*</tt>, and <tt>long</tt>. The property maps
-for the utility fields are models of <a
-href="../../property_map/doc/LvaluePropertyMap.html">Lvalue Property
-Map</a>.
+    The template parameter <tt>T</tt> for these tags is limited to the
+    types in the <tt>util</tt> union declared in the SGB header
+    <tt>gb_graph.h</tt>, which are <tt>Vertex*</tt>, <tt>Arc*</tt>,
+    <tt>Graph*</tt>, <tt>char*</tt>, and <tt>long</tt>. The property maps
+    for the utility fields are models of <a
+        href="../../property_map/doc/LvaluePropertyMap.html">Lvalue Property
+    Map</a>.
 </p>
 
 <p>
-The property map for vertex indices can be obtained using the
-<tt>vertex_index_t</tt> tag, and this property map is a <a
-href="../../property_map/doc/ReadablePropertyMap.html">Readable Property
-Map</a>. A property map for edge length's can be obtained using the
-<tt>edge_length_t</tt> tag, and this property map is a <a
-href="../../property_map/doc/LvaluePropertyMap.html">Lvalue Property
-Map</a> whose value type is <tt>long</tt>.
+    The property map for vertex indices can be obtained using the
+    <tt>vertex_index_t</tt> tag, and this property map is a <a
+        href="../../property_map/doc/ReadablePropertyMap.html">Readable Property
+    Map</a>. A property map for edge length's can be obtained using the
+    <tt>edge_length_t</tt> tag, and this property map is a <a
+        href="../../property_map/doc/LvaluePropertyMap.html">Lvalue Property
+    Map</a> whose value type is <tt>long</tt>.
 </p>
 
 <p>
-Property map objects can be obtained via the <tt>get()</tt> function
-of the Property Graph concept. The type of the property map is given
-by the <a href="./property_map.html"><tt>property_map</tt></a> traits
-class.</p>
+    Property map objects can be obtained via the <tt>get()</tt> function
+    of the Property Graph concept. The type of the property map is given
+    by the <a href="./property_map.html"><tt>property_map</tt></a> traits
+    class.</p>
 
 
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2001</TD><TD>
-<A HREF="http://people.freenet.de/andreas.scherer">Andreas Scherer</A>,
-Aachen (<A
-HREF="mailto:andreas_freenet@freenet.de">andreas_freenet@freenet.de</A>)<br>
-<A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
-Indiana University (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-<A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>,
-Indiana University (<A
-HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
-<A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Indiana University (<A
-HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2001</TD>
+        <TD>
+            <A HREF="http://people.freenet.de/andreas.scherer">Andreas Scherer</A>,
+            Aachen (<A
+                HREF="mailto:andreas_freenet@freenet.de">andreas_freenet@freenet.de</A>)<br>
+            <A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
+            Indiana University (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+            <A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>,
+            Indiana University (<A
+                HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Indiana University (<A
+                HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
 </HTML> 

@@ -5,90 +5,87 @@ import unittest
 
 
 class PolymorphTest(unittest.TestCase):
+    def testReturnCpp(self):
+        # Python Created Object With Same Id As
+        # Cpp Created B Object
+        # b = B(872)
 
-   def testReturnCpp(self):
+        #  Get Reference To Cpp Created B Object
+        a = getBCppObj()
 
-      # Python Created Object With Same Id As
-      # Cpp Created B Object 
-      # b = B(872)  
+        # Python Created B Object and Cpp B Object
+        # Should have same result by calling f()
+        self.failUnlessEqual('B::f()', a.f())
+        self.failUnlessEqual('B::f()', call_f(a))
+        self.failUnlessEqual('A::f()', call_f(A()))
 
-      #  Get Reference To Cpp Created B Object
-      a = getBCppObj()
+    def test_references(self):
+        # B is not exposed to Python
+        a = getBCppObj()
+        self.failUnlessEqual(type(a), A)
 
-      # Python Created B Object and Cpp B Object
-      # Should have same result by calling f()
-      self.failUnlessEqual ('B::f()', a.f())
-      self.failUnlessEqual ('B::f()', call_f(a))
-      self.failUnlessEqual ('A::f()', call_f(A()))
+        # C is exposed to Python
+        c = getCCppObj()
+        self.failUnlessEqual(type(c), C)
 
-   def test_references(self):
-      # B is not exposed to Python
-      a = getBCppObj()
-      self.failUnlessEqual(type(a), A)
+    def test_factory(self):
+        self.failUnlessEqual(type(factory(0)), A)
+        self.failUnlessEqual(type(factory(1)), A)
+        self.failUnlessEqual(type(factory(2)), C)
 
-      # C is exposed to Python
-      c = getCCppObj()
-      self.failUnlessEqual(type(c), C)
-      
-   def test_factory(self):
-      self.failUnlessEqual(type(factory(0)), A)
-      self.failUnlessEqual(type(factory(1)), A)
-      self.failUnlessEqual(type(factory(2)), C)
+    def test_return_py(self):
+        class X(A):
+            def f(self):
+                return 'X.f'
 
-   def test_return_py(self):
+        x = X()
 
-      class X(A):
-         def f(self):
-            return 'X.f'
+        self.failUnlessEqual('X.f', x.f())
+        self.failUnlessEqual('X.f', call_f(x))
 
-      x = X()
-      
-      self.failUnlessEqual ('X.f', x.f())
-      self.failUnlessEqual ('X.f', call_f(x))
+    def test_self_default(self):
+        class X(A):
+            def f(self):
+                return 'X.f() -> ' + A.f(self)
 
-   def test_self_default(self):
+        x = X()
 
-      class X(A):
-         def f(self):
-            return 'X.f() -> ' + A.f(self)
+        self.failUnlessEqual('X.f() -> A::f()', x.f())
 
-      x = X()
-      
-      self.failUnlessEqual ('X.f() -> A::f()', x.f())
-      
-      # This one properly raises the "dangling reference" exception
-      # self.failUnlessEqual ('X.f() -> A::f()', call_f(x))
+        # This one properly raises the "dangling reference" exception
+        # self.failUnlessEqual ('X.f() -> A::f()', call_f(x))
 
-   def test_wrapper_downcast(self):
-      a = pass_a(D())
-      self.failUnlessEqual('D::g()', a.g())
+    def test_wrapper_downcast(self):
+        a = pass_a(D())
+        self.failUnlessEqual('D::g()', a.g())
 
-   def test_pure_virtual(self):
-      p = P()
-      self.assertRaises(RuntimeError, p.f)
-      
-      q = Q()
-      self.failUnlessEqual ('Q::f()', q.f())
-      
-      class R(P):
-         def f(self):
-            return 'R.f'
+    def test_pure_virtual(self):
+        p = P()
+        self.assertRaises(RuntimeError, p.f)
 
-      r = R()
-      self.failUnlessEqual ('R.f', r.f())
-      
+        q = Q()
+        self.failUnlessEqual('Q::f()', q.f())
+
+        class R(P):
+            def f(self):
+                return 'R.f'
+
+        r = R()
+        self.failUnlessEqual('R.f', r.f())
+
 
 def test():
-   # remove the option that upsets unittest
-   import sys
-   sys.argv = [ x for x in sys.argv if x != '--broken-auto-ptr' ]
-   unittest.main()
+    # remove the option that upsets unittest
+    import sys
+    sys.argv = [x for x in sys.argv if x != '--broken-auto-ptr']
+    unittest.main()
+
 
 # This nasty hack basically says that if we're loaded by another module, we'll
 # be testing polymorphism2_auto_ptr_ext instead of polymorphism2_ext.
 if __name__ == "__main__":
-   from polymorphism2_ext import *
-   test()
+    from polymorphism2_ext import *
+
+    test()
 else:
-   from polymorphism2_auto_ptr_ext import *
-   
+    from polymorphism2_auto_ptr_ext import *

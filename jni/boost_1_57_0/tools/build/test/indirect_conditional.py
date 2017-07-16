@@ -7,6 +7,7 @@
 
 import BoostBuild
 
+
 def test_basic():
     t = BoostBuild.Tester(use_test_config=False)
 
@@ -96,7 +97,7 @@ lib bar : bar.cpp : <conditional>@print-my-sources ;
     t.run_build_system(status=1)
     t.expect_output_lines(["My sources:", "bar.cpp"], False)
     t.expect_output_lines("error: Reference to the project currently being "
-        "loaded requested when there was no project module being loaded.")
+                          "loaded requested when there was no project module being loaded.")
 
     t.cleanup()
 

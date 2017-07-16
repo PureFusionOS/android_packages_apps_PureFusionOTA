@@ -9,7 +9,6 @@ import BoostBuild
 
 t = BoostBuild.Tester(use_test_config=False)
 
-
 # Test that usage requirements on main targets work (and are propagated all the
 # way up, and not only to direct dependants).
 t.write("jamroot.jam", "")
@@ -53,7 +52,6 @@ int main() { foo(); }
 t.run_build_system()
 t.run_build_system(["--clean"])
 
-
 # Test that use requirements on main target work, when they are referred using
 # 'dependency' features.
 
@@ -80,7 +78,6 @@ int main() {}
 t.run_build_system()
 t.run_build_system(["--clean"])
 
-
 # Test that usage requirements on a project work.
 t.write("jamfile.jam", "exe a : a.cpp lib//b ;")
 
@@ -100,7 +97,6 @@ foo() {}
 """)
 
 t.run_build_system()
-
 
 # Test that use requirements are inherited correctly.
 t.write("jamfile.jam", "exe a : a.cpp lib/1//b ;")
@@ -133,7 +129,6 @@ foo() {}
 
 t.run_build_system()
 t.run_build_system(["--clean"])
-
 
 # Test that we correctly handle dependency features in usage requirements on
 # target.
@@ -172,7 +167,6 @@ must_export_something;
 t.run_build_system()
 t.run_build_system(["--clean"])
 
-
 # Test correct handling of dependency features in project requirements.
 t.write("jamfile.jam", "exe a : a.cpp lib1//cc ;")
 
@@ -199,7 +193,6 @@ lib b : b.cpp : <link>shared:<define>SHARED_B : : <define>FOO
 t.copy("b.cpp", "lib2/b.cpp")
 
 t.run_build_system()
-
 
 # Test that targets listed in dependency features in usage requirements are
 # built with the correct properties.
@@ -230,7 +223,6 @@ __declspec(dllexport)
 foo() {}
 """)
 
-
 # This library should be built with the same properties as 'main'. This is a
 # regression test for a bug when they were generated with empty properties, and
 # there were ambiguities between variants.
@@ -251,7 +243,6 @@ foo() {}
 
 t.run_build_system(["link=static"])
 t.expect_addition("libs/bin/$toolset/debug/link-static/a_d.obj")
-
 
 # Test that indirect conditionals are respected in usage requirements.
 t.rm(".")

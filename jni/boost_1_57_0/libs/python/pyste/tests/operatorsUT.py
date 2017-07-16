@@ -5,9 +5,9 @@
 import unittest
 from _operators import *
 
-class OperatorTest(unittest.TestCase):
 
-    def testIt(self):              
+class OperatorTest(unittest.TestCase):
+    def testIt(self):
         c = C()
         c.value = 3.0
         d = C()
@@ -27,4 +27,4 @@ class OperatorTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()  
+    unittest.main()

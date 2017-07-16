@@ -32,7 +32,6 @@ t.expect_addition("bin/$toolset/release/hello.exe")
 
 t.rm("bin")
 
-
 # Now test that prebuilt file specified by absolute name works too.
 t.copy("ext/jamfile3.jam", "ext/jamfile.jam")
 t.expand_toolset("ext/jamfile.jam")

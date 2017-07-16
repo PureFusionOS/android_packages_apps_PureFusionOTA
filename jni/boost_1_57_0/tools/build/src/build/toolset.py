@@ -10,19 +10,24 @@
 """ Support for toolset definition.
 """
 
-import feature, property, generators, property_set
 import b2.util.set
+from b2.manager import get_manager
+from b2.util import bjam_signature
 from b2.util import cached, qualify_jam_action
 from b2.util.utility import *
-from b2.util import bjam_signature
-from b2.manager import get_manager
 
-__re_split_last_segment = re.compile (r'^(.+)\.([^\.])*')
-__re_two_ampersands = re.compile ('(&&)')
-__re_first_segment = re.compile ('([^.]*).*')
-__re_first_group = re.compile (r'[^.]*\.(.*)')
+import feature
+import generators
+import property
+import property_set
 
-# Flag is a mechanism to set a value 
+__re_split_last_segment = re.compile(r'^(.+)\.([^\.])*')
+__re_two_ampersands = re.compile('(&&)')
+__re_first_segment = re.compile('([^.]*).*')
+__re_first_group = re.compile(r'[^.]*\.(.*)')
+
+
+# Flag is a mechanism to set a value
 # A single toolset flag. Specifies that when certain
 # properties are in build property set, certain values
 # should be appended to some variable.
@@ -32,22 +37,22 @@ __re_first_group = re.compile (r'[^.]*\.(.*)')
 # flag further contains the name of the rule it applies
 # for, 
 class Flag:
-
-    def __init__(self, variable_name, values, condition, rule = None):
+    def __init__(self, variable_name, values, condition, rule=None):
         self.variable_name = variable_name
         self.values = values
-        self.condition = condition        
+        self.condition = condition
         self.rule = rule
 
     def __str__(self):
-        return("Flag(" + str(self.variable_name) + ", " + str(self.values) +\
-               ", " + str(self.condition) + ", " + str(self.rule) + ")")
+        return ("Flag(" + str(self.variable_name) + ", " + str(self.values) + \
+                ", " + str(self.condition) + ", " + str(self.rule) + ")")
 
-def reset ():
+
+def reset():
     """ Clear the module state. This is mainly for testing purposes.
     """
     global __module_flags, __flags, __stv
-    
+
     # Mapping from module name to a list of all flags that apply
     # to either that module directly, or to any rule in that module.
     # Each element of the list is Flag instance.
@@ -61,24 +66,27 @@ def reset ():
     # entries for module name 'xxx', they are flags for 'xxx' itself,
     # not including any rules in that module.
     __flags = {}
-    
+
     # A cache for varaible settings. The key is generated from the rule name and the properties.
     __stv = {}
-    
-reset ()
+
+
+reset()
+
 
 # FIXME: --ignore-toolset-requirements
 def using(toolset_module, *args):
-     loaded_toolset_module= get_manager().projects().load_module(toolset_module, [os.getcwd()]);
-     loaded_toolset_module.init(*args)
-    
+    loaded_toolset_module = get_manager().projects().load_module(toolset_module, [os.getcwd()]);
+    loaded_toolset_module.init(*args)
+
+
 # FIXME push-checking-for-flags-module ....
 # FIXME: investigate existing uses of 'hack-hack' parameter
 # in jam code.
-    
+
 @bjam_signature((["rule_or_module", "variable_name", "condition", "*"],
                  ["values", "*"]))
-def flags(rule_or_module, variable_name, condition, values = []):
+def flags(rule_or_module, variable_name, condition, values=[]):
     """ Specifies the flags (variables) that must be set on targets under certain
         conditions, described by arguments.
         rule_or_module:   If contains dot, should be a rule name.
@@ -129,39 +137,41 @@ def flags(rule_or_module, variable_name, condition, values = []):
         # FIXME: revive checking that we don't set flags for a different
         # module unintentionally
         pass
-                          
-    if condition and not replace_grist (condition, ''):
+
+    if condition and not replace_grist(condition, ''):
         # We have condition in the form '<feature>', that is, without
         # value. That's a previous syntax:
         #
         #   flags gcc.link RPATH <dll-path> ;
         # for compatibility, convert it to
         #   flags gcc.link RPATH : <dll-path> ;                
-        values = [ condition ]
+        values = [condition]
         condition = None
-    
+
     if condition:
         transformed = []
         for c in condition:
             # FIXME: 'split' might be a too raw tool here.
-            pl = [property.create_from_string(s,False,True) for s in c.split('/')]
+            pl = [property.create_from_string(s, False, True) for s in c.split('/')]
             pl = feature.expand_subfeatures(pl);
             transformed.append(property_set.create(pl))
         condition = transformed
 
         property.validate_property_sets(condition)
-    
-    __add_flag (rule_or_module, variable_name, condition, values)
 
-def set_target_variables (manager, rule_or_module, targets, ps):
+    __add_flag(rule_or_module, variable_name, condition, values)
+
+
+def set_target_variables(manager, rule_or_module, targets, ps):
     """
     """
     settings = __set_target_variables_aux(manager, rule_or_module, ps)
-        
+
     if settings:
         for s in settings:
             for target in targets:
-                manager.engine ().set_target_variable (target, s [0], s[1], True)
+                manager.engine().set_target_variable(target, s[0], s[1], True)
+
 
 def find_satisfied_condition(conditions, ps):
     """Returns the first element of 'property-sets' which is a subset of
@@ -177,7 +187,7 @@ def find_satisfied_condition(conditions, ps):
             found = False
             if i.value():
                 found = i.value() in ps.get(i.feature())
-            else:            
+            else:
                 # Handle value-less properties like '<architecture>' (compare with 
                 # '<architecture>x86').
                 # If $(i) is a value-less property it should match default 
@@ -197,22 +207,23 @@ def find_satisfied_condition(conditions, ps):
             return condition
 
     return None
-    
 
-def register (toolset):
+
+def register(toolset):
     """ Registers a new toolset.
     """
     feature.extend('toolset', [toolset])
 
-def inherit_generators (toolset, properties, base, generators_to_ignore = []):
+
+def inherit_generators(toolset, properties, base, generators_to_ignore=[]):
     if not properties:
-        properties = [replace_grist (toolset, '<toolset>')]
-        
+        properties = [replace_grist(toolset, '<toolset>')]
+
     base_generators = generators.generators_for_toolset(base)
-    
+
     for g in base_generators:
         id = g.id()
-        
+
         if not id in generators_to_ignore:
             # Some generator names have multiple periods in their name, so
             # $(id:B=$(toolset)) doesn't generate the right new_id name.
@@ -226,7 +237,8 @@ def inherit_generators (toolset, properties, base, generators_to_ignore = []):
 
             generators.register(g.clone(new_id, properties))
 
-def inherit_flags(toolset, base, prohibited_properties = []):
+
+def inherit_flags(toolset, base, prohibited_properties=[]):
     """Brings all flag definitions from the 'base' toolset into the 'toolset'
     toolset. Flag definitions whose conditions make use of properties in
     'prohibited-properties' are ignored. Don't confuse property and feature, for
@@ -238,7 +250,7 @@ def inherit_flags(toolset, base, prohibited_properties = []):
     such flag settings must be inherited, define a rule in base toolset module and
     call it as needed."""
     for f in __module_flags.get(base, []):
-        
+
         if not f.condition or b2.util.set.difference(f.condition, prohibited_properties):
             match = __re_first_group.match(f.rule)
             rule_ = None
@@ -252,11 +264,14 @@ def inherit_flags(toolset, base, prohibited_properties = []):
             else:
                 new_rule_or_module = toolset
 
-            __add_flag (new_rule_or_module, f.variable_name, f.condition, f.values)
+            __add_flag(new_rule_or_module, f.variable_name, f.condition, f.values)
 
-def inherit_rules (toolset, base):
+
+def inherit_rules(toolset, base):
     pass
     # FIXME: do something about this.
+
+
 #    base_generators = generators.generators_for_toolset (base)
 
 #    import action
@@ -269,7 +284,7 @@ def inherit_rules (toolset, base):
 #    new_actions = []
 
 #    engine = get_manager().engine()
-    # FIXME: do this!
+# FIXME: do this!
 #    for action in engine.action.values():
 #        pass
 #        (old_toolset, id) = split_action_id(action.action_name)
@@ -279,8 +294,8 @@ def inherit_rules (toolset, base):
 #
 #    for a in new_actions:
 #        action.register (toolset + '.' + a [0], a [1], a [2])
-        
-    # TODO: how to deal with this?
+
+# TODO: how to deal with this?
 #       IMPORT $(base) : $(rules) : $(toolset) : $(rules) : localized ;
 #       # Import the rules to the global scope
 #       IMPORT $(toolset) : $(rules) : : $(toolset).$(rules) ;
@@ -291,7 +306,7 @@ def inherit_rules (toolset, base):
 # Private functions
 
 @cached
-def __set_target_variables_aux (manager, rule_or_module, ps):
+def __set_target_variables_aux(manager, rule_or_module, ps):
     """ Given a rule name and a property set, returns a list of tuples of
         variables names and values, which must be set on targets for that
         rule/properties combination. 
@@ -299,33 +314,34 @@ def __set_target_variables_aux (manager, rule_or_module, ps):
     result = []
 
     for f in __flags.get(rule_or_module, []):
-           
-        if not f.condition or find_satisfied_condition (f.condition, ps):
+
+        if not f.condition or find_satisfied_condition(f.condition, ps):
             processed = []
             for v in f.values:
                 # The value might be <feature-name> so needs special
                 # treatment.
-                processed += __handle_flag_value (manager, v, ps)
+                processed += __handle_flag_value(manager, v, ps)
 
             for r in processed:
-                result.append ((f.variable_name, r))
-    
+                result.append((f.variable_name, r))
+
     # strip away last dot separated part and recurse.
     next = __re_split_last_segment.match(rule_or_module)
-    
+
     if next:
         result.extend(__set_target_variables_aux(
             manager, next.group(1), ps))
 
     return result
 
-def __handle_flag_value (manager, value, ps):
+
+def __handle_flag_value(manager, value, ps):
     result = []
-    
-    if get_grist (value):
+
+    if get_grist(value):
         f = feature.get(value)
         values = ps.get(f)
-        
+
         for value in values:
 
             if f.dependency():
@@ -334,7 +350,7 @@ def __handle_flag_value (manager, value, ps):
                 result.append(value.actualize())
 
             elif f.path() or f.free():
-                
+
                 # Treat features with && in the value
                 # specially -- each &&-separated element is considered
                 # separate value. This is needed to handle searched
@@ -343,46 +359,51 @@ def __handle_flag_value (manager, value, ps):
                     result.append(value)
 
                 else:
-                    result.extend(value.split ('&&'))
+                    result.extend(value.split('&&'))
             else:
-                result.append (ungristed)
+                result.append(ungristed)
     else:
-        result.append (value)
+        result.append(value)
 
     return result
 
-def __add_flag (rule_or_module, variable_name, condition, values):
+
+def __add_flag(rule_or_module, variable_name, condition, values):
     """ Adds a new flag setting with the specified values.
         Does no checking.
     """
     f = Flag(variable_name, values, condition, rule_or_module)
-    
+
     # Grab the name of the module
-    m = __re_first_segment.match (rule_or_module)
+    m = __re_first_segment.match(rule_or_module)
     assert m
     module = m.group(1)
 
     __module_flags.setdefault(module, []).append(f)
     __flags.setdefault(rule_or_module, []).append(f)
 
+
 __requirements = []
+
 
 def requirements():
     """Return the list of global 'toolset requirements'.
     Those requirements will be automatically added to the requirements of any main target."""
     return __requirements
 
+
 def add_requirements(requirements):
     """Adds elements to the list of global 'toolset requirements'. The requirements
     will be automatically added to the requirements for all main targets, as if
     they were specified literally. For best results, all requirements added should
     be conditional or indirect conditional."""
-    
-    #if ! $(.ignore-requirements)
-    #{
+
+    # if ! $(.ignore-requirements)
+    # {
     __requirements.extend(requirements)
-    #}
-         
+    # }
+
+
 # Make toolset 'toolset', defined in a module of the same name,
 # inherit from 'base'
 # 1. The 'init' rule from 'base' is imported into 'toolset' with full

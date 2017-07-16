@@ -2,10 +2,11 @@
 # distribution is subject to the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or copy at 
 # http://www.boost.org/LICENSE_1_0.txt)
-#!/usr/bin/python
+# !/usr/bin/python
 
 import sys
-sys.path.append('../src/Pyste')  
+
+sys.path.append('../src/Pyste')
 import unittest
 import os.path
 from glob import glob
@@ -18,4 +19,4 @@ if __name__ == '__main__':
         tests.append(loader.loadTestsFromModule(module))
     runner = unittest.TextTestRunner()
     result = runner.run(unittest.TestSuite(tests))
-    sys.exit(not result.wasSuccessful())    
+    sys.exit(not result.wasSuccessful())

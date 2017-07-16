@@ -1,9 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
+<html>
+<head>
 
 
-  
-  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Voronoi Advanced Tutorial</title></head><body>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Voronoi Advanced Tutorial</title></head>
+<body>
 <h1>Voronoi Advanced Tutorial<br>
 </h1>
 
@@ -144,22 +146,23 @@ the most real world problems:<br>
 
 <ul>
 
-  <li>The absolute error of the coordinates of the output Voronoi
-diagram
-inside the 32-bit integer discretization grid is slightly smaller than
-the absolute error of discretization itself, thus could be neglected at
-all.</li>
-  <li>In both problems above we didn't consider error of measurement.
-For example: is it possible to construct a map of the Mars within the
-0.5
-centimetres precision, or to get coordinates of the circuit parts
-withing the subatomic precision? I guess the answer for both questions
-would be "No". And that actually means that the error of the
-discretization
-step could be neglected comparing to the error produced by the
-measuring
-devices.<br>
-  </li>
+    <li>The absolute error of the coordinates of the output Voronoi
+        diagram
+        inside the 32-bit integer discretization grid is slightly smaller than
+        the absolute error of discretization itself, thus could be neglected at
+        all.
+    </li>
+    <li>In both problems above we didn't consider error of measurement.
+        For example: is it possible to construct a map of the Mars within the
+        0.5
+        centimetres precision, or to get coordinates of the circuit parts
+        withing the subatomic precision? I guess the answer for both questions
+        would be "No". And that actually means that the error of the
+        discretization
+        step could be neglected comparing to the error produced by the
+        measuring
+        devices.<br>
+    </li>
 </ul>
 The second statement means that there is actually no point to provide
 implementation that operates with floating-point input coordinates,
@@ -175,7 +178,8 @@ In the following chapter we are going to extend input coordinate type
 to the 48-bit signed
 integer and output coordinate type to the 80-bit IEEE floating-point
 type
-(long double). The code for this chapter is available in <a href="../example/voronoi_advanced_tutorial.cpp">voroni_advanced_tutorial.cpp</a>.
+(long double). The code for this chapter is available in <a
+        href="../example/voronoi_advanced_tutorial.cpp">voroni_advanced_tutorial.cpp</a>.
 While it won't be possible to compile it using the MSVC compiler (it
 doesn't
 support 80-bit long double type; ieee754.h header is required), it
@@ -196,13 +200,16 @@ my_voronoi_ctype_traits {</span><br style="font-family: Courier New,Courier,mono
 typedef boost::int64_t int_type;</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef detail::extended_int&lt;3&gt; int_x2_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef detail::extended_int&lt;3&gt; int_x2_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef detail::extended_int&lt;3&gt; uint_x2_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef detail::extended_int&lt;3&gt; uint_x2_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef detail::extended_int&lt;128&gt; big_int_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef detail::extended_int&lt;128&gt; big_int_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
 typedef fpt80 fpt_type;</span><br style="font-family: Courier New,Courier,monospace;">
@@ -211,13 +218,16 @@ typedef fpt80 fpt_type;</span><br style="font-family: Courier New,Courier,monosp
 typedef fpt80 efpt_type;</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef my_ulp_comparison ulp_cmp_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef my_ulp_comparison ulp_cmp_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef my_fpt_converter to_fpt_converter_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef my_fpt_converter to_fpt_converter_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef my_fpt_converter to_efpt_converter_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef my_fpt_converter to_efpt_converter_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">};<br>
 <br>
@@ -231,20 +241,25 @@ such built-in type we use library provided efficient fixed integer
 type.
 The big integer type should be capable to handle 48 * 64 bit integers,
 that is
-less than 32 * 128, and so far we are good with <span style="font-family: Courier New,Courier,monospace;">extended_int&lt;128&gt;</span>
-type. We use the same floating point type for both <span style="font-family: Courier New,Courier,monospace;">fpt_type</span>
+less than 32 * 128, and so far we are good with <span
+        style="font-family: Courier New,Courier,monospace;">extended_int&lt;128&gt;</span>
+type. We use the same floating point type for both <span
+        style="font-family: Courier New,Courier,monospace;">fpt_type</span>
 and <span style="font-family: Courier New,Courier,monospace;">efpt_type</span>
 as it has enough exponent bits to represent both 48 * 32 bit and 48 *
 64 bit integers (that is also the reason we don't need two
 floating-point converter structures). The <span style="font-family: Courier New,Courier,monospace;">ulp_cmp_type</span>
 structure checks weather two IEEE floating-point values are within the
 given signed integer ulp range (we won't analyze corresponding code
-here as it requires deep understanding of the <a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html">floating-point
-architecture</a> and its <a href="../../../boost/polygon/detail/voronoi_ctypes.hpp">usage to compare
-floating-point values</a>), but just to mention the declaration is
+here as it requires deep understanding of the <a
+        href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html">floating-point
+    architecture</a> and its <a href="../../../boost/polygon/detail/voronoi_ctypes.hpp">usage to
+    compare
+    floating-point values</a>), but just to mention the declaration is
 following:<br>
 
-<span style="font-family: Courier New,Courier,monospace;"></span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;"></span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">struct
 my_ulp_comparison {</span><br style="font-family: Courier New,Courier,monospace;">
@@ -259,14 +274,17 @@ EQUAL = 0,</span><br style="font-family: Courier New,Courier,monospace;">
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;
 MORE = 1</span><br style="font-family: Courier New,Courier,monospace;">
 
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; };</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; };</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp; Result
-operator()(fpt80 a, fpt80 b, unsigned int maxUlps) const;</span><br style="font-family: Courier New,Courier,monospace;">
+operator()(fpt80 a, fpt80 b, unsigned int maxUlps) const;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">};<br>
 <br>
-</span>The last step would be to declare the <span style="font-family: Courier New,Courier,monospace;">my_fpt_converter</span>
+</span>The last step would be to declare the <span
+        style="font-family: Courier New,Courier,monospace;">my_fpt_converter</span>
 structure (converts the integer types to the floating-point type):<br>
 
 <br>
@@ -281,9 +299,11 @@ template &lt;typename T&gt;</span><br style="font-family: Courier New,Courier,mo
 operator()(const T&amp; that) const {</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;
-return static_cast&lt;fpt80&gt;(that);</span><br style="font-family: Courier New,Courier,monospace;">
+return static_cast&lt;fpt80&gt;(that);</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; }</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; }</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <br style="font-family: Courier New,Courier,monospace;">
 
@@ -298,24 +318,29 @@ const {</span><br style="font-family: Courier New,Courier,monospace;">
 fpt80 result = 0.0;</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;
-for (size_t i = 1; i &lt;= (std::min)((size_t)3, that.size()); ++i) {</span><br style="font-family: Courier New,Courier,monospace;">
+for (size_t i = 1; i &lt;= (std::min)((size_t)3, that.size()); ++i) {</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 if (i != 1)</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-result *= static_cast&lt;fpt80&gt;(0x100000000ULL);</span><br style="font-family: Courier New,Courier,monospace;">
+result *= static_cast&lt;fpt80&gt;(0x100000000ULL);</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-result += that.chunks()[that.size() - i];</span><br style="font-family: Courier New,Courier,monospace;">
+result += that.chunks()[that.size() - i];</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;
 }</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;
-return (that.count() &lt; 0) ? -result : result;</span><br style="font-family: Courier New,Courier,monospace;">
+return (that.count() &lt; 0) ? -result : result;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; }</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; }</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">};<br>
 <br>
@@ -329,21 +354,28 @@ traits:<br>
 my_voronoi_diagram_traits {</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef fpt80 coordinate_type;</span><span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;"></span><br style="font-family: Courier New,Courier,monospace;">
+typedef fpt80 coordinate_type;</span><span
+        style="font-family: Courier New,Courier,monospace;"></span><span
+        style="font-family: Courier New,Courier,monospace;"></span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef voronoi_cell&lt;coordinate_type&gt; cell_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef voronoi_cell&lt;coordinate_type&gt; cell_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef voronoi_vertex&lt;coordinate_type&gt; vertex_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef voronoi_vertex&lt;coordinate_type&gt; vertex_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
-typedef voronoi_edge&lt;coordinate_type&gt; edge_type;</span><br style="font-family: Courier New,Courier,monospace;">
+typedef voronoi_edge&lt;coordinate_type&gt; edge_type;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
 typedef struct {</span><br style="font-family: Courier New,Courier,monospace;">
 
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; public:</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; public:</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;
 enum { ULPS = 128 };</span><br style="font-family: Courier New,Courier,monospace;">
@@ -357,7 +389,8 @@ return (ulp_cmp(v1.x(), v2.x(), ULPS) == my_ulp_comparison::EQUAL
 &amp;&amp;</span><br style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-ulp_cmp(v1.y(), v2.y(), ULPS) == my_ulp_comparison::EQUAL);</span><br style="font-family: Courier New,Courier,monospace;">
+ulp_cmp(v1.y(), v2.y(), ULPS) == my_ulp_comparison::EQUAL);</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;
 }</span><br style="font-family: Courier New,Courier,monospace;">
@@ -399,11 +432,13 @@ distr(-MAX, MAX-1);<br>
 // Declaring and configuring Voronoi builder with the new coordinate
 type traits.<br>
 voronoi_builder&lt;boost::int64_t, my_voronoi_ctype_traits&gt; vb;</span><br>
-<span style="font-family: Courier New,Courier,monospace;"></span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;"></span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">// Voronoi
 builder initialization step.<br>
-for (size_t i = 0; i &lt; GENERATED_POINTS; ++i) {</span><br style="font-family: Courier New,Courier,monospace;">
+for (size_t i = 0; i &lt; GENERATED_POINTS; ++i) {</span><br
+        style="font-family: Courier New,Courier,monospace;">
 
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;
 boost::int64_t x = distr(gen);</span><br style="font-family: Courier New,Courier,monospace;">
@@ -443,20 +478,27 @@ coordinate types are not capable to deal with your problem.<br>
 
 <table class="docinfo" id="table1" frame="void" rules="none">
 
-  <colgroup> <col class="docinfo-name"><col class="docinfo-content"> </colgroup>
-  <tbody valign="top">
+    <colgroup>
+        <col class="docinfo-name">
+        <col class="docinfo-content">
+    </colgroup>
+    <tbody valign="top">
     <tr>
-      <th class="docinfo-name">Copyright:</th>
-      <td>Copyright © Andrii Sydorchuk 2010-2012.</td>
+        <th class="docinfo-name">Copyright:</th>
+        <td>Copyright © Andrii Sydorchuk 2010-2012.</td>
     </tr>
     <tr class="field">
-      <th class="docinfo-name">License:</th>
-      <td class="field-body">Distributed under the Boost Software
-License, Version 1.0. (See accompanying file <tt class="literal"> <span class="pre">LICENSE_1_0.txt</span></tt> or copy at <a class="reference" target="_top" href="http://www.boost.org/LICENSE_1_0.txt">
-http://www.boost.org/LICENSE_1_0.txt</a>)</td>
+        <th class="docinfo-name">License:</th>
+        <td class="field-body">Distributed under the Boost Software
+            License, Version 1.0. (See accompanying file <tt class="literal"> <span class="pre">LICENSE_1_0.txt</span></tt>
+            or copy at <a class="reference" target="_top"
+                          href="http://www.boost.org/LICENSE_1_0.txt">
+                http://www.boost.org/LICENSE_1_0.txt</a>)
+        </td>
     </tr>
-  </tbody>
+    </tbody>
 </table>
 
 
-</body></html>
+</body>
+</html>

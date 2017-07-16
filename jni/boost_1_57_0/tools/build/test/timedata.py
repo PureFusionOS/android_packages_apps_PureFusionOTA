@@ -86,7 +86,7 @@ bar +user: [0-9\.]+ +system: +[0-9\.]+ *
 """
 
     t.run_build_system(["-ffile.jam", "-d+1"], stdout=expected_output,
-        match=lambda actual, expected: re.search(expected, actual, re.DOTALL))
+                       match=lambda actual, expected: re.search(expected, actual, re.DOTALL))
     t.expect_addition("foo")
     t.expect_addition("bar")
     t.expect_nothing_more()
@@ -123,9 +123,9 @@ time my-time : my-exe ;
     t.expect_addition("bin/$toolset/debug/my-time.time")
 
     t.expect_content_lines("bin/$toolset/debug/my-time.time",
-        "user: *[0-9] seconds")
+                           "user: *[0-9] seconds")
     t.expect_content_lines("bin/$toolset/debug/my-time.time",
-        "system: *[0-9] seconds")
+                           "system: *[0-9] seconds")
 
     t.cleanup()
 

@@ -49,7 +49,7 @@ exe hello : hello.cpp src ;
     # Try building everything, making sure 'hello' target is created.
     t.run_build_system()
     t.expect_addition(BoostBuild.List("bin/$toolset/debug/") * \
-        "hello.exe hello.obj")
+                      "hello.exe hello.obj")
     t.expect_addition("bin/$toolset/debug/s.obj")
     t.expect_addition(BoostBuild.List("bin/$toolset/debug/") * "c.exe c.obj")
     t.expect_nothing_more()

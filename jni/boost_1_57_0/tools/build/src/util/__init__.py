@@ -1,25 +1,24 @@
-
 import bjam
 import re
 import types
 
+
 # Decorator the specifies bjam-side prototype for a Python function
 def bjam_signature(s):
-
-    def wrap(f):       
+    def wrap(f):
         f.bjam_signature = s
         return f
 
     return wrap
 
-def metatarget(f):
 
+def metatarget(f):
     f.bjam_signature = (["name"], ["sources", "*"], ["requirements", "*"],
                         ["default_build", "*"], ["usage_requirements", "*"])
     return f
 
-class cached(object):
 
+class cached(object):
     def __init__(self, function):
         self.function = function
         self.cache = {}
@@ -35,16 +34,18 @@ class cached(object):
     def __get__(self, instance, type):
         return types.MethodType(self, instance, type)
 
+
 def unquote(s):
     if s and s[0] == '"' and s[-1] == '"':
         return s[1:-1]
     else:
         return s
 
+
 _extract_jamfile_and_rule = re.compile("(Jamfile<.*>)%(.*)")
 
-def qualify_jam_action(action_name, context_module):
 
+def qualify_jam_action(action_name, context_module):
     if action_name.startswith("###"):
         # Callable exported from Python. Don't touch
         return action_name
@@ -54,13 +55,12 @@ def qualify_jam_action(action_name, context_module):
     else:
         ix = action_name.find('.')
         if ix != -1 and action_name[:ix] == context_module:
-            return context_module + '%' + action_name[ix+1:]
-        
-        return context_module + '%' + action_name        
-    
+            return context_module + '%' + action_name[ix + 1:]
+
+        return context_module + '%' + action_name
+
 
 def set_jam_action(name, *args):
-
     m = _extract_jamfile_and_rule.match(name)
     if m:
         args = ("set-update-action-in-module", m.group(1), m.group(2)) + args
@@ -71,7 +71,6 @@ def set_jam_action(name, *args):
 
 
 def call_jam_function(name, *args):
-
     m = _extract_jamfile_and_rule.match(name)
     if m:
         args = ("call-in-module", m.group(1), m.group(2)) + args
@@ -79,9 +78,11 @@ def call_jam_function(name, *args):
     else:
         return bjam.call(*((name,) + args))
 
+
 __value_id = 0
 __python_to_jam = {}
 __jam_to_python = {}
+
 
 def value_to_jam(value, methods=False):
     """Makes a token to refer to a Python value inside Jam language code.
@@ -118,15 +119,17 @@ def value_to_jam(value, methods=False):
 
     return exported_name
 
+
 def record_jam_to_value_mapping(jam_value, python_value):
     __jam_to_python[jam_value] = python_value
 
-def jam_to_value_maybe(jam_value):
 
+def jam_to_value_maybe(jam_value):
     if type(jam_value) == type(""):
         return __jam_to_python.get(jam_value, jam_value)
     else:
         return jam_value
+
 
 def stem(filename):
     i = filename.find('.')

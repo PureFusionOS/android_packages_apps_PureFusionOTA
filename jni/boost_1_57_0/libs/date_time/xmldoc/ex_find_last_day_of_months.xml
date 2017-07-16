@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2005 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,13 +8,14 @@
 -->
 
 <section id="date_time.examples.end_of_month_day">
-  <title>Last Day of the Months</title>
+    <title>Last Day of the Months</title>
 
-  <para>
-    Example that gets a month and a year from the user and finds the last day of each remaining month of that year.
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        Example that gets a month and a year from the user and finds the last day of each remaining
+        month of that year.
+    </para>
+    <programlisting>
+        <![CDATA[
   /* Simple program that finds the last day of the given month, 
    * then displays the last day of every month left in the given year.
    */
@@ -62,5 +63,5 @@
   }
 
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

@@ -9,7 +9,6 @@ import BoostBuild
 
 t = BoostBuild.Tester(use_test_config=False)
 
-
 # Regression tests: standalone project were not able to refer to targets
 # declared in themselves.
 
@@ -43,7 +42,6 @@ pwd = os.getcwd()
 alias('x', [os.path.join(pwd, '../a.cpp')])
 alias('runtime', ['x'])
 """)
-
 
 t.write("sub/jamfile.jam", "stage bin : /standalone//runtime ;")
 

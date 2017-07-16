@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2005 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,13 +8,13 @@
 -->
 
 <section id="date_time.examples.seconds_since_epoch">
-  <title>Seconds Since Epoch</title>
+    <title>Seconds Since Epoch</title>
 
-  <para> 
-    Example of calculating seconds elapsed since epoch (1970-Jan-1) using local_date_time.
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        Example of calculating seconds elapsed since epoch (1970-Jan-1) using local_date_time.
+    </para>
+    <programlisting>
+        <![CDATA[
   /* This example demonstrates the use of the time zone database and 
    * local time to calculate the number of seconds since the UTC
    * time_t epoch 1970-01-01 00:00:00.  Note that the selected timezone
@@ -73,5 +73,5 @@
 
   }
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

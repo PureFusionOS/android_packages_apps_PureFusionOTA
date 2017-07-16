@@ -29,7 +29,6 @@ t.expect_addition("bin/$toolset/debug/link-static/a__helper.lib")
 
 t.rm("bin")
 
-
 # Now check that inline targets with the same name but present in different
 # places are not confused between each other, and with top-level targets.
 t.write("jamroot.jam", """\
@@ -42,7 +41,6 @@ t.run_build_system()
 t.expect_addition("bin/$toolset/debug/link-static/a.exe")
 t.expect_addition("bin/$toolset/debug/link-static/a__helper.lib")
 t.expect_addition("bin/$toolset/debug/link-static/a2__helper.lib")
-
 
 # Check that the 'alias' target does not change the name of inline targets, and
 # that inline targets are explicit.

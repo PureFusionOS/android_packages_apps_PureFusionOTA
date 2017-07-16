@@ -14,15 +14,16 @@
 #    message compiling action.
 
 from b2.build import generators, type
-from b2.build.toolset import flags
 from b2.build.feature import feature
+from b2.build.toolset import flags
 from b2.manager import get_manager
+
 
 def init():
     pass
 
-type.register('MC', ['mc'])
 
+type.register('MC', ['mc'])
 
 # Command line options
 feature('mc-input-encoding', ['ansi', 'unicode'], ['free'])

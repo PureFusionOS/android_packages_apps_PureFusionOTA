@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-    width="463" height="227" id="svg2">
-  <metadata
-     id="metadata8">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs6" />
-  <image
-     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAc8AAADjCAYAAADjYZ/SAAAABHNCSVQICAgIfAhkiAAAIABJREFU
+<svg xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink"
+    height="227" id="svg2" version="1.1" width="463" xmlns="http://www.w3.org/2000/svg">
+    <metadata id="metadata8">
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs id="defs6" />
+    <image height="227" id="image10" width="463" x="0" y="0" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAc8AAADjCAYAAADjYZ/SAAAABHNCSVQICAgIfAhkiAAAIABJREFU
 eJzt3b1rG9n+x/GPfvgfuIUvW9iwpNjG9lbhQgKJDYYUKcMoYDfGpEya3d5ohPu9zbq6BONGgsik
 3MJgsBOQmlRL3KQICxJkWf0DSTW/YmY0Z0bzdEYjObbfLxC25uE8zZn56pwZyw3P8zwBAIBc3759
 03g81tLSkv7vugsDAMBNQ/AEAMASwRMAAEsETwAALBE8AQCwRPAEAMASwRMAAEsETwAALBE8AQCw
@@ -170,10 +164,5 @@ ALVqK3po6K4KH+4yNSX9qvIjyDrSKCt8IKhVc7pAWRvr/k0Cx3HUauX3xG/fvmk8HmtpaYlpW9wO
 T9wkBE/caCsiaJp2lP9g16LSKGMeARlYFKZtAQCwRPAEAMBSLdO24dNKAADcBYw8AQCwVMvI03EW
 8a98AQCo1+npafFGKSp/SQIAAHcJX5IAAMAMCJ4AAFgieAIAYIngCQCAJYInAACWCJ4AAFgieAIA
 YIngCQCAJYInAACWCJ4AAFgieAIAYOn/AYQ+tTkkTgWdAAAAAElFTkSuQmCC
-"
-     x="0"
-     y="0"
-     width="463"
-     height="227"
-     id="image10" />
+" />
 </svg>

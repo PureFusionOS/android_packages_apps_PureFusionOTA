@@ -34,18 +34,22 @@ from b2.util import utility
 
 __debug = None
 
+
 def debug():
     global __debug
     if __debug is None:
-        __debug = "--debug-configuration" in bjam.variable("ARGV")        
+        __debug = "--debug-configuration" in bjam.variable("ARGV")
     return __debug
 
+
 type.register('RC', ['rc'])
+
 
 def init():
     pass
 
-def configure (command = None, condition = None, options = None):
+
+def configure(command=None, condition=None, options=None):
     """
         Configures a new resource compilation command specific to a condition,
         usually a toolset selection condition. The possible options are:
@@ -61,7 +65,7 @@ def configure (command = None, condition = None, options = None):
     """
     rc_type = feature.get_values('<rc-type>', options)
     if rc_type:
-        assert(len(rc_type) == 1)
+        assert (len(rc_type) == 1)
         rc_type = rc_type[0]
 
     if command and condition and rc_type:
@@ -72,34 +76,38 @@ def configure (command = None, condition = None, options = None):
         if debug():
             print 'notice: using rc compiler ::', condition, '::', command
 
+
 engine = get_manager().engine()
+
 
 class RCAction:
     """Class representing bjam action defined from Python.
     The function must register the action to execute."""
-    
+
     def __init__(self, action_name, function):
         self.action_name = action_name
         self.function = function
-            
+
     def __call__(self, targets, sources, property_set):
         if self.function:
             self.function(targets, sources, property_set)
 
+
 # FIXME: What is the proper way to dispatch actions?
-def rc_register_action(action_name, function = None):
+def rc_register_action(action_name, function=None):
     global engine
     if engine.actions.has_key(action_name):
         raise AlreadyDefined("Bjam action %s is already defined" % action_name)
     engine.actions[action_name] = RCAction(action_name, function)
+
 
 def rc_compile_resource(targets, sources, properties):
     rc_type = bjam.call('get-target-variable', targets, '.RC_TYPE')
     global engine
     engine.set_update_action('rc.compile.resource.' + rc_type, targets, sources, properties)
 
-rc_register_action('rc.compile.resource', rc_compile_resource)
 
+rc_register_action('rc.compile.resource', rc_compile_resource)
 
 engine.register_action(
     'rc.compile.resource.rc',
@@ -128,23 +136,23 @@ builtin.register_c_compiler('rc.compile.resource', ['RC'], ['OBJ(%_res)'], [])
 
 __angle_include_re = "#include[ ]*<([^<]+)>"
 
+
 # Register scanner for resources
 class ResScanner(scanner.Scanner):
-    
     def __init__(self, includes):
-        scanner.__init__ ;
+        scanner.__init__;
         self.includes = includes
 
     def pattern(self):
-        return "(([^ ]+[ ]+(BITMAP|CURSOR|FONT|ICON|MESSAGETABLE|RT_MANIFEST)" +\
-               "[ ]+([^ \"]+|\"[^\"]+\"))|(#include[ ]*(<[^<]+>|\"[^\"]+\")))" ;
+        return "(([^ ]+[ ]+(BITMAP|CURSOR|FONT|ICON|MESSAGETABLE|RT_MANIFEST)" + \
+               "[ ]+([^ \"]+|\"[^\"]+\"))|(#include[ ]*(<[^<]+>|\"[^\"]+\")))";
 
     def process(self, target, matches, binding):
         binding = binding[0]
         angle = regex.transform(matches, "#include[ ]*<([^<]+)>")
         quoted = regex.transform(matches, "#include[ ]*\"([^\"]+)\"")
         res = regex.transform(matches,
-                              "[^ ]+[ ]+(BITMAP|CURSOR|FONT|ICON|MESSAGETABLE|RT_MANIFEST)" +\
+                              "[^ ]+[ ]+(BITMAP|CURSOR|FONT|ICON|MESSAGETABLE|RT_MANIFEST)" + \
                               "[ ]+(([^ \"]+)|\"([^\"]+)\")", [3, 4])
 
         # Icons and other includes may referenced as 
@@ -152,7 +160,7 @@ class ResScanner(scanner.Scanner):
         # IDR_MAINFRAME ICON "res\\icon.ico"
         #
         # so we have to replace double backslashes to single ones.
-        res = [ re.sub(r'\\\\', '/', match) for match in res if match is not None ]
+        res = [re.sub(r'\\\\', '/', match) for match in res if match is not None]
 
         # CONSIDER: the new scoping rule seem to defeat "on target" variables.
         g = bjam.call('get-target-variable', target, 'HDRGRIST')[0]
@@ -167,13 +175,13 @@ class ResScanner(scanner.Scanner):
         # since they should not depend on including file (we can't
         # get literal "." in include path).
         g2 = g + "#" + b
-       
+
         g = "<" + g + ">"
         g2 = "<" + g2 + ">"
         angle = [g + x for x in angle]
         quoted = [g2 + x for x in quoted]
         res = [g2 + x for x in res]
-        
+
         all = angle + quoted
 
         bjam.call('mark-included', target, all)
@@ -182,13 +190,17 @@ class ResScanner(scanner.Scanner):
 
         engine.add_dependency(target, res)
         bjam.call('NOCARE', all + res)
-        engine.set_target_variable(angle, 'SEARCH', [utility.get_value(inc) for inc in self.includes])
-        engine.set_target_variable(quoted, 'SEARCH', [b + utility.get_value(inc) for inc in self.includes])
-        engine.set_target_variable(res, 'SEARCH', [b + utility.get_value(inc) for inc in self.includes])
-        
+        engine.set_target_variable(angle, 'SEARCH',
+                                   [utility.get_value(inc) for inc in self.includes])
+        engine.set_target_variable(quoted, 'SEARCH',
+                                   [b + utility.get_value(inc) for inc in self.includes])
+        engine.set_target_variable(res, 'SEARCH',
+                                   [b + utility.get_value(inc) for inc in self.includes])
+
         # Just propagate current scanner to includes, in a hope
         # that includes do not change scanners.
         get_manager().scanners().propagate(self, angle + quoted)
+
 
 scanner.register(ResScanner, 'include')
 type.set_scanner('RC', ResScanner)

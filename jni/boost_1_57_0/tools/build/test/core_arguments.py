@@ -78,25 +78,25 @@ test_args(t, "1 : 2 : 3 4 5", "a= 1 b= c= : d= 2 : e= 3 4 5")
 test_varargs(t, "1 : 2 : 3 4 5", "a= 1 b= c= : d= 2 : e= 3 4 5")
 test_varargs(t, "1 : 2 : 3 4 5 : 6", "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6")
 test_varargs(t, "1 : 2 : 3 4 5 : 6 7",
-    "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7")
+             "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7")
 test_varargs(t, "1 : 2 : 3 4 5 : 6 7 : 8",
-    "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7 : 8")
+             "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7 : 8")
 test_varargs(t, "1 : 2 : 3 4 5 : 6 7 : 8 : 9",
-    "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7 : 8 : 9")
+             "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7 : 8 : 9")
 test_varargs(t, "1 : 2 : 3 4 5 : 6 7 : 8 : 9 : 10 : 11 : 12 : 13 : 14 : 15 : "
-    "16 : 17 : 18 : 19a 19b", "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7 : 8 : "
-    "9 : 10 : 11 : 12 : 13 : 14 : 15 : 16 : 17 : 18 : 19a 19b")
+                "16 : 17 : 18 : 19a 19b", "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= 6 7 : 8 : "
+                                          "9 : 10 : 11 : 12 : 13 : 14 : 15 : 16 : 17 : 18 : 19a 19b")
 test_varargs(t, "1 : 2 : 3 4 5 : 6 7 : 8 : 9 : 10 : 11 : 12 : 13 : 14 : 15 : "
-    "16 : 17 : 18 : 19a 19b 19c : 20", "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= "
-    "6 7 : 8 : 9 : 10 : 11 : 12 : 13 : 14 : 15 : 16 : 17 : 18 : 19a 19b 19c : "
-    "20")
+                "16 : 17 : 18 : 19a 19b 19c : 20", "a= 1 b= c= : d= 2 : e= 3 4 5 : rest= "
+                                                   "6 7 : 8 : 9 : 10 : 11 : 12 : 13 : 14 : 15 : 16 : 17 : 18 : 19a 19b 19c : "
+                                                   "20")
 
 # Check varargs upper limit
 expected = "a= 1 b= c= : d= 2 : e= 3 : rest= " + simple_args(4, 19)
 test_varargs(t, simple_args(1, 19), expected)
 test_varargs(t, simple_args(1, 19) + " 19b 19c 19d", expected + " 19b 19c 19d")
 test_varargs(t, simple_args(1, 19) + " 19b 19c 19d : 20", expected + " 19b "
-    "19c 19d")
+                                                                     "19c 19d")
 test_varargs(t, simple_args(1, 20), expected)
 test_varargs(t, simple_args(1, 50), expected)
 

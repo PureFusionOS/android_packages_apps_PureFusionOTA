@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -27,12 +26,18 @@
     <string name="available_checking_md5">Идет проверка MD5&#8230;</string>
     <string name="available_downloading">Скачивание&#8230;</string>
     <string name="are_you_sure">Вы уверенны?</string>
-    <string name="available_delete_confirm_message">Вы точно хотите удалить скачанный файл обновления?</string>
+    <string name="available_delete_confirm_message">Вы точно хотите удалить скачанный файл
+        обновления?
+    </string>
     <string name="available_reboot_confirm">Желаете перезагрузиться прямо сейчас?</string>
     <string name="available_url_error">Ошибка URL: Свяжитесь с разработчиком прошивки</string>
     <string name="available_reboot_manual_title">Пожалуйста, перезагрузите устройство</string>
-    <string name="available_reboot_manual_message">Пожалуйста, перезагрузитесь в рекавери и установите обновление.\n\nВы можете найти его по пути /sdcard/Downloads</string>
+    <string name="available_reboot_manual_message">Пожалуйста, перезагрузитесь в рекавери и
+        установите обновление.\n\nВы можете найти его по пути /sdcard/Downloads
+    </string>
     <string name="available_wrong_network_title">Выбранная сеть не доступна</string>
-    <string name="available_wrong_network_message">Вы пытаетесь скачать обновление через передачу данных, в настройках выбрано только WiFi, сначала измените настройки!</string>
+    <string name="available_wrong_network_message">Вы пытаетесь скачать обновление через передачу
+        данных, в настройках выбрано только WiFi, сначала измените настройки!
+    </string>
 
 </resources>

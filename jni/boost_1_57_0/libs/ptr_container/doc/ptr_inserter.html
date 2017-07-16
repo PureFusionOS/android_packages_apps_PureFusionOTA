@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.3.10: http://docutils.sourceforge.net/" />
-<title>Boost Pointer Container Library</title>
-<style type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="generator" content="Docutils 0.3.10: http://docutils.sourceforge.net/"/>
+    <title>Boost Pointer Container Library</title>
+    <style type="text/css">
 
 /*
 :Author: David Goodger
@@ -284,41 +285,43 @@ tt.docutils {
 ul.auto-toc {
   list-style-type: none }
 
-</style>
+
+    </style>
 </head>
 <body>
 <div class="document" id="boost-pointer-container-library">
-<h1 class="title"><img alt="Boost" src="boost.png" /> Pointer Container Library</h1>
-<h2 class="subtitle" id="insert-iterators">Insert Iterators</h2>
-<p>When you work with normal value-based containers and algorithms, you often
-use insert iterators</p>
-<pre class="literal-block">
+    <h1 class="title"><img alt="Boost" src="boost.png"/> Pointer Container Library</h1>
+    <h2 class="subtitle" id="insert-iterators">Insert Iterators</h2>
+    <p>When you work with normal value-based containers and algorithms, you often
+        use insert iterators</p>
+    <pre class="literal-block">
 std::list&lt;int&gt; coll1;
 // ...
 std::vector&lt;int&gt; coll2;
 std::copy( coll1.begin(), coll1.end(),  
            back_inserter(coll2) ); 
 </pre>
-<p>With the special insert iterators for pointer containers, 
-you can do exactly the same</p>
-<pre class="literal-block">
+    <p>With the special insert iterators for pointer containers,
+        you can do exactly the same</p>
+    <pre class="literal-block">
 boost::ptr_list&lt;Base&gt; coll1;
 // ...
 boost::ptr_vector&lt;Base&gt; coll2;
 std::copy( coll1.begin(), coll1.end(),  
            boost::ptr_container::ptr_back_inserter(coll2) ); 
 </pre>
-<p>Each element is cloned and inserted into the container. Furthermore, 
-if the source range iterates over pointers 
-instead of references, <tt class="docutils literal"><span class="pre">NULL</span></tt> pointers
-can be transfered as well.</p>
-<p><strong>Navigate</strong></p>
-<ul class="simple">
-<li><a class="reference" href="ptr_container.html">home</a></li>
-<li><a class="reference" href="reference.html">reference</a></li>
-</ul>
-<p><strong>Synopsis:</strong></p>
-<pre class="literal-block">
+    <p>Each element is cloned and inserted into the container. Furthermore,
+        if the source range iterates over pointers
+        instead of references, <tt class="docutils literal"><span class="pre">NULL</span></tt>
+        pointers
+        can be transfered as well.</p>
+    <p><strong>Navigate</strong></p>
+    <ul class="simple">
+        <li><a class="reference" href="ptr_container.html">home</a></li>
+        <li><a class="reference" href="reference.html">reference</a></li>
+    </ul>
+    <p><strong>Synopsis:</strong></p>
+    <pre class="literal-block">
 namespace boost
 {      
     namespace ptr_container
@@ -348,14 +351,20 @@ namespace boost
     } // namespace 'ptr_container'
 } // namespace 'boost'  
 </pre>
-<hr><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field"><th class="field-name">Copyright:</th><td class="field-body">Thorsten Ottosen 2008. Use, modification and distribution is subject to the Boost Software License, Version 1.0 (see <a class="reference" href="http://www.boost.org/LICENSE_1_0.txt">LICENSE_1_0.txt</a>).</td>
-</tr>
-</tbody>
-</table>
+    <hr>
+    <table class="docutils field-list" frame="void" rules="none">
+        <col class="field-name"/>
+        <col class="field-body"/>
+        <tbody valign="top">
+        <tr class="field">
+            <th class="field-name">Copyright:</th>
+            <td class="field-body">Thorsten Ottosen 2008. Use, modification and distribution is
+                subject to the Boost Software License, Version 1.0 (see <a class="reference"
+                                                                           href="http://www.boost.org/LICENSE_1_0.txt">LICENSE_1_0.txt</a>).
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

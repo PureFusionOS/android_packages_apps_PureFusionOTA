@@ -8,7 +8,8 @@
 import BoostBuild
 import MockToolset
 
-t = BoostBuild.Tester(arguments=['toolset=mock', '--ignore-site-config', '--user-config='], pass_toolset=0)
+t = BoostBuild.Tester(arguments=['toolset=mock', '--ignore-site-config', '--user-config='],
+                      pass_toolset=0)
 
 MockToolset.create(t)
 

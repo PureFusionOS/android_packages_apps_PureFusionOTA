@@ -5,7 +5,8 @@
 
 import operator
 
-def unique (values, stable=False):
+
+def unique(values, stable=False):
     if stable:
         s = set()
         r = []
@@ -17,34 +18,36 @@ def unique (values, stable=False):
     else:
         return list(set(values))
 
-def max_element (elements, ordered = None):
+
+def max_element(elements, ordered=None):
     """ Returns the maximum number in 'elements'. Uses 'ordered' for comparisons,
         or '<' is none is provided.
     """
     if not ordered: ordered = operator.lt
 
-    max = elements [0]
-    for e in elements [1:]:
-        if ordered (max, e):
+    max = elements[0]
+    for e in elements[1:]:
+        if ordered(max, e):
             max = e
 
     return max
 
-def select_highest_ranked (elements, ranks):
+
+def select_highest_ranked(elements, ranks):
     """ Returns all of 'elements' for which corresponding element in parallel
         list 'rank' is equal to the maximum value in 'rank'.
     """
     if not elements:
         return []
 
-    max_rank = max_element (ranks)
+    max_rank = max_element(ranks)
 
     result = []
     while elements:
-        if ranks [0] == max_rank:
-            result.append (elements [0])
+        if ranks[0] == max_rank:
+            result.append(elements[0])
 
-        elements = elements [1:]
-        ranks = ranks [1:]
+        elements = elements[1:]
+        ranks = ranks[1:]
 
     return result

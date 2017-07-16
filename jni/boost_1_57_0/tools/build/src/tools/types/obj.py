@@ -4,8 +4,10 @@
 
 from b2.build import type
 
-def register ():
-    type.register_type ('OBJ', ['obj'], None, ['NT', 'CYGWIN'])
-    type.register_type ('OBJ', ['o'])
 
-register ()
+def register():
+    type.register_type('OBJ', ['obj'], None, ['NT', 'CYGWIN'])
+    type.register_type('OBJ', ['o'])
+
+
+register()

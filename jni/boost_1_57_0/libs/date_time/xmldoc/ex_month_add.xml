@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2004 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
      (See accompanying file LICENSE_1_0.txt or  http://www.boost.org/LICENSE_1_0.txt)
 -->
 
-<section id="date_time.examples.month_add"> 
-  <title>Month Adding</title>
+<section id="date_time.examples.month_add">
+    <title>Month Adding</title>
 
-  <para> 
-    Adding a month to a day without the use of iterators.
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        Adding a month to a day without the use of iterators.
+    </para>
+    <programlisting>
+        <![CDATA[
   /* Simple program that uses the gregorian calendar to progress by exactly
    * one month, irregardless of how many days are in that month.
    *
@@ -40,5 +40,5 @@
     return 0;
   }
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

@@ -1,4 +1,3 @@
-
 # Copyright Aleksey Gurtovoy 2001-2006
 #
 # Distributed under the Boost Software License, Version 1.0. 
@@ -16,7 +15,7 @@ import os.path
 import preprocess
 
 preprocess.main(
-      [ "plain", "typeof_based", "no_ctps" ]
+    ["plain", "typeof_based", "no_ctps"]
     , "map"
-    , os.path.join( "boost", "mpl", "map", "aux_", "preprocessed" )
-    )
+    , os.path.join("boost", "mpl", "map", "aux_", "preprocessed")
+)

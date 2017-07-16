@@ -2,22 +2,24 @@
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-import os
-import sys
-import shutil
 import fnmatch
+import os
+import shutil
+import sys
 from zipfile import ZipFile, ZIP_DEFLATED
+
 
 def findfiles(directory, mask):
     def visit(files, dir, names):
         for name in names:
             if fnmatch.fnmatch(name, mask):
                 files.append(os.path.join(dir, name))
+
     files = []
     os.path.walk(directory, visit, files)
     return files
-                
-        
+
+
 def main():
     # test if PyXML is installed
     try:
@@ -33,7 +35,7 @@ def main():
     # create distribution
     import pyste
     version = pyste.__VERSION__
-    zip = ZipFile('pyste-%s.zip' % version, 'w', ZIP_DEFLATED)    
+    zip = ZipFile('pyste-%s.zip' % version, 'w', ZIP_DEFLATED)
     # include the base files
     dist_dir = 'dist/pyste'
     for basefile in os.listdir(dist_dir):
@@ -48,7 +50,7 @@ def main():
     os.remove('build.log')
     shutil.rmtree('build')
     shutil.rmtree('dist')
-    
+
 
 if __name__ == '__main__':
     sys.path.append('../src')

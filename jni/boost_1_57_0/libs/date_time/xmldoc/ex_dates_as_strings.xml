@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2004 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,13 +8,13 @@
 -->
 
 <section id="date_time.examples.dates_as_strings">
-  <title>Dates as Strings</title>
+    <title>Dates as Strings</title>
 
-  <para>  
-    Various parsing and output of strings.
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        Various parsing and output of strings.
+    </para>
+    <programlisting>
+        <![CDATA[
 
   /* The following is a simple example that shows conversion of dates 
    * to and from a std::string.
@@ -73,5 +73,5 @@
   }
 
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

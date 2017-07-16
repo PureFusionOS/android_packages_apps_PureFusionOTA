@@ -8,32 +8,35 @@
 #  warranty, and with no claim as to its suitability for any purpose.
 
 import b2.build.feature
+
 feature = b2.build.feature
 
 from b2.util.utility import *
 import b2.build.property_set as property_set
 
-def expand_no_defaults (property_sets):
+
+def expand_no_defaults(property_sets):
     """ Expand the given build request by combining all property_sets which don't
         specify conflicting non-free features.
     """
     # First make all features and subfeatures explicit
     expanded_property_sets = [ps.expand_subfeatures() for ps in property_sets]
-    
+
     # Now combine all of the expanded property_sets
-    product = __x_product (expanded_property_sets)
-    
+    product = __x_product(expanded_property_sets)
+
     return [property_set.create(p) for p in product]
 
 
-def __x_product (property_sets):
+def __x_product(property_sets):
     """ Return the cross-product of all elements of property_sets, less any
         that would contain conflicting values for single-valued features.
     """
     x_product_seen = set()
-    return __x_product_aux (property_sets, x_product_seen)[0]
+    return __x_product_aux(property_sets, x_product_seen)[0]
 
-def __x_product_aux (property_sets, seen_features):
+
+def __x_product_aux(property_sets, seen_features):
     """Returns non-conflicting combinations of property sets.
 
     property_sets is a list of PropertySet instances. seen_features is a set of Property
@@ -70,13 +73,14 @@ def __x_product_aux (property_sets, seen_features):
     else:
 
         result = []
-        (inner_result, inner_seen) = __x_product_aux(property_sets[1:], seen_features | these_features)
+        (inner_result, inner_seen) = __x_product_aux(property_sets[1:],
+                                                     seen_features | these_features)
         if inner_result:
             for inner in inner_result:
                 result.append(properties + inner)
         else:
             result.append(properties)
-        
+
         if inner_seen & these_features:
             # Some of elements in property_sets[1:] conflict with elements of property_sets[0],
             # Try again, this time omitting elements of property_sets[0]
@@ -85,7 +89,6 @@ def __x_product_aux (property_sets, seen_features):
 
         return (result, inner_seen | these_features)
 
-    
 
 def looks_like_implicit_value(v):
     """Returns true if 'v' is either implicit value, or
@@ -98,6 +101,7 @@ def looks_like_implicit_value(v):
             return 1
 
     return 0
+
 
 def from_command_line(command_line):
     """Takes the command line tokens (such as taken from ARGV rule)
@@ -112,17 +116,17 @@ def from_command_line(command_line):
         if e[:1] != "-":
             # Build request spec either has "=" in it, or completely
             # consists of implicit feature values.
-            if e.find("=") != -1 or looks_like_implicit_value(e.split("/")[0]):                
+            if e.find("=") != -1 or looks_like_implicit_value(e.split("/")[0]):
                 properties += convert_command_line_element(e)
             elif e:
                 targets.append(e)
 
     return [targets, properties]
- 
+
+
 # Converts one element of command line build request specification into
 # internal form.
 def convert_command_line_element(e):
-
     result = None
     parts = e.split("/")
     for p in parts:
@@ -133,12 +137,12 @@ def convert_command_line_element(e):
             lresult = [("<%s>%s" % (feature, v)) for v in values]
         else:
             lresult = p.split(",")
-            
+
         if p.find('-') == -1:
             # FIXME: first port property.validate
             # property.validate cannot handle subfeatures,
             # so we avoid the check here.
-            #for p in lresult:
+            # for p in lresult:
             #    property.validate(p)
             pass
 
@@ -213,4 +217,4 @@ def convert_command_line_element(e):
 ###     feature.finish-test build-request-test-temp ;
 ### }
 ### 
-### 
+###

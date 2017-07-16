@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -28,12 +27,19 @@
     <string name="available_checking_md5">Controllo MD5 in corso&#8230;</string>
     <string name="available_downloading">Scaricamento&#8230;</string>
     <string name="are_you_sure">Sei sicuro?</string>
-    <string name="available_delete_confirm_message">Sei sicuro di voler cancellare il file scaricato?</string>
+    <string name="available_delete_confirm_message">Sei sicuro di voler cancellare il file
+        scaricato?
+    </string>
     <string name="available_reboot_confirm">Vuoi riavviare ora?</string>
     <string name="available_url_error">Errore URL: Consulta lo sviluppatore della ROM</string>
     <string name="available_reboot_manual_title">Per favore riavvia ora</string>
-    <string name="available_reboot_manual_message">Per favore riavvia in recovery e flasha la ROM.\n\nLa puoi trovare in /sdcard/Downloads</string>
+    <string name="available_reboot_manual_message">Per favore riavvia in recovery e flasha la
+        ROM.\n\nLa puoi trovare in /sdcard/Downloads
+    </string>
     <string name="available_wrong_network_title">Hai selezionato la rete sbagliata</string>
-    <string name="available_wrong_network_message">Stai tentando di scaricare tramite la connessione dati, le impostazioni correnti consentono solo tramite Wi-Fi. Per favore modifica le impostazioni di conseguenza.</string>
+    <string name="available_wrong_network_message">Stai tentando di scaricare tramite la connessione
+        dati, le impostazioni correnti consentono solo tramite Wi-Fi. Per favore modifica le
+        impostazioni di conseguenza.
+    </string>
 
 </resources>

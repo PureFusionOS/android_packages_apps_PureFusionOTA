@@ -14,31 +14,31 @@ from b2.manager import get_manager
 from b2.util import sequence, qualify_jam_action
 from b2.util.utility import *
 
-__re_two_ampersands = re.compile ('&&')
-__re_comma = re.compile (',')
-__re_split_condition = re.compile ('(.*):(<.*)')
-__re_split_conditional = re.compile (r'(.+):<(.+)')
-__re_colon = re.compile (':')
-__re_has_condition = re.compile (r':<')
-__re_separate_condition_and_property = re.compile (r'(.*):(<.*)')
+__re_two_ampersands = re.compile('&&')
+__re_comma = re.compile(',')
+__re_split_condition = re.compile('(.*):(<.*)')
+__re_split_conditional = re.compile(r'(.+):<(.+)')
+__re_colon = re.compile(':')
+__re_has_condition = re.compile(r':<')
+__re_separate_condition_and_property = re.compile(r'(.*):(<.*)')
 
-__not_applicable_feature='not-applicable-in-this-context'
+__not_applicable_feature = 'not-applicable-in-this-context'
 feature.feature(__not_applicable_feature, [], ['free'])
 
-class Property(object):
 
+class Property(object):
     __slots__ = ('_feature', '_value', '_condition')
 
-    def __init__(self, f, value, condition = []):
+    def __init__(self, f, value, condition=[]):
         if type(f) == type(""):
             f = feature.get(f)
         # At present, single property has a single value.
         assert type(value) != type([])
-        assert(f.free() or value.find(':') == -1)
+        assert (f.free() or value.find(':') == -1)
         self._feature = f
         self._value = value
         self._condition = condition
-        
+
     def feature(self):
         return self._feature
 
@@ -64,10 +64,9 @@ class Property(object):
     def __cmp__(self, other):
         return cmp((self._feature, self._value, self._condition),
                    (other._feature, other._value, other._condition))
-                           
 
-def create_from_string(s, allow_condition=False,allow_missing_value=False):
 
+def create_from_string(s, allow_condition=False, allow_missing_value=False):
     condition = []
     import types
     if not isinstance(s, types.StringType):
@@ -89,7 +88,7 @@ def create_from_string(s, allow_condition=False,allow_missing_value=False):
         if feature.is_implicit_value(s):
             f = feature.implied_feature(s)
             value = s
-        else:        
+        else:
             raise get_manager().errors()("Invalid property '%s' -- unknown feature" % s)
     else:
         if feature.valid(feature_name):
@@ -113,37 +112,38 @@ def create_from_string(s, allow_condition=False,allow_missing_value=False):
         if not value and not allow_missing_value:
             get_manager().errors()("Invalid property '%s' -- no value specified" % s)
 
-
     if condition:
         condition = [create_from_string(x) for x in condition.split(',')]
-                   
+
     return Property(f, value, condition)
 
-def create_from_strings(string_list, allow_condition=False):
 
+def create_from_strings(string_list, allow_condition=False):
     return [create_from_string(s, allow_condition) for s in string_list]
 
-def reset ():
+
+def reset():
     """ Clear the module state. This is mainly for testing purposes.
     """
     global __results
 
     # A cache of results from as_path
     __results = {}
-    
-reset ()
 
-        
-def path_order (x, y):
+
+reset()
+
+
+def path_order(x, y):
     """ Helper for as_path, below. Orders properties with the implicit ones
         first, and within the two sections in alphabetical order of feature
         name.
     """
     if x == y:
         return 0
-        
-    xg = get_grist (x)
-    yg = get_grist (y)
+
+    xg = get_grist(x)
+    yg = get_grist(y)
 
     if yg and not xg:
         return -1
@@ -152,10 +152,10 @@ def path_order (x, y):
         return 1
 
     else:
-        if not xg:            
+        if not xg:
             x = feature.expand_subfeatures([x])
             y = feature.expand_subfeatures([y])
-        
+
         if x < y:
             return -1
         elif x > y:
@@ -163,11 +163,13 @@ def path_order (x, y):
         else:
             return 0
 
+
 def identify(string):
-    return string 
+    return string
+
 
 # Uses Property
-def refine (properties, requirements):
+def refine(properties, requirements):
     """ Refines 'properties' by overriding any non-free properties 
         for which a different value is specified in 'requirements'. 
         Conditional requirements are just added without modification.
@@ -175,10 +177,10 @@ def refine (properties, requirements):
     """
     # The result has no duplicates, so we store it in a set
     result = set()
-    
+
     # Records all requirements.
     required = {}
-    
+
     # All the elements of requirements should be present in the result
     # Record them so that we can handle 'properties'.
     for r in requirements:
@@ -201,7 +203,8 @@ def refine (properties, requirements):
 
     return sequence.unique(list(result) + requirements)
 
-def translate_paths (properties, path):
+
+def translate_paths(properties, path):
     """ Interpret all path properties in 'properties' as relative to 'path'
         The property values are assumed to be in system-specific form, and
         will be translated into normalized form.
@@ -212,18 +215,19 @@ def translate_paths (properties, path):
 
         if p.feature().path():
             values = __re_two_ampersands.split(p.value())
-            
+
             new_value = "&&".join(os.path.join(path, v) for v in values)
 
             if new_value != p.value():
                 result.append(Property(p.feature(), new_value, p.condition()))
             else:
                 result.append(p)
-            
+
         else:
-            result.append (p)
+            result.append(p)
 
     return result
+
 
 def translate_indirect(properties, context_module):
     """Assumes that all feature values that start with '@' are
@@ -241,19 +245,20 @@ def translate_indirect(properties, context_module):
 
     return result
 
-def validate (properties):
+
+def validate(properties):
     """ Exit with error if any of the properties is not valid.
         properties may be a single property or a sequence of properties.
     """
-    
-    if isinstance (properties, str):
-        __validate1 (properties)
+
+    if isinstance(properties, str):
+        __validate1(properties)
     else:
         for p in properties:
-            __validate1 (p)
+            __validate1(p)
 
-def expand_subfeatures_in_conditions (properties):
 
+def expand_subfeatures_in_conditions(properties):
     result = []
     for p in properties:
 
@@ -268,7 +273,7 @@ def expand_subfeatures_in_conditions (properties):
                     # was never defined, or mentiones subfeatures which
                     # were never defined. In that case, validation will
                     # only produce an spirious error, so don't validate.
-                    expanded.extend(feature.expand_subfeatures ([c], True))
+                    expanded.extend(feature.expand_subfeatures([c], True))
                 else:
                     expanded.extend(feature.expand_subfeatures([c]))
 
@@ -276,37 +281,40 @@ def expand_subfeatures_in_conditions (properties):
 
     return result
 
+
 # FIXME: this should go
-def split_conditional (property):
+def split_conditional(property):
     """ If 'property' is conditional property, returns
         condition and the property, e.g
         <variant>debug,<toolset>gcc:<inlining>full will become
         <variant>debug,<toolset>gcc <inlining>full.
         Otherwise, returns empty string.
     """
-    m = __re_split_conditional.match (property)
-    
+    m = __re_split_conditional.match(property)
+
     if m:
-        return (m.group (1), '<' + m.group (2))
+        return (m.group(1), '<' + m.group(2))
 
     return None
 
 
-def select (features, properties):
+def select(features, properties):
     """ Selects properties which correspond to any of the given features.
     """
     result = []
-    
+
     # add any missing angle brackets
-    features = add_grist (features)
+    features = add_grist(features)
 
     return [p for p in properties if get_grist(p) in features]
 
-def validate_property_sets (sets):
+
+def validate_property_sets(sets):
     for s in sets:
         validate(s.all())
 
-def evaluate_conditionals_in_context (properties, context):
+
+def evaluate_conditionals_in_context(properties, context):
     """ Removes all conditional properties which conditions are not met
         For those with met conditions, removes the condition. Properies
         in conditions are looked up in 'context'
@@ -316,9 +324,9 @@ def evaluate_conditionals_in_context (properties, context):
 
     for p in properties:
         if p.condition():
-            conditional.append (p)
+            conditional.append(p)
         else:
-            base.append (p)
+            base.append(p)
 
     result = base[:]
     for p in conditional:
@@ -331,22 +339,22 @@ def evaluate_conditionals_in_context (properties, context):
     return result
 
 
-def change (properties, feature, value = None):
+def change(properties, feature, value=None):
     """ Returns a modified version of properties with all values of the
         given feature replaced by the given value.
         If 'value' is None the feature will be removed.
     """
     result = []
-    
-    feature = add_grist (feature)
+
+    feature = add_grist(feature)
 
     for p in properties:
-        if get_grist (p) == feature:
+        if get_grist(p) == feature:
             if value:
-                result.append (replace_grist (value, feature))
+                result.append(replace_grist(value, feature))
 
         else:
-            result.append (p)
+            result.append(p)
 
     return result
 
@@ -354,13 +362,13 @@ def change (properties, feature, value = None):
 ################################################################
 # Private functions
 
-def __validate1 (property):
+def __validate1(property):
     """ Exit with error if property is not valid.
-    """        
+    """
     msg = None
 
     if not property.feature().free():
-        feature.validate_value_string (property.feature(), property.value())
+        feature.validate_value_string(property.feature(), property.value())
 
 
 ###################################################################
@@ -393,7 +401,7 @@ def __validate1 (property):
 def remove(attributes, properties):
     """Returns a property sets which include all the elements
     in 'properties' that do not have attributes listed in 'attributes'."""
-    
+
     result = []
     for e in properties:
         attributes_new = feature.attributes(get_grist(e))
@@ -418,8 +426,8 @@ def take(attributes, properties):
             result.append(e)
     return result
 
-def translate_dependencies(properties, project_id, location):
 
+def translate_dependencies(properties, project_id, location):
     result = []
     for p in properties:
 
@@ -435,10 +443,10 @@ def translate_dependencies(properties, project_id, location):
                     pass
                 else:
                     rooted = os.path.join(os.getcwd(), location, rooted)
-                    
+
                 result.append(Property(p.feature(), rooted + "//" + m.group(2), p.condition()))
-                
-            elif os.path.isabs(v):                
+
+            elif os.path.isabs(v):
                 result.append(p)
             else:
                 result.append(Property(p.feature(), project_id + "//" + v, p.condition()))
@@ -449,45 +457,46 @@ def translate_dependencies(properties, project_id, location):
 class PropertyMap:
     """ Class which maintains a property set -> string mapping.
     """
-    def __init__ (self):
+
+    def __init__(self):
         self.__properties = []
         self.__values = []
-    
-    def insert (self, properties, value):
+
+    def insert(self, properties, value):
         """ Associate value with properties.
         """
         self.__properties.append(properties)
         self.__values.append(value)
 
-    def find (self, properties):
+    def find(self, properties):
         """ Return the value associated with properties
         or any subset of it. If more than one
         subset has value assigned to it, return the
         value for the longest subset, if it's unique.
         """
-        return self.find_replace (properties)
+        return self.find_replace(properties)
 
     def find_replace(self, properties, value=None):
         matches = []
         match_ranks = []
-        
+
         for i in range(0, len(self.__properties)):
             p = self.__properties[i]
-                        
-            if b2.util.set.contains (p, properties):
-                matches.append (i)
+
+            if b2.util.set.contains(p, properties):
+                matches.append(i)
                 match_ranks.append(len(p))
 
-        best = sequence.select_highest_ranked (matches, match_ranks)
+        best = sequence.select_highest_ranked(matches, match_ranks)
 
         if not best:
             return None
 
-        if len (best) > 1:
-            raise NoBestMatchingAlternative ()
+        if len(best) > 1:
+            raise NoBestMatchingAlternative()
 
-        best = best [0]
-            
+        best = best[0]
+
         original = self.__values[best]
 
         if value:
@@ -495,7 +504,7 @@ class PropertyMap:
 
         return original
 
-#   local rule __test__ ( )
+# local rule __test__ ( )
 #   {
 #       import errors : try catch ;
 #       import feature ;
@@ -607,5 +616,4 @@ class PropertyMap:
 #       
 #       feature.finish-test property-test-temp ;
 #   }
-#   
-    
+#

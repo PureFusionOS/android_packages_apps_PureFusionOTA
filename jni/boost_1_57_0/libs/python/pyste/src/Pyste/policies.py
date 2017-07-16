@@ -12,11 +12,9 @@ class Policy(object):
         if type(self) is Policy:
             raise RuntimeError, "Can't create an instance of the class Policy"
 
-
     def Code(self):
         'Returns the string corresponding to a instancialization of the policy.'
         pass
-        
 
     def _next(self):
         if self.next is not None:
@@ -24,13 +22,11 @@ class Policy(object):
         else:
             return ' >'
 
-
     def __eq__(self, other):
         try:
             return self.Code() == other.Code()
         except AttributeError:
             return False
-
 
 
 class return_internal_reference(Policy):
@@ -42,14 +38,12 @@ class return_internal_reference(Policy):
         next indicates the next policy, or None.
         '''
         self.param = param
-        self.next=next
-
+        self.next = next
 
     def Code(self):
         c = 'return_internal_reference< %i' % self.param
         c += self._next()
         return c
-
 
 
 class with_custodian_and_ward(Policy):
@@ -66,30 +60,28 @@ class with_custodian_and_ward(Policy):
         return c
 
 
-
 class return_value_policy(Policy):
     'Policy to convert return values.'
-    
-    def __init__(self, which, next=None):            
+
+    def __init__(self, which, next=None):
         self.which = which
         self.next = next
-
 
     def Code(self):
         c = 'return_value_policy< %s' % self.which
         c += self._next()
         return c
 
-class return_self(Policy):
 
+class return_self(Policy):
     def Code(self):
         return 'return_self<>'
 
 
-#  values for return_value_policy
+# values for return_value_policy
 reference_existing_object = 'reference_existing_object'
 copy_const_reference = 'copy_const_reference'
 copy_non_const_reference = 'copy_non_const_reference'
-manage_new_object = 'manage_new_object'        
+manage_new_object = 'manage_new_object'
 return_opaque_pointer = 'return_opaque_pointer'
 return_by_value = 'return_by_value'

@@ -56,17 +56,20 @@ from policies import *
 
 __version__ = '0.9.30'
 
+
 def RecursiveIncludes(include):
     'Return a list containg the include dir and all its subdirectories'
     dirs = [include]
+
     def visit(arg, dir, names):
         # ignore CVS dirs
         if os.path.split(dir)[1] != 'CVS':
             dirs.append(dir)
+
     os.path.walk(include, visit, None)
     return dirs
 
-    
+
 def GetDefaultIncludes():
     if 'INCLUDE' in os.environ:
         include = os.environ['INCLUDE']
@@ -95,25 +98,24 @@ def ReadFileList(filename):
         f.close()
     return files
 
-        
-def ParseArguments():
 
+def ParseArguments():
     def Usage():
         print __doc__ % __version__
         sys.exit(1)
-        
+
     try:
         options, files = getopt.getopt(
-            sys.argv[1:], 
-            'R:I:D:vh', 
-            ['module=', 'multiple', 'out=', 'no-using', 'pyste-ns=', 'debug', 'cache-dir=', 
-             'only-create-cache', 'version', 'generate-main', 'file-list=',  'help',
+            sys.argv[1:],
+            'R:I:D:vh',
+            ['module=', 'multiple', 'out=', 'no-using', 'pyste-ns=', 'debug', 'cache-dir=',
+             'only-create-cache', 'version', 'generate-main', 'file-list=', 'help',
              'gccxml-path=', 'no-default-include'])
     except getopt.GetoptError, e:
         print
         print 'ERROR:', e
         Usage()
-    
+
     default_includes = GetDefaultIncludes()
     includes = []
     defines = []
@@ -124,7 +126,7 @@ def ParseArguments():
     create_cache = False
     generate_main = False
     gccxml_path = 'gccxml'
-    
+
     for opt, value in options:
         if opt == '-I':
             includes.append(value)
@@ -135,7 +137,7 @@ def ParseArguments():
         elif opt == '--module':
             module = value
         elif opt == '--out':
-            out = value 
+            out = value
         elif opt == '--no-using':
             settings.namespaces.python = 'boost::python::'
             settings.USING_BOOST_NS = False
@@ -161,14 +163,14 @@ def ParseArguments():
         elif opt == '--gccxml-path':
             gccxml_path = value
         elif opt == '--no-default-include':
-            default_includes = [] 
+            default_includes = []
         else:
             print 'Unknown option:', opt
             Usage()
 
     includes[0:0] = default_includes
     if not files:
-        Usage() 
+        Usage()
     if not module:
         module = os.path.splitext(os.path.basename(files[0]))[0]
     if not out:
@@ -178,7 +180,7 @@ def ParseArguments():
     for file in files:
         d = os.path.dirname(os.path.abspath(file))
         if d not in sys.path:
-            sys.path.append(d) 
+            sys.path.append(d)
 
     if create_cache and not cache_dir:
         print 'Error: Use --cache-dir to indicate where to create the cache files!'
@@ -192,14 +194,14 @@ def ParseArguments():
 
     ProcessIncludes(includes)
     return includes, defines, module, out, files, multiple, cache_dir, create_cache, \
-        generate_main, gccxml_path
+           generate_main, gccxml_path
 
 
 def PCHInclude(*headers):
     code = '\n'.join(['#include <%s>' % x for x in headers])
     infos.CodeInfo(code, 'pchinclude')
 
-    
+
 def CreateContext():
     'create the context where a interface file will be executed'
     context = {}
@@ -240,9 +242,9 @@ def CreateContext():
     context['declaration_code'] = lambda code: infos.CodeInfo(code, 'declaration-outside')
     context['module_code'] = lambda code: infos.CodeInfo(code, 'module')
     context['class_code'] = infos.class_code
-    return context                                        
+    return context
 
-    
+
 def Begin():
     # parse arguments
     includes, defines, module, out, interfaces, multiple, cache_dir, create_cache, generate_main, gccxml_path = ParseArguments()
@@ -271,16 +273,17 @@ def CreateCaches(parser):
 
     # now for each interface file take each header, and using the tail
     # get the declarations and cache them.
-    for interface, header in tails:        
+    for interface, header in tails:
         tail = tails[(interface, header)]
         declarations = parser.ParseWithGCCXML(header, tail)
         cachefile = parser.CreateCache(header, interface, tail, declarations)
         print 'Cached', cachefile
-    
+
     return 0
-        
+
 
 _imported_count = {}  # interface => count
+
 
 def ExecuteInterface(interface):
     old_interface = exporters.current_interface
@@ -289,8 +292,8 @@ def ExecuteInterface(interface):
             d = os.path.dirname(old_interface)
             interface = os.path.join(d, interface)
     if not os.path.exists(interface):
-        raise IOError, "Cannot find interface file %s."%interface
-    
+        raise IOError, "Cannot find interface file %s." % interface
+
     _imported_count[interface] = _imported_count.get(interface, 0) + 1
     exporters.current_interface = interface
     context = CreateContext()
@@ -304,7 +307,7 @@ def Import(interface):
     ExecuteInterface(interface)
     exporters.importing = False
 
-    
+
 def JoinTails(exports):
     '''Returns a dict of {(interface, header): tail}, where tail is the
     joining of all tails of all exports for the header.  
@@ -315,14 +318,13 @@ def JoinTails(exports):
         header = export.Header()
         tail = export.Tail() or ''
         if (interface, header) in tails:
-            all_tails = tails[(interface,header)]
+            all_tails = tails[(interface, header)]
             all_tails += '\n' + tail
             tails[(interface, header)] = all_tails
         else:
-            tails[(interface, header)] = tail         
+            tails[(interface, header)] = tail
 
     return tails
-
 
 
 def OrderInterfaces(interfaces):
@@ -332,22 +334,21 @@ def OrderInterfaces(interfaces):
     return [x for _, x in interfaces_order]
 
 
-
 def GenerateMain(module, out, interfaces):
     codeunit = MultipleCodeUnit.MultipleCodeUnit(module, out)
     codeunit.GenerateMain(interfaces)
     return 0
-    
 
-def GenerateCode(parser, module, out, interfaces, multiple):    
+
+def GenerateCode(parser, module, out, interfaces, multiple):
     # prepare to generate the wrapper code
     if multiple:
         codeunit = MultipleCodeUnit.MultipleCodeUnit(module, out)
     else:
-        codeunit = SingleCodeUnit.SingleCodeUnit(module, out) 
-    # stop referencing the exporters here
+        codeunit = SingleCodeUnit.SingleCodeUnit(module, out)
+        # stop referencing the exporters here
     exports = exporters.exporters
-    exporters.exporters = None 
+    exporters.exporters = None
     exported_names = dict([(x.Name(), None) for x in exports])
 
     # order the exports
@@ -365,7 +366,7 @@ def GenerateCode(parser, module, out, interfaces, multiple):
     del interfaces_order
 
     # now generate the code in the correct order 
-    #print exported_names
+    # print exported_names
     tails = JoinTails(exports)
     for i in xrange(len(exports)):
         export = exports[i]
@@ -404,21 +405,23 @@ def ExpandTypedefs(decls, exported_names):
             if isinstance(decl, declarations.Typedef):
                 exported_names[decl.type.FullName()] = None
 
+
 def UsePsyco():
     'Tries to use psyco if possible'
     try:
         import psyco
         psyco.profile()
-    except: pass         
+    except:
+        pass
 
 
 def main():
     start = time.clock()
     UsePsyco()
     status = Begin()
-    print '%0.2f seconds' % (time.clock()-start)
-    sys.exit(status) 
+    print '%0.2f seconds' % (time.clock() - start)
+    sys.exit(status)
 
-    
+
 if __name__ == '__main__':
     main()

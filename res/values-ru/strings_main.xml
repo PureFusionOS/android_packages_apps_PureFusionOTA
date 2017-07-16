@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -43,11 +42,17 @@
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">Не поддерживается</string>
-    <string name="main_not_compatible_message">Эта прошивка не поддерживает ОТА-обновления. Для получения подробной информации свяжитесь с разработчиком.</string>
+    <string name="main_not_compatible_message">Эта прошивка не поддерживает ОТА-обновления. Для
+        получения подробной информации свяжитесь с разработчиком.
+    </string>
     <string name="main_not_connected_title">Нет соединения</string>
-    <string name="main_not_connected_message">Нет соединения с интернетом. Проверьте соединение по Wi-Fi или по мобильной сети и попробуйте снова</string>
+    <string name="main_not_connected_message">Нет соединения с интернетом. Проверьте соединение по
+        Wi-Fi или по мобильной сети и попробуйте снова
+    </string>
     <string name="main_playstore_title">BitCoin</string>
-    <string name="main_playstore_message">У вас нет ни одного приложения для работы с \"bitcoin:\".\n\nМожет хотите найти такое приложение в Google Play Store?</string>
+    <string name="main_playstore_message">У вас нет ни одного приложения для работы с
+        \"bitcoin:\".\n\nМожет хотите найти такое приложение в Google Play Store?
+    </string>
 
     <!-- Content Descriptions -->
     <string name="main_button_icon">Иконка кнопки</string>

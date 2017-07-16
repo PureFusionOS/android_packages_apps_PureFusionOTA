@@ -16,83 +16,86 @@ from b2.util.utility import *
 import builtin
 
 
-class UnixLinkingGenerator (builtin.LinkingGenerator):
-    
-    def __init__ (self, id, composing, source_types, target_types, requirements):
-        builtin.LinkingGenerator.__init__ (self, id, composing, source_types, target_types, requirements)
-    
-    def run (self, project, name, prop_set, sources):
-        result = builtin.LinkingGenerator.run (self, project, name, prop_set, sources)
+class UnixLinkingGenerator(builtin.LinkingGenerator):
+    def __init__(self, id, composing, source_types, target_types, requirements):
+        builtin.LinkingGenerator.__init__(self, id, composing, source_types, target_types,
+                                          requirements)
+
+    def run(self, project, name, prop_set, sources):
+        result = builtin.LinkingGenerator.run(self, project, name, prop_set, sources)
         if result:
-            set_library_order (project.manager (), sources, prop_set, result [1])
-                                
+            set_library_order(project.manager(), sources, prop_set, result[1])
+
         return result
-    
-    def generated_targets (self, sources, prop_set, project, name):
+
+    def generated_targets(self, sources, prop_set, project, name):
         sources2 = []
         libraries = []
         for l in sources:
-            if type.is_derived (l.type (), 'LIB'):
-                libraries.append (l)
+            if type.is_derived(l.type(), 'LIB'):
+                libraries.append(l)
 
             else:
-                sources2.append (l)
-        
-        sources = sources2 + order_libraries (libraries)
-        
-        return builtin.LinkingGenerator.generated_targets (self, sources, prop_set, project, name)
+                sources2.append(l)
+
+        sources = sources2 + order_libraries(libraries)
+
+        return builtin.LinkingGenerator.generated_targets(self, sources, prop_set, project, name)
 
 
-class UnixArchiveGenerator (builtin.ArchiveGenerator):
-    def __init__ (self, id, composing, source_types, target_types_and_names, requirements):
-        builtin.ArchiveGenerator.__init__ (self, id, composing, source_types, target_types_and_names, requirements)
-        
-    def run (self, project, name, prop_set, sources):
+class UnixArchiveGenerator(builtin.ArchiveGenerator):
+    def __init__(self, id, composing, source_types, target_types_and_names, requirements):
+        builtin.ArchiveGenerator.__init__(self, id, composing, source_types, target_types_and_names,
+                                          requirements)
+
+    def run(self, project, name, prop_set, sources):
         result = builtin.ArchiveGenerator.run(self, project, name, prop_set, sources)
         set_library_order(project.manager(), sources, prop_set, result)
         return result
 
-class UnixSearchedLibGenerator (builtin.SearchedLibGenerator):
-    
-    def __init__ (self):
-        builtin.SearchedLibGenerator.__init__ (self)
-    
-    def optional_properties (self):
-        return self.requirements ()
-              
-    def run (self, project, name, prop_set, sources):
-        result = SearchedLibGenerator.run (project, name, prop_set, sources)
-        
-        set_library_order (sources, prop_set, result)
-        
+
+class UnixSearchedLibGenerator(builtin.SearchedLibGenerator):
+    def __init__(self):
+        builtin.SearchedLibGenerator.__init__(self)
+
+    def optional_properties(self):
+        return self.requirements()
+
+    def run(self, project, name, prop_set, sources):
+        result = SearchedLibGenerator.run(project, name, prop_set, sources)
+
+        set_library_order(sources, prop_set, result)
+
         return result
 
-class UnixPrebuiltLibGenerator (generators.Generator):
-    def __init__ (self, id, composing, source_types, target_types_and_names, requirements):
-        generators.Generator.__init__ (self, id, composing, source_types, target_types_and_names, requirements)
 
-    def run (self, project, name, prop_set, sources):
-        f = prop_set.get ('<file>')
-        set_library_order_aux (f, sources)
+class UnixPrebuiltLibGenerator(generators.Generator):
+    def __init__(self, id, composing, source_types, target_types_and_names, requirements):
+        generators.Generator.__init__(self, id, composing, source_types, target_types_and_names,
+                                      requirements)
+
+    def run(self, project, name, prop_set, sources):
+        f = prop_set.get('<file>')
+        set_library_order_aux(f, sources)
         return f + sources
+
 
 ### # The derived toolset must specify their own rules and actions.
 # FIXME: restore?
 # action.register ('unix.prebuilt', None, None)
 
 
-generators.register (UnixPrebuiltLibGenerator ('unix.prebuilt', False, [], ['LIB'], ['<file>', '<toolset>unix']))
-
-
-
-
+generators.register(
+    UnixPrebuiltLibGenerator('unix.prebuilt', False, [], ['LIB'], ['<file>', '<toolset>unix']))
 
 ### # Declare generators
 ### generators.register [ new UnixLinkingGenerator unix.link : LIB OBJ : EXE 
 ###     : <toolset>unix ] ;
-generators.register (UnixArchiveGenerator ('unix.archive', True, ['OBJ'], ['STATIC_LIB'], ['<toolset>unix']))
+generators.register(
+    UnixArchiveGenerator('unix.archive', True, ['OBJ'], ['STATIC_LIB'], ['<toolset>unix']))
 
-### generators.register [ new UnixLinkingGenerator unix.link.dll : LIB OBJ : SHARED_LIB 
+
+### generators.register [ new UnixLinkingGenerator unix.link.dll : LIB OBJ : SHARED_LIB
 ###     : <toolset>unix ] ;
 ### 
 ### generators.register [ new UnixSearchedLibGenerator 
@@ -106,11 +109,12 @@ generators.register (UnixArchiveGenerator ('unix.archive', True, ['OBJ'], ['STAT
 ### actions link.dll {
 ### }
 
-def unix_archive (manager, targets, sources, properties):
+def unix_archive(manager, targets, sources, properties):
     pass
 
+
 # FIXME: restore?
-#action.register ('unix.archive', unix_archive, [''])
+# action.register ('unix.archive', unix_archive, [''])
 
 ### actions searched-lib-generator {    
 ### }
@@ -120,33 +124,36 @@ def unix_archive (manager, targets, sources, properties):
 
 
 from b2.util.order import Order
-__order = Order ()
 
-def set_library_order_aux (from_libs, to_libs):
+__order = Order()
+
+
+def set_library_order_aux(from_libs, to_libs):
     for f in from_libs:
         for t in to_libs:
             if f != t:
-                __order.add_pair (f, t)
+                __order.add_pair(f, t)
 
-def set_library_order (manager, sources, prop_set, result):
+
+def set_library_order(manager, sources, prop_set, result):
     used_libraries = []
-    deps = prop_set.dependency ()
+    deps = prop_set.dependency()
 
     sources.extend(d.value() for d in deps)
     sources = sequence.unique(sources)
 
     for l in sources:
-        if l.type () and type.is_derived (l.type (), 'LIB'):
-            used_libraries.append (l)
+        if l.type() and type.is_derived(l.type(), 'LIB'):
+            used_libraries.append(l)
 
     created_libraries = []
     for l in result:
-        if l.type () and type.is_derived (l.type (), 'LIB'):
-            created_libraries.append (l)
-    
-    created_libraries = set.difference (created_libraries, used_libraries)
-    set_library_order_aux (created_libraries, used_libraries)
+        if l.type() and type.is_derived(l.type(), 'LIB'):
+            created_libraries.append(l)
 
-def order_libraries (libraries):
-    return __order.order (libraries)
-     
+    created_libraries = set.difference(created_libraries, used_libraries)
+    set_library_order_aux(created_libraries, used_libraries)
+
+
+def order_libraries(libraries):
+    return __order.order(libraries)

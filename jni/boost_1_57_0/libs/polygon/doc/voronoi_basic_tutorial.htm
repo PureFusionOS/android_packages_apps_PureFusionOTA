@@ -1,41 +1,36 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
+<html>
+<head>
 
 
-
-
-
-
-
-
-
-
-
-  
-  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Voronoi Basic Tutorial</title><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Voronoi Basic Tutorial</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+<body>
 <h1>Voronoi Basic Tutorial<br>
 </h1>
 
 <p>In this tutorial we will cover the basic usage of the Boost.Polygon
-Voronoi library that should be enough for the 95% of cases. Below we will
-discuss the following topics:<br>
+    Voronoi library that should be enough for the 95% of cases. Below we will
+    discuss the following topics:<br>
 </p>
 
 <ul>
 
-  <li>preparing input geometries<br>
-  </li>
-  <li>Voronoi diagram construction</li>
-  
-  <li>Voronoi graph traversal<br>
-  </li>
+    <li>preparing input geometries<br>
+    </li>
+    <li>Voronoi diagram construction</li>
 
-  <li>associating the user data with the Voronoi primitives</li>
-  <li>accessing input site inside the Voronoi cell</li>
-  <li>Voronoi diagram rendering<br>
-  </li>
+    <li>Voronoi graph traversal<br>
+    </li>
 
-  
+    <li>associating the user data with the Voronoi primitives</li>
+    <li>accessing input site inside the Voronoi cell</li>
+    <li>Voronoi diagram rendering<br>
+    </li>
+
+
 </ul>
 
 In the example that goes through this tutorial (<a href="../example/voronoi_basic_tutorial.cpp">voronoi_basic_tutorial.cpp</a>)
@@ -56,14 +51,16 @@ considered to be non-primary.<br>
 
 <br>
 
-And before you proceed don't forget to:<span style="font-family: Courier New,Courier,monospace;"><br>
+And before you proceed don't forget to:<span
+        style="font-family: Courier New,Courier,monospace;"><br>
 </span><span style="font-family: Courier New,Courier,monospace;"></span><br>
 <span style="font-family: Courier New,Courier,monospace;">#include "boost/polygon/voronoi.hpp"<br>
 using boost::polygon::voronoi_builder;<br>
 using boost::polygon::voronoi_diagram;<br>
 </span>
 
-<h2>Preparing Input Geometries</h2>Below is the example of how the user provided point and segment classes might look like:<br>
+<h2>Preparing Input Geometries</h2>Below is the example of how the user provided point and segment
+classes might look like:<br>
 <br><span style="font-family: Courier New,Courier,monospace;">struct Point {<br>&nbsp; int a;<br>
 &nbsp; int b;<br>
 &nbsp; Point (int x, int y) : a(x), b(y) {}<br>
@@ -82,27 +79,71 @@ using boost::polygon::voronoi_diagram;<br>
 voronoi.hpp header to construct the Voronoi diagram, we are required to map
 our point and segment classes to the corresponding Boost.Polygon concepts:<br>
 <br>
-<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">template &lt;&gt;</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"><br>
-struct geometry_concept&lt;Point&gt; { typedef point_concept type; };</span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp;&nbsp; <span class="Apple-converted-space"></span></span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">template &lt;&gt;</span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">struct point_traits&lt;</span><span style="font-family: Courier New,Courier,monospace;">Point</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&gt; {</span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; typedef int coordinate_type;</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"><br>
-&nbsp; &nbsp;<span class="Apple-converted-space"> </span></span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; static inline coordinate_type get(const </span><span style="font-family: Courier New,Courier,monospace;">Point</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&amp; point,<span class="Apple-converted-space"> </span></span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">orientation_2d orient) {<br>
-&nbsp;&nbsp;&nbsp; return </span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">(orient == HORIZONTAL) ? point.a : point.b;</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; }<br>
+<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">template &lt;&gt;</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"><br>
+struct geometry_concept&lt;Point&gt; { typedef point_concept type; };</span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp;&nbsp; <span
+        class="Apple-converted-space"></span></span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">template &lt;&gt;</span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">struct point_traits&lt;</span><span
+        style="font-family: Courier New,Courier,monospace;">Point</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&gt; {</span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; typedef int coordinate_type;</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"><br>
+&nbsp; &nbsp;<span class="Apple-converted-space"> </span></span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; static inline coordinate_type get(const </span><span
+        style="font-family: Courier New,Courier,monospace;">Point</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&amp; point,<span
+        class="Apple-converted-space"> </span></span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">orientation_2d orient) {<br>
+&nbsp;&nbsp;&nbsp; return </span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">(orient == HORIZONTAL) ? point.a : point.b;</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;"><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; }<br>
 };</span><br>
 <span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">
 <br>
 template &lt;&gt;<br>
-</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">struct geometry_concept&lt;Segment&gt; { typedef segment_concept type; };<br>
+</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">struct geometry_concept&lt;Segment&gt; { typedef segment_concept type; };<br>
 <br>
-</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">template &lt;&gt;</span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
-<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">struct point_traits&lt;</span><span style="font-family: Courier New,Courier,monospace;">Segment</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&gt; {</span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
+</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">template &lt;&gt;</span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
+<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">struct point_traits&lt;</span><span
+        style="font-family: Courier New,Courier,monospace;">Segment</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&gt; {</span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
 <span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; typedef int coordinate_type;<br>
-&nbsp; typedef Point point_type;<br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
+&nbsp; typedef Point point_type;<br
+            style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
 </span>
-<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; &nbsp;<span class="Apple-converted-space">&nbsp;</span></span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
-<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; static inline coordinate_type get(const </span><span style="font-family: Courier New,Courier,monospace;">Segment</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&amp; segment,<span class="Apple-converted-space"> direction_1d dir</span></span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">) {<br>
-&nbsp;&nbsp;&nbsp; return </span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">dir.to_int() ? segment.p1() : segment.p0();</span><span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><br style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
+<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; &nbsp;<span
+        class="Apple-converted-space">&nbsp;</span></span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
+<span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; static inline coordinate_type get(const </span><span
+        style="font-family: Courier New,Courier,monospace;">Segment</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&amp; segment,<span
+        class="Apple-converted-space"> direction_1d dir</span></span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">) {<br>
+&nbsp;&nbsp;&nbsp; return </span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">dir.to_int() ? segment.p1() : segment.p0();</span><span
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;"></span><br
+        style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium;">
 <span style="color: rgb(0, 0, 0); font-family: 'Courier New'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; font-size: medium; display: inline ! important; float: none;">&nbsp; }<br>};</span><br>
 <br>
-It's also possible to use the native Boost.Polygon types as <a href="../../../boost/polygon/point_data.hpp">point_data</a> and <a href="../../../boost/polygon/segment_data.hpp">segment_data</a>, that won't require the above mapping.<br>
+It's also possible to use the native Boost.Polygon types as <a
+        href="../../../boost/polygon/point_data.hpp">point_data</a> and <a
+        href="../../../boost/polygon/segment_data.hpp">segment_data</a>, that won't require the
+above mapping.<br>
 <br>
 So once we are done we can create the sample input:<br>
 
@@ -114,7 +155,8 @@ points.push_back(Point(0, 0));<br>
 points.push_back(Point(1, 6));<br>
 std::vector&lt;Segment&gt; segments;<br>
 segments.push_back(Segment(-4, 5, 5, -1));<br>
-segments.push_back(Segment(3, -11, 13, -1));</span><span style="font-family: Courier New,Courier,monospace;"><br>
+segments.push_back(Segment(3, -11, 13, -1));</span><span
+        style="font-family: Courier New,Courier,monospace;"><br>
 </span>
 <h2>Construction of the Voronoi Diagram<br>
 </h2>At this point we are ready to construct the Voronoi diagram:<br>
@@ -131,8 +173,8 @@ There are three ways to do that and we are going to cover all of them:<br>
 
 <ul>
 
-  <li>simply iterating over the Voronoi edges (counts each edge twice):<br>
-    <span style="font-family: Courier New,Courier,monospace;"><br>
+    <li>simply iterating over the Voronoi edges (counts each edge twice):<br>
+        <span style="font-family: Courier New,Courier,monospace;"><br>
 int iterate_primary_edges1(const voronoi_diagram&lt;double&gt; &amp;vd)
 {<br>
 &nbsp; int result = 0;<br>
@@ -144,12 +186,12 @@ vd.edges().begin();<br>
 &nbsp; }<br>
 &nbsp; return result;<br>
 }</span><br>
-    <span style="font-family: Courier New,Courier,monospace;">&nbsp;</span><br>
-  </li>
-  <li>iterating over the Voronoi cells and then traversing edges around
-each cell (counts each edge twice):<br>
-    <br>
-    <span style="font-family: Courier New,Courier,monospace;">int
+        <span style="font-family: Courier New,Courier,monospace;">&nbsp;</span><br>
+    </li>
+    <li>iterating over the Voronoi cells and then traversing edges around
+        each cell (counts each edge twice):<br>
+        <br>
+        <span style="font-family: Courier New,Courier,monospace;">int
 iterate_primary_edges2(const voronoi_diagram&lt;double&gt; &amp;vd) {<br>
 &nbsp; int result = 0;<br>
 &nbsp; for (voronoi_diagram&lt;double&gt;::const_cell_iterator it =
@@ -169,13 +211,13 @@ Voronoi cell.<br>
 &nbsp; }<br>
 &nbsp; return result;<br>
 }</span><br>
-    <br>
-  </li>
-  <li>iterating over the Voronoi
-vertices and then traversing edges around each vertex (the number of the
-iterations through each edge is equal to the number of finite endpoints
-of the edge):<span style="font-family: Courier New,Courier,monospace;"></span><br>
-    <span style="font-family: Courier New,Courier,monospace;">int
+        <br>
+    </li>
+    <li>iterating over the Voronoi
+        vertices and then traversing edges around each vertex (the number of the
+        iterations through each edge is equal to the number of finite endpoints
+        of the edge):<span style="font-family: Courier New,Courier,monospace;"></span><br>
+        <span style="font-family: Courier New,Courier,monospace;">int
 iterate_primary_edges3(const voronoi_diagram&lt;double&gt; &amp;vd) {<br>
 &nbsp; int result = 0;<br>
 &nbsp; for (voronoi_diagram&lt;double&gt;::const_vertex_iterator it =
@@ -210,10 +252,11 @@ following:<br>
 
 <ul>
 
-  <li>associating number of incident edges with each cell, vertex;</li>
-  <li>associating color information with each edge;</li>
-  <li>using DFS or BFS on the Voronoi graph requires to mark visited
-edges/vertices/cells.</li>
+    <li>associating number of incident edges with each cell, vertex;</li>
+    <li>associating color information with each edge;</li>
+    <li>using DFS or BFS on the Voronoi graph requires to mark visited
+        edges/vertices/cells.
+    </li>
 </ul>
 
 We will consider the first example and will associate the total number
@@ -250,33 +293,59 @@ traverses over the all Voronoi cells, fetches input geometry
 corresponding to the Voronoi cell and prints coordinates of the input
 site.<br>
 <br>
-<span style="font-family: Courier New,Courier,monospace;">unsigned int cell_index = 0;</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">for (voronoi_diagram&lt;double&gt;::const_cell_iterator it = vd.cells().begin();</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp; it != vd.cells().end(); ++it) {</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; if (it-&gt;contains_point()) {</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; std::size_t index = it-&gt;source_index();</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; Point p = points[index];</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains a point: (%d, %d).\n",</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p), y(p));</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; } else {</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; std::size_t index = it-&gt;source_index() - points.size();</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; Point p0 = low(segments[index]);</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; Point p1 = high(segments[index]);</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; if (it-&gt;source_category() ==</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boost::polygon::SOURCE_CATEGORY_SEGMENT_START_POINT) {</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains segment start point: (%d, %d).\n",</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p0), y(p0));</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; } else if (it-&gt;source_category() ==</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">unsigned int cell_index = 0;</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">for (voronoi_diagram&lt;double&gt;::const_cell_iterator it = vd.cells().begin();</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp; it != vd.cells().end(); ++it) {</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; if (it-&gt;contains_point()) {</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; std::size_t index = it-&gt;source_index();</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; Point p = points[index];</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains a point: (%d, %d).\n",</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p), y(p));</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; } else {</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; std::size_t index = it-&gt;source_index() - points.size();</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; Point p0 = low(segments[index]);</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; Point p1 = high(segments[index]);</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; if (it-&gt;source_category() ==</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boost::polygon::SOURCE_CATEGORY_SEGMENT_START_POINT) {</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains segment start point: (%d, %d).\n",</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p0), y(p0));</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; } else if (it-&gt;source_category() ==</span><br
+        style="font-family: Courier New,Courier,monospace;">
 <span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-boost::polygon::SOURCE_CATEGORY_SEGMENT_END_POINT) {</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains segment end point: (%d, %d).\n",</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p0), y(p0));</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; } else {</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains a segment: ((%d, %d), (%d, %d)). \n",</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p0), y(p0), x(p1), y(p1));</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; }</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; }</span><br style="font-family: Courier New,Courier,monospace;">
-<span style="font-family: Courier New,Courier,monospace;">&nbsp; ++cell_index;</span><br style="font-family: Courier New,Courier,monospace;">
+boost::polygon::SOURCE_CATEGORY_SEGMENT_END_POINT) {</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains segment end point: (%d, %d).\n",</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p0), y(p0));</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; } else {</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("Cell #%ud contains a segment: ((%d, %d), (%d, %d)). \n",</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cell_index, x(p0), y(p0), x(p1), y(p1));</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp;&nbsp;&nbsp; }</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; }</span><br
+        style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">&nbsp; ++cell_index;</span><br
+        style="font-family: Courier New,Courier,monospace;">
 }<br>
 <h2>Voronoi Diagram Rendering<br>
 </h2>
@@ -288,17 +357,21 @@ Those are:<br>
 
 <ul>
 
-  <li>Some of the Voronoi edges are infinite, so should be clipped;</li>
-  <li>Some of the Voronoi edge are parabolic arcs, so should be
-discretized.</li>
+    <li>Some of the Voronoi edges are infinite, so should be clipped;</li>
+    <li>Some of the Voronoi edge are parabolic arcs, so should be
+        discretized.
+    </li>
 </ul>
 
 Note: This would be the issues not only for rendering tools.
 Basically every task that requires diagram to be represented as a set
-of finite segments will fall into this category.<a href="../example/voronoi_visualizer.cpp"> voronoi_visualizer.cpp</a>
+of finite segments will fall into this category.<a href="../example/voronoi_visualizer.cpp">
+    voronoi_visualizer.cpp</a>
 contains a simple fully featured implementation of the Voronoi diagram
 renderer using the Qt libraries. It was used to generate all the .png
-drawings under the boost/libs/polygon/example directory.<span style="text-decoration: underline;"></span><span style="font-family: Courier New,Courier,monospace;"><br>
+drawings under the boost/libs/polygon/example directory.<span
+        style="text-decoration: underline;"></span><span
+        style="font-family: Courier New,Courier,monospace;"><br>
 </span>
 <h2>Summary<br>
 </h2>
@@ -309,7 +382,8 @@ to notice that construction of the Voronoi diagram takes only two lines
 of code, everything else is about initializing input data structures,
 traversing Voronoi graph, associating data with the diagram primitives. In the
 default mode the Voronoi diagram operates with the signed int (32-bit) input
-coordinate type and double (64-bit) output coordinate type. In the <a href="voronoi_advanced_tutorial.htm">advanced Voronoi tutorial</a> we
+coordinate type and double (64-bit) output coordinate type. In the <a
+        href="voronoi_advanced_tutorial.htm">advanced Voronoi tutorial</a> we
 explain why this is enough for the 95% of cases and how to expand the
 algorithm coordinate types for the other 5%.<br>
 
@@ -317,20 +391,27 @@ algorithm coordinate types for the other 5%.<br>
 
 <table class="docinfo" id="table1" frame="void" rules="none">
 
-  <colgroup> <col class="docinfo-name"><col class="docinfo-content"> </colgroup>
-  <tbody valign="top">
+    <colgroup>
+        <col class="docinfo-name">
+        <col class="docinfo-content">
+    </colgroup>
+    <tbody valign="top">
     <tr>
-      <th class="docinfo-name">Copyright:</th>
-      <td>Copyright © Andrii Sydorchuk 2010-2012.</td>
+        <th class="docinfo-name">Copyright:</th>
+        <td>Copyright © Andrii Sydorchuk 2010-2012.</td>
     </tr>
     <tr class="field">
-      <th class="docinfo-name">License:</th>
-      <td class="field-body">Distributed under the Boost Software
-License, Version 1.0. (See accompanying file <tt class="literal"> <span class="pre">LICENSE_1_0.txt</span></tt> or copy at <a class="reference" target="_top" href="http://www.boost.org/LICENSE_1_0.txt">
-http://www.boost.org/LICENSE_1_0.txt</a>)</td>
+        <th class="docinfo-name">License:</th>
+        <td class="field-body">Distributed under the Boost Software
+            License, Version 1.0. (See accompanying file <tt class="literal"> <span class="pre">LICENSE_1_0.txt</span></tt>
+            or copy at <a class="reference" target="_top"
+                          href="http://www.boost.org/LICENSE_1_0.txt">
+                http://www.boost.org/LICENSE_1_0.txt</a>)
+        </td>
     </tr>
-  </tbody>
+    </tbody>
 </table>
 
 
-</body></html>
+</body>
+</html>

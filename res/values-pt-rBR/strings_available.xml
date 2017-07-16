@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -24,12 +23,20 @@
     <string name="available_checking_md5">Verificando MD5&#8230;</string>
     <string name="available_downloading">Baixando&#8230;</string>
     <string name="are_you_sure">Tem certeza?</string>
-    <string name="available_delete_confirm_message">Tem certeza que deseja apagar o arquivo baixado?</string>
+    <string name="available_delete_confirm_message">Tem certeza que deseja apagar o arquivo
+        baixado?
+    </string>
     <string name="available_reboot_confirm">Gostaria de reiniciar agora?</string>
-    <string name="available_url_error">Erro de URL: Por favor, entre em contato com o desenvolvedor da ROM</string>
+    <string name="available_url_error">Erro de URL: Por favor, entre em contato com o desenvolvedor
+        da ROM
+    </string>
     <string name="available_reboot_manual_title">Por favor, reinicie agora</string>
-    <string name="available_reboot_manual_message">Por favor, reinicie para o modo de recuperação e instale a ROM.\n\nVocê pode encontrá-la em /sdcard/Downloads</string>
+    <string name="available_reboot_manual_message">Por favor, reinicie para o modo de recuperação e
+        instale a ROM.\n\nVocê pode encontrá-la em /sdcard/Downloads
+    </string>
     <string name="available_wrong_network_title">Rede errada selecionada</string>
-    <string name="available_wrong_network_message">Você está tentando baixar pela rede móvel, porém as configurações só permitem por Wi-Fi. Por favor, altere as configurações de acordo.</string>
+    <string name="available_wrong_network_message">Você está tentando baixar pela rede móvel, porém
+        as configurações só permitem por Wi-Fi. Por favor, altere as configurações de acordo.
+    </string>
 
 </resources>

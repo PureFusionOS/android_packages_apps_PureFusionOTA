@@ -29,13 +29,16 @@
 >>> assert x == y
 '''
 
-def run(args = None):
+
+def run(args=None):
     if args is not None:
         import sys
         sys.argv = args
-    import doctest, python_test 
+    import doctest, python_test
     return doctest.testmod(python_test)
+
 
 if __name__ == '__main__':
     import sys
+
     sys.exit(run()[0])

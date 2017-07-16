@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -24,7 +23,8 @@
     <string name="main_donate">Doneer</string>
     <string name="main_donate_summary">Doneer aan de ROM ontwikkelaar</string>
     <string name="main_tap_to_download">Selecteer om te downloaden</string>
-    <string name="main_download_completed_details">Download compleet. Selecteer voor details</string>
+    <string name="main_download_completed_details">Download compleet. Selecteer voor details
+    </string>
     <string name="main_last_checked">Laatst gecontroleerd op update</string>
 
     <!-- ROM Information -->
@@ -38,9 +38,13 @@
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">Niet compatibel</string>
-    <string name="main_not_compatible_message">Deze ROM werkt niet met PureFusion OTA. Neem contact op met je ontwikkelaar voor meer informatie</string>
+    <string name="main_not_compatible_message">Deze ROM werkt niet met PureFusion OTA. Neem contact
+        op met je ontwikkelaar voor meer informatie
+    </string>
     <string name="main_not_connected_title">Geen verbinding</string>
-    <string name="main_not_connected_message">Je hebt geen verbinding met een netwerk. Zet je netwerk of Wi-Fi aan en probeer opnieuw.</string>
+    <string name="main_not_connected_message">Je hebt geen verbinding met een netwerk. Zet je
+        netwerk of Wi-Fi aan en probeer opnieuw.
+    </string>
 
     <!-- Content Descriptions -->
     <string name="main_button_icon">Knop icoon</string>

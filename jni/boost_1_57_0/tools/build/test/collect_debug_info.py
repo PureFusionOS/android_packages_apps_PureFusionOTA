@@ -43,7 +43,7 @@ def collectDebugInfo():
     except:
         _info_exc()
 
-    #_collectDebugInfo_environ()
+    # _collectDebugInfo_environ()
 
     # Report prepared annotations.
     t.fail_test(1, dump_difference=False, dump_stdio=False, dump_stack=False)
@@ -62,10 +62,10 @@ def _collect(results, prefix, name, t):
     results.append("%s - %s - os.getenv(): %r" % (prefix, name, os.getenv(
         name)))
     results.append("%s - %s - os.environ.get(): %r" % (prefix, name,
-        os.environ.get(name)))
+                                                       os.environ.get(name)))
     external_values = _getExternalValues(t, name)
     results.append("%s - %s - external: %r" % (prefix, name,
-        external_values[name]))
+                                               external_values[name]))
 
 
 def _collectDebugInfo_environ(t):
@@ -76,6 +76,7 @@ def _collectDebugInfo_environ(t):
     try:
         def f(name):
             return "%s: %s" % (name, name in os.environ)
+
         _infoX(f(x) for x in dummyVars)
     except:
         _info_exc()
@@ -88,6 +89,7 @@ def _collectDebugInfo_environ(t):
             except:
                 result = _str_exc()
             return "%s: %r" % (name, result)
+
         _infoX(f(x) for x in dummyVars)
     except:
         _info_exc()
@@ -96,6 +98,7 @@ def _collectDebugInfo_environ(t):
     try:
         def f(name):
             return "%s: %r" % (name, os.environ.get(name))
+
         _infoX(f(x) for x in dummyVars)
     except:
         _info_exc()
@@ -104,6 +107,7 @@ def _collectDebugInfo_environ(t):
     try:
         def f(name):
             return "%s: %r" % (name, os.getenv(name))
+
         _infoX(f(x) for x in dummyVars)
     except:
         _info_exc()
@@ -227,7 +231,7 @@ def _getExternalValues(t, *args):
     result = dict()
     for x in args:
         m = re.search(r"^\*\*\*ENV\*\*\* %s: '(.*)' \*\*\*$" % x, t.stdout(),
-            re.MULTILINE)
+                      re.MULTILINE)
         if m:
             result[x] = m.group(1)
         else:
@@ -241,7 +245,7 @@ def _getJamVersionInfo(t):
     # JAM version variables.
     t.run_build_system(["---version"])
     for m in re.finditer(r"^\*\*\*VAR\*\*\* ([^:]*): (.*)\*\*\*$", t.stdout(),
-        re.MULTILINE):
+                         re.MULTILINE):
         name = m.group(1)
         value = m.group(2)
         if not value:
@@ -270,7 +274,7 @@ def _init():
     toolsetName = "__myDummyToolset__"
 
     t = BoostBuild.Tester(["toolset=%s" % toolsetName], pass_toolset=False,
-        use_test_config=False)
+                          use_test_config=False)
 
     #   Prepare a dummy toolset so we do not get errors in case the default one
     # is not found.
@@ -278,14 +282,14 @@ def _init():
 import feature ;
 feature.extend toolset : %s ;
 rule init ( ) { }
-""" % toolsetName )
+""" % toolsetName)
 
     # Python version of the same dummy toolset.
     t.write(toolsetName + ".py", """\
 from b2.build import feature
 feature.extend('toolset', ['%s'])
 def init(): pass
-""" % toolsetName )
+""" % toolsetName)
 
     t.write("jamroot.jam", """\
 import os ;

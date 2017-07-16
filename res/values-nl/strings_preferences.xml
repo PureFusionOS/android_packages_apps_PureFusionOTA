@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -18,17 +17,27 @@
 
     <string name="preferences_name">Instellingen</string>
     <string name="twrp_ors_title">Activeer OpenRecoveryScript</string>
-    <string name="twrp_ors_summary">Werkt voor TWRP en sommige \'custom\' CWM (niet officiele) recoveries.</string>
-    <string name="twrp_ors_information">Activeert deze app zodat de file zonder interactie met de gebruiker wordt geinstalleerd. Klik op installeren en wacht to de installatie klaar is.</string>
+    <string name="twrp_ors_summary">Werkt voor TWRP en sommige \'custom\' CWM (niet officiele)
+        recoveries.
+    </string>
+    <string name="twrp_ors_information">Activeert deze app zodat de file zonder interactie met de
+        gebruiker wordt geinstalleerd. Klik op installeren en wacht to de installatie klaar is.
+    </string>
     <string name="twrp_ors_delete_after">Verwijder na installatie</string>
-    <string name="twrp_ors_delete_after_summary">Moet het open recovery script de update verwijderen na installatie?</string>
+    <string name="twrp_ors_delete_after_summary">Moet het open recovery script de update verwijderen
+        na installatie?
+    </string>
     <string name="twrp_ors_install_prefs">Installatie voorkeuren</string>
-    <string name="twrp_ors_install_prefs_summary">Selecteer de installatie voorkeuren welke worden gebruikt voor het ORS script.</string>
+    <string name="twrp_ors_install_prefs_summary">Selecteer de installatie voorkeuren welke worden
+        gebruikt voor het ORS script.
+    </string>
     <string name="twrp_ors_wipe_data">Wis Data</string>
     <string name="twrp_ors_wipe_cache">Wis Cache</string>
     <string name="twrp_ors_wipe_dalvik">Wis Dalvik</string>
     <string name="notifications_title">Notificaties</string>
-    <string name="background_service_summary">Controleer automatisch of er updates zijn en geef eventueel een notificatie</string>
+    <string name="background_service_summary">Controleer automatisch of er updates zijn en geef
+        eventueel een notificatie
+    </string>
     <string name="background_frequency">Update controle frequentie</string>
     <string name="background_30mins">30 min</string>
     <string name="background_60mins">60 min</string>

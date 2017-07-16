@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -17,11 +16,18 @@
 <resources>
 
     <string name="about_about_title">О приложении</string>
-    <string name="about_about_summary">Это приложение родилось после моего разочарования от использования схожих приложений, которые работали не так, как я хотел. Я разработал это для своей прошивки, но позже быстро понял, что другие разработчики также могли бы найти его полезным. В результате, я привел всё к общему виду и написал несколько инструкций для других разработчиков.</string>
+    <string name="about_about_summary">Это приложение родилось после моего разочарования от
+        использования схожих приложений, которые работали не так, как я хотел. Я разработал это для
+        своей прошивки, но позже быстро понял, что другие разработчики также могли бы найти его
+        полезным. В результате, я привел всё к общему виду и написал несколько инструкций для других
+        разработчиков.
+    </string>
     <string name="about_credits_title">Благодарность</string>
     <string name="about_credits_summary">Благодарим</string>
     <string name="about_donate_title">Пожертвования</string>
-    <string name="about_donate_summary">Если это приложение сделало вашу жизнь легче, пожалуйста подумайте о пожертвовании для разработчика (Kryten2k35)</string>
+    <string name="about_donate_summary">Если это приложение сделало вашу жизнь легче, пожалуйста
+        подумайте о пожертвовании для разработчика (Kryten2k35)
+    </string>
     <string name="about_donate_button_summary">Пожертвовать</string>
     <string name="about_version_title">Версия</string>
     <string name="about_app_version">Версия приложения:</string>

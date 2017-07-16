@@ -5,9 +5,9 @@
 import unittest
 from _templates import *
 
-class TemplatesTest(unittest.TestCase):
 
-    def testIt(self):  
+class TemplatesTest(unittest.TestCase):
+    def testIt(self):
         fp = FPoint()
         fp.i = 3.0
         fp.j = 4.0
@@ -23,8 +23,7 @@ class TemplatesTest(unittest.TestCase):
         self.assertEqual(type(fp.j), float)
         self.assertEqual(type(ip.x), int)
         self.assertEqual(type(ip.y), int)
-                
-                
+
 
 if __name__ == '__main__':
-    unittest.main() 
+    unittest.main()

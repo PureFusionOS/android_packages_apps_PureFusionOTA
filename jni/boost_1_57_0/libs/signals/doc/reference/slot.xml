@@ -1,37 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE header PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN"
-  "http://www.boost.org/tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE header PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN"
+    "http://www.boost.org/tools/boostbook/dtd/boostbook.dtd">
 <header name="boost/signals/slot.hpp" last-revision="$Date$">
-  <namespace name="boost">
-    <class name="slot">
-      <template>
-        <template-type-parameter name="SlotFunction"/>
-      </template>
- 
-      <purpose>Pass slots as function arguments.</purpose>
+    <namespace name="boost">
+        <class name="slot">
+            <template>
+                <template-type-parameter name="SlotFunction" />
+            </template>
 
-      <constructor>
-        <template>
-          <template-type-parameter name="Slot"/>
-        </template>
+            <purpose>Pass slots as function arguments.</purpose>
 
-        <parameter name="target">
-          <paramtype>Slot</paramtype>
-        </parameter>
+            <constructor>
+                <template>
+                    <template-type-parameter name="Slot" />
+                </template>
 
-        <effects><para>Invokes
-        <code><functionname>visit_each</functionname></code>
-        (unqualified) to discover pointers and references to
-        <code><classname>signals::trackable</classname></code>
-        objects in <code>target</code>.</para>
+                <parameter name="target">
+                    <paramtype>Slot</paramtype>
+                </parameter>
 
-          <para>Initializes <code>this</code> to
-          contain the incoming slot
-          <code>target</code>, which may be any
-          function object with which a
-          <code>SlotFunction</code> can be
-          constructed.</para></effects>
-      </constructor>
-    </class>
-  </namespace>
+                <effects>
+                    <para>Invokes
+                        <code>
+                            <functionname>visit_each</functionname>
+                        </code>
+                        (unqualified) to discover pointers and references to
+                        <code>
+                            <classname>signals::trackable</classname>
+                        </code>
+                        objects in <code>target</code>.
+                    </para>
+
+                    <para>Initializes <code>this</code> to
+                        contain the incoming slot
+                        <code>target</code>, which may be any
+                        function object with which a
+                        <code>SlotFunction</code>
+                        can be
+                        constructed.
+                    </para>
+                </effects>
+            </constructor>
+        </class>
+    </namespace>
 </header>

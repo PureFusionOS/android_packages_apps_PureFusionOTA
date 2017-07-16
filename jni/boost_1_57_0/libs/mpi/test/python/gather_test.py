@@ -24,6 +24,7 @@ def gather_test(comm, generator, kind, root):
         assert result == None
     return
 
+
 gather_test(mpi.world, int_generator, "integers", 0)
 gather_test(mpi.world, int_generator, "integers", 1)
 gather_test(mpi.world, gps_generator, "GPS positions", 0)

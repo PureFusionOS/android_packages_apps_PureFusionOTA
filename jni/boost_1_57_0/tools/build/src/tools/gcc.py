@@ -31,14 +31,15 @@ from b2.util.utility import to_seq
 
 __debug = None
 
+
 def debug():
     global __debug
     if __debug is None:
-        __debug = "--debug-configuration" in bjam.variable("ARGV")        
+        __debug = "--debug-configuration" in bjam.variable("ARGV")
     return __debug
 
-feature.extend('toolset', ['gcc'])
 
+feature.extend('toolset', ['gcc'])
 
 toolset.inherit_generators('gcc', [], 'unix', ['unix.link', 'unix.link.dll'])
 toolset.inherit_flags('gcc', 'unix')
@@ -80,7 +81,8 @@ type.set_generated_target_prefix('IMPORT_LIB', ['<toolset>gcc', '<target-os>cygw
 __machine_match = re.compile('^([^ ]+)')
 __version_match = re.compile('^([0-9.]+)')
 
-def init(version = None, command = None, options = None):
+
+def init(version=None, command=None, options=None):
     """
         Initializes the gcc toolset for the given version. If necessary, command may
         be used to specify where the compiler is located. The parameter 'options' is a
@@ -99,7 +101,7 @@ def init(version = None, command = None, options = None):
     #   The command.
     command = to_seq(common.get_invocation_command('gcc', 'g++', command))
     #   The root directory of the tool install.
-    root = feature.get_values('<root>', options) ;
+    root = feature.get_values('<root>', options);
     #   The bin directory where to find the command to execute.
     bin = None
     #   The flavor of compiler.
@@ -110,12 +112,14 @@ def init(version = None, command = None, options = None):
             bin = common.get_absolute_tool_path(command[-1])
         if not root:
             root = os.path.dirname(bin)
-    #   Autodetect the version and flavor if not given.
+    # Autodetect the version and flavor if not given.
     if command:
-        machine_info = subprocess.Popen(command + ['-dumpmachine'], stdout=subprocess.PIPE).communicate()[0]
+        machine_info = \
+        subprocess.Popen(command + ['-dumpmachine'], stdout=subprocess.PIPE).communicate()[0]
         machine = __machine_match.search(machine_info).group(1)
 
-        version_info = subprocess.Popen(command + ['-dumpversion'], stdout=subprocess.PIPE).communicate()[0]
+        version_info = \
+        subprocess.Popen(command + ['-dumpversion'], stdout=subprocess.PIPE).communicate()[0]
         version = __version_match.search(version_info).group(1)
         if not flavor and machine.find('mingw') != -1:
             flavor = 'mingw'
@@ -123,11 +127,11 @@ def init(version = None, command = None, options = None):
     condition = None
     if flavor:
         condition = common.check_init_parameters('gcc', None,
-            ('version', version),
-            ('flavor', flavor))
+                                                 ('version', version),
+                                                 ('flavor', flavor))
     else:
         condition = common.check_init_parameters('gcc', None,
-            ('version', version))
+                                                 ('version', version))
 
     if command:
         command = command[0]
@@ -139,7 +143,7 @@ def init(version = None, command = None, options = None):
         if os_name() == 'OSF':
             linker = 'osf'
         elif os_name() == 'HPUX':
-            linker = 'hpux' ;
+            linker = 'hpux';
         else:
             linker = 'gnu'
 
@@ -167,21 +171,25 @@ def init(version = None, command = None, options = None):
 
     # - The archive builder.
     archiver = common.get_invocation_command('gcc',
-            'ar', feature.get_values('<archiver>', options), [bin], path_last=True)
+                                             'ar', feature.get_values('<archiver>', options), [bin],
+                                             path_last=True)
     toolset.flags('gcc.archive', '.AR', condition, [archiver])
     if debug():
         print 'notice: using gcc archiver ::', condition, '::', archiver
 
     # - Ranlib
     ranlib = common.get_invocation_command('gcc',
-            'ranlib', feature.get_values('<ranlib>', options), [bin], path_last=True)
+                                           'ranlib', feature.get_values('<ranlib>', options), [bin],
+                                           path_last=True)
     toolset.flags('gcc.archive', '.RANLIB', condition, [ranlib])
     if debug():
         print 'notice: using gcc archiver ::', condition, '::', ranlib
 
     # - The resource compiler.
     rc_command = common.get_invocation_command_nodefault('gcc',
-            'windres', feature.get_values('<rc>', options), [bin], path_last=True)
+                                                         'windres',
+                                                         feature.get_values('<rc>', options), [bin],
+                                                         path_last=True)
     rc_type = feature.get_values('<rc-type>', options)
 
     if not rc_type:
@@ -196,6 +204,7 @@ def init(version = None, command = None, options = None):
         rc_type = 'null'
     rc.configure(rc_command, condition, '<rc-type>' + rc_type)
 
+
 ###if [ os.name ] = NT
 ###{
 ###    # This causes single-line command invocation to not go through .bat files,
@@ -203,7 +212,7 @@ def init(version = None, command = None, options = None):
 ###    JAMSHELL = % ;
 ###}
 
-#FIXME: when register_c_compiler is moved to
+# FIXME: when register_c_compiler is moved to
 # generators, these should be updated
 builtin.register_c_compiler('gcc.compile.c++', ['CPP'], ['OBJ'], ['<toolset>gcc'])
 builtin.register_c_compiler('gcc.compile.c', ['C'], ['OBJ'], ['<toolset>gcc'])
@@ -219,9 +228,9 @@ builtin.register_c_compiler('gcc.compile.asm', ['ASM'], ['OBJ'], ['<toolset>gcc'
 
 type.set_generated_target_suffix('PCH', ['<toolset>gcc'], 'gch')
 
+
 # GCC-specific pch generator.
 class GccPchGenerator(pch.PchGenerator):
-
     # Inherit the __init__ method
 
     def run_pch(self, project, name, prop_set, sources):
@@ -252,16 +261,19 @@ class GccPchGenerator(pch.PchGenerator):
     # Calls the base version specifying source's name as the name of the created
     # target. As result, the PCH will be named whatever.hpp.gch, and not
     # whatever.gch.
-    def generated_targets(self, sources, prop_set, project, name = None):
+    def generated_targets(self, sources, prop_set, project, name=None):
         name = sources[0].name()
         return Generator.generated_targets(self, sources,
-            prop_set, project, name)
+                                           prop_set, project, name)
+
 
 # Note: the 'H' source type will catch both '.h' header and '.hpp' header. The
 # latter have HPP type, but HPP type is derived from H. The type of compilation
 # is determined entirely by the destination type.
-generators.register(GccPchGenerator('gcc.compile.c.pch', False, ['H'], ['C_PCH'], ['<pch>on', '<toolset>gcc' ]))
-generators.register(GccPchGenerator('gcc.compile.c++.pch', False, ['H'], ['CPP_PCH'], ['<pch>on', '<toolset>gcc' ]))
+generators.register(
+    GccPchGenerator('gcc.compile.c.pch', False, ['H'], ['C_PCH'], ['<pch>on', '<toolset>gcc']))
+generators.register(
+    GccPchGenerator('gcc.compile.c++.pch', False, ['H'], ['CPP_PCH'], ['<pch>on', '<toolset>gcc']))
 
 # Override default do-nothing generators.
 generators.override('gcc.compile.c.pch', 'pch.default-c-pch-generator')
@@ -295,7 +307,7 @@ flags('gcc.compile.c++', 'OPTIONS', ['<exception-handling>off'], ['-fno-exceptio
 # shell, or using crosscompiling. But we'll solve that problem when it's time.
 # In that case we'll just add another parameter to 'init' and move this login
 # inside 'init'.
-if not os_name () in ['CYGWIN', 'NT']:
+if not os_name() in ['CYGWIN', 'NT']:
     # This logic will add -fPIC for all compilations:
     #
     # lib a : a.cpp b ;
@@ -318,62 +330,65 @@ if not os_name () in ['CYGWIN', 'NT']:
 if os_name() != 'NT' and os_name() != 'OSF' and os_name() != 'HPUX':
     # OSF does have an option called -soname but it doesn't seem to work as
     # expected, therefore it has been disabled.
-    HAVE_SONAME   = ''
+    HAVE_SONAME = ''
     SONAME_OPTION = '-h'
 
-
 flags('gcc.compile', 'USER_OPTIONS', [], ['<cflags>'])
-flags('gcc.compile.c++', 'USER_OPTIONS',[], ['<cxxflags>'])
+flags('gcc.compile.c++', 'USER_OPTIONS', [], ['<cxxflags>'])
 flags('gcc.compile', 'DEFINES', [], ['<define>'])
 flags('gcc.compile', 'INCLUDES', [], ['<include>'])
 
 engine = get_manager().engine()
 
-engine.register_action('gcc.compile.c++.pch', 
-    '"$(CONFIG_COMMAND)" -x c++-header $(OPTIONS) -D$(DEFINES) -I"$(INCLUDES)" -c -o "$(<)" "$(>)"')
+engine.register_action('gcc.compile.c++.pch',
+                       '"$(CONFIG_COMMAND)" -x c++-header $(OPTIONS) -D$(DEFINES) -I"$(INCLUDES)" -c -o "$(<)" "$(>)"')
 
 engine.register_action('gcc.compile.c.pch',
-    '"$(CONFIG_COMMAND)" -x c-header $(OPTIONS) -D$(DEFINES) -I"$(INCLUDES)" -c -o "$(<)" "$(>)"')
+                       '"$(CONFIG_COMMAND)" -x c-header $(OPTIONS) -D$(DEFINES) -I"$(INCLUDES)" -c -o "$(<)" "$(>)"')
 
 
 def gcc_compile_cpp(targets, sources, properties):
     # Some extensions are compiled as C++ by default. For others, we need to
     # pass -x c++. We could always pass -x c++ but distcc does not work with it.
-    extension = os.path.splitext (sources [0]) [1]
+    extension = os.path.splitext(sources[0])[1]
     lang = ''
     if not extension in ['.cc', '.cp', '.cxx', '.cpp', '.c++', '.C']:
         lang = '-x c++'
-    get_manager().engine().set_target_variable (targets, 'LANG', lang)
+    get_manager().engine().set_target_variable(targets, 'LANG', lang)
     engine.add_dependency(targets, bjam.call('get-target-variable', targets, 'PCH_FILE'))
+
 
 def gcc_compile_c(targets, sources, properties):
     engine = get_manager().engine()
     # If we use the name g++ then default file suffix -> language mapping does
     # not work. So have to pass -x option. Maybe, we can work around this by
     # allowing the user to specify both C and C++ compiler names.
-    #if $(>:S) != .c
-    #{
-    engine.set_target_variable (targets, 'LANG', '-x c')
-    #}
+    # if $(>:S) != .c
+    # {
+    engine.set_target_variable(targets, 'LANG', '-x c')
+    # }
     engine.add_dependency(targets, bjam.call('get-target-variable', targets, 'PCH_FILE'))
-    
+
+
 engine.register_action(
     'gcc.compile.c++',
     '"$(CONFIG_COMMAND)" $(LANG) -ftemplate-depth-128 $(OPTIONS) ' +
-        '$(USER_OPTIONS) -D$(DEFINES) -I"$(PCH_FILE:D)" -I"$(INCLUDES)" ' +
-        '-c -o "$(<:W)" "$(>:W)"',
+    '$(USER_OPTIONS) -D$(DEFINES) -I"$(PCH_FILE:D)" -I"$(INCLUDES)" ' +
+    '-c -o "$(<:W)" "$(>:W)"',
     function=gcc_compile_cpp,
     bound_list=['PCH_FILE'])
 
 engine.register_action(
     'gcc.compile.c',
     '"$(CONFIG_COMMAND)" $(LANG) $(OPTIONS) $(USER_OPTIONS) -D$(DEFINES) ' +
-        '-I"$(PCH_FILE:D)" -I"$(INCLUDES)" -c -o "$(<)" "$(>)"',
+    '-I"$(PCH_FILE:D)" -I"$(INCLUDES)" -c -o "$(<)" "$(>)"',
     function=gcc_compile_c,
     bound_list=['PCH_FILE'])
 
+
 def gcc_compile_asm(targets, sources, properties):
     get_manager().engine().set_target_variable(targets, 'LANG', '-x assembler-with-cpp')
+
 
 engine.register_action(
     'gcc.compile.asm',
@@ -387,19 +402,20 @@ class GccLinkingGenerator(unix.UnixLinkingGenerator):
         property while creating or using shared library, since it's not supported by
         gcc/libc.
     """
+
     def run(self, project, name, ps, sources):
         # TODO: Replace this with the use of a target-os property.
 
         no_static_link = False
         if bjam.variable('UNIX'):
             no_static_link = True;
-        ##FIXME: what does this mean?
-##        {
-##            switch [ modules.peek : JAMUNAME ]
-##            {
-##                case * : no-static-link = true ;
-##            }
-##        }
+            ##FIXME: what does this mean?
+        ##        {
+        ##            switch [ modules.peek : JAMUNAME ]
+        ##            {
+        ##                case * : no-static-link = true ;
+        ##            }
+        ##        }
 
         reason = None
         if no_static_link and ps.get('runtime-link') == 'static':
@@ -409,42 +425,43 @@ class GccLinkingGenerator(unix.UnixLinkingGenerator):
                 for s in sources:
                     source_type = s.type()
                     if source_type and type.is_derived(source_type, 'SHARED_LIB'):
-                        reason = "On gcc, using DLLS together with the " +\
+                        reason = "On gcc, using DLLS together with the " + \
                                  "<runtime-link>static options is not possible "
         if reason:
             print 'warning:', reason
-            print 'warning:',\
-                "It is suggested to use '<runtime-link>static' together",\
-                "with '<link>static'." ;
+            print 'warning:', \
+                "It is suggested to use '<runtime-link>static' together", \
+                "with '<link>static'.";
             return
         else:
             generated_targets = unix.UnixLinkingGenerator.run(self, project,
-                name, ps, sources)
+                                                              name, ps, sources)
             return generated_targets
+
 
 if on_windows():
     flags('gcc.link.dll', '.IMPLIB-COMMAND', [], ['-Wl,--out-implib,'])
     generators.register(
         GccLinkingGenerator('gcc.link', True,
-            ['OBJ', 'SEARCHED_LIB', 'STATIC_LIB', 'IMPORT_LIB'],
-            [ 'EXE' ],
-            [ '<toolset>gcc' ]))
+                            ['OBJ', 'SEARCHED_LIB', 'STATIC_LIB', 'IMPORT_LIB'],
+                            ['EXE'],
+                            ['<toolset>gcc']))
     generators.register(
         GccLinkingGenerator('gcc.link.dll', True,
-            ['OBJ', 'SEARCHED_LIB', 'STATIC_LIB', 'IMPORT_LIB'],
-            ['IMPORT_LIB', 'SHARED_LIB'],
-            ['<toolset>gcc']))
+                            ['OBJ', 'SEARCHED_LIB', 'STATIC_LIB', 'IMPORT_LIB'],
+                            ['IMPORT_LIB', 'SHARED_LIB'],
+                            ['<toolset>gcc']))
 else:
     generators.register(
         GccLinkingGenerator('gcc.link', True,
-            ['LIB', 'OBJ'],
-            ['EXE'],
-            ['<toolset>gcc']))
+                            ['LIB', 'OBJ'],
+                            ['EXE'],
+                            ['<toolset>gcc']))
     generators.register(
         GccLinkingGenerator('gcc.link.dll', True,
-            ['LIB', 'OBJ'],
-            ['SHARED_LIB'],
-            ['<toolset>gcc']))
+                            ['LIB', 'OBJ'],
+                            ['SHARED_LIB'],
+                            ['<toolset>gcc']))
 
 # Declare flags for linking.
 # First, the common flags.
@@ -463,6 +480,7 @@ flags('gcc.link', 'LIBRARIES', [], ['<library-file>'])
 if os_name() != 'HPUX':
     flags('gcc.link', 'OPTIONS', ['<runtime-link>static'], ['-static'])
 
+
 # Now, the vendor specific flags.
 # The parameter linker can be either gnu, darwin, osf, hpux or sun.
 def init_link_flags(toolset, linker, condition):
@@ -478,11 +496,12 @@ def init_link_flags(toolset, linker, condition):
         # support -s.
 
         # FIXME: what does unchecked translate to?
-        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<debug-symbols>off', condition), ['-Wl,--strip-all'])  # : unchecked ;
-        flags(toolset_link, 'RPATH',       condition,                      ['<dll-path>'])       # : unchecked ;
-        flags(toolset_link, 'RPATH_LINK',  condition,                      ['<xdll-path>'])      # : unchecked ;
-        flags(toolset_link, 'START-GROUP', condition,                      ['-Wl,--start-group'])# : unchecked ;
-        flags(toolset_link, 'END-GROUP',   condition,                      ['-Wl,--end-group'])  # : unchecked ;
+        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<debug-symbols>off', condition),
+              ['-Wl,--strip-all'])  # : unchecked ;
+        flags(toolset_link, 'RPATH', condition, ['<dll-path>'])  # : unchecked ;
+        flags(toolset_link, 'RPATH_LINK', condition, ['<xdll-path>'])  # : unchecked ;
+        flags(toolset_link, 'START-GROUP', condition, ['-Wl,--start-group'])  # : unchecked ;
+        flags(toolset_link, 'END-GROUP', condition, ['-Wl,--end-group'])  # : unchecked ;
 
         # gnu ld has the ability to change the search behaviour for libraries
         # referenced by -l switch. These modifiers are -Bstatic and -Bdynamic
@@ -518,46 +537,48 @@ def init_link_flags(toolset, linker, condition):
         # On *nix mixing shared libs with static runtime is not a good idea.
         flags(toolset_link, 'FINDLIBS-ST-PFX',
               map(lambda x: x + '/<runtime-link>shared', condition),
-            ['-Wl,-Bstatic']) # : unchecked ;
+              ['-Wl,-Bstatic'])  # : unchecked ;
         flags(toolset_link, 'FINDLIBS-SA-PFX',
               map(lambda x: x + '/<runtime-link>shared', condition),
-            ['-Wl,-Bdynamic']) # : unchecked ;
+              ['-Wl,-Bdynamic'])  # : unchecked ;
 
         # On windows allow mixing of static and dynamic libs with static
         # runtime.
         flags(toolset_link, 'FINDLIBS-ST-PFX',
               map(lambda x: x + '/<runtime-link>static/<target-os>windows', condition),
-              ['-Wl,-Bstatic']) # : unchecked ;
+              ['-Wl,-Bstatic'])  # : unchecked ;
         flags(toolset_link, 'FINDLIBS-SA-PFX',
               map(lambda x: x + '/<runtime-link>static/<target-os>windows', condition),
-              ['-Wl,-Bdynamic']) # : unchecked ;
+              ['-Wl,-Bdynamic'])  # : unchecked ;
         flags(toolset_link, 'OPTIONS',
               map(lambda x: x + '/<runtime-link>static/<target-os>windows', condition),
-              ['-Wl,-Bstatic']) # : unchecked ;
+              ['-Wl,-Bstatic'])  # : unchecked ;
 
     elif linker == 'darwin':
         # On Darwin, the -s option to ld does not work unless we pass -static,
         # and passing -static unconditionally is a bad idea. So, don't pass -s.
         # at all, darwin.jam will use separate 'strip' invocation.
-        flags(toolset_link, 'RPATH', condition, ['<dll-path>']) # : unchecked ;
-        flags(toolset_link, 'RPATH_LINK', condition, ['<xdll-path>']) # : unchecked ;
+        flags(toolset_link, 'RPATH', condition, ['<dll-path>'])  # : unchecked ;
+        flags(toolset_link, 'RPATH_LINK', condition, ['<xdll-path>'])  # : unchecked ;
 
     elif linker == 'osf':
         # No --strip-all, just -s.
-        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<debug-symbols>off', condition), ['-Wl,-s'])
-            # : unchecked ;
-        flags(toolset_link, 'RPATH', condition, ['<dll-path>']) # : unchecked ;
+        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<debug-symbols>off', condition),
+              ['-Wl,-s'])
+        # : unchecked ;
+        flags(toolset_link, 'RPATH', condition, ['<dll-path>'])  # : unchecked ;
         # This does not supports -R.
-        flags(toolset_link, 'RPATH_OPTION', condition, ['-rpath']) # : unchecked ;
+        flags(toolset_link, 'RPATH_OPTION', condition, ['-rpath'])  # : unchecked ;
         # -rpath-link is not supported at all.
 
     elif linker == 'sun':
-        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<debug-symbols>off', condition), ['-Wl,-s'])
-            # : unchecked ;
-        flags(toolset_link, 'RPATH', condition, ['<dll-path>']) # : unchecked ;
+        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<debug-symbols>off', condition),
+              ['-Wl,-s'])
+        # : unchecked ;
+        flags(toolset_link, 'RPATH', condition, ['<dll-path>'])  # : unchecked ;
         # Solaris linker does not have a separate -rpath-link, but allows to use
         # -L for the same purpose.
-        flags(toolset_link, 'LINKPATH', condition, ['<xdll-path>']) # : unchecked ;
+        flags(toolset_link, 'LINKPATH', condition, ['<xdll-path>'])  # : unchecked ;
 
         # This permits shared libraries with non-PIC code on Solaris.
         # VP, 2004/09/07: Now that we have -fPIC hardcode in link.dll, the
@@ -565,21 +586,23 @@ def init_link_flags(toolset, linker, condition):
         # separate question.
         # AH, 2004/10/16: it is still necessary because some tests link against
         # static libraries that were compiled without PIC.
-        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<link>shared', condition), ['-mimpure-text'])
-            # : unchecked ;
+        flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<link>shared', condition),
+              ['-mimpure-text'])
+        # : unchecked ;
 
     elif linker == 'hpux':
         flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<debug-symbols>off', condition),
-            ['-Wl,-s']) # : unchecked ;
+              ['-Wl,-s'])  # : unchecked ;
         flags(toolset_link, 'OPTIONS', map(lambda x: x + '/<link>shared', condition),
-            ['-fPIC']) # : unchecked ;
+              ['-fPIC'])  # : unchecked ;
 
     else:
         # FIXME:
         errors.user_error(
-        "$(toolset) initialization: invalid linker '$(linker)' " +
-        "The value '$(linker)' specified for <linker> is not recognized. " +
-        "Possible values are 'gnu', 'darwin', 'osf', 'hpux' or 'sun'")
+            "$(toolset) initialization: invalid linker '$(linker)' " +
+            "The value '$(linker)' specified for <linker> is not recognized. " +
+            "Possible values are 'gnu', 'darwin', 'osf', 'hpux' or 'sun'")
+
 
 # Declare actions for linking.
 def gcc_link(targets, sources, properties):
@@ -590,14 +613,15 @@ def gcc_link(targets, sources, properties):
     # good idea to serialize all links.
     engine.set_target_variable(targets, 'JAM_SEMAPHORE', '<s>gcc-link-semaphore')
 
+
 engine.register_action(
     'gcc.link',
     '"$(CONFIG_COMMAND)" -L"$(LINKPATH)" ' +
-        '-Wl,$(RPATH_OPTION:E=-R)$(SPACE)-Wl,"$(RPATH)" ' +
-        '-Wl,-rpath-link$(SPACE)-Wl,"$(RPATH_LINK)" -o "$(<)" ' +
-        '$(START-GROUP) "$(>)" "$(LIBRARIES)" $(FINDLIBS-ST-PFX) ' +
-        '-l$(FINDLIBS-ST) $(FINDLIBS-SA-PFX) -l$(FINDLIBS-SA) $(END-GROUP) ' +
-        '$(OPTIONS) $(USER_OPTIONS)',
+    '-Wl,$(RPATH_OPTION:E=-R)$(SPACE)-Wl,"$(RPATH)" ' +
+    '-Wl,-rpath-link$(SPACE)-Wl,"$(RPATH_LINK)" -o "$(<)" ' +
+    '$(START-GROUP) "$(>)" "$(LIBRARIES)" $(FINDLIBS-ST-PFX) ' +
+    '-l$(FINDLIBS-ST) $(FINDLIBS-SA-PFX) -l$(FINDLIBS-SA) $(END-GROUP) ' +
+    '$(OPTIONS) $(USER_OPTIONS)',
     function=gcc_link,
     bound_list=['LIBRARIES'])
 
@@ -608,6 +632,7 @@ engine.register_action(
 __AR = 'ar'
 
 flags('gcc.archive', 'AROPTIONS', [], ['<archiveflags>'])
+
 
 def gcc_archive(targets, sources, properties):
     # Always remove archive and start again. Here's rationale from
@@ -635,6 +660,7 @@ def gcc_archive(targets, sources, properties):
     engine.add_dependency(targets, clean)
     engine.set_update_action('common.RmTemps', clean, targets)
 
+
 # Declare action for creating static libraries.
 # The letter 'r' means to add files to the archive with replacement. Since we
 # remove archive, we don't care about replacement, but there's no option "add
@@ -648,6 +674,7 @@ engine.register_action('gcc.archive',
                        function=gcc_archive,
                        flags=['piecemeal'])
 
+
 def gcc_link_dll(targets, sources, properties):
     engine = get_manager().engine()
     engine.set_target_variable(targets, 'SPACE', ' ')
@@ -655,17 +682,18 @@ def gcc_link_dll(targets, sources, properties):
     engine.set_target_variable(targets, "HAVE_SONAME", HAVE_SONAME)
     engine.set_target_variable(targets, "SONAME_OPTION", SONAME_OPTION)
 
+
 engine.register_action(
     'gcc.link.dll',
     # Differ from 'link' above only by -shared.
     '"$(CONFIG_COMMAND)" -L"$(LINKPATH)" ' +
-        '-Wl,$(RPATH_OPTION:E=-R)$(SPACE)-Wl,"$(RPATH)" ' +
-        '"$(.IMPLIB-COMMAND)$(<[1])" -o "$(<[-1])" ' +
-        '$(HAVE_SONAME)-Wl,$(SONAME_OPTION)$(SPACE)-Wl,$(<[-1]:D=) ' +
-        '-shared $(START-GROUP) "$(>)" "$(LIBRARIES)" $(FINDLIBS-ST-PFX) ' +
-        '-l$(FINDLIBS-ST) $(FINDLIBS-SA-PFX) -l$(FINDLIBS-SA) $(END-GROUP) ' +
-        '$(OPTIONS) $(USER_OPTIONS)',
-    function = gcc_link_dll,
+    '-Wl,$(RPATH_OPTION:E=-R)$(SPACE)-Wl,"$(RPATH)" ' +
+    '"$(.IMPLIB-COMMAND)$(<[1])" -o "$(<[-1])" ' +
+    '$(HAVE_SONAME)-Wl,$(SONAME_OPTION)$(SPACE)-Wl,$(<[-1]:D=) ' +
+    '-shared $(START-GROUP) "$(>)" "$(LIBRARIES)" $(FINDLIBS-ST-PFX) ' +
+    '-l$(FINDLIBS-ST) $(FINDLIBS-SA-PFX) -l$(FINDLIBS-SA) $(END-GROUP) ' +
+    '$(OPTIONS) $(USER_OPTIONS)',
+    function=gcc_link_dll,
     bound_list=['LIBRARIES'])
 
 # Set up threading support. It's somewhat contrived, so perform it at the end,
@@ -699,17 +727,19 @@ elif bjam.variable('UNIX'):
         flags('gcc', 'OPTIONS', ['<threading>multi'], ['-pthread'])
         flags('gcc', 'FINDLIBS-SA', [], ['rt'])
 
+
 def cpu_flags(toolset, variable, architecture, instruction_set, values, default=None):
-    #FIXME: for some reason this fails.  Probably out of date feature code
-##    if default:
-##        flags(toolset, variable,
-##              ['<architecture>' + architecture + '/<instruction-set>'],
-##              values)
+    # FIXME: for some reason this fails.  Probably out of date feature code
+    ##    if default:
+    ##        flags(toolset, variable,
+    ##              ['<architecture>' + architecture + '/<instruction-set>'],
+    ##              values)
     flags(toolset, variable,
-          #FIXME: same as above
-          [##'<architecture>/<instruction-set>' + instruction_set,
-           '<architecture>' + architecture + '/<instruction-set>' + instruction_set],
+          # FIXME: same as above
+          [  ##'<architecture>/<instruction-set>' + instruction_set,
+              '<architecture>' + architecture + '/<instruction-set>' + instruction_set],
           values)
+
 
 # Set architecture/instruction-set options.
 #
@@ -749,7 +779,8 @@ cpu_flags('gcc', 'OPTIONS', 'x86', 'corei7-avx', ['-march=corei7-avx'])
 cpu_flags('gcc', 'OPTIONS', 'x86', 'sandy-bridge', ['-march=corei7-avx'])
 cpu_flags('gcc', 'OPTIONS', 'x86', 'core-avx-i', ['-march=core-avx-i'])
 cpu_flags('gcc', 'OPTIONS', 'x86', 'ivy-bridge', ['-march=core-avx-i'])
-cpu_flags('gcc', 'OPTIONS', 'x86', 'haswell', ['-march=core-avx-i', '-mavx2', '-mfma', '-mbmi', '-mbmi2', '-mlzcnt'])
+cpu_flags('gcc', 'OPTIONS', 'x86', 'haswell',
+          ['-march=core-avx-i', '-mavx2', '-mfma', '-mbmi', '-mbmi2', '-mlzcnt'])
 cpu_flags('gcc', 'OPTIONS', 'x86', 'k6', ['-march=k6'])
 cpu_flags('gcc', 'OPTIONS', 'x86', 'k6-2', ['-march=k6-2'])
 cpu_flags('gcc', 'OPTIONS', 'x86', 'k6-3', ['-march=k6-3'])

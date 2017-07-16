@@ -53,6 +53,7 @@ from b2.util.sequence import unique
 def init():
     pass
 
+
 # Feature controling the command used to lanch test programs.
 feature.feature("testing.launcher", [], ["free", "optional"])
 
@@ -77,6 +78,7 @@ type.register("UNIT_TEST", ["passed"], "TEST")
 
 __all_tests = []
 
+
 # Declare the rules which create main targets. While the 'type' module already
 # creates rules with the same names for us, we need extra convenience: default
 # name of main target, so write our own versions.
@@ -84,7 +86,6 @@ __all_tests = []
 # Helper rule. Create a test target, using basename of first source if no target
 # name is explicitly passed. Remembers the created target in a global variable.
 def make_test(target_type, sources, requirements, target_name=None):
-
     if not target_name:
         target_name = stem(os.path.basename(sources[0]))
 
@@ -124,17 +125,21 @@ def make_test(target_type, sources, requirements, target_name=None):
 def compile(sources, requirements, target_name=None):
     return make_test("compile", sources, requirements, target_name)
 
+
 @bjam_signature((["sources", "*"], ["requirements", "*"], ["target_name", "?"]))
 def compile_fail(sources, requirements, target_name=None):
     return make_test("compile-fail", sources, requirements, target_name)
+
 
 @bjam_signature((["sources", "*"], ["requirements", "*"], ["target_name", "?"]))
 def link(sources, requirements, target_name=None):
     return make_test("link", sources, requirements, target_name)
 
+
 @bjam_signature((["sources", "*"], ["requirements", "*"], ["target_name", "?"]))
 def link_fail(sources, requirements, target_name=None):
     return make_test("link-fail", sources, requirements, target_name)
+
 
 def handle_input_files(input_files):
     if len(input_files) > 1:
@@ -145,23 +150,26 @@ def handle_input_files(input_files):
                                    "due to internal limitations")
     return ["<testing.input-file>" + f for f in input_files]
 
+
 @bjam_signature((["sources", "*"], ["args", "*"], ["input_files", "*"],
                  ["requirements", "*"], ["target_name", "?"],
-                 ["default_build", "*"]))                 
+                 ["default_build", "*"]))
 def run(sources, args, input_files, requirements, target_name=None, default_build=[]):
     if args:
         requirements.append("<testing.arg>" + " ".join(args))
     requirements.extend(handle_input_files(input_files))
     return make_test("run", sources, requirements, target_name)
 
+
 @bjam_signature((["sources", "*"], ["args", "*"], ["input_files", "*"],
                  ["requirements", "*"], ["target_name", "?"],
-                 ["default_build", "*"]))                 
+                 ["default_build", "*"]))
 def run_fail(sources, args, input_files, requirements, target_name=None, default_build=[]):
     if args:
         requirements.append("<testing.arg>" + " ".join(args))
     requirements.extend(handle_input_files(input_files))
     return make_test("run-fail", sources, requirements, target_name)
+
 
 # Register all the rules
 for name in ["compile", "compile-fail", "link", "link-fail", "run", "run-fail"]:
@@ -169,7 +177,9 @@ for name in ["compile", "compile-fail", "link", "link-fail", "run", "run-fail"]:
 
 # Use 'test-suite' as a synonym for 'alias', for backward compatibility.
 from b2.build.alias import alias
+
 get_manager().projects().add_rule("test-suite", alias)
+
 
 # For all main targets in 'project-module', which are typed targets with type
 # derived from 'TEST', produce some interesting information.
@@ -178,14 +188,16 @@ def dump_tests():
     for t in __all_tests:
         dump_test(t)
 
+
 # Given a project location in normalized form (slashes are forward), compute the
 # name of the Boost library.
 #
 __ln1 = re.compile("/(tools|libs)/(.*)/(test|example)")
 __ln2 = re.compile("/(tools|libs)/(.*)$")
 __ln3 = re.compile("(/status$)")
+
+
 def get_library_name(path):
-    
     path = path.replace("\\", "/")
     match1 = __ln1.match(path)
     match2 = __ln2.match(path)
@@ -202,8 +214,10 @@ def get_library_name(path):
         # just return the path, since the 'library name' makes no sense.
         return path
 
+
 # Was an XML dump requested?
 __out_xml = option.get("out-xml", False, True)
+
 
 # Takes a target (instance of 'basic-target') and prints
 #   - its type
@@ -235,25 +249,26 @@ def dump_test(target):
 
     # If the user requested XML output on the command-line, add the test info to
     # that XML file rather than dumping them to stdout.
-    #if $(.out-xml)
-    #{
-#        local nl = "
-#" ;
-#        .contents on $(.out-xml) +=
-#            "$(nl)  <test type=\"$(type)\" name=\"$(name)\">"
-#            "$(nl)    <target><![CDATA[$(target-name)]]></target>"
-#            "$(nl)    <info><![CDATA[$(test-info)]]></info>"
-#            "$(nl)    <source><![CDATA[$(source-files)]]></source>"
-#            "$(nl)  </test>"
-#            ;
-#    }
-#    else
+    # if $(.out-xml)
+    # {
+    #        local nl = "
+    # " ;
+    #        .contents on $(.out-xml) +=
+    #            "$(nl)  <test type=\"$(type)\" name=\"$(name)\">"
+    #            "$(nl)    <target><![CDATA[$(target-name)]]></target>"
+    #            "$(nl)    <info><![CDATA[$(test-info)]]></info>"
+    #            "$(nl)    <source><![CDATA[$(source-files)]]></source>"
+    #            "$(nl)  </test>"
+    #            ;
+    #    }
+    #    else
 
     source_files = " ".join('"' + s + '"' for s in source_files)
     if test_info:
         print 'boost-test(%s) "%s" [%s] : %s' % (type, name, test_info, source_files)
     else:
         print 'boost-test(%s) "%s" : %s' % (type, name, source_files)
+
 
 # Register generators. Depending on target type, either 'expect-success' or
 # 'expect-failure' rule will be used.
@@ -294,7 +309,6 @@ generators.register_composing("testing.time", [], ["TIME"])
 # contained in testing-aux.jam, which we load into Jam module named 'testing'
 
 def run_path_setup(target, sources, ps):
-
     # For testing, we need to make sure that all dynamic libraries needed by the
     # test are found. So, we collect all paths from dependency libraries (via
     # xdll-path property) and add whatever explicit dll-path user has specified.
@@ -306,7 +320,8 @@ def run_path_setup(target, sources, ps):
     if dll_paths:
         bjam.call("set-target-variable", target, "PATH_SETUP",
                   common.prepend_path_variable_command(
-                     common.shared_library_path_variable(), dll_paths))
+                      common.shared_library_path_variable(), dll_paths))
+
 
 def capture_output_setup(target, sources, ps):
     run_path_setup(target, sources, ps)
@@ -314,22 +329,23 @@ def capture_output_setup(target, sources, ps):
     if ps.get('preserve-test-targets') == ['off']:
         bjam.call("set-target-variable", target, "REMOVE_TEST_TARGETS", "1")
 
+
 get_manager().engine().register_bjam_action("testing.capture-output",
                                             capture_output_setup)
 
-
 path = os.path.dirname(__file__)
 import b2.util.os_j
+
 get_manager().projects().project_rules()._import_rule("testing", "os.name",
                                                       b2.util.os_j.name)
 import b2.tools.common
+
 get_manager().projects().project_rules()._import_rule("testing", "common.rm-command",
                                                       b2.tools.common.rm_command)
 get_manager().projects().project_rules()._import_rule("testing", "common.file-creation-command",
                                                       b2.tools.common.file_creation_command)
 
 bjam.call("load", "testing", os.path.join(path, "testing-aux.jam"))
-
 
 for name in ["expect-success", "expect-failure", "time"]:
     get_manager().engine().register_bjam_action("testing." + name)

@@ -20,7 +20,7 @@ import BoostBuild
 def testSORTCorrectness():
     """Testing that Boost Jam's SORT builtin rule actually sorts correctly."""
     t = BoostBuild.Tester(["-ftest.jam", "-d1"], pass_toolset=False,
-        use_test_config=False)
+                          use_test_config=False)
 
     t.write("test.jam", """\
 NOCARE all ;
@@ -60,7 +60,7 @@ def testSORTDuration():
 
     """
     t = BoostBuild.Tester(["-ftest.jam", "-d1"], pass_toolset=False,
-        use_test_config=False)
+                          use_test_config=False)
 
     f = open(t.workpath("test.jam"), "w")
     print >> f, "data = "

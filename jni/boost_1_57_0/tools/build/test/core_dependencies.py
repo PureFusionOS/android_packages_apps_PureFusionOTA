@@ -7,9 +7,9 @@
 # This tests correct handling of dependencies, specifically, on generated
 # sources, and from generated sources.
 
-import BoostBuild
-
 import string
+
+import BoostBuild
 
 t = BoostBuild.Tester(pass_toolset=0)
 
@@ -63,6 +63,7 @@ create-foo foo.h ;
 """
 t.run_build_system("-f-", stdin=code)
 
+
 # Run two times, adding explicit dependency from all to foo.h at the beginning
 # and at the end, to make sure that foo.h is generated before 'a' in all cases.
 
@@ -70,8 +71,10 @@ def mk_correct_order_func(s1, s2):
     def correct_order(s):
         n1 = string.find(s, s1)
         n2 = string.find(s, s2)
-        return ( n1 != -1 ) and ( n2 != -1 ) and ( n1 < n2 )
+        return (n1 != -1) and (n2 != -1) and (n1 < n2)
+
     return correct_order
+
 
 correct_order = mk_correct_order_func("create-foo", "copy a")
 
@@ -107,11 +110,11 @@ t.fail_test(not correct_order(t.stdout()))
 
 t.rm(["a", "biz.h"])
 t.run_build_system("-d+2 -f-", stdin=" DEPENDS all : biz.h ; " + code)
-t.fail_test(not correct_order(t.stdout()))           
+t.fail_test(not correct_order(t.stdout()))
 
 t.write("a", "")
 
-code="""
+code = """
 DEPENDS all : main d ;
 
 actions copy 

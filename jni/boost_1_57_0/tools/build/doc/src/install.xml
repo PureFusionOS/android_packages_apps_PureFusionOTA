@@ -1,72 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN"
-  "http://www.boost.org/tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE chapter PUBLIC"-//Boost//DTD BoostBook XML V1.0//EN"
+    "http://www.boost.org/tools/boostbook/dtd/boostbook.dtd">
 
-  <chapter id="bbv2.installation">
+<chapter id="bbv2.installation">
     <title>Installation</title>
 
     <para>
-      To install Boost.Build from an official release or a nightly build, as
-      available on the <ulink url="http://boost.org/boost-build2">official web site</ulink>,
-      follow these steps:
+        To install Boost.Build from an official release or a nightly build, as
+        available on the <ulink url="http://boost.org/boost-build2">official web site</ulink>,
+        follow these steps:
     </para>
 
     <orderedlist>
-      <listitem>
-        <simpara>
-          Unpack the release. On the command line, go to the root of the
-          unpacked tree.
-        </simpara>
-      </listitem>
+        <listitem>
+            <simpara>
+                Unpack the release. On the command line, go to the root of the
+                unpacked tree.
+            </simpara>
+        </listitem>
 
-      <listitem>
-        <simpara>
-          Run either <command>.\bootstrap.bat</command> (on Windows), or
-          <command>./bootstrap.sh</command> (on other operating systems).
-        </simpara>
-      </listitem>
+        <listitem>
+            <simpara>
+                Run either <command>.\bootstrap.bat</command> (on Windows), or
+                <command>./bootstrap.sh</command>
+                (on other operating systems).
+            </simpara>
+        </listitem>
 
-      <listitem>
-        <simpara>
-          Run 
-          <screen>./b2 install --prefix=<replaceable>PREFIX</replaceable></screen>
-          where <replaceable>PREFIX</replaceable> is a directory where you
-          want Boost.Build to be installed.
-        </simpara>
-      </listitem>
+        <listitem>
+            <simpara>
+                Run
+                <screen>./b2 install --prefix=
+                    <replaceable>PREFIX</replaceable>
+                </screen>
+                where <replaceable>PREFIX</replaceable> is a directory where you
+                want Boost.Build to be installed.
+            </simpara>
+        </listitem>
 
-      <listitem>
-        <simpara>
-          Optionally, add <filename><replaceable>PREFIX</replaceable>/bin</filename>
-          to your <envar>PATH</envar> environment variable.
-        </simpara>
-      </listitem>
+        <listitem>
+            <simpara>
+                Optionally, add
+                <filename><replaceable>PREFIX</replaceable>/bin
+                </filename>
+                to your <envar>PATH</envar> environment variable.
+            </simpara>
+        </listitem>
     </orderedlist>
 
     <para>If you are not using a Boost.Build package, but rather the version
-    bundled with the Boost C++ Libraries, the above commands should be run
-    in the <filename>tools/build/v2</filename> directory.</para>
-
-    <para>
-      Now that Boost.Build is installed, you can try some of the examples. Copy
-      <filename><replaceable>PREFIX</replaceable>/share/boost-build/examples/hello</filename>
-      to a different directory, then change to that directory and run:
-<screen><filename><replaceable>PREFIX</replaceable>/bin/b2</filename></screen>
-      A simple executable should be built.
+        bundled with the Boost C++ Libraries, the above commands should be run
+        in the <filename>tools/build/v2</filename> directory.
     </para>
 
-      <!--
-      <simpara>
-          Configure Boost.Build to recognize the build resources (such
-          as compilers and libraries) you have installed on your
-          system.  Open the
-          <filename>user-config.jam</filename> file in the Boost.Build
-          root directory and follow the instructions there to describe
-          your toolsets and libraries, and, if necessary, where they
-          are located.
-        </simpara>
-      </listitem>
-      -->
+    <para>
+        Now that Boost.Build is installed, you can try some of the examples. Copy
+        <filename><replaceable>PREFIX</replaceable>/share/boost-build/examples/hello
+        </filename>
+        to a different directory, then change to that directory and run:
+        <screen>
+            <filename><replaceable>PREFIX</replaceable>/bin/b2
+            </filename>
+        </screen>
+        A simple executable should be built.
+    </para>
+
+    <!--
+    <simpara>
+        Configure Boost.Build to recognize the build resources (such
+        as compilers and libraries) you have installed on your
+        system.  Open the
+        <filename>user-config.jam</filename> file in the Boost.Build
+        root directory and follow the instructions there to describe
+        your toolsets and libraries, and, if necessary, where they
+        are located.
+      </simpara>
+    </listitem>
+    -->
 
     <!-- This part should not go into intoduction docs, but we need to
          place it somewhere. 
@@ -127,24 +136,24 @@ using gcc ;
       -->
 
 
-  </chapter>
+</chapter>
 
-<!--
-     Local Variables:
-     mode: nxml
-     sgml-indent-data:t
-     sgml-parent-document:("userman.xml" "chapter")
-     sgml-set-face: t
-     sgml-omittag:nil
-     sgml-shorttag:nil
-     sgml-namecase-general:t
-     sgml-general-insert-case:lower
-     sgml-minimize-attributes:nil
-     sgml-always-quote-attributes:t
-     sgml-indent-step:2
-     sgml-exposed-tags:nil
-     sgml-local-catalogs:nil
-     sgml-local-ecat-files:nil
-     End:
--->
+    <!--
+         Local Variables:
+         mode: nxml
+         sgml-indent-data:t
+         sgml-parent-document:("userman.xml" "chapter")
+         sgml-set-face: t
+         sgml-omittag:nil
+         sgml-shorttag:nil
+         sgml-namecase-general:t
+         sgml-general-insert-case:lower
+         sgml-minimize-attributes:nil
+         sgml-always-quote-attributes:t
+         sgml-indent-step:2
+         sgml-exposed-tags:nil
+         sgml-local-catalogs:nil
+         sgml-local-ecat-files:nil
+         End:
+    -->
 

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -42,7 +41,8 @@
         <item name="proRibbon">@drawable/pro_ribbon_light</item>
     </style>
 
-    <style name="ActionBar.Solid.RagnarLight" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+    <style name="ActionBar.Solid.RagnarLight"
+        parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
         <item name="android:background">@drawable/ab_solid_holo_light</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_holo_light</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_holo_light</item>

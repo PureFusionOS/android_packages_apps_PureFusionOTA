@@ -8,6 +8,7 @@
 
 import BoostBuild
 
+
 def test_basic():
     t = BoostBuild.Tester(use_test_config=False)
 
@@ -32,7 +33,6 @@ int main() { foo(); }
     t.write("jamroot.jam", "lib a : a.cpp : <variant>debug:<include>. ;")
     t.rm("bin")
     t.run_build_system(subdir="d")
-
 
     # Path features with condition in usage requirements.
     t.write("jamroot.jam", """\

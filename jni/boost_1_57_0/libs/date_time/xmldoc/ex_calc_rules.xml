@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE library PUBLIC "-//Boost//DTD BoostBook XML V1.0//EN" 
-"../../../tools/boostbook/dtd/boostbook.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE library PUBLIC
+    "-//Boost//DTD BoostBook XML V1.0//EN"
+    "../../../tools/boostbook/dtd/boostbook.dtd">
 
 <!-- Copyright (c) 2001-2005 CrystalClear Software, Inc.
      Subject to the Boost Software License, Version 1.0. 
@@ -8,13 +8,13 @@
 -->
 
 <section id="date_time.examples.calc_rules">
-  <title>Daylight Savings Calc Rules</title>
+    <title>Daylight Savings Calc Rules</title>
 
-  <para> 
-    Example of creating various Daylight Savings Calc Rule objects.
-  </para>
-  <programlisting>
-    <![CDATA[
+    <para>
+        Example of creating various Daylight Savings Calc Rule objects.
+    </para>
+    <programlisting>
+        <![CDATA[
   /* A simple example for creating various dst_calc_rule instances
    */
 
@@ -55,5 +55,5 @@
   }
 
     ]]>
-  </programlisting>
+    </programlisting>
 </section>

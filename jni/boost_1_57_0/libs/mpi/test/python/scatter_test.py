@@ -19,14 +19,15 @@ def scatter_test(comm, generator, kind, root):
         values = list()
         for p in range(0, comm.size):
             values.append(generator(p))
-        result = mpi.scatter(comm, values, root = root)
+        result = mpi.scatter(comm, values, root=root)
     else:
-        result = mpi.scatter(comm, root = root);
-        
+        result = mpi.scatter(comm, root=root);
+
     assert result == generator(comm.rank)
 
     if comm.rank == root: print "OK."
     return
+
 
 scatter_test(mpi.world, int_generator, "integers", 0)
 scatter_test(mpi.world, int_generator, "integers", 1)

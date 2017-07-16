@@ -7,8 +7,8 @@
 import sys
 from string import strip
 
-def quote_line(line):
 
+def quote_line(line):
     result = ""
 
     for i in line:
@@ -21,6 +21,7 @@ def quote_line(line):
 
     return '\"' + result + '\\n\"'
 
+
 def quote_file(file):
     result = ""
 
@@ -28,6 +29,7 @@ def quote_file(file):
         result = result + quote_line(i) + "\n"
 
     return result
+
 
 if len(sys.argv) < 3:
     print "Usage: inline_file.py output_c_file file_to_include"
@@ -37,8 +39,8 @@ else:
 
     file_to_include = sys.argv[2]
 
-    in_file  = open(file_to_include, "r");
-    variable_name = strip(in_file.readline())    
+    in_file = open(file_to_include, "r");
+    variable_name = strip(in_file.readline())
     out_file.write("extern const char %s[] = {\n%s};\n\n" % (variable_name, quote_file(in_file)))
     in_file.close()
     out_file.close()

@@ -9,6 +9,7 @@
 
 import BoostBuild
 
+
 def ignore_config(t):
     """These files are created by the configuration logic in link.jam
     They may or may not exist, depending on the system."""
@@ -16,6 +17,7 @@ def ignore_config(t):
     t.ignore("bin/test-hardlink-source")
     t.ignore("bin/test-symlink")
     t.ignore("bin/test-symlink-source")
+
 
 def test_basic():
     """Test creation of a single link"""
@@ -34,6 +36,7 @@ def test_basic():
     ignore_config(t)
     t.expect_nothing_more()
     t.cleanup()
+
 
 def test_merge_two():
     """Test merging two directories"""
@@ -56,6 +59,7 @@ def test_merge_two():
     ignore_config(t)
     t.expect_nothing_more()
     t.cleanup()
+
 
 def test_merge_existing():
     """Test adding a link when a different symlink already exists"""
@@ -88,6 +92,7 @@ def test_merge_existing():
 
     t.cleanup()
 
+
 def test_merge_recursive():
     "Test merging several directories including common prefixes"
     t = BoostBuild.Tester()
@@ -118,6 +123,7 @@ def test_merge_recursive():
 
     t.cleanup()
 
+
 def test_include_scan():
     """Make sure that the #include scanner finds the headers"""
     t = BoostBuild.Tester()
@@ -146,6 +152,7 @@ def test_include_scan():
     t.expect_nothing_more()
 
     t.cleanup()
+
 
 test_basic()
 test_merge_two()

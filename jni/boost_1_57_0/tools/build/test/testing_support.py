@@ -26,7 +26,7 @@ def test_files_with_spaces_in_their_name():
     t.write("valid source.cpp", "int main() {}\n");
 
     t.write("invalid source.cpp", "this is not valid source code");
-    
+
     t.write("jamroot.jam", """
 import testing ;
 testing.compile "valid source.cpp" ;
@@ -40,13 +40,13 @@ testing.compile-fail "invalid source.cpp" ;
     t.expect_addition("bin/valid source.test/$toolset/debug/valid source.test")
 
     t.expect_content("bin/valid source.test/$toolset/debug/valid source.test", \
-        "passed" )
+                     "passed")
     t.expect_content( \
         "bin/invalid source.test/$toolset/debug/invalid source.test", \
-        "passed" )
+        "passed")
     t.expect_content( \
         "bin/invalid source.test/$toolset/debug/invalid source.obj", \
-        "failed as expected" )
+        "failed as expected")
 
     t.cleanup()
 

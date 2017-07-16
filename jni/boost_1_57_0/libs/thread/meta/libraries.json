@@ -10,11 +10,13 @@
       "Vicente J. Botet Escriba <vicente.botet -at- wanadoo.fr>",
       "Niall Douglas <niall -at- nedprod.com>"
     ],
-    "description":
-      "Portable C++ multi-threading. C++11, C++14.",
-    "std": [ "proposal" ],    
+    "description": "Portable C++ multi-threading. C++11, C++14.",
+    "std": [
+      "proposal"
+    ],
     "category": [
-      "Concurrent", "System"
+      "Concurrent",
+      "System"
     ]
   }
 ]

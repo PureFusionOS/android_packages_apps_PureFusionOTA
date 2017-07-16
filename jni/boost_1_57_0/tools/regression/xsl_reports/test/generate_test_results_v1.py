@@ -1,9 +1,7 @@
+import os
 import xml.sax.saxutils
 
 import common
-
-import os
-import time
 
 num_of_libs = 2
 num_of_toolsets = 3
@@ -11,54 +9,58 @@ num_of_tests = 10
 
 tag = "1_30_0"
 
-def library_build_failed( library_idx ):
+
+def library_build_failed(library_idx):
     return library_idx % 2
 
-def make_test_results():
-    if not os.path.exists( tag ):
-        os.makedirs( tag )
-        
-    g = xml.sax.saxutils.XMLGenerator( open( os.path.join( tag, "test.xml" ), "w" ) )
-    platform = "Win32"
-    g.startElement( "test-results", {} )
 
-    for i_lib in range( 0, num_of_libs ):
-        for i_toolset in range( num_of_toolsets ):
-            if library_build_failed( i_lib ): test_result = "fail"
-            else:                             test_result = "success"
-            
-            common.make_test_log( xml_generator = g
-                                  , library_idx = i_lib
-                                  , toolset_idx = i_toolset 
-                                  , test_name = ""
-                                  , test_type = "lib"
-                                  , test_result = test_result
-                                  , show_run_output = "false" )
-            
-    
-    for i_lib in range( 0, num_of_libs ):
+def make_test_results():
+    if not os.path.exists(tag):
+        os.makedirs(tag)
+
+    g = xml.sax.saxutils.XMLGenerator(open(os.path.join(tag, "test.xml"), "w"))
+    platform = "Win32"
+    g.startElement("test-results", {})
+
+    for i_lib in range(0, num_of_libs):
+        for i_toolset in range(num_of_toolsets):
+            if library_build_failed(i_lib):
+                test_result = "fail"
+            else:
+                test_result = "success"
+
+            common.make_test_log(xml_generator=g
+                                 , library_idx=i_lib
+                                 , toolset_idx=i_toolset
+                                 , test_name=""
+                                 , test_type="lib"
+                                 , test_result=test_result
+                                 , show_run_output="false")
+
+    for i_lib in range(0, num_of_libs):
         library_name = "library_%02d" % i_lib
 
-        for i_toolset in range( num_of_toolsets ):
-            toolset_name = "toolset_%02d" % ( i_toolset )
+        for i_toolset in range(num_of_toolsets):
+            toolset_name = "toolset_%02d" % (i_toolset)
 
-            for i_test in range( num_of_tests ):
-                test_name = "test_%02d_%02d" % ( i_lib, i_test )
+            for i_test in range(num_of_tests):
+                test_name = "test_%02d_%02d" % (i_lib, i_test)
                 test_result = ""
                 test_type = "run"
                 show_run_output = "false"
 
-                if i_lib % 2:  test_result = "success"
-                else:             test_result = "fail"
+                if i_lib % 2:
+                    test_result = "success"
+                else:
+                    test_result = "fail"
 
-                if test_result == "success" and ( 0 == i_test % 5 ):
+                if test_result == "success" and (0 == i_test % 5):
                     show_run_output = "true"
 
-                common.make_test_log( g, i_lib, i_toolset, test_name, test_type, test_result, show_run_output )
+                common.make_test_log(g, i_lib, i_toolset, test_name, test_type, test_result,
+                                     show_run_output)
 
-    g.endElement( "test-results" )
-
-
+    g.endElement("test-results")
 
 
 ## <test-log library="algorithm" test-name="container" test-type="run" test-program="libs/algorithm/string/test/container_test.cpp" target-directory="bin/boost/libs/algorithm/string/test/container.test/borland-5.6.4/debug" toolset="borland-5.6.4" show-run-output="false">
@@ -79,7 +81,7 @@ def make_test_results():
 ## *** 6 errors in Compile ***
 ## </compile>
 ## </test-log>
-        
-    
-make_test_results( )
-common.make_expicit_failure_markup( num_of_libs, num_of_toolsets, num_of_tests  )
+
+
+make_test_results()
+common.make_expicit_failure_markup(num_of_libs, num_of_toolsets, num_of_tests)

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -19,17 +18,28 @@
 
     <string name="preferences_name">Impostazioni</string>
     <string name="twrp_ors_title">Abilita OpenRecoveryScript</string>
-    <string name="twrp_ors_summary">Funziona con recovery TWRP ed alcune versioni CWM non ufficiali</string>
-    <string name="twrp_ors_information">Consente a questa app di flashare il file da recovery senza nessuna interazione richiesta da parte dell\'utente. Toccato il pulsante Installa si attende la fine della procedura.</string>
+    <string name="twrp_ors_summary">Funziona con recovery TWRP ed alcune versioni CWM non
+        ufficiali
+    </string>
+    <string name="twrp_ors_information">Consente a questa app di flashare il file da recovery senza
+        nessuna interazione richiesta da parte dell\'utente. Toccato il pulsante Installa si attende
+        la fine della procedura.
+    </string>
     <string name="twrp_ors_delete_after">Elimina dopo l\'installazione</string>
-    <string name="twrp_ors_delete_after_summary">Lo script open recovery deve cancellare il file dopo l\'installazione?</string>
+    <string name="twrp_ors_delete_after_summary">Lo script open recovery deve cancellare il file
+        dopo l\'installazione?
+    </string>
     <string name="twrp_ors_install_prefs">Preferenze per l\'installazione</string>
-    <string name="twrp_ors_install_prefs_summary">Seleziona alcune preferenze per l\'installazione quando si utilizza lo script ORS</string>
+    <string name="twrp_ors_install_prefs_summary">Seleziona alcune preferenze per l\'installazione
+        quando si utilizza lo script ORS
+    </string>
     <string name="twrp_ors_wipe_data">Wipe Data</string>
     <string name="twrp_ors_wipe_cache">Wipe Cache</string>
     <string name="twrp_ors_wipe_dalvik">Wipe Dalvik</string>
     <string name="notifications_title">Notifiche</string>
-    <string name="background_service_summary">Controlla automaticamente per eventuali aggiornamenti e visualizza una notifica se questa è disponibile</string>
+    <string name="background_service_summary">Controlla automaticamente per eventuali aggiornamenti
+        e visualizza una notifica se questa è disponibile
+    </string>
     <string name="background_frequency">Tempistica di controllo</string>
     <string name="background_30mins">30 min</string>
     <string name="background_60mins">60 min</string>
@@ -54,7 +64,7 @@
     <string name="notifications_vibrate">Vibrazione</string>
     <string name="silent_ringtone">Silenzioso</string>
     <string name="notification_ignore_release_title">Ignora rilascio</string>
-    <string name="notification_ignoring_release">Versione attualmente ignorata: </string>
+    <string name="notification_ignoring_release">Versione attualmente ignorata:</string>
     <string name="notification_not_ignoring_release">Non stai ignorando nessun rilascio</string>
 
 </resources>

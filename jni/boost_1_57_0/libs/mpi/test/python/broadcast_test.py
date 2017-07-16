@@ -8,15 +8,17 @@
 
 import boost.parallel.mpi as mpi
 
+
 def broadcast_test(comm, value, kind, root):
     if comm.rank == root:
         print ("Broadcasting %s from root %d..." % (kind, root)),
-        
+
     got_value = mpi.broadcast(comm, value, root)
     assert got_value == value
     if comm.rank == root:
         print "OK."
     return
+
 
 broadcast_test(mpi.world, 17, 'integer', 0)
 broadcast_test(mpi.world, 17, 'integer', 1)
@@ -26,4 +28,3 @@ broadcast_test(mpi.world, ['Hello', 'MPI', 'Python', 'World'],
                'list of strings', 0)
 broadcast_test(mpi.world, ['Hello', 'MPI', 'Python', 'World'],
                'list of strings', 1)
-

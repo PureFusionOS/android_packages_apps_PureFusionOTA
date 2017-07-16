@@ -1,4 +1,3 @@
-
 import sourceforge
 from accept_args import *
 from char_translation_table import *

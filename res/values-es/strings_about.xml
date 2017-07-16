@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -17,11 +16,17 @@
 <resources>
 
     <string name="about_about_title">Acerca de</string>
-    <string name="about_about_summary">Esta	app nace de mi frustración tras utilizar otras apps que no funcionaban como yo quería. La desarrollé para mi ROM, pero pronto me di cuenta de que podría resultar interesante también para otros desarrolladores. Como resultado, la generalicé y escribí unas guías de implementación para uso de otros desarrolladores.</string>
+    <string name="about_about_summary">Esta app nace de mi frustración tras utilizar otras apps que
+        no funcionaban como yo quería. La desarrollé para mi ROM, pero pronto me di cuenta de que
+        podría resultar interesante también para otros desarrolladores. Como resultado, la
+        generalicé y escribí unas guías de implementación para uso de otros desarrolladores.
+    </string>
     <string name="about_credits_title">Créditos</string>
     <string name="about_credits_summary">Resumen de créditos</string>
     <string name="about_donate_title">Donar</string>
-    <string name="about_donate_summary">Si esta app te ha facilitado la vida, por favor considera realizar una donación al desarrollador de la app (Kryten2k35)</string>
+    <string name="about_donate_summary">Si esta app te ha facilitado la vida, por favor considera
+        realizar una donación al desarrollador de la app (Kryten2k35)
+    </string>
     <string name="about_donate_button_summary">Invitarme a una cerveza</string>
 
 </resources>

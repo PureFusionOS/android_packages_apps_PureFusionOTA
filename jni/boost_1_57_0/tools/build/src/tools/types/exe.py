@@ -4,8 +4,10 @@
 
 from b2.build import type
 
-def register ():
-    type.register_type ('EXE', ['exe'], None, ['NT', 'CYGWIN'])
-    type.register_type ('EXE', [], None, [])
 
-register ()
+def register():
+    type.register_type('EXE', ['exe'], None, ['NT', 'CYGWIN'])
+    type.register_type('EXE', [], None, [])
+
+
+register()

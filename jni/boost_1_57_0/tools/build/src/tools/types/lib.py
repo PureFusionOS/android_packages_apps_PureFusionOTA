@@ -65,7 +65,6 @@ type.set_generated_target_prefix('SHARED_LIB', ['<toolset>gcc', '<target-os>wind
 # And use 'cyg' on cygwin
 type.set_generated_target_prefix('SHARED_LIB', ['<target-os>cygwin'], 'cyg')
 
-
 type.set_generated_target_suffix('SHARED_LIB', ['<target-os>windows'], 'dll')
 type.set_generated_target_suffix('SHARED_LIB', ['<target-os>cygwin'], 'dll')
 type.set_generated_target_suffix('SHARED_LIB', ['<target-os>darwin'], 'dylib')

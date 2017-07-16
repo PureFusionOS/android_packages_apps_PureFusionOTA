@@ -7,9 +7,9 @@ from Exporter import Exporter
 from settings import *
 
 
-#==============================================================================
+# ==============================================================================
 # VarExporter
-#==============================================================================
+# ==============================================================================
 class VarExporter(Exporter):
     '''Exports a global variable.
     '''
@@ -17,11 +17,10 @@ class VarExporter(Exporter):
     def __init__(self, info):
         Exporter.__init__(self, info)
 
-
     def Export(self, codeunit, exported_names):
         if self.info.exclude: return
         decl = self.GetDeclaration(self.info.name)
-        if not decl.type.const: 
+        if not decl.type.const:
             msg = '---> Warning: The global variable "%s" is non-const:\n' \
                   '              changes in Python will not reflect in C++.'
             print msg % self.info.name
@@ -31,10 +30,8 @@ class VarExporter(Exporter):
         code += 'scope().attr("%s") = %s;\n' % (rename, self.info.name)
         codeunit.Write('module', code)
 
-
     def Order(self):
         return 0, self.info.name
-
 
     def Name(self):
         return self.info.name

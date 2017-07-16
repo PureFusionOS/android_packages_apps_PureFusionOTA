@@ -1,34 +1,41 @@
 <sect2 id="const_multi_array_ref">
-<title><literal>const_multi_array_ref</literal></title>
+    <title>
+        <literal>const_multi_array_ref</literal>
+    </title>
 
-<para>
-<literal>const_multi_array_ref</literal> is a multi-dimensional container
-adaptor.  It provides the MultiArray interface over any contiguous
-block of elements.  <literal>const_multi_array_ref</literal> exports the
-same interface as <literal>multi_array</literal>, with the exception
-of the constructors.
-</para>
+    <para>
+        <literal>const_multi_array_ref</literal>
+        is a multi-dimensional container
+        adaptor. It provides the MultiArray interface over any contiguous
+        block of elements.  <literal>const_multi_array_ref</literal> exports the
+        same interface as <literal>multi_array</literal>, with the exception
+        of the constructors.
+    </para>
 
 
-<formalpara>
-      <title>Model Of.</title>
-<para>
-<literal>const_multi_array_ref</literal> models
-<link linkend="MultiArray">MultiArray</link>,
-<ulink url="../../../libs/utility/CopyConstructible.html">CopyConstructible</ulink>.
-and depending on the element type, it may also model
-<ulink url="http://www.sgi.com/tech/stl/EqualityComparable.html">EqualityComparable</ulink> and <ulink url="http://www.sgi.com/tech/stl/LessThanComparable.html">LessThanComparable</ulink>. 
+    <formalpara>
+        <title>Model Of.</title>
+        <para>
+            <literal>const_multi_array_ref</literal>
+            models
+            <link linkend="MultiArray">MultiArray</link>,
+            <ulink url="../../../libs/utility/CopyConstructible.html">CopyConstructible</ulink>.
+            and depending on the element type, it may also model
+            <ulink url="http://www.sgi.com/tech/stl/EqualityComparable.html">EqualityComparable
+            </ulink>
+            and <ulink url="http://www.sgi.com/tech/stl/LessThanComparable.html">
+            LessThanComparable</ulink>.
 
-Detailed descriptions are provided here only for operations that are
-not described in the <literal>multi_array</literal> reference.
-</para>
-</formalpara>
+            Detailed descriptions are provided here only for operations that are
+            not described in the <literal>multi_array</literal> reference.
+        </para>
+    </formalpara>
 
-<formalpara>
-<title>Synopsis</title>
+    <formalpara>
+        <title>Synopsis</title>
 
-<programlisting>
-<![CDATA[
+        <programlisting>
+            <![CDATA[
 namespace boost {
 
 template <typename ValueType, 
@@ -113,78 +120,99 @@ public:
   void				reindex(index value);
 };
 ]]>
-</programlisting>
-</formalpara>
+        </programlisting>
+    </formalpara>
 
-<formalpara>
-<title>Constructors</title>
+    <formalpara>
+        <title>Constructors</title>
 
-<variablelist>
-<varlistentry>
-<term><programlisting>template &lt;typename ExtentList&gt;
-explicit const_multi_array_ref(TPtr data, 
-                     const ExtentList&amp; sizes,
-                     const storage_order&amp; store = c_storage_order());
-</programlisting></term>
-<listitem>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <programlisting>template &lt;typename ExtentList&gt; explicit
+                        const_multi_array_ref(TPtr data,
+                        const ExtentList&amp; sizes,
+                        const storage_order&amp; store = c_storage_order());
+                    </programlisting>
+                </term>
+                <listitem>
 
-<para>
-This constructs a <literal>const_multi_array_ref</literal> using the specified
-parameters.  <literal>sizes</literal> specifies the shape of the
-constructed <literal>const_multi_array_ref</literal>.  <literal>store</literal>
-specifies the storage order or layout in memory of the array
-dimensions.
-</para>
+                    <para>
+                        This constructs a <literal>const_multi_array_ref</literal> using the
+                        specified
+                        parameters.  <literal>sizes</literal> specifies the shape of the
+                        constructed <literal>const_multi_array_ref</literal>.
+                        <literal>store</literal>
+                        specifies the storage order or layout in memory of the array
+                        dimensions.
+                    </para>
 
-<formalpara><title><literal>ExtentList</literal> Requirements</title>
-<para>
-<literal>ExtentList</literal> must model <ulink url="../../utility/Collection.html">Collection</ulink>.
-</para>
-</formalpara>
+                    <formalpara>
+                        <title>
+                            <literal>ExtentList</literal>
+                            Requirements
+                        </title>
+                        <para>
+                            <literal>ExtentList</literal>
+                            must model <ulink url="../../utility/Collection.html">Collection</ulink>.
+                        </para>
+                    </formalpara>
 
-<formalpara><title>Preconditions</title>
-<para><literal>sizes.size() == NumDims;</literal></para>
-</formalpara>
+                    <formalpara>
+                        <title>Preconditions</title>
+                        <para>
+                            <literal>sizes.size() == NumDims;</literal>
+                        </para>
+                    </formalpara>
 
-</listitem>
-</varlistentry>
+                </listitem>
+            </varlistentry>
 
-<varlistentry>
-<term>
-<programlisting><![CDATA[explicit const_multi_array_ref(TPtr data,
+            <varlistentry>
+                <term>
+                    <programlisting><![CDATA[explicit const_multi_array_ref(TPtr data,
                      extent_gen::gen_type<NumDims>::type ranges,
                      const storage_order& store = c_storage_order());]]>
-</programlisting></term> 
-<listitem>
-<formalpara><title>Effects</title>
-<para>
-This constructs a <literal>const_multi_array_ref</literal> using the specified
-    parameters.  <literal>ranges</literal> specifies the shape and
-index bases of the constructed const_multi_array_ref. It is the result of 
-<literal>NumDims</literal> chained calls to 
-    <literal>extent_gen::operator[]</literal>. <literal>store</literal>
-specifies the storage order or layout in memory of the array
-dimensions. 
-</para>
-</formalpara>
-</listitem>
-</varlistentry> 
+                    </programlisting>
+                </term>
+                <listitem>
+                    <formalpara>
+                        <title>Effects</title>
+                        <para>
+                            This constructs a <literal>const_multi_array_ref</literal> using the
+                            specified
+                            parameters.  <literal>ranges</literal> specifies the shape and
+                            index bases of the constructed const_multi_array_ref. It is the result
+                            of
+                            <literal>NumDims</literal>
+                            chained calls to
+                            <literal>extent_gen::operator[]</literal>.
+                            <literal>store</literal>
+                            specifies the storage order or layout in memory of the array
+                            dimensions.
+                        </para>
+                    </formalpara>
+                </listitem>
+            </varlistentry>
 
 
-<varlistentry>
-<term><programlisting>
-<![CDATA[const_multi_array_ref(const const_multi_array_ref& x);]]>
-</programlisting></term>
-<listitem>
-<formalpara>
-<title>Effects</title>
-		  <para>This constructs a shallow copy of <literal>x</literal>.
-</para></formalpara>
-</listitem>
-</varlistentry>
+            <varlistentry>
+                <term>
+                    <programlisting>
+                        <![CDATA[const_multi_array_ref(const const_multi_array_ref& x);]]>
+                    </programlisting>
+                </term>
+                <listitem>
+                    <formalpara>
+                        <title>Effects</title>
+                        <para>This constructs a shallow copy of <literal>x</literal>.
+                        </para>
+                    </formalpara>
+                </listitem>
+            </varlistentry>
 
-</variablelist>
+        </variablelist>
 
-</formalpara>
+    </formalpara>
 
 </sect2>

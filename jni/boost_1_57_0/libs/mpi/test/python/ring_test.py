@@ -8,14 +8,15 @@
 
 import boost.parallel.mpi as mpi
 
+
 def ring_test(comm, value, kind, root):
     next_peer = (comm.rank + 1) % comm.size;
     prior_peer = (comm.rank + comm.size - 1) % comm.size;
-    
+
     if comm.rank == root:
         print ("Passing %s around a ring from root %d..." % (kind, root)),
         comm.send(next_peer, 0, value)
-        (other_value, stat) = comm.recv(return_status = True)
+        (other_value, stat) = comm.recv(return_status=True)
         assert value == other_value
         assert stat.source == prior_peer
         assert stat.tag == 0
@@ -30,10 +31,11 @@ def ring_test(comm, value, kind, root):
         print "OK"
     pass
 
+
 if mpi.world.size < 2:
     print "ERROR: ring_test.py must be executed with more than one process"
     mpi.world.abort(-1);
-    
+
 ring_test(mpi.world, 17, 'integers', 0)
 ring_test(mpi.world, 17, 'integers', 1)
 ring_test(mpi.world, 'Hello, World!', 'string', 0)

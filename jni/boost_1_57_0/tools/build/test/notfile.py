@@ -7,8 +7,9 @@
 
 # Basic tests for the 'notfile' rule.
 
-import BoostBuild
 import os
+
+import BoostBuild
 
 t = BoostBuild.Tester()
 

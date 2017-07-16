@@ -1,20 +1,20 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; Linux 2.2.19 i686) [Netscape]">
-   <meta name="Author" content="Herve Bronnimann">
-   <meta name="Description" content="Small library to propose minmax_element algorithm.">
-   <title>Boost minmax library synopsis</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; Linux 2.2.19 i686) [Netscape]">
+    <meta name="Author" content="Herve Bronnimann">
+    <meta name="Description" content="Small library to propose minmax_element algorithm.">
+    <title>Boost minmax library synopsis</title>
 </head>
 <body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
 
 <center>
-<h1>
-Minmax_element complete synopsis</h1></center>
+    <h1>
+        Minmax_element complete synopsis</h1></center>
 
 <h3>
-Synopsis of <tt>&lt;boost/algorithm/minmax.hpp></tt></h3>
+    Synopsis of <tt>&lt;boost/algorithm/minmax.hpp></tt></h3>
 
 <pre>#include &lt;boost/tuple/tuple.hpp>
 
@@ -32,7 +32,7 @@ namespace boost {
 </pre>
 
 <h3>
-Synopsis of <tt>&lt;boost/algorithm/minmax_element.hpp></tt></h3>
+    Synopsis of <tt>&lt;boost/algorithm/minmax_element.hpp></tt></h3>
 
 <pre>#include &lt;utility> //for std::pair
 
@@ -42,7 +42,8 @@ namespace boost {
   std::pair&lt;ForwardIterator,ForwardIterator>
   minmax_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   std::pair&lt;ForwardIterator,ForwardIterator>
   minmax_element(ForwardIterator first, ForwardIterator last,
                  BinaryPredicate comp);
@@ -52,28 +53,32 @@ namespace boost {
   template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>>
   ForwardIterator first_min_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   ForwardIterator first_min_element(ForwardIterator first, ForwardIterator last,
                                     BinaryPredicate comp);
 
   template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>>
   ForwardIterator last_min_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   ForwardIterator last_min_element(ForwardIterator first, ForwardIterator last,
                                    BinaryPredicate comp);
 
   template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>>
   ForwardIterator first_max_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   ForwardIterator first_max_element(ForwardIterator first, ForwardIterator last,
                                     BinaryPredicate comp);
 
   template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>>
   ForwardIterator last_max_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   ForwardIterator last_max_element(ForwardIterator first, ForwardIterator last,
                                    BinaryPredicate comp);
 
@@ -81,7 +86,8 @@ namespace boost {
   std::pair&lt;ForwardIterator,ForwardIterator>
   first_min_first_max_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   std::pair&lt;ForwardIterator,ForwardIterator>
   first_min_first_max_element(ForwardIterator first, ForwardIterator last,
                              BinaryPredicate comp);
@@ -90,7 +96,8 @@ namespace boost {
   std::pair&lt;ForwardIterator,ForwardIterator>
   first_min_last_max_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   std::pair&lt;ForwardIterator,ForwardIterator>
   first_min_last_max_element(ForwardIterator first, ForwardIterator last,
                              BinaryPredicate comp);
@@ -99,7 +106,8 @@ namespace boost {
   std::pair&lt;ForwardIterator,ForwardIterator>
   last_min_first_max_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   std::pair&lt;ForwardIterator,ForwardIterator>
   last_min_first_max_element(ForwardIterator first, ForwardIterator last,
                              BinaryPredicate comp);
@@ -108,7 +116,8 @@ namespace boost {
   std::pair&lt;ForwardIterator,ForwardIterator>
   last_min_last_max_element(ForwardIterator first, ForwardIterator last);
 
-  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
+  template &lt;class <a href="http://www.sgi.com/tech/stl/ForwardIterator.html">ForwardIterator</a>, class <a
+            href="http://www.sgi.com/tech/stl/BinaryPredicate.html">BinaryPredicate</a>>
   std::pair&lt;ForwardIterator,ForwardIterator>
   last_min_last_max_element(ForwardIterator first, ForwardIterator last,
                             BinaryPredicate comp);
@@ -118,10 +127,11 @@ namespace boost {
 <hr SIZE="6">
 <br>Last modified 2002-07-01
 <p><font face="Arial,Helvetica"><font size=-1>&copy; Copyright Herv&eacute;
-Br&ouml;nnimann, Polytechnic University, 2002--2004. 
-Use, modification, and distribution is subject to the Boost Software
-License, Version 1.0. (See accompanying file <a href="../../../../LICENSE_1_0.txt">License_1_0.txt</a> or copy at
-<a href="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a>)
+    Br&ouml;nnimann, Polytechnic University, 2002--2004.
+    Use, modification, and distribution is subject to the Boost Software
+    License, Version 1.0. (See accompanying file <a href="../../../../LICENSE_1_0.txt">License_1_0.txt</a>
+    or copy at
+    <a href="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a>)
 </font></font>
 </body>
 </html>

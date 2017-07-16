@@ -4,7 +4,9 @@
 
 from b2.build import type
 
-def register ():
-    type.register_type ('RSP', ['rsp'])
 
-register ()
+def register():
+    type.register_type('RSP', ['rsp'])
+
+
+register()

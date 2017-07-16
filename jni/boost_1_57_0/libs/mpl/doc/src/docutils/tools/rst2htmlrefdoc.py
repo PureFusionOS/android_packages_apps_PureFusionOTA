@@ -8,6 +8,7 @@
 
 
 import locale
+
 try:
     locale.setlocale(locale.LC_ALL, '')
 except:
@@ -15,7 +16,8 @@ except:
 
 from docutils.parsers.rst import directives
 from docutils.parsers.rst.directives import htmlrefdoc
-directives.register_directive( 'copyright', htmlrefdoc.LicenseAndCopyright )
+
+directives.register_directive('copyright', htmlrefdoc.LicenseAndCopyright)
 
 from docutils.core import publish_cmdline, default_description
 

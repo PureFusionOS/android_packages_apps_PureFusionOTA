@@ -5,8 +5,8 @@
 import unittest
 from _code_test import *
 
-class CodeTest(unittest.TestCase):
 
+class CodeTest(unittest.TestCase):
     def testIt(self):
         a = A()
         a.x = 12

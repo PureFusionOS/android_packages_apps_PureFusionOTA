@@ -5,8 +5,8 @@
 import unittest
 from _abstract_test import *
 
-class AbstractTest(unittest.TestCase):
 
+class AbstractTest(unittest.TestCase):
     def testIt(self):
         class C(A):
             def f(self):
@@ -19,7 +19,7 @@ class AbstractTest(unittest.TestCase):
         self.assertEqual(b.f(), 'B::f')
         self.assertEqual(call(b), 'B::f')
         self.assertEqual(c.f(), 'C::f')
-        self.assertEqual(call(c), 'C::f') 
+        self.assertEqual(call(c), 'C::f')
 
 
 if __name__ == '__main__':

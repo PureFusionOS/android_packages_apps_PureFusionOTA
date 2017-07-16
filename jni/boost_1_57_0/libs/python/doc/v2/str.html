@@ -4,83 +4,84 @@
 <!-- Software License, Version 1.0. (See accompanying -->
 <!-- file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt) -->
 <html>
-  <head>
+<head>
     <meta name="generator" content=
-    "HTML Tidy for Windows (vers 1st August 2002), see www.w3.org">
+            "HTML Tidy for Windows (vers 1st August 2002), see www.w3.org">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <link rel="stylesheet" type="text/css" href="../boost.css">
 
     <title>Boost.Python - &lt;boost/python/str.hpp&gt;</title>
-  </head>
+</head>
 
-  <body>
-    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
-    "header">
-      <tr>
+<body>
+<table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+        "header">
+    <tr>
         <td valign="top" width="300">
-          <h3><a href="../../../../index.htm"><img height="86" width="277"
-          alt="C++ Boost" src="../../../../boost.png" border="0"></a></h3>
+            <h3><a href="../../../../index.htm"><img height="86" width="277"
+                                                     alt="C++ Boost" src="../../../../boost.png"
+                                                     border="0"></a></h3>
         </td>
 
         <td valign="top">
-          <h1 align="center"><a href="../index.html">Boost.Python</a></h1>
+            <h1 align="center"><a href="../index.html">Boost.Python</a></h1>
 
-          <h2 align="center">Header &lt;boost/python/str.hpp&gt;</h2>
+            <h2 align="center">Header &lt;boost/python/str.hpp&gt;</h2>
         </td>
-      </tr>
-    </table>
-    <hr>
+    </tr>
+</table>
+<hr>
 
-    <h2>Contents</h2>
+<h2>Contents</h2>
 
-    <dl class="page-index">
-      <dt><a href="#introduction">Introduction</a></dt>
+<dl class="page-index">
+    <dt><a href="#introduction">Introduction</a></dt>
 
-      <dt><a href="#classes">Classes</a></dt>
+    <dt><a href="#classes">Classes</a></dt>
 
-      <dd>
+    <dd>
         <dl class="page-index">
-          <dt><a href="#str-spec">Class <code>str</code></a></dt>
+            <dt><a href="#str-spec">Class <code>str</code></a></dt>
 
-          <dd>
-            <dl class="page-index">
-              <dt><a href="#str-spec-synopsis">Class <code>str</code>
-              synopsis</a></dt>
-            </dl>
-          </dd>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#str-spec-synopsis">Class <code>str</code>
+                        synopsis</a></dt>
+                </dl>
+            </dd>
         </dl>
-      </dd>
+    </dd>
 
-      <dt><a href="#examples">Example(s)</a></dt>
-    </dl>
-    <hr>
+    <dt><a href="#examples">Example(s)</a></dt>
+</dl>
+<hr>
 
-    <h2><a name="introduction"></a>Introduction</h2>
+<h2><a name="introduction"></a>Introduction</h2>
 
-    <p>Exposes a <a href=
-    "ObjectWrapper.html#TypeWrapper-concept">TypeWrapper</a> for the Python
+<p>Exposes a <a href=
+                        "ObjectWrapper.html#TypeWrapper-concept">TypeWrapper</a> for the Python
     <a href=
-    "http://www.python.org/dev/doc/devel/lib/string-methods.html">str</a>
+               "http://www.python.org/dev/doc/devel/lib/string-methods.html">str</a>
     type.</p>
 
-    <h2><a name="classes"></a>Classes</h2>
+<h2><a name="classes"></a>Classes</h2>
 
-    <h3><a name="str-spec"></a>Class <code>str</code></h3>
+<h3><a name="str-spec"></a>Class <code>str</code></h3>
 
-    <p>Exposes the <a href=
-    "http://www.python.org/dev/doc/devel/lib/string-methods.html">string
+<p>Exposes the <a href=
+                          "http://www.python.org/dev/doc/devel/lib/string-methods.html">string
     methods</a> of Python's built-in <code>str</code> type. The
     semantics of the constructors and member functions defined below,
     except for the two-argument constructors which construct str
     objects from a range of characters, can be fully understood by
     reading the <a href=
-    "ObjectWrapper.html#TypeWrapper-concept">TypeWrapper</a> concept
+                           "ObjectWrapper.html#TypeWrapper-concept">TypeWrapper</a> concept
     definition. Since <code>str</code> is publicly derived from
     <code><a href="object.html#object-spec">object</a></code>, the
     public object interface applies to <code>str</code> instances as
     well.</p>
 
-    <h4><a name="str-spec-synopsis"></a>Class <code>str</code>
+<h4><a name="str-spec-synopsis"></a>Class <code>str</code>
     synopsis</h4>
 <pre>
 namespace boost { namespace python
@@ -219,7 +220,7 @@ namespace boost { namespace python
 }}
 </pre>
 
-    <h2><a name="examples"></a>Example</h2>
+<h2><a name="examples"></a>Example</h2>
 <pre>
 using namespace boost::python;
 str remove_angle_brackets(str x)
@@ -228,10 +229,11 @@ str remove_angle_brackets(str x)
 }
 </pre>
 
-    <p>Revised 3 October, 2002</p>
+<p>Revised 3 October, 2002</p>
 
-    <p><i>&copy; Copyright <a href=
-    "http://www.boost.org/people/dave_abrahams.htm">Dave Abrahams</a> 2002.</i></p>
-  </body>
+<p><i>&copy; Copyright <a href=
+                                  "http://www.boost.org/people/dave_abrahams.htm">Dave Abrahams</a>
+    2002.</i></p>
+</body>
 </html>
 

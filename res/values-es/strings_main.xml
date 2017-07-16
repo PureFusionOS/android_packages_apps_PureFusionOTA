@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -38,9 +37,13 @@
 
     <!-- Dialogs -->
     <string name="main_not_compatible_title">No compatible</string>
-    <string name="main_not_compatible_message">Esta ROM no es compatible con PureFusion OTA. Por favor contacte con su desarrollador para más información</string>
+    <string name="main_not_compatible_message">Esta ROM no es compatible con PureFusion OTA. Por
+        favor contacte con su desarrollador para más información
+    </string>
     <string name="main_not_connected_title">No conectado</string>
-    <string name="main_not_connected_message">No está conectado a ninguna red. Por favor habilite su red o WiFi e inténtelo de nuevo.</string>
+    <string name="main_not_connected_message">No está conectado a ninguna red. Por favor habilite su
+        red o WiFi e inténtelo de nuevo.
+    </string>
 
     <!-- Content Descriptions -->
     <string name="main_button_icon">Icono del botón</string>

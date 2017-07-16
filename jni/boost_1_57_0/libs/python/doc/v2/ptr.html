@@ -1,84 +1,88 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-    <meta name="generator" content="HTML Tidy, see www.w3.org">
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <link rel="stylesheet" type="text/css" href="../boost.css">
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../boost.css">
 
-    <title>Boost.Python - &lt;boost/python/ptr.hpp&gt;</title>
+<title>Boost.Python - &lt;boost/python/ptr.hpp&gt;</title>
 
-    <table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
-    "header">
-      <tr>
+<table border="0" cellpadding="7" cellspacing="0" width="100%" summary=
+        "header">
+    <tr>
         <td valign="top" width="300">
-          <h3><a href="../../../../index.htm"><img height="86" width="277" alt=
-          "C++ Boost" src="../../../../boost.png" border="0"></a></h3>
+            <h3><a href="../../../../index.htm"><img height="86" width="277" alt=
+                    "C++ Boost" src="../../../../boost.png" border="0"></a></h3>
 
         <td valign="top">
-          <h1 align="center"><a href="../index.html">Boost.Python</a></h1>
+            <h1 align="center"><a href="../index.html">Boost.Python</a></h1>
 
-          <h2 align="center">Header &lt;boost/python/ptr.hpp&gt;</h2>
-    </table>
-    <hr>
+            <h2 align="center">Header &lt;boost/python/ptr.hpp&gt;</h2>
+</table>
+<hr>
 
-    <h2>Contents</h2>
+<h2>Contents</h2>
 
-    <dl class="page-index">
-      <dt><a href="#introduction">Introduction</a>
+<dl class="page-index">
+    <dt><a href="#introduction">Introduction</a>
 
-      <dt><a href="#functions">Functions</a>
-      <dd>
+    <dt><a href="#functions">Functions</a>
+    <dd>
         <dl class="page-index">
-          <dt><a href="#ptr-spec">ptr</a>
+            <dt><a href="#ptr-spec">ptr</a>
         </dl>
 
-      <dt><a href="#classes">Classes</a>
-      <dd>
+    <dt><a href="#classes">Classes</a>
+    <dd>
         <dl class="page-index">
-          <dt><a href="#pointer_wrapper-spec">Class template <code>pointer_wrapper</code></a>
+            <dt><a href="#pointer_wrapper-spec">Class template <code>pointer_wrapper</code></a>
 
-          <dd>
-            <dl class="page-index">
-              <dt><a href="#pointer_wrapper-spec-synopsis">Class template <code>pointer_wrapper</code> synopsis</a>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#pointer_wrapper-spec-synopsis">Class template <code>pointer_wrapper</code>
+                        synopsis</a>
 
-              <dt><a href="#pointer_wrapper-spec-types">Class
-              <code>pointer_wrapper</code> types</a>
+                    <dt><a href="#pointer_wrapper-spec-types">Class
+                        <code>pointer_wrapper</code> types</a>
 
-              <dt><a href="#pointer_wrapper-spec-ctors">Class
-              <code>pointer_wrapper</code> constructors and destructor</a>
+                    <dt><a href="#pointer_wrapper-spec-ctors">Class
+                        <code>pointer_wrapper</code> constructors and destructor</a>
 
-              <dt><a href="#pointer_wrapper-spec-observers">Class
-              <code>pointer_wrapper</code> observer functions</a>
+                    <dt><a href="#pointer_wrapper-spec-observers">Class
+                        <code>pointer_wrapper</code> observer functions</a>
 
-            </dl>
-         </dl>
+                </dl>
+        </dl>
 
-      <dt><a href="#metafunctions">Metafunctions</a>
-      <dd>
+    <dt><a href="#metafunctions">Metafunctions</a>
+    <dd>
         <dl class="page-index">
-          <dt><a href="#is_pointer_wrapper-spec">Class template <code>is_pointer_wrapper</code></a>
+            <dt><a href="#is_pointer_wrapper-spec">Class template
+                <code>is_pointer_wrapper</code></a>
 
-          <dd>
-            <dl class="page-index">
-              <dt><a href="#is_pointer_wrapper-spec-synopsis">Class template <code>is_pointer_wrapper</code> synopsis</a>
-            </dl>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#is_pointer_wrapper-spec-synopsis">Class template <code>is_pointer_wrapper</code>
+                        synopsis</a>
+                </dl>
 
 
-          <dt><a href="#unwrap_pointer-spec">Class template <code>unwrap_pointer</code></a>
+            <dt><a href="#unwrap_pointer-spec">Class template <code>unwrap_pointer</code></a>
 
-          <dd>
-            <dl class="page-index">
-              <dt><a href="#unwrap_pointer-spec-synopsis">Class template <code>unwrap_pointer</code> synopsis</a>
-            </dl>
+            <dd>
+                <dl class="page-index">
+                    <dt><a href="#unwrap_pointer-spec-synopsis">Class template
+                        <code>unwrap_pointer</code> synopsis</a>
+                </dl>
 
         </dl>
 
 
-      <dt><a href="#examples">Example(s)</a>
-    </dl>
-    <hr>
+    <dt><a href="#examples">Example(s)</a>
+</dl>
+<hr>
 
-    <h2><a name="introduction"></a>Introduction</h2>
+<h2><a name="introduction"></a>Introduction</h2>
 
-    <p><code>&lt;boost/python/ptr.hpp&gt;</code> defines the
+<p><code>&lt;boost/python/ptr.hpp&gt;</code> defines the
     <code>ptr()</code> function template, which allows users to
     specify how to convert C++ pointer values to python in the context
     of implementing overridable virtual functions, invoking Python
@@ -92,40 +96,40 @@
     of <a href="../../../bind/ref.html"><code>boost::ref()</code></a>,
     which can be similarly used to prevent copying of referents.
 
-    <p><code>ptr(p)</code> returns an instance of <code><a
-    href="#pointer_wrapper-spec">pointer_wrapper&lt;&gt;</a></code>, which
+<p><code>ptr(p)</code> returns an instance of <code><a
+        href="#pointer_wrapper-spec">pointer_wrapper&lt;&gt;</a></code>, which
     can be detected using the <code><a
-    href="#is_pointer_wrapper-spec">is_pointer_wrapper&lt;&gt;</a></code>
+            href="#is_pointer_wrapper-spec">is_pointer_wrapper&lt;&gt;</a></code>
     metafunction; <code><a
-    href="#unwrap_pointer-spec">unwrap_pointer&lt;&gt;</a></code> is a
+            href="#unwrap_pointer-spec">unwrap_pointer&lt;&gt;</a></code> is a
     metafunction which extracts the original pointer type from a
     <code>pointer_wrapper&lt;&gt;</code>. These classes can be thought
     of as implementation details.
 
-    <h2><a name="functions"></a>Functions</h2>
+<h2><a name="functions"></a>Functions</h2>
 <pre>
 
 <a name="ptr-spec">template &lt;class T&gt;</a>
 pointer_wrapper&lt;T&gt; ptr(T x);
 </pre>
 
-    <dl class="ptr-semantics">
-      <dt><b>Requires:</b> <code>T</code> is a pointer type.
+<dl class="ptr-semantics">
+    <dt><b>Requires:</b> <code>T</code> is a pointer type.
 
-      <dt><b>Returns:</b> <code><a href="#pointer_wrapper-spec">pointer_wrapper</a>&lt;T&gt;(x)</code>
+    <dt><b>Returns:</b> <code><a href="#pointer_wrapper-spec">pointer_wrapper</a>&lt;T&gt;(x)</code>
 
-      <dt><b>Throws:</b> nothing.
-    </dl>
+    <dt><b>Throws:</b> nothing.
+</dl>
 
-    <h2><a name="classes"></a>Classes</h2>
+<h2><a name="classes"></a>Classes</h2>
 
-    <h3><a name="pointer_wrapper-spec"></a>Class template <code>pointer_wrapper</code></h3>
+<h3><a name="pointer_wrapper-spec"></a>Class template <code>pointer_wrapper</code></h3>
 
-    <p>A &quot;type envelope&quot; which is returned by <a
-    href="#ptr-spec">ptr()</a>, used to indicate reference semantics
+<p>A &quot;type envelope&quot; which is returned by <a
+        href="#ptr-spec">ptr()</a>, used to indicate reference semantics
     for pointers passed to Python callbacks.
 
-    <h4><a name="pointer_wrapper-spec-synopsis"></a>Class
+<h4><a name="pointer_wrapper-spec-synopsis"></a>Class
     <code>pointer_wrapper</code> synopsis</h4>
 <pre>
 namespace boost { namespace python
@@ -142,47 +146,50 @@ namespace boost { namespace python
 }}
 </pre>
 
-    <h4><a name="pointer_wrapper-spec-types"></a>Class template <code>pointer_wrapper</code> types</h4>
+<h4><a name="pointer_wrapper-spec-types"></a>Class template <code>pointer_wrapper</code> types</h4>
 <pre>
 typedef Ptr type;
 </pre>
 The type of the pointer being wrapped.
 
-    <h4><a name="pointer_wrapper-spec-ctors"></a>Class template <code>pointer_wrapper</code> constructors and
+<h4><a name="pointer_wrapper-spec-ctors"></a>Class template <code>pointer_wrapper</code>
+    constructors and
     destructor</h4>
 <pre>
 explicit pointer_wrapper(Ptr x);
 </pre>
 
-    <dl class="function-semantics">
-      <dt><b>Requires:</b> <code>Ptr</code> is a pointer type.
+<dl class="function-semantics">
+    <dt><b>Requires:</b> <code>Ptr</code> is a pointer type.
 
-      <dt><b>Effects:</b> Stores <code>x</code> in a the <code>pointer_wrapper&lt;&gt;</code>.
-      <dt><b>Throws:</b> nothing.
-    </dl>
+    <dt><b>Effects:</b> Stores <code>x</code> in a the <code>pointer_wrapper&lt;&gt;</code>.
+    <dt><b>Throws:</b> nothing.
+</dl>
 
-    <h4><a name="pointer_wrapper-spec-observers"></a>Class template <code>pointer_wrapper</code> observer
+<h4><a name="pointer_wrapper-spec-observers"></a>Class template <code>pointer_wrapper</code>
+    observer
     functions</h4>
 <pre>
 operator Ptr() const;
 Ptr get() const;
 </pre>
 
-    <dl class="function-semantics">
-      <dt><b>Returns:</b> a copy of the stored pointer.
-      <dt><b>Rationale:</b> <code>pointer_wrapper</code> is intended
-      to be a stand-in for the actual pointer type, but sometimes it's
-      better to have an explicit way to retrieve the pointer.
-    </dl>
+<dl class="function-semantics">
+    <dt><b>Returns:</b> a copy of the stored pointer.
+    <dt><b>Rationale:</b> <code>pointer_wrapper</code> is intended
+        to be a stand-in for the actual pointer type, but sometimes it's
+        better to have an explicit way to retrieve the pointer.
+</dl>
 
-    <h2><a name="metafunctions"></a>Metafunctions</h2>
+<h2><a name="metafunctions"></a>Metafunctions</h2>
 
-    <h3><a name="is_pointer_wrapper-spec"></a>Class template <code>is_pointer_wrapper</code></h3>
+<h3><a name="is_pointer_wrapper-spec"></a>Class template <code>is_pointer_wrapper</code></h3>
 
-    <p>A unary metafunction whose <code>value</code> is true iff its
+<p>A unary metafunction whose <code>value</code> is true iff its
     argument is a <code>pointer_wrapper&lt;&gt;</code>.
 
-    <h4><a name="is_pointer_wrapper-spec-synopsis"></a>Class template <code>is_pointer_wrapper</code> synopsis</h4>
+<h4><a name="is_pointer_wrapper-spec-synopsis"></a>Class template <code>is_pointer_wrapper</code>
+    synopsis</h4>
 <pre>
 namespace boost { namespace python
 {
@@ -194,21 +201,22 @@ namespace boost { namespace python
 </pre>
 
 
-    <dl class="metafunction-semantics">
-      <dt><b>Returns:</b> <code>true</code> iff <code>T</code> is a
-      specialization of
-<code>pointer_wrapper&lt;&gt;</code>.
-<dt><code>value</code> is an integral constant convertible to bool of
-unspecified type
+<dl class="metafunction-semantics">
+    <dt><b>Returns:</b> <code>true</code> iff <code>T</code> is a
+        specialization of
+        <code>pointer_wrapper&lt;&gt;</code>.
+    <dt><code>value</code> is an integral constant convertible to bool of
+        unspecified type
 
-    </dl>
+</dl>
 
 <h3><a name="unwrap_pointer-spec"></a>Class template <code>unwrap_pointer</code></h3>
 
 A unary metafunction which extracts the wrapped pointer type from a
 specialization of <code>pointer_wrapper&lt;&gt;</code>.
 
-    <h4><a name="unwrap_pointer-spec-synopsis"></a>Class template <code>unwrap_pointer</code> synopsis</h4>
+<h4><a name="unwrap_pointer-spec-synopsis"></a>Class template <code>unwrap_pointer</code> synopsis
+</h4>
 <pre>
 namespace boost { namespace python
 {
@@ -219,14 +227,14 @@ namespace boost { namespace python
 }}
 </pre>
 
-    <dl class="metafunction-semantics">
-      <dt><b>Returns:</b> <code>T::type</code> if <code>T</code> is a
-      specialization of
-<code>pointer_wrapper&lt;&gt;</code>, <code>T</code> otherwise
-    </dl>
+<dl class="metafunction-semantics">
+    <dt><b>Returns:</b> <code>T::type</code> if <code>T</code> is a
+        specialization of
+        <code>pointer_wrapper&lt;&gt;</code>, <code>T</code> otherwise
+</dl>
 
 
-    <h2><a name="examples"></a>Example(s)</h2>
+<h2><a name="examples"></a>Example(s)</h2>
 
 This example illustrates the use of <code>ptr()</code> to prevent an
 object from being copied:
@@ -252,14 +260,14 @@ void pass_as_arg(expensive_to_copy* x, PyObject* f)
 ...
 </pre>
 
-    <p>Revised 
+<p>Revised
     <!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%d %B, %Y" startspan -->
-  13 November, 2002
-  <!--webbot bot="Timestamp" endspan i-checksum="39359" -->
+    13 November, 2002
+    <!--webbot bot="Timestamp" endspan i-checksum="39359" -->
 
 
-    <p><i>&copy; Copyright <a href="http://www.boost.org/people/dave_abrahams.htm">Dave
+<p><i>&copy; Copyright <a href="http://www.boost.org/people/dave_abrahams.htm">Dave
     Abrahams</a> 2002. </i> Distributed
-  under the Boost Software License, Version 1.0. (See accompanying file
-  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)</p>
+    under the Boost Software License, Version 1.0. (See accompanying file
+    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)</p>
 

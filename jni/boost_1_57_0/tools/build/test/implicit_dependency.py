@@ -40,7 +40,6 @@ t.write("hello.cpp", """
 int main() { return i; }
 """)
 
-
 t.run_build_system()
 
 t.expect_addition("bin/$toolset/debug/hello.exe")

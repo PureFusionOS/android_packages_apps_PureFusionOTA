@@ -19,13 +19,15 @@ def all_reduce_test(comm, generator, kind, op, op_kind):
     expected_result = generator(0);
     for p in range(1, comm.size):
         expected_result = op(expected_result, generator(p))
-        
+
     assert result == expected_result
     if comm.rank == 0:
         print "OK."
     return
 
-all_reduce_test(mpi.world, int_generator, "integers", lambda x,y:x + y, "sum")
-all_reduce_test(mpi.world, int_generator, "integers", lambda x,y:x * y, "product")
-all_reduce_test(mpi.world, string_generator, "strings", lambda x,y:x + y, "concatenation")
-all_reduce_test(mpi.world, string_list_generator, "list of strings", lambda x,y:x + y, "concatenation")
+
+all_reduce_test(mpi.world, int_generator, "integers", lambda x, y: x + y, "sum")
+all_reduce_test(mpi.world, int_generator, "integers", lambda x, y: x * y, "product")
+all_reduce_test(mpi.world, string_generator, "strings", lambda x, y: x + y, "concatenation")
+all_reduce_test(mpi.world, string_list_generator, "list of strings", lambda x, y: x + y,
+                "concatenation")

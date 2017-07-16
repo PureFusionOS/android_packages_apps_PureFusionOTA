@@ -50,7 +50,7 @@ def test_raw_empty():
     whitespace_out = whitespace_in.replace("\r\n", "\n").replace("\n", "\r\n")
 
     t = BoostBuild.Tester(["-d2", "-d+4"], pass_d0=False, pass_toolset=0,
-        use_test_config=False)
+                          use_test_config=False)
     t.write("file.jam", """\
 actions do_empty {%s}
 JAMSHELL = %% ;
@@ -61,14 +61,14 @@ do_empty all ;
     t.expect_output_lines("Executing raw command directly", False)
     if "\r\n%s\r\n" % whitespace_out not in t.stdout():
         BoostBuild.annotation("failure", "Whitespace action content not found "
-            "on stdout.")
+                                         "on stdout.")
         t.fail_test(1, dump_difference=False)
     t.cleanup()
 
 
 def test_raw_nt(n=None, error=False):
     t = BoostBuild.Tester(["-d1", "-d+4"], pass_d0=False, pass_toolset=0,
-        use_test_config=False)
+                          use_test_config=False)
 
     cmd_prefix = "%s -c \"print('XXX: " % executable
     cmd_suffix = "')\""
@@ -87,7 +87,7 @@ too short for the current test configuration.
 """ % (n, cmd_extra_length))
         t.fail_test(1, dump_difference=False)
 
-    #   Each $(Xx10-1) variable contains X words of 9 characters each, which,
+    # Each $(Xx10-1) variable contains X words of 9 characters each, which,
     # including spaces between words, brings the total number of characters in
     # its string representation to X * 10 - 1 (X * 9 characters + (X - 1)
     # spaces).
@@ -114,7 +114,7 @@ do_echo all ;
     if error:
         t.expect_output_lines("Executing raw command directly", False)
         t.expect_output_lines("do_echo action is too long (%d, max 32766):" % n
-            )
+                              )
         t.expect_output_lines("XXX: *", False)
     else:
         t.expect_output_lines("Executing raw command directly")
@@ -123,7 +123,7 @@ do_echo all ;
         m = re.search("^XXX: (.*)$", t.stdout(), re.MULTILINE)
         if not m:
             BoostBuild.annotation("failure", "Expected output line starting "
-                "with 'XXX: ' not found.")
+                                             "with 'XXX: ' not found.")
             t.fail_test(1, dump_difference=False)
         if len(m.group(1)) != data_length:
             BoostBuild.annotation("failure", """Unexpected output data length.
@@ -136,7 +136,7 @@ do_echo all ;
 
 def test_raw_to_shell_fallback_nt():
     t = BoostBuild.Tester(["-d1", "-d+4"], pass_d0=False, pass_toolset=0,
-        use_test_config=False)
+                          use_test_config=False)
 
     cmd_prefix = '%s -c print(' % executable
     cmd_suffix = ')'
@@ -158,7 +158,7 @@ do_multiline all ;
     t.expect_output_lines("two")
     t.expect_output_lines("Executing raw command directly", False)
     t.expect_output_lines("Executing using a command file and the shell: "
-        "cmd.exe /Q/C")
+                          "cmd.exe /Q/C")
 
     t.write("file_redirect.jam", """\
 actions do_redirect { echo one > two.txt }
@@ -170,7 +170,7 @@ do_redirect all ;
     t.expect_output_lines("one", False)
     t.expect_output_lines("Executing raw command directly", False)
     t.expect_output_lines("Executing using a command file and the shell: "
-        "cmd.exe /Q/C")
+                          "cmd.exe /Q/C")
     t.expect_addition("two.txt")
 
     t.write("file_pipe.jam", """\
@@ -187,7 +187,7 @@ do_pipe all ;
     t.expect_output_lines("two")
     t.expect_output_lines("Executing raw command directly", False)
     t.expect_output_lines("Executing using a command file and the shell: "
-        "cmd.exe /Q/C")
+                          "cmd.exe /Q/C")
 
     t.write("file_single_quoted.jam", """\
 actions do_single_quoted { %s'5>10'%s }
@@ -199,7 +199,7 @@ do_single_quoted all ;
     t.expect_output_lines("5>10")
     t.expect_output_lines("Executing raw command directly")
     t.expect_output_lines("Executing using a command file and the shell: "
-        "cmd.exe /Q/C", False)
+                          "cmd.exe /Q/C", False)
     t.expect_nothing_more()
 
     t.write("file_double_quoted.jam", """\
@@ -215,7 +215,7 @@ do_double_quoted all ;
     t.expect_output_lines("False")
     t.expect_output_lines("Executing raw command directly")
     t.expect_output_lines("Executing using a command file and the shell: "
-        "cmd.exe /Q/C", False)
+                          "cmd.exe /Q/C", False)
     t.expect_nothing_more()
 
     t.write("file_escaped_quote.jam", """\
@@ -228,7 +228,7 @@ do_escaped_quote all ;
     t.expect_output_lines("5>10")
     t.expect_output_lines("Executing raw command directly", False)
     t.expect_output_lines("Executing using a command file and the shell: "
-        "cmd.exe /Q/C")
+                          "cmd.exe /Q/C")
     t.expect_nothing_more()
 
     t.cleanup()

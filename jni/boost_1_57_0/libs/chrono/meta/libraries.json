@@ -10,11 +10,13 @@
     "maintainers": [
       "Vicente J. Botet Escriba <vicente.botet -at- wanadoo.fr>"
     ],
-    "description":
-      "Useful time utilities. C++11.",
-    "std": [ "proposal" ],    
+    "description": "Useful time utilities. C++11.",
+    "std": [
+      "proposal"
+    ],
     "category": [
-      "Domain", "System"
+      "Domain",
+      "System"
     ]
   },
   {
@@ -26,8 +28,7 @@
     "maintainers": [
       "Vicente J. Botet Escriba <vicente.botet -at- wanadoo.fr>"
     ],
-    "description":
-      "Useful stopclocks and stopwatches utilities.",
+    "description": "Useful stopclocks and stopwatches utilities.",
     "documentation": "stopwatches/",
     "category": [
       "Domain"

@@ -9,26 +9,35 @@
 
 <!-- Begin Banner -->
 
-    <H1 CLASS="title">Class Template <CODE>back_insert_device</CODE></H1>
-    <HR CLASS="banner">
+<H1 CLASS="title">Class Template <CODE>back_insert_device</CODE></H1>
+<HR CLASS="banner">
 
 <!-- End Banner -->
 
 <DL class="page-index">
-  <DT><A href="#description">Description</A></DT>
-  <DT><A href="#headers">Headers</A></DT>
-  <DT><A href="#synopsis">Synopsis</A></DT>
+    <DT><A href="#description">Description</A></DT>
+    <DT><A href="#headers">Headers</A></DT>
+    <DT><A href="#synopsis">Synopsis</A></DT>
 </DL>
 
 <A NAME="description"></A>
 <H2>Description</H2>
 
 <P>
-    The header <A CLASS="header" HREF="../../../../boost/iostreams/device/back_inserter.hpp"><CODE>&lt;boost/iostreams/device/back_inserter.hpp&gt;</CODE></A> contains the definition of the class template <CODE>back_insert_device</CODE> &#8212; implementing a <A HREF="../concepts/sink.html">Sink</A> which appends to a standard library sequence container &#8212; as well as the definition of a corresponding object generator, the function template <CODE>boost::iostreams::back_inserter</CODE>.
+    The header <A CLASS="header" HREF="../../../../boost/iostreams/device/back_inserter.hpp"><CODE>&lt;boost/iostreams/device/back_inserter.hpp&gt;</CODE></A>
+    contains the definition of the class template <CODE>back_insert_device</CODE> &#8212;
+    implementing a <A HREF="../concepts/sink.html">Sink</A> which appends to a standard library
+    sequence container &#8212; as well as the definition of a corresponding object generator, the
+    function template <CODE>boost::iostreams::back_inserter</CODE>.
 </P>
 
 <P>
-    The Iostream Library allows OutputIterators to be used in many places where <A HREF="../concepts/sink.html">Sinks</A> are allowed. However, using <CODE>boost::iostreams::back_inserter</CODE> my be somewhat more efficient than using <CODE>std::back_inserter</CODE>, since the former uses the function <CODE>insert</CODE> to append a sequence of characters in one operation. Furthermore, <CODE>std::back_insert_iterator</CODE> is not strictly a model of <A HREF="../concepts/sink.html">Sink</A>, so one can write
+    The Iostream Library allows OutputIterators to be used in many places where <A
+        HREF="../concepts/sink.html">Sinks</A> are allowed. However, using <CODE>boost::iostreams::back_inserter</CODE>
+    my be somewhat more efficient than using <CODE>std::back_inserter</CODE>, since the former uses
+    the function <CODE>insert</CODE> to append a sequence of characters in one operation.
+    Furthermore, <CODE>std::back_insert_iterator</CODE> is not strictly a model of <A
+        HREF="../concepts/sink.html">Sink</A>, so one can write
 </P>
 
 <PRE CLASS="broken_ie"><SPAN CLASS="keyword">namespace</SPAN> io = boost::iostreams;
@@ -43,7 +52,8 @@
 <H2>Headers</H2>
 
 <DL>
-  <DT><A CLASS="header" HREF="../../../../boost/iostreams/device/back_inserter.hpp"><CODE>&lt;boost/iostreams/device/back_inserter.hpp&gt;</CODE></A></DT>
+    <DT><A CLASS="header" HREF="../../../../boost/iostreams/device/back_inserter.hpp"><CODE>&lt;boost/iostreams/device/back_inserter.hpp&gt;</CODE></A>
+    </DT>
 </DL>
 
 <A NAME="synopsis"></A>
@@ -51,7 +61,8 @@
 
 <PRE CLASS="broken_ie"><SPAN CLASS="keyword">namespace</SPAN> boost { <SPAN CLASS="keyword">namespace</SPAN> iostreams {
 
-<SPAN CLASS="keyword">template</SPAN>&lt;<SPAN CLASS="keyword">typename</SPAN> <A HREF="#back_insert_device_template_params" CLASS="documented">Container</A>&gt;
+<SPAN CLASS="keyword">template</SPAN>&lt;<SPAN CLASS="keyword">typename</SPAN> <A
+            HREF="#back_insert_device_template_params" CLASS="documented">Container</A>&gt;
 <SPAN CLASS="keyword">class</SPAN> <A HREF="#back_insert_device_template_params" CLASS="documented">back_insert_device</A> {
 <SPAN CLASS="keyword">public</SPAN>:
     <SPAN CLASS="keyword">typedef</SPAN> <SPAN CLASS="keyword">typename</SPAN> Container::value_type  char_type;
@@ -60,8 +71,10 @@
     <SPAN CLASS="omitted">...</SPAN> 
 };
 
-<SPAN CLASS="keyword">template</SPAN>&lt;<SPAN CLASS="keyword">typename</SPAN> <A HREF="#back_insert_device_template_params" CLASS="documented">Container</A>&gt;
-<A CLASS="documented" HREF="#back_insert_device_template_params">back_insert_device</A>&lt;Container&gt; <A CLASS="documented" HREF="#back_inserter">back_inserter</A>(Container&amp; cnt);
+<SPAN CLASS="keyword">template</SPAN>&lt;<SPAN CLASS="keyword">typename</SPAN> <A
+            HREF="#back_insert_device_template_params" CLASS="documented">Container</A>&gt;
+<A CLASS="documented" HREF="#back_insert_device_template_params">back_insert_device</A>&lt;Container&gt; <A
+            CLASS="documented" HREF="#back_inserter">back_inserter</A>(Container&amp; cnt);
 
 } } <SPAN CLASS="comment">// End namespace boost::io</SPAN></PRE>
 
@@ -69,10 +82,13 @@
 <H4>Template Parameters</H4>
 
 <TABLE STYLE="margin-left:2em" BORDER=0 CELLPADDING=2>
-<TR>
     <TR>
-        <TD VALIGN="top"><I>Container</I></TD><TD WIDTH="2em" VALIGN="top">-</TD>
-        <TD>A C++ standard library sequence type (<A CLASS="bib_ref" HREF="../bibliography.html#iso">[ISO]</A>, 23.1.1).
+    <TR>
+        <TD VALIGN="top"><I>Container</I></TD>
+        <TD WIDTH="2em" VALIGN="top">-</TD>
+        <TD>A C++ standard library sequence type (<A CLASS="bib_ref"
+                                                     HREF="../bibliography.html#iso">[ISO]</A>,
+            23.1.1).
     </TR>
 </TABLE>
 
@@ -81,12 +97,15 @@
 
 <PRE CLASS="broken_ie">    back_insert_device(Container&amp; cnt);</PRE>
 
-<P>Constructs an instance of <CODE>back_insert_device</CODE> for appending to the given container. The given reference must remain valid for the lifetime of the instance of <CODE>back_insert_device</CODE>.</P>
+<P>Constructs an instance of <CODE>back_insert_device</CODE> for appending to the given container.
+    The given reference must remain valid for the lifetime of the instance of <CODE>back_insert_device</CODE>.
+</P>
 
 <A NAME="back_inserter"></A>
 <H4><CODE>back_inserter</CODE></H4>
 
-<PRE CLASS="broken_ie"><SPAN CLASS="keyword">template</SPAN>&lt;<SPAN CLASS="keyword">typename</SPAN> Container&gt;
+<PRE CLASS="broken_ie"><SPAN CLASS="keyword">template</SPAN>&lt;<SPAN
+        CLASS="keyword">typename</SPAN> Container&gt;
 back_insert_device&lt;Container&gt; back_inserter(Container&amp; cnt);</PRE>
 
 <P>Returns an instance of <CODE>back_insert_device</CODE> for appending to the given container.</P>
@@ -95,9 +114,12 @@ back_insert_device&lt;Container&gt; back_inserter(Container&amp; cnt);</PRE>
 
 <HR>
 
-<P CLASS="copyright">&copy; Copyright 2008 <a href="http://www.coderage.com/" target="_top">CodeRage, LLC</a><br/>&copy; Copyright 2004-2007 <a href="http://www.coderage.com/turkanis/" target="_top">Jonathan Turkanis</a></P>
-<P CLASS="copyright"> 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <A HREF="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</A>)
+<P CLASS="copyright">&copy; Copyright 2008 <a href="http://www.coderage.com/" target="_top">CodeRage,
+    LLC</a><br/>&copy; Copyright 2004-2007 <a href="http://www.coderage.com/turkanis/"
+                                              target="_top">Jonathan Turkanis</a></P>
+<P CLASS="copyright">
+    Distributed under the Boost Software License, Version 1.0. (See accompanying file
+    LICENSE_1_0.txt or copy at <A HREF="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</A>)
 </P>
 
 <!-- End Footer -->

@@ -70,10 +70,11 @@ __build_id = None
 
 __debug = None
 
+
 def debug():
     global __debug
     if __debug is None:
-        __debug = "--debug-configuration" in bjam.variable("ARGV")        
+        __debug = "--debug-configuration" in bjam.variable("ARGV")
     return __debug
 
 
@@ -96,9 +97,9 @@ def debug():
 # 
 # <build-id>my_build_id: The custom build id to use.
 #
-def init(version, options = None):
-    assert(isinstance(version,list))
-    assert(len(version)==1)
+def init(version, options=None):
+    assert (isinstance(version, list))
+    assert (len(version) == 1)
     version = version[0]
     if version in __boost_configured:
         get_manager().errors()("Boost {} already configured.".format(version));
@@ -114,7 +115,8 @@ def init(version, options = None):
         properties = []
         for option in options:
             properties.append(property.create_from_string(option))
-        __boost_configured[ version ] = property_set.PropertySet(properties)
+        __boost_configured[version] = property_set.PropertySet(properties)
+
 
 projects = get_manager().projects()
 rules = projects.project_rules()
@@ -128,9 +130,9 @@ rules = projects.project_rules()
 # the configured default (first in config files) is used or an auto
 # configuration will be attempted.
 # 
-@bjam_signature(([ "version", "?" ], ))
-def use_project(version = None):
-    projects.push_current( projects.current() )
+@bjam_signature((["version", "?"],))
+def use_project(version=None):
+    projects.push_current(projects.current())
     if not version:
         version = __boost_default
     if not version:
@@ -142,13 +144,13 @@ def use_project(version = None):
             get_manager().errors()('Attempt to use {} with different parameters'.format('boost'))
     else:
         if version in __boost_configured:
-            opts = __boost_configured[ version ]
-            root = opts.get('<root>' )
+            opts = __boost_configured[version]
+            root = opts.get('<root>')
             inc = opts.get('<include>')
             lib = opts.get('<library>')
-            
+
             if debug():
-                print "notice: using boost library {} {}".format( version, opt.raw() )
+                print "notice: using boost library {} {}".format(version, opt.raw())
 
             global __layout
             global __version_tag
@@ -159,36 +161,39 @@ def use_project(version = None):
             __version_tag = re.sub("[*\\/:.\"\' ]", "_", version)
             __initialized = version
 
-            if ( root and inc ) or \
-                ( root and lib ) or \
-                ( lib and not inc ) or \
-                ( not lib and inc ):
-                get_manager().errors()("Ambiguous parameters, use either <root> or <inlude> with <library>.")
+            if (root and inc) or \
+                    (root and lib) or \
+                    (lib and not inc) or \
+                    (not lib and inc):
+                get_manager().errors()(
+                    "Ambiguous parameters, use either <root> or <inlude> with <library>.")
             elif not root and not inc:
                 root = bjam.variable("BOOST_ROOT")
 
             module = projects.current().project_module()
-            
+
             if root:
                 bjam.call('call-in-module', module, 'use-project', ['boost', root])
             else:
                 projects.initialize(__name__)
                 if version == '0.0.1':
-                    boost_0_0_1( inc, lib )
+                    boost_0_0_1(inc, lib)
                 else:
-                    boost_std( inc, lib )
+                    boost_std(inc, lib)
         else:
             get_manager().errors()("Reference to unconfigured boost version.")
     projects.pop_current()
 
 
-rules.add_rule( 'boost.use-project', use_project )
+rules.add_rule('boost.use-project', use_project)
 
-def boost_std(inc = None, lib = None):
+
+def boost_std(inc=None, lib=None):
     # The default definitions for pre-built libraries.
     rules.project(
         ['boost'],
-        ['usage-requirements'] + ['<include>{}'.format(i) for i in inc] + ['<define>BOOST_ALL_NO_LIB'],
+        ['usage-requirements'] + ['<include>{}'.format(i) for i in inc] + [
+            '<define>BOOST_ALL_NO_LIB'],
         ['requirements'] + ['<search>{}'.format(l) for l in lib])
 
     # TODO: There should be a better way to add a Python function into a
@@ -196,51 +201,53 @@ def boost_std(inc = None, lib = None):
     tag_prop_set = property_set.create([property.Property('<tag>', tag_std)])
     attributes = projects.attributes(projects.current().project_module())
     attributes.requirements = attributes.requirements.refine(tag_prop_set)
-    
+
     alias('headers')
-    
+
     def boost_lib(lib_name, dyn_link_macro):
-        if (isinstance(lib_name,str)):
+        if (isinstance(lib_name, str)):
             lib_name = [lib_name]
         builtin.lib(lib_name, usage_requirements=['<link>shared:<define>{}'.format(dyn_link_macro)])
-    
-    boost_lib('date_time'           , 'BOOST_DATE_TIME_DYN_LINK'      )
-    boost_lib('filesystem'          , 'BOOST_FILE_SYSTEM_DYN_LINK'    )
-    boost_lib('graph'               , 'BOOST_GRAPH_DYN_LINK'          )
-    boost_lib('graph_parallel'      , 'BOOST_GRAPH_DYN_LINK'          )
-    boost_lib('iostreams'           , 'BOOST_IOSTREAMS_DYN_LINK'      )
-    boost_lib('locale'              , 'BOOST_LOG_DYN_LINK'            )
-    boost_lib('log'                 , 'BOOST_LOG_DYN_LINK'            )
-    boost_lib('log_setup'           , 'BOOST_LOG_DYN_LINK'            )
-    boost_lib('math_tr1'            , 'BOOST_MATH_TR1_DYN_LINK'       )
-    boost_lib('math_tr1f'           , 'BOOST_MATH_TR1_DYN_LINK'       )
-    boost_lib('math_tr1l'           , 'BOOST_MATH_TR1_DYN_LINK'       )
-    boost_lib('math_c99'            , 'BOOST_MATH_TR1_DYN_LINK'       )
-    boost_lib('math_c99f'           , 'BOOST_MATH_TR1_DYN_LINK'       )
-    boost_lib('math_c99l'           , 'BOOST_MATH_TR1_DYN_LINK'       )
-    boost_lib('mpi'                 , 'BOOST_MPI_DYN_LINK'            )
-    boost_lib('program_options'     , 'BOOST_PROGRAM_OPTIONS_DYN_LINK')
-    boost_lib('python'              , 'BOOST_PYTHON_DYN_LINK'         )
-    boost_lib('python3'             , 'BOOST_PYTHON_DYN_LINK'         )
-    boost_lib('random'              , 'BOOST_RANDOM_DYN_LINK'         )
-    boost_lib('regex'               , 'BOOST_REGEX_DYN_LINK'          )
-    boost_lib('serialization'       , 'BOOST_SERIALIZATION_DYN_LINK'  )
-    boost_lib('wserialization'      , 'BOOST_SERIALIZATION_DYN_LINK'  )
-    boost_lib('signals'             , 'BOOST_SIGNALS_DYN_LINK'        )
-    boost_lib('system'              , 'BOOST_SYSTEM_DYN_LINK'         )
-    boost_lib('unit_test_framework' , 'BOOST_TEST_DYN_LINK'           )
-    boost_lib('prg_exec_monitor'    , 'BOOST_TEST_DYN_LINK'           )
-    boost_lib('test_exec_monitor'   , 'BOOST_TEST_DYN_LINK'           )
-    boost_lib('thread'              , 'BOOST_THREAD_DYN_DLL'          )
-    boost_lib('wave'                , 'BOOST_WAVE_DYN_LINK'           )
 
-def boost_0_0_1( inc, lib ):
-    print "You are trying to use an example placeholder for boost libs." ;
+    boost_lib('date_time', 'BOOST_DATE_TIME_DYN_LINK')
+    boost_lib('filesystem', 'BOOST_FILE_SYSTEM_DYN_LINK')
+    boost_lib('graph', 'BOOST_GRAPH_DYN_LINK')
+    boost_lib('graph_parallel', 'BOOST_GRAPH_DYN_LINK')
+    boost_lib('iostreams', 'BOOST_IOSTREAMS_DYN_LINK')
+    boost_lib('locale', 'BOOST_LOG_DYN_LINK')
+    boost_lib('log', 'BOOST_LOG_DYN_LINK')
+    boost_lib('log_setup', 'BOOST_LOG_DYN_LINK')
+    boost_lib('math_tr1', 'BOOST_MATH_TR1_DYN_LINK')
+    boost_lib('math_tr1f', 'BOOST_MATH_TR1_DYN_LINK')
+    boost_lib('math_tr1l', 'BOOST_MATH_TR1_DYN_LINK')
+    boost_lib('math_c99', 'BOOST_MATH_TR1_DYN_LINK')
+    boost_lib('math_c99f', 'BOOST_MATH_TR1_DYN_LINK')
+    boost_lib('math_c99l', 'BOOST_MATH_TR1_DYN_LINK')
+    boost_lib('mpi', 'BOOST_MPI_DYN_LINK')
+    boost_lib('program_options', 'BOOST_PROGRAM_OPTIONS_DYN_LINK')
+    boost_lib('python', 'BOOST_PYTHON_DYN_LINK')
+    boost_lib('python3', 'BOOST_PYTHON_DYN_LINK')
+    boost_lib('random', 'BOOST_RANDOM_DYN_LINK')
+    boost_lib('regex', 'BOOST_REGEX_DYN_LINK')
+    boost_lib('serialization', 'BOOST_SERIALIZATION_DYN_LINK')
+    boost_lib('wserialization', 'BOOST_SERIALIZATION_DYN_LINK')
+    boost_lib('signals', 'BOOST_SIGNALS_DYN_LINK')
+    boost_lib('system', 'BOOST_SYSTEM_DYN_LINK')
+    boost_lib('unit_test_framework', 'BOOST_TEST_DYN_LINK')
+    boost_lib('prg_exec_monitor', 'BOOST_TEST_DYN_LINK')
+    boost_lib('test_exec_monitor', 'BOOST_TEST_DYN_LINK')
+    boost_lib('thread', 'BOOST_THREAD_DYN_DLL')
+    boost_lib('wave', 'BOOST_WAVE_DYN_LINK')
+
+
+def boost_0_0_1(inc, lib):
+    print "You are trying to use an example placeholder for boost libs.";
     # Copy this template to another place (in the file boost.jam)
     # and define a project and libraries modelled after the
     # boost_std rule. Please note that it is also possible to have
     # a per version taging rule in case they are different between
     # versions.
+
 
 def tag_std(name, type, prop_set):
     name = 'boost_' + name
@@ -262,15 +269,22 @@ def tag_std(name, type, prop_set):
         get_manager().errors()("Missing layout")
     return result
 
+
 def tag_maybe(param):
     return ['-{}'.format(param)] if param else []
-    
+
+
 def tag_system(name, type, prop_set):
     return common.format_name(['<base>'] + tag_maybe(__build_id), name, type, prop_set)
 
+
 def tag_system(name, type, prop_set):
-    return common.format_name(['<base>', '<threading>', '<runtime>'] + tag_maybe(__build_id), name, type, prop_set)
+    return common.format_name(['<base>', '<threading>', '<runtime>'] + tag_maybe(__build_id), name,
+                              type, prop_set)
+
 
 def tag_versioned(name, type, prop_set):
-    return common.format_name(['<base>', '<toolset>', '<threading>', '<runtime>'] + tag_maybe(__version_tag) + tag_maybe(__build_id),
+    return common.format_name(
+        ['<base>', '<toolset>', '<threading>', '<runtime>'] + tag_maybe(__version_tag) + tag_maybe(
+            __build_id),
         name, type, prop_set)

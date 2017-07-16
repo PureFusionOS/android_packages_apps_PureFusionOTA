@@ -58,6 +58,7 @@ def clear_annotations():
 
 defer_annotations = 0
 
+
 def set_defer_annotations(n):
     global defer_annotations
     defer_annotations = n
@@ -204,17 +205,18 @@ class Tester(TestCmd.TestCmd):
                                     system output like the --verbose command
                                     line option does.
     """
+
     def __init__(self, arguments=None, executable="bjam",
-        match=TestCmd.match_exact, boost_build_path=None,
-        translate_suffixes=True, pass_toolset=True, use_test_config=True,
-        ignore_toolset_requirements=True, workdir="", pass_d0=True,
-        **keywords):
+                 match=TestCmd.match_exact, boost_build_path=None,
+                 translate_suffixes=True, pass_toolset=True, use_test_config=True,
+                 ignore_toolset_requirements=True, workdir="", pass_d0=True,
+                 **keywords):
 
         assert arguments.__class__ is not str
         self.original_workdir = os.getcwd()
         if workdir and not os.path.isabs(workdir):
             raise ("Parameter workdir <%s> must point to an absolute "
-                "directory: " % workdir)
+                   "directory: " % workdir)
 
         self.last_build_timestamp = 0
         self.translate_suffixes = translate_suffixes
@@ -236,9 +238,9 @@ class Tester(TestCmd.TestCmd):
                 if os.uname()[0].lower().startswith("cygwin"):
                     jam_build_dir = "bin.cygwinx86"
                     if ("TMP" in os.environ and
-                        os.environ["TMP"].find("~") != -1):
+                                os.environ["TMP"].find("~") != -1):
                         print("Setting $TMP to /tmp to get around problem "
-                            "with short path names")
+                              "with short path names")
                         os.environ["TMP"] = "/tmp"
                 elif os.uname()[0] == "Linux":
                     cpu = os.uname()[4]
@@ -263,10 +265,10 @@ class Tester(TestCmd.TestCmd):
                     jam_build_dir = "bin.osf"
                 else:
                     raise ("Do not know directory where Jam is built for this "
-                        "system: %s/%s" % (os.name, os.uname()[0]))
+                           "system: %s/%s" % (os.name, os.uname()[0]))
             else:
                 raise ("Do not know directory where Jam is built for this "
-                    "system: %s" % os.name)
+                       "system: %s" % os.name)
 
             # Find where jam_src is located. Try for the debug version if it is
             # lying around.
@@ -302,7 +304,7 @@ class Tester(TestCmd.TestCmd):
             program_list += arguments
 
         TestCmd.TestCmd.__init__(self, program=program_list, match=match,
-            workdir=workdir, inpath=use_default_bjam, **keywords)
+                                 workdir=workdir, inpath=use_default_bjam, **keywords)
 
         os.chdir(self.workdir)
 
@@ -330,10 +332,12 @@ class Tester(TestCmd.TestCmd):
         shutil.copytree(tree_location, self.workdir)
 
         os.chdir(d)
+
         def make_writable(unused, dir, entries):
             for e in entries:
                 name = os.path.join(dir, e)
                 os.chmod(name, os.stat(name).st_mode | 0222)
+
         os.path.walk(".", make_writable, None)
 
     def write(self, file, content, wait=True):
@@ -385,7 +389,7 @@ class Tester(TestCmd.TestCmd):
             if n: n = n[0]
             if not n:
                 n = self.glob_file(name.replace("$toolset", self.toolset + "*")
-                    )
+                                   )
             if n:
                 if os.path.isdir(n):
                     shutil.rmtree(n, ignore_errors=False)
@@ -410,15 +414,15 @@ class Tester(TestCmd.TestCmd):
         annotation("STDERR", self.stderr())
 
     def run_build_system(self, extra_args=None, subdir="", stdout=None,
-        stderr="", status=0, match=None, pass_toolset=None,
-        use_test_config=None, ignore_toolset_requirements=None,
-        expected_duration=None, **kw):
+                         stderr="", status=0, match=None, pass_toolset=None,
+                         use_test_config=None, ignore_toolset_requirements=None,
+                         expected_duration=None, **kw):
 
         assert extra_args.__class__ is not str
 
         if os.path.isabs(subdir):
             print("You must pass a relative directory to subdir <%s>." % subdir
-                )
+                  )
             return
 
         self.previous_tree, dummy = tree.build_tree(self.workdir)
@@ -477,7 +481,7 @@ class Tester(TestCmd.TestCmd):
                 expect = " (expected %d)" % status
 
             annotation("failure", '"%s" returned %d%s' % (kw["program"],
-                self.status, expect))
+                                                          self.status, expect))
 
             annotation("reason", "unexpected status returned by bjam")
             self.fail_test(1)
@@ -508,16 +512,16 @@ class Tester(TestCmd.TestCmd):
             actual_duration = build_time_finish - build_time_start
             if actual_duration > expected_duration:
                 print("Test run lasted %f seconds while it was expected to "
-                    "finish in under %f seconds." % (actual_duration,
-                    expected_duration))
+                      "finish in under %f seconds." % (actual_duration,
+                                                       expected_duration))
                 self.fail_test(1, dump_stdio=False)
 
     def glob_file(self, name):
         result = None
         if hasattr(self, "difference"):
             for f in (self.difference.added_files +
-                self.difference.modified_files +
-                self.difference.touched_files):
+                          self.difference.modified_files +
+                          self.difference.touched_files):
                 if fnmatch.fnmatch(f, name):
                     result = self.native_file_name(f)
                     break
@@ -558,7 +562,7 @@ class Tester(TestCmd.TestCmd):
         return result
 
     def fail_test(self, condition, dump_difference=True, dump_stdio=True,
-        dump_stack=True):
+                  dump_stack=True):
         if not condition:
             return
 
@@ -566,7 +570,7 @@ class Tester(TestCmd.TestCmd):
             f = StringIO.StringIO()
             self.difference.pprint(f)
             annotation("changes caused by the last build command",
-                f.getvalue())
+                       f.getvalue())
 
         if dump_stdio:
             self.dump_stdio()
@@ -604,7 +608,7 @@ class Tester(TestCmd.TestCmd):
 
     def ignore_addition(self, wildcard):
         self.__ignore_elements(self.unexpected_difference.added_files,
-            wildcard)
+                               wildcard)
 
     def expect_removal(self, names):
         for name in self.adjust_names(names):
@@ -616,7 +620,7 @@ class Tester(TestCmd.TestCmd):
 
     def ignore_removal(self, wildcard):
         self.__ignore_elements(self.unexpected_difference.removed_files,
-            wildcard)
+                               wildcard)
 
     def expect_modification(self, names):
         for name in self.adjust_names(names):
@@ -624,12 +628,12 @@ class Tester(TestCmd.TestCmd):
                 glob_remove(self.unexpected_difference.modified_files, name)
             except:
                 annotation("failure", "File %s not modified as expected" %
-                    name)
+                           name)
                 self.fail_test(1)
 
     def ignore_modification(self, wildcard):
         self.__ignore_elements(self.unexpected_difference.modified_files,
-            wildcard)
+                               wildcard)
 
     def expect_touch(self, names):
         d = self.unexpected_difference
@@ -655,7 +659,7 @@ class Tester(TestCmd.TestCmd):
 
     def ignore_touch(self, wildcard):
         self.__ignore_elements(self.unexpected_difference.touched_files,
-            wildcard)
+                               wildcard)
 
     def ignore(self, wildcard):
         self.ignore_addition(wildcard)
@@ -667,30 +671,30 @@ class Tester(TestCmd.TestCmd):
         for name in self.adjust_names(names):
             if name in self.difference.added_files:
                 annotation("failure",
-                    "File %s added, but no action was expected" % name)
+                           "File %s added, but no action was expected" % name)
                 self.fail_test(1)
             if name in self.difference.removed_files:
                 annotation("failure",
-                    "File %s removed, but no action was expected" % name)
+                           "File %s removed, but no action was expected" % name)
                 self.fail_test(1)
                 pass
             if name in self.difference.modified_files:
                 annotation("failure",
-                    "File %s modified, but no action was expected" % name)
+                           "File %s modified, but no action was expected" % name)
                 self.fail_test(1)
             if name in self.difference.touched_files:
                 annotation("failure",
-                    "File %s touched, but no action was expected" % name)
+                           "File %s touched, but no action was expected" % name)
                 self.fail_test(1)
 
     def expect_nothing_more(self):
         # Not totally sure about this change, but I do not see a good
         # alternative.
         if windows:
-            self.ignore("*.ilk")       # MSVC incremental linking files.
-            self.ignore("*.pdb")       # MSVC program database files.
-            self.ignore("*.rsp")       # Response files.
-            self.ignore("*.tds")       # Borland debug symbols.
+            self.ignore("*.ilk")  # MSVC incremental linking files.
+            self.ignore("*.pdb")  # MSVC program database files.
+            self.ignore("*.rsp")  # Response files.
+            self.ignore("*.tds")  # Borland debug symbols.
             self.ignore("*.manifest")  # MSVC DLL manifests.
 
         # Debug builds of bjam built with gcc produce this profiling data.
@@ -729,6 +733,7 @@ class Tester(TestCmd.TestCmd):
             def sorted_(x):
                 x.sort()
                 return x
+
             actual_ = map(lambda x: sorted_(x.split()), actual.splitlines())
             content_ = map(lambda x: sorted_(x.split()), content.splitlines())
             if len(actual_) == len(content_):
@@ -738,7 +743,7 @@ class Tester(TestCmd.TestCmd):
                 matched = reduce(
                     lambda x, y: x and reduce(
                         lambda a, b: a and b,
-                    y),
+                        y),
                     matched)
 
         if not matched:
@@ -765,12 +770,12 @@ class Tester(TestCmd.TestCmd):
             # the external process's return code and return 0 itself.
             if os.system('diff -u "%s" "%s"' % (e, a)) not in [0, 1]:
                 print('Unable to compute difference: diff -u "%s" "%s"' % (e, a
-                    ))
+                                                                           ))
             os.unlink(e)
             os.unlink(a)
         else:
             print("Set environmental variable 'DO_DIFF' to examine the "
-                "difference.")
+                  "difference.")
 
     # Internal methods.
     def adjust_lib_name(self, name):
@@ -845,19 +850,19 @@ class Tester(TestCmd.TestCmd):
             finally:
                 f.close()
             p = subprocess.Popen([self.program[0], "-d0", "-f%s" % jam_script],
-                stdout=subprocess.PIPE, cwd=dir, universal_newlines=True)
+                                 stdout=subprocess.PIPE, cwd=dir, universal_newlines=True)
             out, err = p.communicate()
         finally:
             shutil.rmtree(dir, ignore_errors=False)
 
         if p.returncode != 0:
             raise TestEnvironmentError("Unexpected return code (%s) when "
-                "detecting Boost Jam's minimum supported path modification "
-                "timestamp resolution version information." % p.returncode)
+                                       "detecting Boost Jam's minimum supported path modification "
+                                       "timestamp resolution version information." % p.returncode)
         if err:
             raise TestEnvironmentError("Unexpected error output (%s) when "
-                "detecting Boost Jam's minimum supported path modification "
-                "timestamp resolution version information." % err)
+                                       "detecting Boost Jam's minimum supported path modification "
+                                       "timestamp resolution version information." % err)
 
         r = re.match("([0-9]{2}):([0-9]{2}):([0-9]{2}\\.[0-9]{9})$", out)
         if not r:
@@ -870,8 +875,8 @@ class Tester(TestCmd.TestCmd):
             return 1
         if r.group(1) != "00" or r.group(2) != "00":  # hours, minutes
             raise TestEnvironmentError("Boost Jam with too coarse minimum "
-                "supported path modification timestamp resolution (%s:%s:%s)."
-                % (r.group(1), r.group(2), r.group(3)))
+                                       "supported path modification timestamp resolution (%s:%s:%s)."
+                                       % (r.group(1), r.group(2), r.group(3)))
         return float(r.group(3))  # seconds.nanoseconds
 
     def __ensure_newer_than_last_build(self, path):
@@ -913,7 +918,7 @@ class Tester(TestCmd.TestCmd):
         # str.splitlines() trims at most one trailing newline while we want the
         # trailing newline to indicate that there should be an extra empty line
         # at the end.
-        splitlines = lambda x : (x + "\n").splitlines()
+        splitlines = lambda x: (x + "\n").splitlines()
 
         if data is None:
             data = []
@@ -998,7 +1003,7 @@ class Tester(TestCmd.TestCmd):
         # which floating point timestamps are always supported.
         ver = sys.version_info[0:2]
         python_nanosecond_support = ver >= (3, 4) or (ver >= (2, 3) and
-            os.stat_float_times())
+                                                      os.stat_float_times())
 
         # Minimal expected floating point difference used to account for
         # possible imprecise floating point number representations. We want
@@ -1009,6 +1014,7 @@ class Tester(TestCmd.TestCmd):
         eta = 0.00005
 
         stats_orig = os.stat(path)
+
         def test_time(diff):
             """Returns whether a timestamp difference is detectable."""
             os.utime(path, (stats_orig.st_atime, stats_orig.st_mtime + diff))
@@ -1043,7 +1049,7 @@ class Tester(TestCmd.TestCmd):
             next = step * index
             if next > 10:
                 raise TestEnvironmentError("File systems with too coarse "
-                    "modification timestamp resolutions not supported.")
+                                           "modification timestamp resolutions not supported.")
             if test_time(next):
                 return next
             index += 1
@@ -1085,7 +1091,7 @@ class Tester(TestCmd.TestCmd):
 
         # Check whether the current timestamp is already new enough.
         if stats_orig.st_mtime > start_time and (not build_resolution or
-            stats_orig.st_mtime >= start_time + build_resolution):
+                                                         stats_orig.st_mtime >= start_time + build_resolution):
             return
 
         resolution = self.__python_timestamp_resolution(path, build_resolution)
@@ -1127,15 +1133,15 @@ class Tester(TestCmd.TestCmd):
                     if start_time - c > 5:
                         if last_build_time:
                             error_message = ("Last build time recorded as "
-                                "being a future event, causing a too long "
-                                "wait period. Something must have played "
-                                "around with the system clock.")
+                                             "being a future event, causing a too long "
+                                             "wait period. Something must have played "
+                                             "around with the system clock.")
                         else:
                             error_message = ("Original path modification "
-                                "timestamp set to far into the future or "
-                                "something must have played around with the "
-                                "system clock, causing a too long wait "
-                                "period.\nPath: '%s'" % path)
+                                             "timestamp set to far into the future or "
+                                             "something must have played around with the "
+                                             "system clock, causing a too long wait "
+                                             "period.\nPath: '%s'" % path)
                         raise TestEnvironmentError(message)
                     _sleep(start_time - c)
                 else:
@@ -1208,7 +1214,7 @@ def _contains_lines(data, lines):
             return False
         expected_line_count -= len(expected)
         index = _match_line_sequence(data, index, data_line_count -
-            expected_line_count, expected)
+                                     expected_line_count, expected)
         if index < 0:
             return False
     return True
@@ -1231,8 +1237,8 @@ def _match_line_sequence(data, start, end, lines):
 def _sleep(delay):
     if delay > 5:
         raise TestEnvironmentError("Test environment error: sleep period of "
-            "more than 5 seconds requested. Most likely caused by a file with "
-            "its modification timestamp set to sometime in the future.")
+                                   "more than 5 seconds requested. Most likely caused by a file with "
+                                   "its modification timestamp set to sometime in the future.")
     time.sleep(delay)
 
 
@@ -1263,7 +1269,6 @@ def _sleep(delay):
 #    in both our single & multiple-test scripts.
 if (2, 3) <= sys.version_info < (2, 5) and not os.stat_float_times():
     os.stat_float_times(True)
-
 
 # Quickie tests. Should use doctest instead.
 if __name__ == "__main__":

@@ -10,19 +10,21 @@ import sys
 
 include = re.compile(r' *\.\. +(include|image):: +(.*)', re.MULTILINE)
 
+
 def deps(path, found):
     dir = os.path.split(path)[0]
     for m in re.findall(include, open(path).read()):
 
-        dependency = os.path.normpath(os.path.join(dir,m[1]))
+        dependency = os.path.normpath(os.path.join(dir, m[1]))
         if dependency not in found:
             found[dependency] = 1
 
             if m[0] == 'include':
                 deps(dependency, found)
-                
+
     return found
-                
+
+
 for file in sys.argv[1:]:
     found = deps(file, {})
     if found:

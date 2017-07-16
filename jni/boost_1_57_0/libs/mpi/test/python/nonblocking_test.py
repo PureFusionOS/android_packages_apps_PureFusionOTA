@@ -20,13 +20,12 @@ TAG_TERMINATE = 2
 TAG_PROGRESS_REPORT = 3
 
 
-
-
 class TagGroupListener:
     """Class to help listen for only a given set of tags.
 
     This is contrived: Typicallly you could just listen for 
     mpi.any_tag and filter."""
+
     def __init__(self, comm, tags):
         self.tags = tags
         self.comm = comm
@@ -44,13 +43,12 @@ class TagGroupListener:
     def cancel(self):
         for r in self.active_requests.itervalues():
             r.cancel()
-            #r.wait()
+            # r.wait()
         self.active_requests = {}
 
 
-
 def rank0():
-    sent_histories = (mpi.size-1)*15
+    sent_histories = (mpi.size - 1) * 15
     print "sending %d packets on their way" % sent_histories
     send_reqs = mpi.RequestList()
     for i in range(sent_histories):
@@ -64,19 +62,19 @@ def rank0():
     dead_kids = []
 
     tgl = TagGroupListener(mpi.world,
-            [TAG_DATA, TAG_DEBUG, TAG_PROGRESS_REPORT, TAG_TERMINATE])
+                           [TAG_DATA, TAG_DEBUG, TAG_PROGRESS_REPORT, TAG_TERMINATE])
 
     def is_complete():
         for i in progress_reports.values():
             if i != sent_histories:
                 return False
-        return len(dead_kids) == mpi.size-1
+        return len(dead_kids) == mpi.size - 1
 
     while True:
         status, data = tgl.wait()
 
         if status.tag == TAG_DATA:
-            #print "received completed history %s from %d" % (data, status.source)
+            # print "received completed history %s from %d" % (data, status.source)
             completed_histories.append(data)
             if len(completed_histories) == sent_histories:
                 print "all histories received, exiting"
@@ -95,6 +93,7 @@ def rank0():
             break
 
     print "OK"
+
 
 def comm_rank():
     while True:
@@ -122,7 +121,6 @@ def main():
         rank0()
     else:
         comm_rank()
-        
 
 
 if __name__ == "__main__":

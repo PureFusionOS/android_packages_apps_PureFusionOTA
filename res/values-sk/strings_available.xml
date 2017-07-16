@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -28,12 +27,17 @@
     <string name="available_checking_md5">Prebieha kontrola MD5&#8230;</string>
     <string name="available_downloading">Sťahovanie&#8230;</string>
     <string name="are_you_sure">Ste si istý?</string>
-    <string name="available_delete_confirm_message">Ste si istý, že chcete odstrániť tento súbor?</string>
+    <string name="available_delete_confirm_message">Ste si istý, že chcete odstrániť tento súbor?
+    </string>
     <string name="available_reboot_confirm">Chcete teraz reštartovať?</string>
     <string name="available_url_error">Chyba URL: Prosím, obráťte sa na vývojárov ROM</string>
     <string name="available_reboot_manual_title">Prosím, reštartujte zariadenie</string>
-    <string name="available_reboot_manual_message">Prosím, reštartujte do recovery a nainštalujte aktualizáciu.\n\nNájdete ju v ceste /sdcard/Downloads</string>
+    <string name="available_reboot_manual_message">Prosím, reštartujte do recovery a nainštalujte
+        aktualizáciu.\n\nNájdete ju v ceste /sdcard/Downloads
+    </string>
     <string name="available_wrong_network_title">Vybraná sieť nie je k dispozícii</string>
-    <string name="available_wrong_network_message">Pokúšate sa stiahnuť aktualizáciu cez mobilnú sieť, ale nastavenia povoľujú sťahovanie iba cez Wi-Fi. Prosím, najprv zmeňte nastavenia!</string>
+    <string name="available_wrong_network_message">Pokúšate sa stiahnuť aktualizáciu cez mobilnú
+        sieť, ale nastavenia povoľujú sťahovanie iba cez Wi-Fi. Prosím, najprv zmeňte nastavenia!
+    </string>
 
 </resources>

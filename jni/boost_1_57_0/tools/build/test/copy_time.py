@@ -59,7 +59,7 @@ test2src = tester.read("test2i/test2.obj")
 test2dest = tester.read("bin/$toolset/debug/test2.obj")
 if test2src != test2dest:
     BoostBuild.annotation("failure", "The object file was not copied "
-        "correctly")
+                                     "correctly")
     tester.fail_test(1)
 
 tester.run_build_system(["-d1"])

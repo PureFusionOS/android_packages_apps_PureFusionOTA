@@ -8,6 +8,7 @@
 
 import BoostBuild
 
+
 def test_echo(name):
     t = BoostBuild.Tester(["-ffile.jam"], pass_toolset=0)
 
@@ -24,6 +25,7 @@ UPDATE ;
     t.run_build_system(stdout="a message\n")
 
     t.cleanup()
+
 
 test_echo("ECHO")
 test_echo("Echo")

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  	Copyright (C) 2015 Matt Booth (Kryten2k35).
  
  	Licensed under the Apache License, Version 2.0 (the "License"); 
@@ -14,13 +13,18 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_shortAnimTime">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:exitFadeDuration="@android:integer/config_shortAnimTime">
 
-    <item android:drawable="@android:color/transparent" android:state_window_focused="false"/>
-    <item android:drawable="@drawable/list_selector_disabled_holo_dark" android:state_enabled="false" android:state_focused="true" android:state_pressed="true"/>
-    <item android:drawable="@drawable/list_selector_disabled_holo_dark" android:state_enabled="false" android:state_focused="true"/>
-    <item android:drawable="@drawable/list_selector_background_transition_holo_dark" android:state_focused="true" android:state_pressed="true"/>
-    <item android:drawable="@drawable/list_selector_background_transition_holo_dark" android:state_focused="false" android:state_pressed="true"/>
-    <item android:drawable="@drawable/list_focused_holo_dark" android:state_focused="true"/>
+    <item android:drawable="@android:color/transparent" android:state_window_focused="false" />
+    <item android:drawable="@drawable/list_selector_disabled_holo_dark"
+        android:state_enabled="false" android:state_focused="true" android:state_pressed="true" />
+    <item android:drawable="@drawable/list_selector_disabled_holo_dark"
+        android:state_enabled="false" android:state_focused="true" />
+    <item android:drawable="@drawable/list_selector_background_transition_holo_dark"
+        android:state_focused="true" android:state_pressed="true" />
+    <item android:drawable="@drawable/list_selector_background_transition_holo_dark"
+        android:state_focused="false" android:state_pressed="true" />
+    <item android:drawable="@drawable/list_focused_holo_dark" android:state_focused="true" />
 
 </selector>

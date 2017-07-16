@@ -8,11 +8,11 @@
     
   -->
 <Head>
-<Title>Static Property Map</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-	ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Static Property Map</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
@@ -29,7 +29,7 @@ returns a copy of that object whenever a key object is input.
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/property_map/property_map.hpp"><TT>boost/property_map/property_map.hpp</TT></a>
+    <a href="../../../boost/property_map/property_map.hpp"><TT>boost/property_map/property_map.hpp</TT></a>
 
 <h3>Model of</h3>
 
@@ -38,88 +38,95 @@ returns a copy of that object whenever a key object is input.
 <h3>Associated Types</h3>
 
 <table border>
-<tr>
-<th>Type</th><th>Description</th>
-</tr>
+    <tr>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
 
-<tr>
-<td><tt>
-boost::property_traits&lt;static_property_map&gt;::value_type
-</tt></td>
-<td>
-This type is the <tt>ValueType</tt> with which the template was instantiated.
-</td>
-</tr>
+    <tr>
+        <td><tt>
+            boost::property_traits&lt;static_property_map&gt;::value_type
+        </tt></td>
+        <td>
+            This type is the <tt>ValueType</tt> with which the template was instantiated.
+        </td>
+    </tr>
 
-<tr>
-<td><tt>
-boost::property_traits&lt;static_property_map&gt;::key_type
-</tt></td>
-<td>
-This type is the <tt>KeyType</tt> with which the template was instantiated.
-</td>
-</tr>
+    <tr>
+        <td><tt>
+            boost::property_traits&lt;static_property_map&gt;::key_type
+        </tt></td>
+        <td>
+            This type is the <tt>KeyType</tt> with which the template was instantiated.
+        </td>
+    </tr>
 
-<tr>
-<td><tt>
-boost::property_traits&lt;static_property_map&gt;::category
-</tt></td>
-<td>
-This type is <tt>boost::readable_property_map_tag</tt>.
-</td>
-</tr>
+    <tr>
+        <td><tt>
+            boost::property_traits&lt;static_property_map&gt;::category
+        </tt></td>
+        <td>
+            This type is <tt>boost::readable_property_map_tag</tt>.
+        </td>
+    </tr>
 
 </table>
 
 <h3>Member Functions</h3>
 
 <table border>
-<tr>
-<th>Member</th><th>Description</th>
-</tr>
+    <tr>
+        <th>Member</th>
+        <th>Description</th>
+    </tr>
 
 
-<tr>
-<td><tt>
-static_property_map(ValueType v)
-</tt></td>
-<td>
-The constructor for static_property_map is provided the value that
-the property map will return when queried.
-</td>
-</tr>
+    <tr>
+        <td><tt>
+            static_property_map(ValueType v)
+        </tt></td>
+        <td>
+            The constructor for static_property_map is provided the value that
+            the property map will return when queried.
+        </td>
+    </tr>
 
-<tr>
-<td><tt>
-static_property_map(const static_property_map&amp; x)
-</tt></td>
-<td>
-Copy constructor.
-</td>
-</tr>
+    <tr>
+        <td><tt>
+            static_property_map(const static_property_map&amp; x)
+        </tt></td>
+        <td>
+            Copy constructor.
+        </td>
+    </tr>
 
-<tr>
-<td><pre>
+    <tr>
+        <td><pre>
 template &lt;typename T&gt;
 ValueType&amp; operator[](T) const
-</pre></td>
-<td>
-Returns the contained value by copy.
-</td>
-</tr>
+</pre>
+        </td>
+        <td>
+            Returns the contained value by copy.
+        </td>
+    </tr>
 
 </table>
 
 <h3>Non-Member Functions</h3>
 
 <table border>
-<tr><td><pre>
+    <tr>
+        <td><pre>
 template &lt;typename KeyType, typename ValueType&gt;
 static_property_map&lt;KeyType, ValueType&gt;
 make_static_property_map(const ValueType&amp; value);
-</pre></td>
-<td>Returns a <tt>static_property_map</tt> with the given key type initialized to the given value.</td>
-</tr>
+</pre>
+        </td>
+        <td>Returns a <tt>static_property_map</tt> with the given key type initialized to the given
+            value.
+        </td>
+    </tr>
 </table>
 
 

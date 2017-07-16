@@ -8,16 +8,19 @@
 def int_generator(p):
     return 17 + p
 
+
 def gps_generator(p):
     return (39 + p, 16, 20.2799)
+
 
 def string_generator(p):
     result = "%d rosebud" % p;
     if p != 1: result = result + 's'
     return result
-    
+
+
 def string_list_generator(p):
     result = list()
-    for i in range(0,p):
+    for i in range(0, p):
         result.append(str(i))
     return result

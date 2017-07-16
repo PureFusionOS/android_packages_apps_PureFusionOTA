@@ -7,11 +7,11 @@
      http://www.boost.org/LICENSE_1_0.txt)
   -->
 <Head>
-<Title>Boost Graph Library: predecessor_recorder</Title>
-<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b" 
-        ALINK="#ff0000"> 
-<IMG SRC="../../../boost.png" 
-     ALT="C++ Boost" width="277" height="86"> 
+    <Title>Boost Graph Library: predecessor_recorder</Title>
+<BODY BGCOLOR="#ffffff" LINK="#0000ee" TEXT="#000000" VLINK="#551a8b"
+      ALINK="#ff0000">
+<IMG SRC="../../../boost.png"
+     ALT="C++ Boost" width="277" height="86">
 
 <BR Clear>
 
@@ -30,22 +30,22 @@ typically used with the <tt>on_tree_edge</tt> or
 <tt>on_relax_edge</tt> events and cannot be used with vertex events.
 
 <p>
-<tt>predecessor_recorder</tt> can be used with graph algorithms by
-wrapping it with an algorithm-specific adaptor, such as <a
-href="./bfs_visitor.html"><tt>bfs_visitor</tt></a> and <a
-href="./dfs_visitor.html"><tt>dfs_visitor</tt></a>. Also, this event
-visitor can be combined with other event visitors using
-<tt>std::pair</tt> to form an EventVisitorList.
+    <tt>predecessor_recorder</tt> can be used with graph algorithms by
+    wrapping it with an algorithm-specific adaptor, such as <a
+        href="./bfs_visitor.html"><tt>bfs_visitor</tt></a> and <a
+        href="./dfs_visitor.html"><tt>dfs_visitor</tt></a>. Also, this event
+    visitor can be combined with other event visitors using
+    <tt>std::pair</tt> to form an EventVisitorList.
 
 <p>
-Algorithms such as Dijkstra's and breadth-first search will not assign
-a predecessor to the source vertex (which is the root of the search
-tree). It is often useful to initialize the source vertex's
-predecessor to itself, thereby identifying the root vertex as the only
-vertex which is its own parent. When using an algorithm like
-depth-first search that creates a forest (multiple search trees) it
-is useful to initialize the predecessor of every vertex to itself. This
-way all the root nodes can be distinguished.
+    Algorithms such as Dijkstra's and breadth-first search will not assign
+    a predecessor to the source vertex (which is the root of the search
+    tree). It is often useful to initialize the source vertex's
+    predecessor to itself, thereby identifying the root vertex as the only
+    vertex which is its own parent. When using an algorithm like
+    depth-first search that creates a forest (multiple search trees) it
+    is useful to initialize the predecessor of every vertex to itself. This
+    way all the root nodes can be distinguished.
 
 
 <h3>Example</h3>
@@ -60,35 +60,39 @@ See the example for <a href="./bfs_visitor.html"><tt>bfs_visitor</tt></a>.
 <H3>Where Defined</H3>
 
 <P>
-<a href="../../../boost/graph/visitors.hpp">
-<TT>boost/graph/visitors.hpp</TT></a>
+    <a href="../../../boost/graph/visitors.hpp">
+        <TT>boost/graph/visitors.hpp</TT></a>
 
 <H3>Template Parameters</H3>
 
 <P>
 <TABLE border>
-<TR>
-<th>Parameter</th><th>Description</th><th>Default</th>
-</tr>
+    <TR>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Default</th>
+    </tr>
 
-<TR><TD><TT>PredecessorMap</TT></TD>
-<TD>
-A <a
-href="../../property_map/doc/WritablePropertyMap.html">WritablePropertyMap</a>
-where the key type and the value type are the vertex descriptor type
-of the graph.
-</TD>
-<TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>PredecessorMap</TT></TD>
+        <TD>
+            A <a
+                href="../../property_map/doc/WritablePropertyMap.html">WritablePropertyMap</a>
+            where the key type and the value type are the vertex descriptor type
+            of the graph.
+        </TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
-<TR><TD><TT>EventTag</TT></TD>
-<TD>
-The tag to specify when the <tt>predecessor_recorder</tt> should be
-applied during the graph algorithm. <tt>EventTag</tt> must be an
-edge event.
-</TD>
-<TD>&nbsp;</TD>
-</TR>
+    <TR>
+        <TD><TT>EventTag</TT></TD>
+        <TD>
+            The tag to specify when the <tt>predecessor_recorder</tt> should be
+            applied during the graph algorithm. <tt>EventTag</tt> must be an
+            edge event.
+        </TD>
+        <TD>&nbsp;</TD>
+    </TR>
 
 </table>
 
@@ -96,16 +100,17 @@ edge event.
 
 <table border>
 
-<tr>
-<th>Type</th><th>Description</th>
-</tr>
+    <tr>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
 
-<tr>
-<td><tt>predecessor_recorder::event_filter</tt></td>
-<td>
-This will be the same type as the template parameter <tt>EventTag</tt>.
-</td>
-</tr>
+    <tr>
+        <td><tt>predecessor_recorder::event_filter</tt></td>
+        <td>
+            This will be the same type as the template parameter <tt>EventTag</tt>.
+        </td>
+    </tr>
 
 </table>
 
@@ -114,47 +119,52 @@ This will be the same type as the template parameter <tt>EventTag</tt>.
 <p>
 
 <table border>
-<tr>
-<th>Member</th><th>Description</th>
-</tr>
+    <tr>
+        <th>Member</th>
+        <th>Description</th>
+    </tr>
 
-<tr>
-<td><tt>
-predecessor_recorder(PredecessorMap pa);
-</tt></td>
-<td>
-Construct a predecessor recorder object with predecessor property map
-<tt>pa</tt>.
-</td>
-</tr>
+    <tr>
+        <td><tt>
+            predecessor_recorder(PredecessorMap pa);
+        </tt></td>
+        <td>
+            Construct a predecessor recorder object with predecessor property map
+            <tt>pa</tt>.
+        </td>
+    </tr>
 
-<tr>
-<td><tt>
-template &lt;class Edge, class Graph&gt;<br>
-void operator()(Edge e, const Graph& g);
-</tt></td>
-<td>
-Given edge <i>e = (u,v)</i>, this records <i>u</i> as the
-predecessor (or parent) of <i>v</i>.
-</td>
-</tr>
+    <tr>
+        <td><tt>
+            template &lt;class Edge, class Graph&gt;<br>
+            void operator()(Edge e, const Graph& g);
+        </tt></td>
+        <td>
+            Given edge <i>e = (u,v)</i>, this records <i>u</i> as the
+            predecessor (or parent) of <i>v</i>.
+        </td>
+    </tr>
 
 </table>
 
 <h3>Non-Member Functions</h3>
 
 <table border>
-<tr>
-<th>Function</th><th>Description</th>
-</tr>
+    <tr>
+        <th>Function</th>
+        <th>Description</th>
+    </tr>
 
-<tr><td><tt>
-template &lt;class PredecessorMap, class Tag&gt;<br>
-predecessor_recorder&lt;PredecessorMap, Tag&gt; <br>
-record_predecessors(PredecessorMap pa, Tag);
-</tt></td><td>
-A convenient way to create a <tt>predecessor_recorder</tt>.
-</td></tr>
+    <tr>
+        <td><tt>
+            template &lt;class PredecessorMap, class Tag&gt;<br>
+            predecessor_recorder&lt;PredecessorMap, Tag&gt; <br>
+            record_predecessors(PredecessorMap pa, Tag);
+        </tt></td>
+        <td>
+            A convenient way to create a <tt>predecessor_recorder</tt>.
+        </td>
+    </tr>
 
 </table>
 
@@ -162,28 +172,32 @@ A convenient way to create a <tt>predecessor_recorder</tt>.
 
 <a href="./visitor_concepts.html">Visitor concepts</a>
 <p>
-The following are other event visitors: <a
-<a href="./distance_recorder.html"><tt>distance_recorder</tt></a>,
-<a href="./time_stamper.html"><tt>time_stamper</tt></a>,
-and <a href="./property_writer.html"><tt>property_writer</tt></a>.
+    The following are other event visitors: <a
+    <a href="./distance_recorder.html"><tt>distance_recorder</tt></a>,
+    <a href="./time_stamper.html"><tt>time_stamper</tt></a>,
+    and <a href="./property_writer.html"><tt>property_writer</tt></a>.
 
 
-<br>
+    <br>
 <HR>
 <TABLE>
-<TR valign=top>
-<TD nowrap>Copyright &copy; 2000-2001</TD><TD>
-<A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
-Indiana University (<A
-HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
-<A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana University (<A HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
-<A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
-Indiana University (<A
-HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
-</TD></TR></TABLE>
+    <TR valign=top>
+        <TD nowrap>Copyright &copy; 2000-2001</TD>
+        <TD>
+            <A HREF="http://www.boost.org/people/jeremy_siek.htm">Jeremy Siek</A>,
+            Indiana University (<A
+                HREF="mailto:jsiek@osl.iu.edu">jsiek@osl.iu.edu</A>)<br>
+            <A HREF="http://www.boost.org/people/liequan_lee.htm">Lie-Quan Lee</A>, Indiana
+            University (<A HREF="mailto:llee@cs.indiana.edu">llee@cs.indiana.edu</A>)<br>
+            <A HREF="http://www.osl.iu.edu/~lums">Andrew Lumsdaine</A>,
+            Indiana University (<A
+                HREF="mailto:lums@osl.iu.edu">lums@osl.iu.edu</A>)
+        </TD>
+    </TR>
+</TABLE>
 
 </BODY>
-</HTML> 
+</HTML>
 <!--  LocalWords:  PredecessorMap EventTag EventVisitor map bfs dfs const
  -->
 <!--  LocalWords:  EventVisitorList WritablePropertyMap Siek Univ Quan

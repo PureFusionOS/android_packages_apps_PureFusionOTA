@@ -1,27 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-    width="744.09448" height="1052.3622" id="svg2">
-  <defs
-     id="defs4" />
-  <metadata
-     id="metadata7">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     id="layer1">
-    <image
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAekAAAEuCAIAAAAlQX3MAAAAA3NCSVQICAjb4U/gAAAR9UlEQVR4
+<svg xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink"
+    height="1052.3622" id="svg2" version="1.1" width="744.09448"
+    xmlns="http://www.w3.org/2000/svg">
+    <defs id="defs4" />
+    <metadata id="metadata7">
+        <rdf:RDF>
+            <cc:Work rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g id="layer1">
+        <image height="302" id="image2993" width="489" x="104.07146" y="318.50504" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAekAAAEuCAIAAAAlQX3MAAAAA3NCSVQICAjb4U/gAAAR9UlEQVR4
 nO3d23bjOBJEUWBW//8vax7YhWbxAoK4JCOBsx9mqh1lO2kLIQiSXfH3+wUAgCv/+3oAAMBrdDcA
 +PNvd8cYY4z74PCfAAAd1/vuGCPn4AAg69/u3pqavTYAuMB5NwD48193p0MSDkwAQNxx382xCQDo
 +6u72W4DgAsX5900OACI47lKAPDnr+7mWUoAcOGf7f94ihIAHOG5SgDwp8MhybZnp/cBwAzPVQKA
@@ -103,11 +97,6 @@ h+7GLX7kCpBFdwOAP3Q3AGdijPsHhWs+QKS7ATizvcJiq+xlf3NDn+7O/96yNe8V9cU/vh4EeC3V
 5rDm1rv/vnv/RVz2LtGXu9v9mksC+va3zO0f0V7wtrrcBaPcgusB8ILXdwOAP3Q3APhDdwOAPxxo
 PtiebuWrBEAK+24A8Gf47zMBAHTXp7s5UgAAS0Y/Ez+B9NiCOyoAn+O8u8j2Uyq0NgARdHcRftAf
 gBS6GwD8obsBwB+6GwD8obsBwB+6GwD84feZAIA//wfNs+aIMMvtTwAAAABJRU5ErkJggg==
-"
-       x="104.07146"
-       y="318.50504"
-       width="489"
-       height="302"
-       id="image2993" />
-  </g>
+" />
+    </g>
 </svg>

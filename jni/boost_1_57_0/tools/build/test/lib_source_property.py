@@ -29,7 +29,6 @@ t.expect_addition("bin/$toolset/debug/a.obj")
 
 t.rm("bin")
 
-
 # Now try with <conditional>.
 t.write("jamroot.jam", """
 rule test ( properties * )
