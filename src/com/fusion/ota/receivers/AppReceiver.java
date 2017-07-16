@@ -60,7 +60,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
             Set<Integer> set = PureFusionOTA.getAddonDownloadKeySet();
             Iterator<Integer> iterator = set.iterator();
 
-            while (iterator.hasNext() && isAddonDownload != true) {
+            while (iterator.hasNext() && !isAddonDownload) {
                 int nextValue = iterator.next();
                 if (id == PureFusionOTA.getAddonDownload(nextValue)) {
                     isAddonDownload = true;
@@ -212,12 +212,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
 
             Handler h = new Handler();
             long delayInMilliseconds = 1500;
-            h.postDelayed(new Runnable() {
-
-                public void run() {
-                    mNotifyManager.cancel(NOTIFICATION_ID);
-                }
-            }, delayInMilliseconds);
+            h.postDelayed(() -> mNotifyManager.cancel(NOTIFICATION_ID), delayInMilliseconds);
         }
     }
 }

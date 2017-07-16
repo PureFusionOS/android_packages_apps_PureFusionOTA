@@ -148,13 +148,9 @@ public class AddonActivity extends Activity implements Constants {
             mNetworkDialog.setTitle(R.string.available_wrong_network_title)
                     .setMessage(R.string.available_wrong_network_message)
                     .setPositiveButton(R.string.ok, null)
-                    .setNeutralButton(R.string.settings, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(mContext, SettingsActivity.class);
-                            mContext.startActivity(intent);
-                        }
+                    .setNeutralButton(R.string.settings, (DialogInterface.OnClickListener) (dialog, which) -> {
+                        Intent intent = new Intent(mContext, SettingsActivity.class);
+                        mContext.startActivity(intent);
                     });
 
             mNetworkDialog.show();
@@ -164,14 +160,10 @@ public class AddonActivity extends Activity implements Constants {
             Builder deleteConfirm = new Builder(mContext);
             deleteConfirm.setTitle(R.string.delete);
             deleteConfirm.setMessage(mContext.getResources().getString(R.string.delete_confirm) + "\n\n" + file.getName());
-            deleteConfirm.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (file.exists()) {
-                        file.delete();
-                        updateButtons(item.getId(), false);
-                    }
+            deleteConfirm.setPositiveButton(R.string.ok, (DialogInterface.OnClickListener) (dialog, which) -> {
+                if (file.exists()) {
+                    file.delete();
+                    updateButtons(item.getId(), false);
                 }
             });
             deleteConfirm.setNegativeButton(R.string.cancel, null);
@@ -241,41 +233,27 @@ public class AddonActivity extends Activity implements Constants {
                 delete.setVisibility(View.GONE);
             }
 
-            download.setOnClickListener(new OnClickListener() {
+            download.setOnClickListener(v -> {
+                boolean isMobile = Utils.isMobileNetwork(mContext);
+                boolean isSettingWiFiOnly = Preferences.getNetworkType(mContext).equals(WIFI_ONLY);
 
-                @Override
-                public void onClick(View v) {
-                    boolean isMobile = Utils.isMobileNetwork(mContext);
-                    boolean isSettingWiFiOnly = Preferences.getNetworkType(mContext).equals(WIFI_ONLY);
-
-                    if (isMobile && isSettingWiFiOnly) {
-                        showNetworkDialog();
-                    } else {
-                        mDownloadAddon.startDownload(mContext, item.getDownloadLink(), item.getTitle(), item.getId(), index);
-                        download.setVisibility(View.GONE);
-                        cancel.setVisibility(View.VISIBLE);
-                    }
+                if (isMobile && isSettingWiFiOnly) {
+                    showNetworkDialog();
+                } else {
+                    mDownloadAddon.startDownload(mContext, item.getDownloadLink(), item.getTitle(), item.getId(), index);
+                    download.setVisibility(View.GONE);
+                    cancel.setVisibility(View.VISIBLE);
                 }
             });
 
-            cancel.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    mDownloadAddon.cancelDownload(mContext, index);
-                    download.setVisibility(View.VISIBLE);
-                    cancel.setVisibility(View.GONE);
-                    updateProgress(index, 0, true);
-                }
+            cancel.setOnClickListener(v -> {
+                mDownloadAddon.cancelDownload(mContext, index);
+                download.setVisibility(View.VISIBLE);
+                cancel.setVisibility(View.GONE);
+                updateProgress(index, 0, true);
             });
 
-            delete.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    deleteConfirm(file, item);
-                }
-            });
+            delete.setOnClickListener(v -> deleteConfirm(file, item));
 
             return convertView;
         }

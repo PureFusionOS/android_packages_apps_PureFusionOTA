@@ -38,7 +38,6 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
     private ProgressDialog mLoadingDialog;
     private StringBuilder mScript = new StringBuilder();
     private String mFilename;
-    ;
     private String mScriptOutput;
 
     public GenerateRecoveryScript(Context context) {
@@ -55,21 +54,16 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
         mLoadingDialog.show();
 
         if (Preferences.getWipeData(mContext)) {
-            mScript.append("wipe data" + NEW_LINE);
+            mScript.append("wipe data").append(NEW_LINE);
         }
         if (Preferences.getWipeCache(mContext)) {
-            mScript.append("wipe cache" + NEW_LINE);
+            mScript.append("wipe cache").append(NEW_LINE);
         }
         if (Preferences.getWipeDalvik(mContext)) {
-            mScript.append("wipe dalvik" + NEW_LINE);
+            mScript.append("wipe dalvik").append(NEW_LINE);
         }
 
-        mScript.append("install " + "/sdcard"
-                + File.separator
-                + OTA_DOWNLOAD_DIR
-                + File.separator
-                + mFilename
-                + NEW_LINE);
+        mScript.append("install " + "/sdcard").append(File.separator).append(OTA_DOWNLOAD_DIR).append(File.separator).append(mFilename).append(NEW_LINE);
 
         File installAfterFlashDir = new File("/sdcard"
                 + File.separator
@@ -79,7 +73,7 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
 
         File[] filesArr = installAfterFlashDir.listFiles();
         if (filesArr != null && filesArr.length > 0) {
-            for (int i = 0; i < filesArr.length; i++) {
+            for (File aFilesArr : filesArr) {
                 mScript.append(NEW_LINE
                         + "install "
                         + "/sdcard"
@@ -88,7 +82,7 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
                         + File.separator
                         + INSTALL_AFTER_FLASH_DIR
                         + File.separator
-                        + filesArr[i].getName());
+                        + aFilesArr.getName());
                 if (DEBUGGING)
                     Log.d(TAG, "install "
                             + "/sdcard"
@@ -97,21 +91,12 @@ public class GenerateRecoveryScript extends AsyncTask<Void, String, Boolean> imp
                             + File.separator
                             + INSTALL_AFTER_FLASH_DIR
                             + File.separator
-                            + filesArr[i].getName());
+                            + aFilesArr.getName());
             }
         }
 
         if (Preferences.getDeleteAfterInstall(mContext)) {
-            mScript.append(NEW_LINE
-                    + "cmd rm -rf "
-                    + "/sdcard"
-                    + File.separator
-                    + OTA_DOWNLOAD_DIR
-                    + File.separator
-                    + INSTALL_AFTER_FLASH_DIR
-                    + File.separator
-                    + mFilename
-                    + NEW_LINE);
+            mScript.append(NEW_LINE).append("cmd rm -rf ").append("/sdcard").append(File.separator).append(OTA_DOWNLOAD_DIR).append(File.separator).append(INSTALL_AFTER_FLASH_DIR).append(File.separator).append(mFilename).append(NEW_LINE);
         }
 
         mScriptOutput = mScript.toString();

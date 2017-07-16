@@ -29,6 +29,8 @@ import com.fusion.ota.activities.MainActivity;
 import com.fusion.ota.utils.Constants;
 import com.fusion.ota.utils.Preferences;
 
+import java.util.Arrays;
+
 public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implements Constants {
 
     public final String TAG = this.getClass().getSimpleName();
@@ -61,7 +63,7 @@ public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implemen
                     Preferences.setIsDownloadRunning(mContext, false);
                 }
 
-                final int progressPercent = (int) ((bytesDownloaded * 100l) / bytesInTotal);
+                final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
 
                 if (progressPercent != previousValue) {
                     // Only publish every 1%, to reduce the amount of work being done.
@@ -72,7 +74,7 @@ public class DownloadRomProgress extends AsyncTask<Long, Integer, Void> implemen
                 Preferences.setIsDownloadRunning(mContext, false);
             } catch (ArithmeticException e) {
                 Preferences.setIsDownloadRunning(mContext, false);
-                Log.e(TAG, " " + e.getStackTrace());
+                Log.e(TAG, " " + Arrays.toString(e.getStackTrace()));
             }
             cursor.close();
         }

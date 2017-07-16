@@ -41,7 +41,7 @@ public class Bypass {
 
     // Keeps track of the ordered list number for each LIST element.
     // We need to track multiple ordered lists at once because of nesting.
-    private final Map<Element, Integer> mOrderedListNumber = new ConcurrentHashMap<Element, Integer>();
+    private final Map<Element, Integer> mOrderedListNumber = new ConcurrentHashMap<>();
 
     /**
      * @deprecated Use {@link #Bypass(android.content.Context)} instead.
@@ -164,7 +164,7 @@ public class Bypass {
                 builder.append(" ");
                 if (mOrderedListNumber.containsKey(element.getParent())) {
                     int number = mOrderedListNumber.get(element.getParent());
-                    builder.append(Integer.toString(number) + ".");
+                    builder.append(Integer.toString(number)).append(".");
                     mOrderedListNumber.put(element.getParent(), number + 1);
                 } else {
                     builder.append(mOptions.mUnorderedListItem);

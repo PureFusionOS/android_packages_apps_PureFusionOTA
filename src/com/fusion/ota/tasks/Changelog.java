@@ -112,7 +112,7 @@ public class Changelog extends AsyncTask<Void, Void, String> {
                     if (inputReader != null) {
                         inputReader.close();
                     }
-                } catch (IOException e) {
+                } catch (IOException ignored) {
                 }
             }
             return text;

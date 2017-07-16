@@ -246,11 +246,7 @@ public class Utils implements Constants {
         String manifestVer = Integer.toString(otaVersion);
 
         boolean available;
-        if (Preferences.getIgnoredRelease(context).matches(manifestVer)) {
-            available = false;
-        } else {
-            available = DEBUG_NOTIFICATIONS ? true : versionBiggerThan(currentVer, manifestVer);
-        }
+        available = !Preferences.getIgnoredRelease(context).matches(manifestVer) && (DEBUG_NOTIFICATIONS ? true : versionBiggerThan(currentVer, manifestVer));
 
         RomUpdate.setUpdateAvailable(context, available);
         if (DEBUGGING)

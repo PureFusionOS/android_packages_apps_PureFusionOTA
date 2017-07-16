@@ -205,21 +205,12 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
         mInstallPrefsDialog = new AlertDialog.Builder(mContext);
         mInstallPrefsDialog.setTitle(R.string.twrp_ors_install_prefs);
         mInstallPrefsDialog.setMultiChoiceItems(R.array.ors_install_entries, defaultValues,
-                new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which,
-                                        boolean isChecked) {
-                        mInstallPrefsItems.put(which, isChecked);
-                    }
-                });
-        mInstallPrefsDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                Preferences.setWipeData(mContext, mInstallPrefsItems.get(0));
-                Preferences.setWipeCache(mContext, mInstallPrefsItems.get(1));
-                Preferences.setWipeDalvik(mContext, mInstallPrefsItems.get(2));
-                Preferences.setDeleteAfterInstall(mContext, mInstallPrefsItems.get(3));
-            }
+                (DialogInterface.OnMultiChoiceClickListener) (dialog, which, isChecked) -> mInstallPrefsItems.put(which, isChecked));
+        mInstallPrefsDialog.setPositiveButton(R.string.ok, (DialogInterface.OnClickListener) (dialog, id) -> {
+            Preferences.setWipeData(mContext, mInstallPrefsItems.get(0));
+            Preferences.setWipeCache(mContext, mInstallPrefsItems.get(1));
+            Preferences.setWipeDalvik(mContext, mInstallPrefsItems.get(2));
+            Preferences.setDeleteAfterInstall(mContext, mInstallPrefsItems.get(3));
         });
         mInstallPrefsDialog.show();
     }

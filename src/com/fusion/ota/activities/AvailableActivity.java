@@ -344,45 +344,37 @@ public class AvailableActivity extends Activity implements Constants, android.vi
         mDeleteDialog = new AlertDialog.Builder(mContext);
         mDeleteDialog.setTitle(R.string.are_you_sure)
                 .setMessage(R.string.available_delete_confirm_message)
-                .setPositiveButton(R.string.ok, new OnClickListener() {
+                .setPositiveButton(R.string.ok, (OnClickListener) (dialog, which) -> {
+                    // Proceed to delete the file, and reset most variables
+                    // and layouts
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Proceed to delete the file, and reset most variables
-                        // and layouts
-
-                        Utils.deleteFile(RomUpdate.getFullFile(mContext)); // Delete the file
-                        Preferences.setHasMD5Run(mContext, false); // MD5 check hasn't been run
-                        Preferences.setDownloadFinished(mContext, false);
-                        setupUpdateNameInfo(); // Update name info
-                        setupProgress(mContext); // Progress goes back to 0
-                        setupMd5Info(); // MD5 goes back to default
-                        if (Utils.isLollipop()) {
-                            setupMenuToolbar(mContext); // Reset options menu
-                        } else {
-                            invalidateMenu();
-                        }
+                    Utils.deleteFile(RomUpdate.getFullFile(mContext)); // Delete the file
+                    Preferences.setHasMD5Run(mContext, false); // MD5 check hasn't been run
+                    Preferences.setDownloadFinished(mContext, false);
+                    setupUpdateNameInfo(); // Update name info
+                    setupProgress(mContext); // Progress goes back to 0
+                    setupMd5Info(); // MD5 goes back to default
+                    if (Utils.isLollipop()) {
+                        setupMenuToolbar(mContext); // Reset options menu
+                    } else {
+                        invalidateMenu();
                     }
                 }).setNegativeButton(R.string.cancel, null);
 
         mRebootDialog = new AlertDialog.Builder(mContext);
         mRebootDialog.setTitle(R.string.are_you_sure)
                 .setMessage(R.string.available_reboot_confirm)
-                .setPositiveButton(R.string.ok, new OnClickListener() {
+                .setPositiveButton(R.string.ok, (OnClickListener) (dialog, which) -> {
+                    if (DEBUGGING)
+                        Log.d(TAG,
+                                "ORS is "
+                                        + Preferences
+                                        .getORSEnabled(mContext));
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (DEBUGGING)
-                            Log.d(TAG,
-                                    "ORS is "
-                                            + Preferences
-                                            .getORSEnabled(mContext));
-
-                        if (Preferences.getORSEnabled(mContext)) {
-                            new GenerateRecoveryScript(mContext).execute();
-                        } else {
-                            Tools.recovery(mContext);
-                        }
+                    if (Preferences.getORSEnabled(mContext)) {
+                        new GenerateRecoveryScript(mContext).execute();
+                    } else {
+                        Tools.recovery(mContext);
                     }
                 }).setNegativeButton(R.string.cancel, null);
 
@@ -390,13 +382,9 @@ public class AvailableActivity extends Activity implements Constants, android.vi
         mNetworkDialog.setTitle(R.string.available_wrong_network_title)
                 .setMessage(R.string.available_wrong_network_message)
                 .setPositiveButton(R.string.ok, null)
-                .setNeutralButton(R.string.settings, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(mContext, SettingsActivity.class);
-                        mContext.startActivity(intent);
-                    }
+                .setNeutralButton(R.string.settings, (OnClickListener) (dialog, which) -> {
+                    Intent intent = new Intent(mContext, SettingsActivity.class);
+                    mContext.startActivity(intent);
                 });
 
         mRebootManualDialog = new AlertDialog.Builder(mContext);

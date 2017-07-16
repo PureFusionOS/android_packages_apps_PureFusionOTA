@@ -89,8 +89,8 @@ public class Tools implements Constants {
             Log.d(shell, "START");
         }
 
-        ArrayList<String> res = new ArrayList<String>();
-        ArrayList<String> err = new ArrayList<String>();
+        ArrayList<String> res = new ArrayList<>();
+        ArrayList<String> err = new ArrayList<>();
         boolean success = false;
         try {
             Process process = Runtime.getRuntime().exec(shell);
@@ -121,10 +121,7 @@ public class Tools implements Constants {
             }
 
             process.destroy();
-            success = true;
-            if (err.size() > 0) {
-                success = false;
-            }
+            success = err.size() <= 0;
         } catch (IOException e) {
             if (BuildConfig.DEBUG) Log.e(shell, "IOException: " + e.getMessage());
             err.add("IOException: " + e.getMessage());

@@ -157,7 +157,6 @@ public class RomXmlParser extends DefaultHandler implements Constants {
     public void characters(char[] buffer, int start, int length)
             throws SAXException {
         value.append(buffer, start, length);
-        ;
 
     }
 

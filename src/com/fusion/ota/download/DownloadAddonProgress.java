@@ -48,7 +48,7 @@ public class DownloadAddonProgress extends AsyncTask<Long, Integer, Void> implem
                 final int bytesInTotal = cursor.getInt(cursor
                         .getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
 
-                final int progressPercent = (int) ((bytesDownloaded * 100l) / bytesInTotal);
+                final int progressPercent = (int) ((bytesDownloaded * 100L) / bytesInTotal);
 
                 if (progressPercent != previousValue) {
                     // Only publish every 1%, to reduce the amount of work being done.

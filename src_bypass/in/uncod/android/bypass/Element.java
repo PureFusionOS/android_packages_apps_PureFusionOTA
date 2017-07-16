@@ -7,7 +7,7 @@ public class Element {
 
     public static final int F_LIST_ORDERED = 1;
     String text;
-    Map<String, String> attributes = new HashMap<String, String>();
+    Map<String, String> attributes = new HashMap<>();
     Element[] children;
     Type type;
     Element parent;

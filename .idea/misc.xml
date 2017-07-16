@@ -33,6 +33,7 @@
       </value>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="Android API 25 Platform" project-jdk-type="Android SDK" />
   <component name="SuppressionsComponent">
     <option name="suppComments" value="[]" />
   </component>

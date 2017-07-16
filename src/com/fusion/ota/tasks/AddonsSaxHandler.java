@@ -20,7 +20,7 @@ public class AddonsSaxHandler extends DefaultHandler implements Constants {
     private Addon tempAddon;
 
     public AddonsSaxHandler() {
-        addons = new ArrayList<Addon>();
+        addons = new ArrayList<>();
     }
 
     public ArrayList<Addon> getAddons() {

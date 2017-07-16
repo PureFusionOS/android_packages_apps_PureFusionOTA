@@ -7,7 +7,7 @@ import android.util.Log;
 import java.util.Set;
 
 public class PureFusionOTA extends Application {
-    private static ArrayMap<Integer, Long> mAddonsDownloads = new ArrayMap<Integer, Long>();
+    private static ArrayMap<Integer, Long> mAddonsDownloads = new ArrayMap<>();
 
     public static void putAddonDownload(int key, long value) {
         Log.d("PureFusionOTA", "Putting Addon with Key: " + key + " and Value: " + value);
