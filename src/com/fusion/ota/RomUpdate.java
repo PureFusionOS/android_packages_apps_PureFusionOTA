@@ -125,103 +125,103 @@ public class RomUpdate implements Constants {
     public static void setRomName(Context context, String name) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(NAME, name);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setVersionName(Context context, String version) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(VERSION_NAME, version);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setVersionNumber(Context context, int version) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putInt(VERSION_NUMBER, version);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setDirectUrl(Context context, String url) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(DIRECT_URL, url);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setHttpUrl(Context context, String url) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(HTTP_URL, url);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setMd5(Context context, String md5) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(MD5, md5);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setChangelog(Context context, String change) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(CHANGELOG, change);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setAndroidVersion(Context context, String android) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(ANDROID, android);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setWebsite(Context context, String website) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(WEBSITE, website);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setDeveloper(Context context, String developer) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(DEVELOPER, developer);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setDonateLink(Context context, String donateLink) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(DONATE_LINK, donateLink);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setBitCoinLink(Context context, String donateLink) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(BTC_LINK, donateLink);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setFileSize(Context context, int size) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putInt(FILESIZE, size);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setUrlDomain(Context context, String romhut_text) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(URL_DOMAIN, romhut_text);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setAddonsCount(Context context, int addons_count) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putInt(ADDONS_COUNT, addons_count);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setAddonsUrl(Context context, String addons_url) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(ADDONS_URL, addons_url);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setUpdateAvailable(Context context, boolean availability) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putBoolean(AVAILABILITY, availability);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getFilename(Context context) {

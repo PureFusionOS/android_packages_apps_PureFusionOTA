@@ -40,6 +40,7 @@
     <string name="background_service_summary">Automatically check for updates and show a
         notification if one is available
     </string>
+    <string name="beta_update_summary">Opt-in to beta updates</string>
     <string name="background_frequency">Update check frequency</string>
     <string name="background_30mins">30 Mins</string>
     <string name="background_60mins">60 Mins</string>
@@ -69,5 +70,6 @@
     </string>
     <string name="storage">Storage</string>
     <string name="storage_location">Storage location</string>
+    <string name="beta_updates">Beta Updates</string>
 
 </resources>

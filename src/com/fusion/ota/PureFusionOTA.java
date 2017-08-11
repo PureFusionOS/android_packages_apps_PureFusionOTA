@@ -16,7 +16,7 @@ public class PureFusionOTA extends Application {
 
     public static long getAddonDownload(int key) {
         Log.d("PureFusionOTA", "Getting Addon with Key: " + key);
-        return (Long) mAddonsDownloads.get(key);
+        return mAddonsDownloads.get(key);
     }
 
     public static long getAddonDownloadValueAtIndex(int index) {

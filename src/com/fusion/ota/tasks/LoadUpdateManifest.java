@@ -20,11 +20,20 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.preference.SwitchPreference;
 import android.util.Log;
 
 import com.fusion.ota.R;
 import com.fusion.ota.utils.Constants;
+import com.fusion.ota.utils.Preferences;
+import com.fusion.ota.activities.SettingsActivity;
 import com.fusion.ota.utils.Utils;
+
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -32,10 +41,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Set;
 
 public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements Constants {
 
     private static final String MANIFEST = "update_manifest.xml";
+    private Boolean BETA/* = SettingsActivity.mBeta.getBoolean("beta_opt_in", true)*/; // Whether to load the BETA manifest or not
     public final String TAG = this.getClass().getSimpleName();
     // Did this come from the BackgroundReceiver class?
     boolean shouldUpdateForegroundApp;
@@ -45,6 +56,8 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     public LoadUpdateManifest(Context context, boolean input) {
         mContext = context;
         shouldUpdateForegroundApp = input;
+        SwitchPreference Beta;
+        /*if (PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("beta_opt_in", true));*/
     }
 
     @Override
@@ -66,12 +79,16 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     @Override
     protected Void doInBackground(Void... v) {
 
+        BETA = Preferences.getBeta(mContext);
+
         try {
             InputStream input = null;
 
             URL url;
             if (DEBUGGING) {
                 url = new URL("https://romhut.com/roms/aosp-jf/ota.xml");
+            } else if (BETA) {
+                url = new URL(Utils.getProp("ro.ota.BETAmanifest").trim());
             } else {
                 url = new URL(Utils.getProp("ro.ota.manifest").trim());
             }
