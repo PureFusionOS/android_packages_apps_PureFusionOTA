@@ -20,7 +20,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.preference.SwitchPreference;
 import android.util.Log;
 
 import com.fusion.ota.R;
