@@ -126,10 +126,10 @@ public class AvailableActivity extends Activity implements Constants, android.vi
             String ready = context.getResources().getString(R.string.available_ready_to_install);
             int[] attrs = {R.attr.materialAccent};
             TypedArray ta = context.obtainStyledAttributes(attrs);
-            int color = ta.getColor(R.styleable.Theme_Ragnar_materialAccent, 0);
+            /*int color = ta.getColor(R.styleable.Theme_Ragnar_materialAccent, 0);*/
             ta.recycle();
             if (mProgressCounterText != null) {
-                mProgressCounterText.setTextColor(color);
+                /*mProgressCounterText.setTextColor(color);*/
                 mProgressCounterText.setText(ready);
             }
             if (mProgressBar != null) {
