@@ -231,19 +231,19 @@ public class Utils implements Constants {
         if (DEBUGGING)
             Log.d(TAG, "Current: " + current + " Manifest: " + manifest);
 
-        return Integer.parseInt(current) < Integer.parseInt(manifest);
+        return (current.compareTo(manifest) < 0);
     }
 
     public static boolean isUpdateIgnored(Context context) {
-        String manifestVer = Integer.toString(RomUpdate.getVersionNumber(context));
+        String manifestVer = RomUpdate.getVersionNumber(context);
         return Preferences.getIgnoredRelease(context).matches(manifestVer);
     }
 
     public static void setUpdateAvailability(Context context) {
         // Grab the data from the device and manifest
-        int otaVersion = RomUpdate.getVersionNumber(context);
+        String otaVersion = RomUpdate.getVersionNumber(context);
         String currentVer = Utils.getProp("ro.ota.version");
-        String manifestVer = Integer.toString(otaVersion);
+        String manifestVer = otaVersion;
 
         boolean available;
         available = !Preferences.getIgnoredRelease(context).matches(manifestVer) && (DEBUG_NOTIFICATIONS ? true : versionBiggerThan(currentVer, manifestVer));

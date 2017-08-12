@@ -201,7 +201,7 @@ public class AppReceiver extends BroadcastReceiver implements Constants {
             if (DEBUGGING) {
                 Log.d(TAG, "Ignore release");
             }
-            Preferences.setIgnoredRelease(context, Integer.toString(RomUpdate.getVersionNumber(context)));
+            Preferences.setIgnoredRelease(context, RomUpdate.getVersionNumber(context));
             final NotificationManager mNotifyManager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Builder mBuilder = new NotificationCompat.Builder(context);
