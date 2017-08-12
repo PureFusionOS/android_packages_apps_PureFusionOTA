@@ -62,8 +62,8 @@ public class RomUpdate implements Constants {
         return getPrefs(context).getString(VERSION_NAME, DEF_VALUE);
     }
 
-    public static int getVersionNumber(Context context) {
-        return getPrefs(context).getInt(VERSION_NUMBER, 0);
+    public static String getVersionNumber(Context context) {
+        return getPrefs(context).getString(VERSION_NUMBER, DEF_VALUE);
     }
 
     public static String getDirectUrl(Context context) {
@@ -134,9 +134,9 @@ public class RomUpdate implements Constants {
         editor.apply();
     }
 
-    public static void setVersionNumber(Context context, int version) {
+    public static void setVersionNumber(Context context, String version) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
-        editor.putInt(VERSION_NUMBER, version);
+        editor.putString(VERSION_NUMBER, version);
         editor.apply();
     }
 
