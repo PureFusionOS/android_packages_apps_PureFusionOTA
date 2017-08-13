@@ -418,8 +418,8 @@ public class MainActivity extends Activity implements Constants {
 
     public void openChangelog(View v) {
         String title = getResources().getString(R.string.changelog);
-        String changelog = RomUpdate.getChangelog(mContext);
-        new Changelog(this, mContext, title, changelog, false).execute();
+        String changelog = RomUpdate.getChangelogUrl(mContext);
+        new Changelog(this, mContext, title, changelog, true).execute();
     }
 
     public class CompatibilityTask extends AsyncTask<Void, Boolean, Boolean> implements Constants {
