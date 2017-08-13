@@ -180,7 +180,7 @@ public class RomXmlParser extends DefaultHandler implements Constants {
         }
 
         if (tagVersionNumber) {
-            RomUpdate.setVersionNumber(mContext, Integer.parseInt(input));
+            RomUpdate.setVersionNumber(mContext, input);
             tagVersionNumber = false;
             if (DEBUGGING)
                 Log.d(TAG, "OTA Version = " + input);
@@ -276,7 +276,7 @@ public class RomXmlParser extends DefaultHandler implements Constants {
         }
 
         if (tagLog) {
-            RomUpdate.setChangelog(mContext, input);
+            RomUpdate.setChangelogUrl(mContext, input);
             tagLog = false;
             if (DEBUGGING)
                 Log.d(TAG, "Changelog = " + input);
