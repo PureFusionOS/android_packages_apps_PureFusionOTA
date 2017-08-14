@@ -75,4 +75,13 @@
         android:key="current_theme" android:summary="@string/list_summary"
         android:title="@string/theme" />
 
+     <!-- Beta update service -->
+     <PreferenceCategory android:key="beta_updates"
+         android:title="@string/beta_updates" />
+
+     <SwitchPreference android:defaultValue="false" android:dependency="background_service"
+         android:key="beta_updates"
+         android:summary="@string/beta_update_summary"
+         android:title="@string/beta_updates" />
+
 </PreferenceScreen>

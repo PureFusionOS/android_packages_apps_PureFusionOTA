@@ -68,6 +68,7 @@ public interface Constants {
     public static final String OLD_CHANGELOG = "old_changelog";
     public static final String FIRST_RUN = "first_run";
     public static final String STORAGE_LOCATION = "updater_storage_location";
+    public static final String BETA_UPDATES = "beta_updates";
 
     // Broadcast intents
     public static final String MANIFEST_LOADED = "com.ota.update.MANIFEST_LOADED";
