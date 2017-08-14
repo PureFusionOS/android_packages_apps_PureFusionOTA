@@ -20,10 +20,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.preference.SwitchPreference;
 import android.util.Log;
 
 import com.fusion.ota.R;
 import com.fusion.ota.utils.Constants;
+import com.fusion.ota.utils.Preferences;
 import com.fusion.ota.utils.Utils;
 
 import java.io.BufferedInputStream;
@@ -36,6 +38,7 @@ import java.net.URLConnection;
 public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements Constants {
 
     private static final String MANIFEST = "update_manifest.xml";
+    private Boolean BETA; // Whether to load the BETA manifest or not
     public final String TAG = this.getClass().getSimpleName();
     // Did this come from the BackgroundReceiver class?
     boolean shouldUpdateForegroundApp;
@@ -66,12 +69,16 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     @Override
     protected Void doInBackground(Void... v) {
 
+        BETA = Preferences.getBeta(mContext);
+
         try {
             InputStream input = null;
 
             URL url;
             if (DEBUGGING) {
                 url = new URL("https://romhut.com/roms/aosp-jf/ota.xml");
+            } else if (BETA) {
+                url = new URL(Utils.getProp("ro.ota.BETAmanifest").trim());
             } else {
                 url = new URL(Utils.getProp("ro.ota.manifest").trim());
             }

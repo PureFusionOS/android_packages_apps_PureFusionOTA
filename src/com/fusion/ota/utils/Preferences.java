@@ -181,6 +181,10 @@ public class Preferences implements Constants {
         return getPrefs(context).getBoolean(FIRST_RUN, true);
     }
 
+    public static Boolean getBeta(Context context) {
+        return getPrefs(context).getBoolean(BETA_UPDATES, true);
+    }
+
     public static void setUpdateLastChecked(Context context, String time) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(LAST_CHECKED, time);
