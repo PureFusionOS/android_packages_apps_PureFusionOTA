@@ -121,6 +121,18 @@ http://xyyx-dev.ru/nitrogen-os/nougat/geehrc/addons.xml
 ```
 Taking care to provide a direct link to your XML in the AddonsUrl tag, and providing an accurate count in the AddonCount tag.
 
+#### Using beta updates
+
+To make use of beta OTA updates, you will need an additional XML file in the same location as the regular OTA XML (refer to section "Create an ota.xml" above). The format of the XML will be the same.
+
+You will need to add an additional property in the build.prop:
+ro.ota.BETAmanifest=https://github.com/PureFusionOS/PureFusionOTA_SERVER/blob/master/pme_beta.xml
+
+Note that BETAmanifest will be case sensitive.
+
+These beta updates are opt-in. Users may opt-in and back out at any time without the need of a reboot.
+
+If a user opts-in to the beta updates but you do not support them, the updates fetched will remain on the stable release.
 
 #### Add to build properties
 
