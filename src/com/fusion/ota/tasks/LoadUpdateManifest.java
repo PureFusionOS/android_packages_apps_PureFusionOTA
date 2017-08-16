@@ -71,6 +71,10 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
 
         BETA = Preferences.getBeta(mContext);
 
+        if (!Utils.doesPropExist("ro.ota.BETAmanifest")) {
+            BETA = false;
+        }
+
         try {
             InputStream input = null;
 

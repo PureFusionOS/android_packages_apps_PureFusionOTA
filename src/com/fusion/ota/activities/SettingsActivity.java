@@ -60,6 +60,7 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
     private RingtonePreference mRingtonePreference;
     private SparseBooleanArray mInstallPrefsItems = new SparseBooleanArray();
     private SwitchPreference mIgnoredRelease;
+    private SwitchPreference mBeta;
     private ListPreference mThemePref;
     private Preference mStorageLocation;
 
@@ -112,6 +113,15 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
         mStorageLocation.setSelectable(false);
         String storageLocationStr = SD_CARD + File.separator + OTA_DOWNLOAD_DIR;
         mStorageLocation.setSummary(storageLocationStr);
+
+        mBeta = (SwitchPreference) findPreference(BETA_UPDATES);
+
+        if (!Utils.doesPropExist("ro.ota.BETAmanifest")) {
+            mBeta.setEnabled(false);
+            mBeta.setChecked(false);
+        } else {
+            mBeta.setEnabled(true);
+        }
     }
 
     @Override
