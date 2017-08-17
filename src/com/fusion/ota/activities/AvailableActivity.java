@@ -198,7 +198,7 @@ public class AvailableActivity extends Activity implements Constants, android.vi
         setupProgress(mContext);
         setupMd5Info();
         setupRomHut();
-        setupChangeLog();
+        /*setupChangeLog();*/
         if (Utils.isLollipop()) {
             setupMenuToolbar(mContext);
         }
@@ -393,14 +393,14 @@ public class AvailableActivity extends Activity implements Constants, android.vi
                 .setPositiveButton(R.string.cancel, null);
     }
 
-    private void setupChangeLog() {
+    /*private void setupChangeLog() {
         TextView changelogView = (TextView) findViewById(R.id.tv_available_changelog_content);
         Bypass byPass = new Bypass(this);
         String changeLogStr = RomUpdate.getChangelogUrl(mContext);
         CharSequence string = byPass.markdownToSpannable(changeLogStr);
         changelogView.setText(string);
         changelogView.setMovementMethod(LinkMovementMethod.getInstance());
-    }
+    }*/
 
     private void setupRomHut() {
         String domainText = RomUpdate.getUrlDomain(mContext);

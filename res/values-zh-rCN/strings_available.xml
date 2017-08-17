@@ -18,7 +18,7 @@
     <string name="available_update_name">更新名称和文件信息</string>
     <string name="available_progress_counter">0MB / 0MB</string>
     <string name="available_changelog_title">更新日志</string>
-    <string name="available_changelog_content">您的更新日志在此</string>
+    <!--<string name="available_changelog_content">您的更新日志在此</string>-->
     <string name="available_check_md5">检查MD5</string>
     <string name="available_ready_to_install">准备安装</string>
     <string name="available_md5_ok">MD5通过</string>

@@ -18,7 +18,7 @@
     <string name="available_update_name">Имя обновления и данные о файле здесь</string>
     <string name="available_progress_counter">0МБ / 0МБ</string>
     <string name="available_changelog_title">Список изменений</string>
-    <string name="available_changelog_content">Ваши изменения будут здесь</string>
+    <!--<string name="available_changelog_content">Ваши изменения будут здесь</string>-->
     <string name="available_check_md5">Проверить MD5</string>
     <string name="available_ready_to_install">Готово для установки</string>
     <string name="available_md5_ok">MD5 успешно</string>
