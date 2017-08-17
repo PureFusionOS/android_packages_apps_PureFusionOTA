@@ -107,7 +107,7 @@ public class AddonActivity extends Activity implements Constants {
             ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
 
             if (finished) {
-                progressBar.setProgress(0);
+                progressBar.setProgress(100);
             } else {
                 progressBar.setProgress(progress);
                 if (DEBUGGING) {
