@@ -117,7 +117,7 @@ public class AddonActivity extends Activity implements Constants {
         }
 
         public static void updateButtons(int index, boolean finished) {
-            View v = mListview.getChildAt((index - 1) -
+            View v = mListview.getChildAt(index -
                     mListview.getFirstVisiblePosition());
 
             if (v == null) {
