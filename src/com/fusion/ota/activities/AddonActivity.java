@@ -163,6 +163,7 @@ public class AddonActivity extends Activity implements Constants {
             deleteConfirm.setPositiveButton(R.string.ok, (DialogInterface.OnClickListener) (dialog, which) -> {
                 if (file.exists()) {
                     file.delete();
+                    updateProgress(item.getId() - 1, 0, false);
                     updateButtons(item.getId() - 1, false);
                 }
             });
