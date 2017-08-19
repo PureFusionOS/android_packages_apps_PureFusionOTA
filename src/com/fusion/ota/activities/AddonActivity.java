@@ -250,7 +250,7 @@ public class AddonActivity extends Activity implements Constants {
                 mDownloadAddon.cancelDownload(mContext, index);
                 download.setVisibility(View.VISIBLE);
                 cancel.setVisibility(View.GONE);
-                updateProgress(index, 0, true);
+                updateProgress(index, 0, false);
             });
 
             delete.setOnClickListener(v -> deleteConfirm(file, item));
