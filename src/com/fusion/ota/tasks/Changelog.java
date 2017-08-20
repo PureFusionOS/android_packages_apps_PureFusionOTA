@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.fusion.ota.R;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -97,14 +99,19 @@ public class Changelog extends AsyncTask<Void, Void, String> {
             String text = null;
 
             try {
-                StringBuilder data = new StringBuilder();
-                char tmp[] = new char[2048];
-                int numRead;
-                inputReader = new FileReader(mChangelogFile);
-                while ((numRead = inputReader.read(tmp)) >= 0) {
-                    data.append(tmp, 0, numRead);
+                BufferedReader br = new BufferedReader(new FileReader(mChangelogFile));
+                String fileRead = br.readLine();
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while (fileRead != null) {
+                    stringBuilder.append(fileRead + '\n');
+
+                    if(!fileRead.isEmpty())
+                        stringBuilder.append('\n');
+
+                    fileRead = br.readLine();
                 }
-                text = data.toString();
+                text = stringBuilder.toString();
             } catch (IOException e) {
                 text = mContext.getString(R.string.changelog_error);
             } finally {
@@ -132,9 +139,7 @@ public class Changelog extends AsyncTask<Void, Void, String> {
         View view = mActivity.getLayoutInflater().inflate(R.layout.ota_changelog_layout, null);
         TextView changelog = (TextView) view.findViewById(R.id.title);
 
-        Bypass bypass = new Bypass(mContext);
-        CharSequence string = bypass.markdownToSpannable(changelogText);
-        changelog.setText(string);
+        changelog.setText(changelogText);
 
         Builder dialog = new AlertDialog.Builder(mContext);
         dialog.setTitle(mTitle);
