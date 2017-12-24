@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.preference.SwitchPreference;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import com.fusion.ota.R;
 import com.fusion.ota.utils.Constants;
@@ -43,7 +44,7 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     // Did this come from the BackgroundReceiver class?
     boolean shouldUpdateForegroundApp;
     private Context mContext;
-    private ProgressDialog mLoadingDialog;
+    private ProgressBar mLoadingBar;
 
     public LoadUpdateManifest(Context context, boolean input) {
         mContext = context;
@@ -53,11 +54,8 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     @Override
     protected void onPreExecute() {
         if (shouldUpdateForegroundApp) {
-            mLoadingDialog = new ProgressDialog(mContext);
-            mLoadingDialog.setIndeterminate(true);
-            mLoadingDialog.setCancelable(false);
-            mLoadingDialog.setMessage(mContext.getResources().getString(R.string.loading));
-            mLoadingDialog.show();
+            mLoadingBar = new ProgressBar(mContext);
+            mLoadingBar.setIndeterminate(true);
         }
 
         File manifest = new File(mContext.getFilesDir().getPath(), MANIFEST);
@@ -118,7 +116,6 @@ public class LoadUpdateManifest extends AsyncTask<Void, Void, Void> implements C
     protected void onPostExecute(Void result) {
         Intent intent;
         if (shouldUpdateForegroundApp) {
-            mLoadingDialog.cancel();
             intent = new Intent(MANIFEST_LOADED);
         } else {
             intent = new Intent(MANIFEST_CHECK_BACKGROUND);
